@@ -2,5 +2,4 @@ bin
 obj
 .vscode
 appsettings.json
-Commands.txt
 *.db

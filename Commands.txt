@@ -1,0 +1,54 @@
+﻿//===================== UTILIDADE ======================
+
+-- Dotnet Uteis
+dotnet --info
+dotnet new -h (Visualiza o que se pode criar)
+
+//===================== CRIANDO APLICATIVO =============
+
+-- Criando Solution
+dotnet new sln
+
+-- Criando Camadas da Arquitetura
+dotnet new classlib -n Domain
+dotnet new classlib -n Application
+dotnet new classlib -n Persistence
+dotnet new webapi -n API
+
+-- Adicionando Projetos dentro da Solution
+dotnet sln list
+dotnet sln add Domain/
+dotnet sln add Persistence/
+dotnet sln add Application/
+dotnet sln add API/
+
+-- Criando Referencias (Seguindo Uncle Bob Ways of "life")
+Domain é centro.. não precisa.
+/Application
+dotnet add reference ../Domain/
+dotnet add reference ../Persistence/
+/API
+dotnet add reference ../Application/
+/Persistence
+dotnet add reference ../Domain/
+
+//===================== PERSISTENCIA ====================
+
+----ENTITY EF
+dotnet ef migrations add InitialCreate -p Persistence/ -s API/
+dotnet ef migrations add SeedValues -p Persistence/ -s API/
+
+//===================== REACT ============================
+
+----REACT
+npx create-react-app client-app --use-npm --typescript
+
+npm start
+
+----3º
+npm install axios
+npm install semantic-ui-react
+npm install uuid
+npm install @types/uuid
+
+
