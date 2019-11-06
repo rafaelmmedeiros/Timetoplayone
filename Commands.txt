@@ -41,11 +41,13 @@ dotnet ef migrations add SeedValues -p Persistence/ -s API/
 //===================== REACT ============================
 
 ----REACT
+Criando novo App
 npx create-react-app client-app --use-npm --typescript
 
+Rodando Server
 npm start
 
-----3º
+----3º 
 npm install axios
 npm install semantic-ui-react
 npm install uuid
