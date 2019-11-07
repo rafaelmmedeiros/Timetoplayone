@@ -37,6 +37,7 @@ dotnet add reference ../Domain/
 ----ENTITY EF
 dotnet ef migrations add InitialCreate -p Persistence/ -s API/
 dotnet ef migrations add SeedValues -p Persistence/ -s API/
+dotnet ef migrations add 'EstudoEntidadeAdded' -p Persistence/ -s API/
 
 //===================== REACT ============================
 

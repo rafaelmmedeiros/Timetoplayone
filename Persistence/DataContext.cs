@@ -12,6 +12,7 @@ namespace Persistence
 
         // Entidades a serem geradas pelo Entity Framework
         public DbSet<Value> Values { get; set; }
+        public DbSet<Estudo> Estudos { get; set; }
 
 
         // Seed para Values
