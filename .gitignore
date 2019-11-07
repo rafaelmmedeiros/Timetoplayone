@@ -2,4 +2,5 @@ bin
 obj
 .vscode
 appsettings.json
+IdeiasFuturas.txt
 *.db
