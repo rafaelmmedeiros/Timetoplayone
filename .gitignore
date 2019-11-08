@@ -3,4 +3,6 @@ obj
 .vscode
 appsettings.json
 IdeiasFuturas.txt
+Commands.txt
+Console.txt
 *.db
