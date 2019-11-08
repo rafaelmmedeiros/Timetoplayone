@@ -66,7 +66,7 @@ namespace Application.Estudos
 
                 if (success) return Unit.Value;
 
-                throw new Exception("Erro ao salvar modicações");
+                throw new Exception("Erro ao salvar");
                 
             }
         }
