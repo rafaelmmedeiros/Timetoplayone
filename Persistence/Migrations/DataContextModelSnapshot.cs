@@ -23,8 +23,6 @@ namespace Persistence.Migrations
 
                     b.Property<int>("BpmInicial");
 
-                    b.Property<int>("Compassos");
-
                     b.Property<DateTime>("DataCriacao");
 
                     b.Property<string>("Descricao");
@@ -40,8 +38,6 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("PrimeiroTreino");
 
                     b.Property<int>("Proposito");
-
-                    b.Property<string>("SubTecnica");
 
                     b.Property<string>("Tecnica");
 

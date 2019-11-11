@@ -17,12 +17,10 @@ namespace Application.Estudos
             public int? BpmInicial { get; set; }
             public int? Compassos { get; set; }
             public string Tecnica { get; set; }
-            public string SubTecnica { get; set; }
             public int? Dificuldade { get; set; }
             public int? Proposito { get; set; }
             public int? Fluencia { get; set; }
             public int? Minutos { get; set; }
-            public int VezesPraticado { get; set; }
             public int TempoPraticado { get; set; }
             public DateTime DataCriacao { get; set; }
             public DateTime PrimeiroTreino { get; set; }
@@ -50,9 +48,7 @@ namespace Application.Estudos
                 estudo.Origem = request.Origem ?? estudo.Origem;
                 estudo.Descricao = request.Descricao ?? estudo.Descricao;
                 estudo.BpmInicial = request.BpmInicial ?? estudo.BpmInicial;
-                estudo.Compassos = request.Compassos ?? estudo.Compassos;
                 estudo.Tecnica = request.Tecnica ?? estudo.Tecnica;
-                estudo.SubTecnica = request.SubTecnica ?? estudo.SubTecnica;
                 estudo.Dificuldade = request.Dificuldade ?? estudo.Dificuldade;
                 estudo.Proposito = request.Proposito ?? estudo.Proposito;
                 estudo.Fluencia = request.Fluencia ?? estudo.Fluencia;

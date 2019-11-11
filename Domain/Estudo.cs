@@ -14,11 +14,9 @@ namespace Domain
 
         // Descritivo Musica
         public int BpmInicial { get; set; }
-        public int Compassos { get; set; }
 
         // Qualificativos e Segregativos
         public string Tecnica { get; set; } // Arpejios, Escalas ...
-        public string SubTecnica { get; set; } // Swwep Pikcing ...
         public int Dificuldade { get; set; } // 5 Niveis (1-5)
         public int Proposito { get; set; } // 1-Técnica Pura (Endurance), 2-Aplicação em Estrutras Musicais, 3-Vocabularios, 4-Musica
         public int Fluencia { get; set; } // 0 Aprendizado, 1 Manutencao

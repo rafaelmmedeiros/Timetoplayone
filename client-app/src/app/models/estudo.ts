@@ -4,9 +4,7 @@ export interface IEstudo {
     origem: string;
     descricao: string;
     bpmInicial: number;
-    compasso: number;
     tecnica: string;
-    subTecnica: string;
     dificuldade: number;
     proposito: number;
     fluencia: number;

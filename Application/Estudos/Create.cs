@@ -16,9 +16,7 @@ namespace Application.Estudos
             public string Origem { get; set; }
             public string Descricao { get; set; }
             public int BpmInicial { get; set; }
-            public int Compassos { get; set; }
             public string Tecnica { get; set; }
-            public string SubTecnica { get; set; }
             public int Dificuldade { get; set; }
             public int Proposito { get; set; }
             public int Fluencia { get; set; }
@@ -47,9 +45,7 @@ namespace Application.Estudos
                     Origem = request.Origem,
                     Descricao = request.Descricao,
                     BpmInicial = request.BpmInicial,
-                    Compassos = request.Compassos,
                     Tecnica = request.Tecnica,
-                    SubTecnica = request.SubTecnica,
                     Dificuldade = request.Dificuldade,
                     Proposito = request.Proposito,
                     Fluencia = request.Fluencia,
