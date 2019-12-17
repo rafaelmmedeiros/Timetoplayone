@@ -17,7 +17,7 @@ export const EstudoDashboard: React.FC<IProps> = ({ estudos }) => {
                 Estatisticas Gerais de Estudos
             </Grid.Row>
             <Grid.Row>
-                Adiçãod e nobo ESTUDo
+                Adição de novo estudo
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column width={16}>
