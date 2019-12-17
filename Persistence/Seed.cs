@@ -9,7 +9,8 @@ namespace Persistence
     {
         public static void SeedData(DataContext context)
         {
-            if(!context.Estudos.Any())
+            //  SEED ESTUDOS
+            if (!context.Estudos.Any())
             {
                 var estudos = new List<Estudo>
                 {
@@ -49,6 +50,41 @@ namespace Persistence
                     }
                 };
                 context.Estudos.AddRange(estudos);
+                context.SaveChanges();
+            }
+
+            //  SEED GRUPOS
+            if (!context.Grupos.Any())
+            {
+                var grupos = new List<Grupo>
+                {
+                    new Grupo
+                    {
+                        Titulo = "Arpeggios",
+                        Descricao = "Todos etudos de Arpeggios",
+                    },
+                    new Grupo
+                    {
+                        Titulo = "Coordinatuon",
+                        Descricao = "Todos etudos de Coordination",
+                    },
+                    new Grupo
+                    {
+                        Titulo = "Tapping",
+                        Descricao = "Todos etudos de Tapping",
+                    },
+                    new Grupo
+                    {
+                        Titulo = "Repertório",
+                        Descricao = "Minhas músicas",
+                    },
+                    new Grupo
+                    {
+                        Titulo = "Riffs",
+                        Descricao = "Todos os Riffs Extraidos de Músicas",
+                    }
+                };
+                context.Grupos.AddRange(grupos);
                 context.SaveChanges();
             }
         }
