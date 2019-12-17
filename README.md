@@ -11,6 +11,6 @@ Inglês: Usado em toda parte técnica, uso de ferramentas e arquitetura / Portug
 0.0.0.0 = Major Releases - Releases - Milestones - Issues
 
 ## WWW
-Cooming with first release
+Aguardando primeira release
 
 
