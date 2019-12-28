@@ -3,7 +3,7 @@ import { Container } from 'semantic-ui-react'
 import axios from 'axios';
 import { IEstudo } from '../models/estudo';
 import { NavBar } from '../../features/nav/NavBar';
-import { EstudoDashboard } from '../../features/estudos/dashboard/EstudoDashboard';
+import { EstudoDashboard } from '../../features/estudos/EstudoDashboard';
 
 const App = () => {
   const [estudos, setEstudos] = useState<IEstudo[]>([])

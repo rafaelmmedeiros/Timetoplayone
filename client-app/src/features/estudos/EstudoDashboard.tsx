@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid } from 'semantic-ui-react'
-import { IEstudo } from '../../../app/models/estudo'
+import { IEstudo } from '../../app/models/estudo'
 import { EstudoList } from './components/EstudoList'
 
 interface IProps {
