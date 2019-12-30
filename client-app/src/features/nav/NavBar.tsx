@@ -23,11 +23,19 @@ export const NavBar = () => {
                     name='Estudos'
                 />
                 <Menu.Item
-                    name='Performance'
+                    name='Grupos'
+                />
+                <Menu.Item
+                    name='Dedicação'
                 />
                 <Menu.Item>
                     <Button
                         positive content='Criar Estudo'
+                    />
+                </Menu.Item>
+                <Menu.Item>
+                    <Button
+                        positive content='Criar Grupo'
                     />
                 </Menu.Item>
             </Container>
