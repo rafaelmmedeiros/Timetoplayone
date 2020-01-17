@@ -9,9 +9,19 @@ interface IProps {
     grupos: IGrupo[];
     selectGrupo: (id: string) => void;
     selectedGrupo: IGrupo | null;
+    editMode: boolean;
+    setEditMode: (editMode: boolean) =>void;
+    setSelectedGrupo: (grupo: IGrupo | null) => void;
 }
 
-export const GrupoDashboard: React.FC<IProps> = ({ grupos, selectGrupo, selectedGrupo }) => {
+export const GrupoDashboard: React.FC<IProps> = ({ 
+    grupos, 
+    selectGrupo, 
+    selectedGrupo, 
+    editMode, 
+    setEditMode,
+    setSelectedGrupo
+}) => {
     return (
         <Grid>
             <Grid.Column width={10}>
@@ -21,12 +31,18 @@ export const GrupoDashboard: React.FC<IProps> = ({ grupos, selectGrupo, selected
                 />
             </Grid.Column>
             <Grid.Column width={6}>
-                {selectedGrupo &&
+                {selectedGrupo && !editMode &&
                     <GrupoDetails 
                         grupo={selectedGrupo}
+                        setEditMode={setEditMode}
+                        setSelectedGrupo={setSelectedGrupo}
                     />
                 }
-                <GrupoForm />
+                {editMode &&
+                    <GrupoForm 
+                        setEditMode={setEditMode}
+                    />
+                }
             </Grid.Column>
         </Grid>
     );

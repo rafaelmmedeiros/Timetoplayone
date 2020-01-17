@@ -4,9 +4,15 @@ import { IGrupo } from '../../../app/models/grupo'
 
 interface IProps {
     grupo: IGrupo
+    setEditMode: (editMode: boolean) => void
+    setSelectedGrupo: (grupo: IGrupo | null) => void;
 }
 
-export const GrupoDetails: React.FC<IProps> = ({ grupo }) => {
+export const GrupoDetails: React.FC<IProps> = ({ 
+    grupo,
+    setEditMode,
+    setSelectedGrupo
+}) => {
     return (
         <Card fluid>
             <Card.Content>
@@ -15,8 +21,14 @@ export const GrupoDetails: React.FC<IProps> = ({ grupo }) => {
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths={2}>
-                    <Button basic color='blue' content='Editar' />
-                    <Button basic color='red' content='Fechar' />
+                    <Button 
+                        onClick={() => setEditMode(true)} 
+                        basic color='blue' 
+                        content='Editar' />
+                    <Button 
+                        onClick={() => setSelectedGrupo(null)} 
+                        basic color='red' 
+                        content='Fechar' />
                 </Button.Group>
             </Card.Content>
         </Card>
