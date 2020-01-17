@@ -10,13 +10,27 @@ const App = () => {
   const [selectedGrupo, setSelectedGrupo] = useState<IGrupo | null>(null);
   const [editMode, setEditMode] = useState(false);
 
+
+  // HANDLERS
   const handleSelectGrupo = (id: string) => {
-    setSelectedGrupo(grupos.filter(a=> a.id === id)[0])
-  } 
+    setSelectedGrupo(grupos.filter(a => a.id === id)[0])
+  }
 
   const handleOpenCreateForm = () => {
     setSelectedGrupo(null);
     setEditMode(true);
+  }
+
+  const handleCreateGrupo = (grupo: IGrupo) => {
+    setGrupos([...grupos, grupo]);
+    setSelectedGrupo(grupo);
+    setEditMode(false);
+  }
+
+  const handleEditGrupo = (grupo: IGrupo) => {
+    setGrupos([...grupos.filter(a => a.id !== grupo.id), grupo]);
+    setSelectedGrupo(grupo);
+    setEditMode(false);
   }
 
   useEffect(() => {
@@ -29,17 +43,19 @@ const App = () => {
 
   return (
     <Fragment>
-      <NavBar 
+      <NavBar
         openCreateForm={handleOpenCreateForm}
       />
       <Container style={{ marginTop: '7em' }}>
-        <GrupoDashboard 
+        <GrupoDashboard
           grupos={grupos}
           selectGrupo={handleSelectGrupo}
           selectedGrupo={selectedGrupo}
           editMode={editMode}
           setEditMode={setEditMode}
           setSelectedGrupo={setSelectedGrupo}
+          createGrupo = {handleCreateGrupo}
+          editGrupo = {handleEditGrupo}
         />
       </Container>
     </Fragment>

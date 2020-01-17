@@ -12,6 +12,8 @@ interface IProps {
     editMode: boolean;
     setEditMode: (editMode: boolean) =>void;
     setSelectedGrupo: (grupo: IGrupo | null) => void;
+    createGrupo: (grupo: IGrupo) => void;
+    editGrupo: (grupo: IGrupo) => void;
 }
 
 export const GrupoDashboard: React.FC<IProps> = ({ 
@@ -20,7 +22,9 @@ export const GrupoDashboard: React.FC<IProps> = ({
     selectedGrupo, 
     editMode, 
     setEditMode,
-    setSelectedGrupo
+    setSelectedGrupo,
+    createGrupo,
+    editGrupo
 }) => {
     return (
         <Grid>
@@ -39,8 +43,11 @@ export const GrupoDashboard: React.FC<IProps> = ({
                     />
                 }
                 {editMode &&
-                    <GrupoForm 
+                    <GrupoForm
+                        grupo={selectedGrupo!}
                         setEditMode={setEditMode}
+                        createGrupo={createGrupo}
+                        editGrupo={editGrupo}
                     />
                 }
             </Grid.Column>
