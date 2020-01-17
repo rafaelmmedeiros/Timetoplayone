@@ -7,6 +7,11 @@ import { IGrupo } from '../models/grupo';
 
 const App = () => {
   const [grupos, setGrupos] = useState<IGrupo[]>([])
+  const [selectedGrupo, setSelectedGrupo] = useState<IGrupo | null>(null);
+
+  const handleSelectGrupo = (id: string) => {
+    setSelectedGrupo(grupos.filter(a=> a.id === id)[0])
+  } 
 
   useEffect(() => {
     axios
@@ -21,7 +26,9 @@ const App = () => {
       <NavBar />
       <Container style={{ marginTop: '7em' }}>
         <GrupoDashboard 
-          grupos={grupos}  
+          grupos={grupos}
+          selectGrupo={handleSelectGrupo}
+          selectedGrupo={selectedGrupo}
         />
       </Container>
     </Fragment>

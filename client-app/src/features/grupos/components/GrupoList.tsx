@@ -4,9 +4,10 @@ import { IGrupo } from '../../../app/models/grupo'
 
 interface IProps {
     grupos: IGrupo[]
+    selectGrupo: (id: string) => void;
 }
 
-export const GrupoList: React.FC<IProps> = ({ grupos }) => {
+export const GrupoList: React.FC<IProps> = ({ grupos, selectGrupo }) => {
     return (
         <Segment clearing>
             <Item.Group divided>
@@ -18,7 +19,7 @@ export const GrupoList: React.FC<IProps> = ({ grupos }) => {
                                 <div>{grupo.descricao}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated='right' content='Visualizar' color='blue' />
+                                <Button onClick={() => selectGrupo(grupo.id)} floated='right' content='Detalhes' color='blue' />
                             </Item.Extra>
                         </Item.Content>
                     </Item>
