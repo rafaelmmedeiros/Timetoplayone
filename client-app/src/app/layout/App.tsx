@@ -13,7 +13,8 @@ const App = () => {
 
   // HANDLERS
   const handleSelectGrupo = (id: string) => {
-    setSelectedGrupo(grupos.filter(a => a.id === id)[0])
+    setSelectedGrupo(grupos.filter(a => a.id === id)[0]);
+    setEditMode(false);
   }
 
   const handleOpenCreateForm = () => {
@@ -31,6 +32,10 @@ const App = () => {
     setGrupos([...grupos.filter(a => a.id !== grupo.id), grupo]);
     setSelectedGrupo(grupo);
     setEditMode(false);
+  }
+
+  const handleDeleteGrupo = (id: string) => {
+    setGrupos([...grupos.filter(a => a.id !== id )]);
   }
 
   useEffect(() => {
@@ -56,6 +61,7 @@ const App = () => {
           setSelectedGrupo={setSelectedGrupo}
           createGrupo = {handleCreateGrupo}
           editGrupo = {handleEditGrupo}
+          deleteGrupo = {handleDeleteGrupo}
         />
       </Container>
     </Fragment>

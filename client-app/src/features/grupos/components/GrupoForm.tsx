@@ -8,7 +8,6 @@ interface IProps {
   setEditMode: (editMode: boolean) => void;
   createGrupo: (grupo: IGrupo) => void;
   editGrupo: (grupo: IGrupo) => void;
-
 }
 
 export const GrupoForm: React.FC<IProps> = ({
@@ -73,7 +72,7 @@ export const GrupoForm: React.FC<IProps> = ({
           />
           <Button
             onClick={() => setEditMode(false)}
-            basic color='red'
+            basic color='grey'
             type='button'
             content='Cancelar'
           />
