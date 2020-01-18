@@ -3,6 +3,8 @@ import { IGrupo } from '../models/grupo';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+let time = 500;
+
 const responseBody = (response: AxiosResponse) => response.data;
 
 const sleep = (ms: number) => (response: AxiosResponse) =>
@@ -11,19 +13,19 @@ const sleep = (ms: number) => (response: AxiosResponse) =>
 const requests = {
   get: (url: string) => axios
     .get(url)
-    .then(sleep(1000))
+    .then(sleep(time))
     .then(responseBody),
   post: (url: string, body:{}) => axios
     .post(url, body)
-    .then(sleep(1000))
+    .then(sleep(time))
     .then(responseBody),
   put: (url: string, body:{}) => axios
     .put(url, body)
-    .then(sleep(1000))
+    .then(sleep(time))
     .then(responseBody),
   delete: (url: string) => axios
     .delete(url)
-    .then(sleep(1000))
+    .then(sleep(time))
     .then(responseBody)
 }
 

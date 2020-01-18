@@ -1,27 +1,28 @@
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent, useContext } from 'react'
 import { Item, Button, Segment } from 'semantic-ui-react'
 import { IGrupo } from '../../../app/models/grupo'
 import { observer } from 'mobx-react-lite'
+import GrupoStore from '../../../app/stores/grupoStore';
 
 interface IProps {
-  grupos: IGrupo[];
-  selectGrupo: (id: string) => void;
   deleteGrupo: (e: SyntheticEvent<HTMLButtonElement>, id: string) => void;
   submitting: boolean;
   target: string;
 }
 
 const GrupoList: React.FC<IProps> = ({ 
-  grupos, 
-  selectGrupo,
   deleteGrupo,
   submitting,
   target
 }) => {
+
+  const grupoStore = useContext(GrupoStore);
+  const {gruposByLexi, selectGrupo} = grupoStore;
+
   return (
     <Segment clearing>
       <Item.Group divided>
-        {grupos.map(grupo => (
+        {gruposByLexi.map(grupo => (
           <Item key={grupo.id}>
             <Item.Content>
               <Item.Header as='a'>{grupo.titulo}</Item.Header>

@@ -1,12 +1,12 @@
-import React, { useState, FormEvent } from 'react'
+import React, { useState, FormEvent, useContext } from 'react'
 import { Segment, Form, Button } from 'semantic-ui-react'
 import { IGrupo } from '../../../app/models/grupo'
 import { v4 as uuid } from 'uuid';
+import GrupoStore from '../../../app/stores/grupoStore';
 
 interface IProps {
   grupo: IGrupo;
   setEditMode: (editMode: boolean) => void;
-  createGrupo: (grupo: IGrupo) => void;
   editGrupo: (grupo: IGrupo) => void;
   submitting: boolean;
 }
@@ -14,10 +14,11 @@ interface IProps {
 export const GrupoForm: React.FC<IProps> = ({
   grupo: initialFormState,
   setEditMode,
-  createGrupo,
   editGrupo,
   submitting
 }) => {
+  const grupoStore = useContext(GrupoStore);
+  const {createGrupo} = grupoStore;
 
   const initializeForm = () => {
     if (initialFormState) {

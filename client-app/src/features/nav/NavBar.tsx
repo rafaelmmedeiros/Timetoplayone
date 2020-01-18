@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Menu, Container, Icon, Button } from 'semantic-ui-react'
+import GrupoStore from '../../app/stores/grupoStore';
+import { observer } from 'mobx-react-lite';
 
-interface IProps {
-  openCreateForm: () => void;
-}
+const NavBar: React.FC = () => {
+  const grupoStore = useContext(GrupoStore);
 
-
-export const NavBar: React.FC<IProps> = ({
-  openCreateForm
-}) => {
   return (
     <Menu fixed="top" inverted >
       <Container>
@@ -37,11 +34,13 @@ export const NavBar: React.FC<IProps> = ({
         />
         <Menu.Item>
           <Button
-            onClick={openCreateForm}
+            onClick={grupoStore.openCreateForm}
             positive content='Criar Grupo'
           />
         </Menu.Item>
       </Container>
     </Menu>
-  )
-}
+  );
+};
+
+export default observer(NavBar);

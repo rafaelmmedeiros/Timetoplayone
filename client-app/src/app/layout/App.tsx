@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment, SyntheticEvent, useContext } from 'react';
 import { Container } from 'semantic-ui-react'
-import { NavBar } from '../../features/nav/NavBar';
+import NavBar from '../../features/nav/NavBar';
 import { IGrupo } from '../models/grupo';
 import agent from '../api/agent';
 import { LoadingComponent } from './LoadingComponent';
@@ -18,26 +18,6 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [target, setTarget] = useState('');
-
-  // HANDLERS
-  const handleSelectGrupo = (id: string) => {
-    setSelectedGrupo(grupos.filter(a => a.id === id)[0]);
-    setEditMode(false);
-  }
-
-  const handleOpenCreateForm = () => {
-    setSelectedGrupo(null);
-    setEditMode(true);
-  }
-
-  const handleCreateGrupo = (grupo: IGrupo) => {
-    setSubmitting(true);
-    agent.Grupos.create(grupo).then(() => {
-      setGrupos([...grupos, grupo]);
-      setSelectedGrupo(grupo);
-      setEditMode(false);
-    }).then(() => setSubmitting(false))
-  }
 
   const handleEditGrupo = (grupo: IGrupo) => {
     setSubmitting(true);
@@ -65,18 +45,12 @@ const App = () => {
 
   return (
     <Fragment>
-      <NavBar
-        openCreateForm={handleOpenCreateForm}
-      />
+      <NavBar />
       <Container style={{ marginTop: '7em' }}>
         <GrupoDashboard
           grupos={grupoStore.grupos}
-          selectGrupo={handleSelectGrupo}
-          selectedGrupo={selectedGrupo}
-          editMode={editMode}
           setEditMode={setEditMode}
           setSelectedGrupo={setSelectedGrupo}
-          createGrupo = {handleCreateGrupo}
           editGrupo = {handleEditGrupo}
           deleteGrupo = {handleDeleteGrupo}
           submitting = {submitting}

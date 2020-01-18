@@ -1,23 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Card, Button } from 'semantic-ui-react'
 import { IGrupo } from '../../../app/models/grupo'
+import GrupoStore from '../../../app/stores/grupoStore';
+import { observer } from 'mobx-react-lite';
 
 interface IProps {
-  grupo: IGrupo
   setEditMode: (editMode: boolean) => void
   setSelectedGrupo: (grupo: IGrupo | null) => void;
 }
 
-export const GrupoDetails: React.FC<IProps> = ({
-  grupo,
+const GrupoDetails: React.FC<IProps> = ({
   setEditMode,
   setSelectedGrupo
 }) => {
+
+  const grupoStore = useContext(GrupoStore);
+  const {selectedGrupo: grupo} = grupoStore;
+
   return (
     <Card fluid>
       <Card.Content>
-        <Card.Header>{grupo.titulo}</Card.Header>
-        <Card.Description>{grupo.descricao}</Card.Description>
+        <Card.Header>{grupo!.titulo}</Card.Header>
+        <Card.Description>{grupo!.descricao}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths={2}>
@@ -34,3 +38,5 @@ export const GrupoDetails: React.FC<IProps> = ({
     </Card>
   )
 }
+
+export default observer(GrupoDetails);
