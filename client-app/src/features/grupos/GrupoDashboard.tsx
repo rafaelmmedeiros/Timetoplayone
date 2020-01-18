@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { Grid } from 'semantic-ui-react'
 import { IGrupo } from '../../app/models/grupo'
 import { GrupoList } from './components/GrupoList'
@@ -14,7 +14,9 @@ interface IProps {
   setSelectedGrupo: (grupo: IGrupo | null) => void;
   createGrupo: (grupo: IGrupo) => void;
   editGrupo: (grupo: IGrupo) => void;
-  deleteGrupo: (id: string) => void;
+  deleteGrupo: (e: SyntheticEvent<HTMLButtonElement>, id: string) => void;
+  submitting: boolean;
+  target: string;
 }
 
 export const GrupoDashboard: React.FC<IProps> = ({
@@ -26,7 +28,9 @@ export const GrupoDashboard: React.FC<IProps> = ({
   setSelectedGrupo,
   createGrupo,
   editGrupo,
-  deleteGrupo
+  deleteGrupo,
+  submitting,
+  target
 }) => {
   return (
     <Grid>
@@ -35,6 +39,8 @@ export const GrupoDashboard: React.FC<IProps> = ({
           grupos={grupos}
           selectGrupo={selectGrupo}
           deleteGrupo={deleteGrupo}
+          submitting={submitting}
+          target={target}
         />
       </Grid.Column>
       <Grid.Column width={6}>
@@ -52,6 +58,7 @@ export const GrupoDashboard: React.FC<IProps> = ({
             setEditMode={setEditMode}
             createGrupo={createGrupo}
             editGrupo={editGrupo}
+            submitting={submitting}
           />
         }
       </Grid.Column>

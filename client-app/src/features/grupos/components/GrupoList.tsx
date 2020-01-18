@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { Item, Button, Segment } from 'semantic-ui-react'
 import { IGrupo } from '../../../app/models/grupo'
 
 interface IProps {
   grupos: IGrupo[];
   selectGrupo: (id: string) => void;
-  deleteGrupo: (id: string) => void;
+  deleteGrupo: (e: SyntheticEvent<HTMLButtonElement>, id: string) => void;
+  submitting: boolean;
+  target: string;
 }
 
 export const GrupoList: React.FC<IProps> = ({ 
   grupos, 
   selectGrupo,
-  deleteGrupo
+  deleteGrupo,
+  submitting,
+  target
 }) => {
   return (
     <Segment clearing>
@@ -31,7 +35,9 @@ export const GrupoList: React.FC<IProps> = ({
                   color='blue' 
                   />
                 <Button 
-                  onClick={() => deleteGrupo(grupo.id)} 
+                  name={grupo.id}
+                  loading={target === grupo.id && submitting}
+                  onClick={(e) => deleteGrupo(e, grupo.id)} 
                   floated='right' 
                   content='Excluir' 
                   color='red' 

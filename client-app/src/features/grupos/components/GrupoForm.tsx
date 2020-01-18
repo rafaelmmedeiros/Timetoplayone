@@ -8,13 +8,15 @@ interface IProps {
   setEditMode: (editMode: boolean) => void;
   createGrupo: (grupo: IGrupo) => void;
   editGrupo: (grupo: IGrupo) => void;
+  submitting: boolean;
 }
 
 export const GrupoForm: React.FC<IProps> = ({
   grupo: initialFormState,
   setEditMode,
   createGrupo,
-  editGrupo
+  editGrupo,
+  submitting
 }) => {
 
   const initializeForm = () => {
@@ -66,6 +68,7 @@ export const GrupoForm: React.FC<IProps> = ({
         />
         <Button.Group widths={2}>
           <Button
+            loading={submitting}
             basic color='olive'
             type='submit'
             content='Salvar'
