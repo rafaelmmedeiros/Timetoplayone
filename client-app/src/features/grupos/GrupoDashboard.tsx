@@ -1,9 +1,10 @@
 import React, { SyntheticEvent } from 'react'
 import { Grid } from 'semantic-ui-react'
 import { IGrupo } from '../../app/models/grupo'
-import { GrupoList } from './components/GrupoList'
+import GrupoList from './components/GrupoList'
 import { GrupoDetails } from './components/GrupoDetails';
 import { GrupoForm } from './components/GrupoForm';
+import { observer } from 'mobx-react-lite';
 
 interface IProps {
   grupos: IGrupo[];
@@ -19,7 +20,7 @@ interface IProps {
   target: string;
 }
 
-export const GrupoDashboard: React.FC<IProps> = ({
+const GrupoDashboard: React.FC<IProps> = ({
   grupos,
   selectGrupo,
   selectedGrupo,
@@ -65,3 +66,5 @@ export const GrupoDashboard: React.FC<IProps> = ({
     </Grid>
   );
 };
+
+export default observer(GrupoDashboard);

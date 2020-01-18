@@ -1,6 +1,7 @@
 import React, { SyntheticEvent } from 'react'
 import { Item, Button, Segment } from 'semantic-ui-react'
 import { IGrupo } from '../../../app/models/grupo'
+import { observer } from 'mobx-react-lite'
 
 interface IProps {
   grupos: IGrupo[];
@@ -10,7 +11,7 @@ interface IProps {
   target: string;
 }
 
-export const GrupoList: React.FC<IProps> = ({ 
+const GrupoList: React.FC<IProps> = ({ 
   grupos, 
   selectGrupo,
   deleteGrupo,
@@ -50,3 +51,5 @@ export const GrupoList: React.FC<IProps> = ({
     </Segment>
   )
 }
+
+export default observer(GrupoList);

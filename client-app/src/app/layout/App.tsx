@@ -1,12 +1,17 @@
-import React, { useState, useEffect, Fragment, SyntheticEvent } from 'react';
+import React, { useState, useEffect, Fragment, SyntheticEvent, useContext } from 'react';
 import { Container } from 'semantic-ui-react'
 import { NavBar } from '../../features/nav/NavBar';
-import { GrupoDashboard } from '../../features/grupos/GrupoDashboard';
 import { IGrupo } from '../models/grupo';
 import agent from '../api/agent';
 import { LoadingComponent } from './LoadingComponent';
+import GrupoStore from '../stores/grupoStore';
+import { observer } from 'mobx-react-lite';
+import GrupoDashboard from '../../features/grupos/GrupoDashboard';
 
 const App = () => {
+
+  const grupoStore = useContext(GrupoStore);
+
   const [grupos, setGrupos] = useState<IGrupo[]>([])
   const [selectedGrupo, setSelectedGrupo] = useState<IGrupo | null>(null);
   const [editMode, setEditMode] = useState(false);
@@ -52,14 +57,10 @@ const App = () => {
   }
 
   useEffect(() => {
-    agent.Grupos.list()
-      .then((response) => {
-        setGrupos(response)
-      })
-      .then(() => setLoading(false));
-  }, []);
+    grupoStore.loadGrupos();
+  }, [grupoStore]);
 
-  if (loading) 
+  if (grupoStore.loadingStart) 
     return <LoadingComponent content='Carregando Grupos de estudos ...' />
 
   return (
@@ -69,7 +70,7 @@ const App = () => {
       />
       <Container style={{ marginTop: '7em' }}>
         <GrupoDashboard
-          grupos={grupos}
+          grupos={grupoStore.grupos}
           selectGrupo={handleSelectGrupo}
           selectedGrupo={selectedGrupo}
           editMode={editMode}
@@ -85,4 +86,5 @@ const App = () => {
     </Fragment>
   );
 }
-export default App;
+
+export default observer(App)
