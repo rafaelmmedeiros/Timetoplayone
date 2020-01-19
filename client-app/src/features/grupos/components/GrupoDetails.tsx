@@ -1,21 +1,12 @@
 import React, { useContext } from 'react'
 import { Card, Button } from 'semantic-ui-react'
-import { IGrupo } from '../../../app/models/grupo'
 import GrupoStore from '../../../app/stores/grupoStore';
 import { observer } from 'mobx-react-lite';
 
-interface IProps {
-  setEditMode: (editMode: boolean) => void
-  setSelectedGrupo: (grupo: IGrupo | null) => void;
-}
-
-const GrupoDetails: React.FC<IProps> = ({
-  setEditMode,
-  setSelectedGrupo
-}) => {
+const GrupoDetails: React.FC = () => {
 
   const grupoStore = useContext(GrupoStore);
-  const {selectedGrupo: grupo} = grupoStore;
+  const { selectedGrupo: grupo, openEditForm, cancelSelectedGrupo } = grupoStore;
 
   return (
     <Card fluid>
@@ -26,11 +17,11 @@ const GrupoDetails: React.FC<IProps> = ({
       <Card.Content extra>
         <Button.Group widths={2}>
           <Button
-            onClick={() => setEditMode(true)}
+            onClick={() => openEditForm(grupo!.id)}
             basic color='blue'
             content='Editar' />
           <Button
-            onClick={() => setSelectedGrupo(null)}
+            onClick={cancelSelectedGrupo}
             basic color='red'
             content='Fechar' />
         </Button.Group>

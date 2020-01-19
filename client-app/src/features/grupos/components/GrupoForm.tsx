@@ -6,19 +6,14 @@ import GrupoStore from '../../../app/stores/grupoStore';
 
 interface IProps {
   grupo: IGrupo;
-  setEditMode: (editMode: boolean) => void;
-  editGrupo: (grupo: IGrupo) => void;
-  submitting: boolean;
 }
 
 export const GrupoForm: React.FC<IProps> = ({
-  grupo: initialFormState,
-  setEditMode,
-  editGrupo,
-  submitting
+  grupo: initialFormState
 }) => {
+
   const grupoStore = useContext(GrupoStore);
-  const {createGrupo} = grupoStore;
+  const { createGrupo, editGrupo, submitting, cancelEditForm } = grupoStore;
 
   const initializeForm = () => {
     if (initialFormState) {
@@ -75,7 +70,7 @@ export const GrupoForm: React.FC<IProps> = ({
             content='Salvar'
           />
           <Button
-            onClick={() => setEditMode(false)}
+            onClick={cancelEditForm}
             basic color='grey'
             type='button'
             content='Cancelar'

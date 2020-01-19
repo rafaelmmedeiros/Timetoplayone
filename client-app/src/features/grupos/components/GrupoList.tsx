@@ -1,23 +1,12 @@
-import React, { SyntheticEvent, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Item, Button, Segment } from 'semantic-ui-react'
-import { IGrupo } from '../../../app/models/grupo'
 import { observer } from 'mobx-react-lite'
 import GrupoStore from '../../../app/stores/grupoStore';
 
-interface IProps {
-  deleteGrupo: (e: SyntheticEvent<HTMLButtonElement>, id: string) => void;
-  submitting: boolean;
-  target: string;
-}
-
-const GrupoList: React.FC<IProps> = ({ 
-  deleteGrupo,
-  submitting,
-  target
-}) => {
+const GrupoList: React.FC = () => {
 
   const grupoStore = useContext(GrupoStore);
-  const {gruposByLexi, selectGrupo} = grupoStore;
+  const { gruposByLexi, selectGrupo, deleteGrupo, target } = grupoStore;
 
   return (
     <Segment clearing>
@@ -30,19 +19,19 @@ const GrupoList: React.FC<IProps> = ({
                 <div>{grupo.descricao}</div>
               </Item.Description>
               <Item.Extra>
-                <Button 
-                  onClick={() => selectGrupo(grupo.id)} 
-                  floated='right' 
-                  content='Detalhes' 
-                  color='blue' 
-                  />
-                <Button 
+                <Button
+                  onClick={() => selectGrupo(grupo.id)}
+                  floated='right'
+                  content='Detalhes'
+                  color='blue'
+                />
+                <Button
                   name={grupo.id}
-                  loading={target === grupo.id && submitting}
-                  onClick={(e) => deleteGrupo(e, grupo.id)} 
-                  floated='right' 
-                  content='Excluir' 
-                  color='red' 
+                  loading={target === grupo.id}
+                  onClick={(e) => deleteGrupo(e, grupo.id)}
+                  floated='right'
+                  content='Excluir'
+                  color='red'
                 />
               </Item.Extra>
             </Item.Content>
