@@ -1,7 +1,9 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, configure, runInAction } from 'mobx';
 import { createContext, SyntheticEvent } from 'react';
 import { IGrupo } from '../models/grupo';
 import agent from '../api/agent';
+
+configure({ enforceActions: 'always' });
 
 class GrupoStore {
   @observable grupoRegistry = new Map();
@@ -22,12 +24,16 @@ class GrupoStore {
 
     try {
       const grupos = await agent.Grupos.list();
-      grupos.forEach((grupo) => {
-        this.grupoRegistry.set(grupo.id, grupo);
-      });
-      this.loadingStart = false;
+      runInAction('Loading Grupos', () => {
+        grupos.forEach((grupo) => {
+          this.grupoRegistry.set(grupo.id, grupo);
+        });
+        this.loadingStart = false;
+      })
     } catch (error) {
-      this.loadingStart = false;
+      runInAction('Loading Grupos Erro',() => {
+        this.loadingStart = false;
+      })
       console.log(error);
     }
   };
@@ -38,11 +44,15 @@ class GrupoStore {
 
     try {
       await agent.Grupos.create(grupo);
-      this.grupoRegistry.set(grupo.id, grupo);
-      this.editMode = false;
-      this.submitting = false;
+      runInAction('Create Grupo', () => {
+        this.grupoRegistry.set(grupo.id, grupo);
+        this.editMode = false;
+        this.submitting = false;
+      })
     } catch (error) {
-      this.submitting = false;
+      runInAction('Create Grupo Erro', () => {
+        this.submitting = false;
+      })
       console.log(error);
     }
   };
@@ -52,12 +62,16 @@ class GrupoStore {
 
     try {
       await agent.Grupos.update(grupo);
-      this.grupoRegistry.set(grupo.id, grupo);
-      this.selectedGrupo = grupo;
-      this.editMode = false;
-      this.submitting = false;
+      runInAction('Edit Grupo',() => {
+        this.grupoRegistry.set(grupo.id, grupo);
+        this.selectedGrupo = grupo;
+        this.editMode = false;
+        this.submitting = false;
+      })
     } catch (error) {
-      this.submitting = false;
+      runInAction('Edit Grupo Erro',() => {
+        this.submitting = false;
+      })
       console.log(error);
     }
   };
@@ -68,16 +82,19 @@ class GrupoStore {
 
     try {
       await agent.Grupos.delete(id);
-      this.grupoRegistry.delete(id);
-      this.submitting = false;
-      this.target = '';
+      runInAction('Delete Grupo', () => {
+        this.grupoRegistry.delete(id);
+        this.submitting = false;
+        this.target = '';
+      })
     } catch (error) {
+      runInAction('Delete Grupo Erro', () => {
+        this.submitting = false;
+        this.target = '';
+      })
       console.log(error);
-      this.submitting = false;
-      this.target = '';
     }
   };
-
 
   // OTHERS
   @action openCreateForm = () => {

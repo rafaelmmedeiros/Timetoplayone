@@ -3,12 +3,13 @@ import { Segment, Form, Button } from 'semantic-ui-react'
 import { IGrupo } from '../../../app/models/grupo'
 import { v4 as uuid } from 'uuid';
 import GrupoStore from '../../../app/stores/grupoStore';
+import { observer } from 'mobx-react-lite';
 
 interface IProps {
   grupo: IGrupo;
 }
 
-export const GrupoForm: React.FC<IProps> = ({
+const GrupoForm: React.FC<IProps> = ({
   grupo: initialFormState
 }) => {
 
@@ -80,3 +81,5 @@ export const GrupoForm: React.FC<IProps> = ({
     </Segment>
   )
 }
+
+export default observer (GrupoForm);
