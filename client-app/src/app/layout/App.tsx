@@ -5,6 +5,10 @@ import { LoadingComponent } from './LoadingComponent';
 import GrupoStore from '../stores/grupoStore';
 import { observer } from 'mobx-react-lite';
 import GrupoDashboard from '../../features/grupos/GrupoDashboard';
+import { Route } from 'react-router-dom';
+import HomePage from '../../features/home/HomePage';
+import GrupoForm from '../../features/grupos/components/GrupoForm';
+import GrupoDetails from '../../features/grupos/components/GrupoDetails';
 
 const App = () => {
 
@@ -21,7 +25,10 @@ const App = () => {
     <Fragment>
       <NavBar />
       <Container style={{ marginTop: '7em' }}>
-        <GrupoDashboard />
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/grupos' component={GrupoDashboard} />
+        <Route path='/grupos/:id' component={GrupoDetails} />
+        <Route path='/criarGrupo' component={GrupoForm} />
       </Container>
     </Fragment>
   );

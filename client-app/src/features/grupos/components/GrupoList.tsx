@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Item, Button, Segment } from 'semantic-ui-react'
 import { observer } from 'mobx-react-lite'
 import GrupoStore from '../../../app/stores/grupoStore';
+import { Link } from 'react-router-dom';
 
 const GrupoList: React.FC = () => {
 
@@ -20,7 +21,7 @@ const GrupoList: React.FC = () => {
               </Item.Description>
               <Item.Extra>
                 <Button
-                  onClick={() => selectGrupo(grupo.id)}
+                  as={Link} to={`/grupos/${grupo.id}`}
                   floated='right'
                   content='Detalhes'
                   color='blue'

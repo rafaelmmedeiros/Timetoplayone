@@ -1,12 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Card, Button } from 'semantic-ui-react'
 import GrupoStore from '../../../app/stores/grupoStore';
 import { observer } from 'mobx-react-lite';
+import { RouteComponentProps } from 'react-router-dom';
+import { LoadingComponent } from '../../../app/layout/LoadingComponent';
 
-const GrupoDetails: React.FC = () => {
+interface DetailParams {
+  id: string
+}
+
+const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({ match }) => {
 
   const grupoStore = useContext(GrupoStore);
-  const { selectedGrupo: grupo, openEditForm, cancelSelectedGrupo } = grupoStore;
+  const { grupo, openEditForm, cancelSelectedGrupo, loadGrupo, loadingStart } = grupoStore;
+
+  useEffect(() => {
+    loadGrupo(match.params.id)
+  }, [loadGrupo])
+
+  if (loadingStart || !grupo)
+    return <LoadingComponent content='Carregando Grupo...' />
 
   return (
     <Card fluid>

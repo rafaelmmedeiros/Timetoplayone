@@ -9,23 +9,12 @@ import GrupoStore from '../../app/stores/grupoStore';
 const GrupoDashboard: React.FC = () => {
 
   const grupoStore = useContext(GrupoStore);
-  const { editMode, selectedGrupo } = grupoStore;
+  const { editMode, grupo } = grupoStore;
 
   return (
     <Grid>
-      <Grid.Column width={10}>
+      <Grid.Column width={16}>
         <GrupoList />
-      </Grid.Column>
-      <Grid.Column width={6}>
-        {selectedGrupo && !editMode &&
-          <GrupoDetails />
-        }
-        {editMode &&
-          <GrupoForm
-            key={(selectedGrupo && selectedGrupo.id) || 0}
-            grupo={selectedGrupo!}
-          />
-        }
       </Grid.Column>
     </Grid>
   );

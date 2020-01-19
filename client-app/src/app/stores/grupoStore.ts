@@ -8,7 +8,7 @@ configure({ enforceActions: 'always' });
 class GrupoStore {
   @observable grupoRegistry = new Map();
   @observable grupos: IGrupo[] = [];
-  @observable selectedGrupo: IGrupo | undefined;
+  @observable grupo: IGrupo | undefined;
   @observable loadingStart = false;
   @observable editMode = false;
   @observable submitting = false;
@@ -31,12 +31,38 @@ class GrupoStore {
         this.loadingStart = false;
       })
     } catch (error) {
-      runInAction('Loading Grupos Erro',() => {
+      runInAction('Loading Grupos Erro', () => {
         this.loadingStart = false;
       })
       console.log(error);
     }
   };
+
+  @action loadGrupo = async (id: string) => {
+    let grupo = this.getGrupo(id);
+    if (grupo) {
+      this.grupo = grupo;
+    } else {
+      this.loadingStart = true;
+
+      try {
+        grupo = await agent.Grupos.details(id);
+        runInAction('Get Grupo', () => {
+          this.grupo = grupo;
+          this.loadingStart = false;
+        })
+      } catch (error) {
+        runInAction('Get Grupo Erro', () => {
+          this.loadingStart = false;
+        })
+        console.log(error);
+      }
+    }
+  }
+
+  getGrupo = (id: string) => {
+    return this.grupoRegistry.get(id);
+  }
 
   // CUD
   @action createGrupo = async (grupo: IGrupo) => {
@@ -62,14 +88,14 @@ class GrupoStore {
 
     try {
       await agent.Grupos.update(grupo);
-      runInAction('Edit Grupo',() => {
+      runInAction('Edit Grupo', () => {
         this.grupoRegistry.set(grupo.id, grupo);
-        this.selectedGrupo = grupo;
+        this.grupo = grupo;
         this.editMode = false;
         this.submitting = false;
       })
     } catch (error) {
-      runInAction('Edit Grupo Erro',() => {
+      runInAction('Edit Grupo Erro', () => {
         this.submitting = false;
       })
       console.log(error);
@@ -99,11 +125,11 @@ class GrupoStore {
   // OTHERS
   @action openCreateForm = () => {
     this.editMode = true;
-    this.selectedGrupo = undefined;
+    this.grupo = undefined;
   }
 
   @action openEditForm = (id: string) => {
-    this.selectedGrupo = this.grupoRegistry.get(id);
+    this.grupo = this.grupoRegistry.get(id);
     this.editMode = true;
   }
 
@@ -112,12 +138,12 @@ class GrupoStore {
   };
 
   @action selectGrupo = (id: string) => {
-    this.selectedGrupo = this.grupoRegistry.get(id);
+    this.grupo = this.grupoRegistry.get(id);
     this.editMode = false;
   };
 
   @action cancelSelectedGrupo = () => {
-    this.selectedGrupo = undefined;
+    this.grupo = undefined;
   };
 };
 
