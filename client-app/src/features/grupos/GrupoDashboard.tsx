@@ -1,15 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Grid } from 'semantic-ui-react'
 import GrupoList from './components/GrupoList'
-import GrupoDetails from './components/GrupoDetails';
-import GrupoForm from './components/GrupoForm';
 import { observer } from 'mobx-react-lite';
 import GrupoStore from '../../app/stores/grupoStore';
+import { LoadingComponent } from '../../app/layout/LoadingComponent';
 
 const GrupoDashboard: React.FC = () => {
 
   const grupoStore = useContext(GrupoStore);
-  const { editMode, grupo } = grupoStore;
+
+  useEffect(() => {
+    grupoStore.loadGrupos();
+  }, [grupoStore]);
+
+  if (grupoStore.loadingStart)
+    return <LoadingComponent content='Carregando Grupos de estudos ...' />
 
   return (
     <Grid>

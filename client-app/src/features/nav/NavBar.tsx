@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Menu, Container, Icon, Button } from 'semantic-ui-react'
-import GrupoStore from '../../app/stores/grupoStore';
 import { observer } from 'mobx-react-lite';
 import { NavLink } from 'react-router-dom';
 
 const NavBar: React.FC = () => {
-  const grupoStore = useContext(GrupoStore);
 
   return (
     <Menu fixed="top" inverted >

@@ -7,15 +7,18 @@ configure({ enforceActions: 'always' });
 
 class GrupoStore {
   @observable grupoRegistry = new Map();
-  @observable grupos: IGrupo[] = [];
-  @observable grupo: IGrupo | undefined;
+  @observable grupo: IGrupo | null = null;
   @observable loadingStart = false;
-  @observable editMode = false;
   @observable submitting = false;
   @observable target = '';
 
   @computed get gruposByLexi() {
     return Array.from(this.grupoRegistry.values()).sort(); // NÂO FUNCIONA
+  }
+
+  // CLEAN PARA USO EM FORM
+  @action clearGrupo = () => {
+    this.grupo = null;
   }
 
   // CARREGA TODOS GRUPOS
@@ -72,7 +75,6 @@ class GrupoStore {
       await agent.Grupos.create(grupo);
       runInAction('Create Grupo', () => {
         this.grupoRegistry.set(grupo.id, grupo);
-        this.editMode = false;
         this.submitting = false;
       })
     } catch (error) {
@@ -91,7 +93,6 @@ class GrupoStore {
       runInAction('Edit Grupo', () => {
         this.grupoRegistry.set(grupo.id, grupo);
         this.grupo = grupo;
-        this.editMode = false;
         this.submitting = false;
       })
     } catch (error) {
@@ -120,30 +121,6 @@ class GrupoStore {
       })
       console.log(error);
     }
-  };
-
-  // OTHERS
-  @action openCreateForm = () => {
-    this.editMode = true;
-    this.grupo = undefined;
-  }
-
-  @action openEditForm = (id: string) => {
-    this.grupo = this.grupoRegistry.get(id);
-    this.editMode = true;
-  }
-
-  @action cancelEditForm = () => {
-    this.editMode = false;
-  };
-
-  @action selectGrupo = (id: string) => {
-    this.grupo = this.grupoRegistry.get(id);
-    this.editMode = false;
-  };
-
-  @action cancelSelectedGrupo = () => {
-    this.grupo = undefined;
   };
 };
 

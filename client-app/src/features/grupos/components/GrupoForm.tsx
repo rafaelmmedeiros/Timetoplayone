@@ -1,34 +1,45 @@
-import React, { useState, FormEvent, useContext } from 'react'
+import React, { useState, FormEvent, useContext, useEffect } from 'react'
 import { Segment, Form, Button } from 'semantic-ui-react'
 import { IGrupo } from '../../../app/models/grupo'
 import { v4 as uuid } from 'uuid';
 import GrupoStore from '../../../app/stores/grupoStore';
 import { observer } from 'mobx-react-lite';
+import { RouteComponentProps } from 'react-router-dom';
 
-interface IProps {
-  grupo: IGrupo;
+interface DetailsParams {
+  id: string;
 }
 
-const GrupoForm: React.FC<IProps> = ({
-  grupo: initialFormState
+const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
+  match,
+  history
 }) => {
 
   const grupoStore = useContext(GrupoStore);
-  const { createGrupo, editGrupo, submitting, cancelEditForm } = grupoStore;
+  const {
+    createGrupo,
+    editGrupo,
+    submitting,
+    grupo: initialFormState,
+    loadGrupo,
+    clearGrupo
+  } = grupoStore;
 
-  const initializeForm = () => {
-    if (initialFormState) {
-      return initialFormState
-    } else {
-      return {
-        id: '',
-        titulo: '',
-        descricao: ''
-      };
-    };
-  };
+  const [grupo, setGrupo] = useState<IGrupo>({
+    id: '',
+    titulo: '',
+    descricao: ''
+  });
 
-  const [grupo, setGrupo] = useState<IGrupo>(initializeForm);
+  useEffect(() => {
+    if (match.params.id && grupo.id.length === 0) {
+      loadGrupo(match.params.id)
+        .then(() => initialFormState && setGrupo(initialFormState));
+    }
+    return () => {
+      clearGrupo();
+    }
+  }, [loadGrupo, clearGrupo, match.params.id, initialFormState, grupo.id.length]);
 
   const handleSubmit = () => {
     if (grupo.id.length === 0) {
@@ -36,9 +47,11 @@ const GrupoForm: React.FC<IProps> = ({
         ...grupo,
         id: uuid()
       }
-      createGrupo(newGrupo);
+      createGrupo(newGrupo)
+        .then(() => history.push(`/grupos/${newGrupo.id}`));
     } else {
-      editGrupo(grupo);
+      editGrupo(grupo)
+        .then(() => history.push(`/grupos/${grupo.id}`));
     }
   }
 
@@ -71,7 +84,7 @@ const GrupoForm: React.FC<IProps> = ({
             content='Salvar'
           />
           <Button
-            onClick={cancelEditForm}
+            onClick={() => history.push('/grupos')}
             basic color='grey'
             type='button'
             content='Cancelar'
@@ -82,4 +95,4 @@ const GrupoForm: React.FC<IProps> = ({
   )
 }
 
-export default observer (GrupoForm);
+export default observer(GrupoForm);

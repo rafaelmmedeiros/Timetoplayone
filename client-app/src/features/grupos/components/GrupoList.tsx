@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom';
 const GrupoList: React.FC = () => {
 
   const grupoStore = useContext(GrupoStore);
-  const { gruposByLexi, selectGrupo, deleteGrupo, target } = grupoStore;
+  const {
+    gruposByLexi,
+    deleteGrupo,
+    target
+  } = grupoStore;
 
   return (
     <Segment clearing>
