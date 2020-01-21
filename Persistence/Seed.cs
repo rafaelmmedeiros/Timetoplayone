@@ -60,28 +60,51 @@ namespace Persistence
                 {
                     new Grupo
                     {
-                        Titulo = "Arpeggios",
-                        Descricao = "Todos etudos de Arpeggios",
+                        Titulo = "Warm-Up",
+                        Descricao = "Todos estudos de Coordination",
+                        Label = "Basic",
                     },
                     new Grupo
                     {
                         Titulo = "Coordinatuon",
-                        Descricao = "Todos etudos de Coordination",
+                        Descricao = "Todos estudos de Coordination",
+                        Label = "Basic",
+                    },
+                    new Grupo
+                    {
+                        Titulo = "Arpeggios",
+                        Descricao = "Todos estudos de Arpeggios",
+                        Label = "Tools",
+                    },
+                    new Grupo
+                    {
+                        Titulo = "Scales",
+                        Descricao = "Todos estudos de Escalas",
+                        Label = "Tools",
                     },
                     new Grupo
                     {
                         Titulo = "Tapping",
-                        Descricao = "Todos etudos de Tapping",
+                        Descricao = "Todos estudos de Tapping",
+                        Label = "Tools",
                     },
                     new Grupo
                     {
-                        Titulo = "Repertório",
-                        Descricao = "Minhas músicas",
+                        Titulo = "RIffs",
+                        Descricao = "Todos estudos de Riffs",
+                        Label = "Tools",
                     },
                     new Grupo
                     {
-                        Titulo = "Riffs",
-                        Descricao = "Todos os Riffs Extraidos de Músicas",
+                        Titulo = "Repertório Banda 1",
+                        Descricao = "Músicas da banda 1",
+                        Label = "Melting",
+                    },
+                    new Grupo
+                    {
+                        Titulo = "Repertório Banda 2",
+                        Descricao = "Músicas da banda 2",
+                        Label = "Melting",
                     }
                 };
                 context.Grupos.AddRange(grupos);

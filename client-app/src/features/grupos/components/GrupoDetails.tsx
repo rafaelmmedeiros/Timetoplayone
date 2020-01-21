@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Label } from 'semantic-ui-react'
 import GrupoStore from '../../../app/stores/grupoStore';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps, Link } from 'react-router-dom';
@@ -9,9 +9,9 @@ interface DetailParams {
   id: string
 }
 
-const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({ 
-  match, 
-  history 
+const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({
+  match,
+  history
 }) => {
 
   const grupoStore = useContext(GrupoStore);
@@ -24,7 +24,7 @@ const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   useEffect(() => {
     loadGrupo(match.params.id)
   }, [
-    loadGrupo, 
+    loadGrupo,
     match.params.id
   ])
 
@@ -34,6 +34,7 @@ const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   return (
     <Card fluid>
       <Card.Content>
+        <Label as='a' color='olive' ribbon>{grupo.label}</Label>
         <Card.Header>{grupo!.titulo}</Card.Header>
         <Card.Description>{grupo!.descricao}</Card.Description>
       </Card.Content>

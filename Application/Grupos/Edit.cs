@@ -13,7 +13,7 @@ namespace Application.Grupos
             public Guid Id { get; set; }
             public string Titulo { get; set; }
             public string Descricao { get; set; }
-
+            public string Label { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -34,6 +34,7 @@ namespace Application.Grupos
 
                 grupo.Titulo = request.Titulo ?? grupo.Titulo;
                 grupo.Descricao = request.Descricao ?? grupo.Descricao;
+                grupo.Label = request.Label ?? grupo.Label;
 
                 var success = await _context.SaveChangesAsync() > 0;
 
@@ -42,7 +43,5 @@ namespace Application.Grupos
                 throw new Exception("Erro ao salvar alterações");
             }
         }
-
-         
     }
 }

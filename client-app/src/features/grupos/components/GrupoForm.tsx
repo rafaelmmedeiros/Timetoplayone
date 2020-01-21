@@ -28,7 +28,8 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
   const [grupo, setGrupo] = useState<IGrupo>({
     id: '',
     titulo: '',
-    descricao: ''
+    descricao: '',
+    label:''
   });
 
   useEffect(() => {

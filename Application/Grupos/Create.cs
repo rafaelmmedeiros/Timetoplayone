@@ -14,6 +14,7 @@ namespace Application.Grupos
             public Guid Id { get; set; }
             public string Titulo { get; set; }
             public string Descricao { get; set; }
+            public string Label { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -31,6 +32,7 @@ namespace Application.Grupos
                     Id = request.Id,
                     Titulo = request.Titulo,
                     Descricao = request.Descricao,
+                    Label = request.Label,
                 };
 
                 _context.Grupos.Add(grupo);

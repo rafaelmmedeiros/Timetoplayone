@@ -56,14 +56,16 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Grupo", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descricao");
 
+                    b.Property<string>("Label");
+
                     b.Property<string>("Titulo");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Grupos");
                 });

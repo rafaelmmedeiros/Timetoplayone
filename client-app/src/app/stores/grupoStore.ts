@@ -21,7 +21,7 @@ class GrupoStore {
     this.grupo = null;
   }
 
-  // CARREGA TODOS GRUPOS
+  // READs
   @action loadGrupos = async () => {
     this.loadingStart = true;
 

@@ -9,8 +9,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191111133354_InicialMigration")]
-    partial class InicialMigration
+    [Migration("20200121163452_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,22 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Estudos");
+                });
+
+            modelBuilder.Entity("Domain.Grupo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descricao");
+
+                    b.Property<string>("Label");
+
+                    b.Property<string>("Titulo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Grupos");
                 });
 
             modelBuilder.Entity("Domain.Value", b =>
