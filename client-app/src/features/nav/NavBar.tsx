@@ -15,7 +15,7 @@ const NavBar: React.FC = () => {
             style={{ marginRight: '10px' }}
           />
           Hora de Tocar
-                </Menu.Item>
+        </Menu.Item>
         <Menu.Item
           name='Treino'
         />

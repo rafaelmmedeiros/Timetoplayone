@@ -29,7 +29,7 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
     id: '',
     titulo: '',
     descricao: '',
-    label:''
+    label: ''
   });
 
   useEffect(() => {
@@ -69,6 +69,12 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
           name='titulo'
           placeholder='Titulo'
           value={grupo.titulo}
+        />
+        <Form.Input
+          onChange={handleInputChange}
+          name='label'
+          placeholder='Label'
+          value={grupo.label}
         />
         <Form.TextArea
           rows={3}

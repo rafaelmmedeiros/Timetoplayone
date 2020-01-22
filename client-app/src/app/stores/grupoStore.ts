@@ -12,9 +12,21 @@ class GrupoStore {
   @observable submitting = false;
   @observable target = '';
 
-  @computed get gruposByLexi() {
-    return Array.from(this.grupoRegistry.values()).sort(); // NÂO FUNCIONA
+  // ORDERING
+  @computed get gruposByLabel() {
+    return this.groupGruposByLabel(Array.from(this.grupoRegistry.values()));
   }
+
+  groupGruposByLabel (grupos: IGrupo[]) {
+    const sortedGrupos = grupos.sort(
+      (a: any, b: any) => (a.label) - (b.label) // NAO FUNCIONA ARRUMAR
+    )
+    return Object.entries(sortedGrupos.reduce((grupos, grupo) => {
+      const label = grupo.label;
+      grupos[label] = grupos[label] ? [...grupos[label], grupo] : [grupo];
+      return grupos;
+    }, {} as {[key: string]: IGrupo[]}));
+  } 
 
   // CLEAN PARA USO EM FORM
   @action clearGrupo = () => {
@@ -32,7 +44,8 @@ class GrupoStore {
           this.grupoRegistry.set(grupo.id, grupo);
         });
         this.loadingStart = false;
-      })
+      });
+      console.log(this.groupGruposByLabel(grupos));
     } catch (error) {
       runInAction('Loading Grupos Erro', () => {
         this.loadingStart = false;

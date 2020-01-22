@@ -1,30 +1,42 @@
-import React, { useContext } from 'react'
-import { Item, Button, Segment } from 'semantic-ui-react'
+import React, { useContext, Fragment } from 'react'
+import { Item, Button, Segment, Label, Icon } from 'semantic-ui-react'
 import { observer } from 'mobx-react-lite'
 import GrupoStore from '../../../app/stores/grupoStore';
-import { Link } from 'react-router-dom';
 import GrupoListItem from './GrupoListItem';
 
 const GrupoList: React.FC = () => {
 
   const grupoStore = useContext(GrupoStore);
   const {
-    gruposByLexi,
-    deleteGrupo,
-    target
+    gruposByLabel
   } = grupoStore;
 
   return (
-    <Segment clearing>
-      <Item.Group divided>
-        {gruposByLexi.map(grupo => (
-          <GrupoListItem
-            key={grupo.id}
-            grupo={grupo}
-          />
-        ))}
-      </Item.Group>
-    </Segment>
+    <Fragment>
+      {gruposByLabel.map(([group, grupos]) => (
+        <Fragment key={group}>
+          <Label
+            pointing='right'
+            size='huge'
+            color='black'
+          >
+            <Icon
+              name='tag'>
+            </Icon>
+            {group}
+          </Label>
+          <Item.Group divided>
+            {grupos.map(grupo => (
+              <GrupoListItem
+                key={grupo.id}
+                grupo={grupo}
+              />
+            ))}
+          </Item.Group>
+        </Fragment>
+      ))}
+    </Fragment>
+
   )
 }
 
