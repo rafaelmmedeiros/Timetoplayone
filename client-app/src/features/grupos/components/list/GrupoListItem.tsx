@@ -1,19 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Item, Button, Segment, Icon, Progress } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import GrupoStore from '../../../app/stores/grupoStore';
-import { IGrupo } from '../../../app/models/grupo';
+import { IGrupo } from '../../../../app/models/grupo';
 
 const GrupoListItem: React.FC<{ grupo: IGrupo }> = ({
   grupo
 }) => {
-
-  const grupoStore = useContext(GrupoStore);
-  const {
-    gruposByLabel,
-    deleteGrupo,
-    target
-  } = grupoStore;
 
   return (
 
@@ -26,7 +18,7 @@ const GrupoListItem: React.FC<{ grupo: IGrupo }> = ({
             >{grupo.titulo}
             </Item.Header>
             <Item.Description>
-              <div>{grupo.descricao}</div>
+              <div>{grupo.subTitulo}</div>
             </Item.Description>
           </Item.Content>
         </Item>

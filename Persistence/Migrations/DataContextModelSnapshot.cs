@@ -63,6 +63,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Label");
 
+                    b.Property<string>("SubTitulo");
+
                     b.Property<string>("Titulo");
 
                     b.HasKey("Id");

@@ -12,6 +12,7 @@ namespace Application.Grupos
         {
             public Guid Id { get; set; }
             public string Titulo { get; set; }
+            public string SubTitulo { get; set; }
             public string Descricao { get; set; }
             public string Label { get; set; }
         }
@@ -33,6 +34,7 @@ namespace Application.Grupos
                     throw new Exception("Grupo não Encontrado");
 
                 grupo.Titulo = request.Titulo ?? grupo.Titulo;
+                grupo.SubTitulo = request.SubTitulo ?? grupo.SubTitulo;
                 grupo.Descricao = request.Descricao ?? grupo.Descricao;
                 grupo.Label = request.Label ?? grupo.Label;
 

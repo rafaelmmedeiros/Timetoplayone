@@ -9,7 +9,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200121163452_InitialCreate")]
+    [Migration("20200122195235_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,8 @@ namespace Persistence.Migrations
                     b.Property<string>("Descricao");
 
                     b.Property<string>("Label");
+
+                    b.Property<string>("SubTitulo");
 
                     b.Property<string>("Titulo");
 

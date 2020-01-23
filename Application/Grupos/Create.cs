@@ -13,6 +13,7 @@ namespace Application.Grupos
         {
             public Guid Id { get; set; }
             public string Titulo { get; set; }
+            public string SubTitulo { get; set; }
             public string Descricao { get; set; }
             public string Label { get; set; }
         }
@@ -31,6 +32,7 @@ namespace Application.Grupos
                 {
                     Id = request.Id,
                     Titulo = request.Titulo,
+                    SubTitulo = request.SubTitulo,
                     Descricao = request.Descricao,
                     Label = request.Label,
                 };

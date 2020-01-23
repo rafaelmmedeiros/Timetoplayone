@@ -38,6 +38,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Titulo = table.Column<string>(nullable: true),
+                    SubTitulo = table.Column<string>(nullable: true),
                     Descricao = table.Column<string>(nullable: true),
                     Label = table.Column<string>(nullable: true)
                 },

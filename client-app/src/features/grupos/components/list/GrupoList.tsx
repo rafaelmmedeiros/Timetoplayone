@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from 'react'
-import { Item, Button, Segment, Label, Icon } from 'semantic-ui-react'
+import { Item, Label, Icon } from 'semantic-ui-react'
 import { observer } from 'mobx-react-lite'
-import GrupoStore from '../../../app/stores/grupoStore';
+import GrupoStore from '../../../../app/stores/grupoStore';
 import GrupoListItem from './GrupoListItem';
 
 const GrupoList: React.FC = () => {

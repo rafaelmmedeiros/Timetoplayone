@@ -61,49 +61,57 @@ namespace Persistence
                     new Grupo
                     {
                         Titulo = "Warm-Up",
-                        Descricao = "Todos estudos de Coordination",
+                        SubTitulo = "Estudos de Aquecimento",
+                        Descricao = "Fazer os exercicios necessários do dia, sem metromo, sempre devegar com FOCO.",
                         Label = "Basic",
                     },
                     new Grupo
                     {
                         Titulo = "Coordinatuon",
-                        Descricao = "Todos estudos de Coordination",
+                        SubTitulo = "Estudos de Coordination",
+                        Descricao = "Todos os exerciicos de cordenação devem ser feitos com metromo e com treinador de velocidade.",
                         Label = "Basic",
                     },
                     new Grupo
                     {
                         Titulo = "Arpeggios",
-                        Descricao = "Todos estudos de Arpeggios",
+                        SubTitulo = "Campo Harmonico Menor",
+                        Descricao = "Patterns de Arpeggios em no Campo Harmonico de Am e Em.",
                         Label = "Tools",
                     },
                     new Grupo
                     {
                         Titulo = "Scales",
-                        Descricao = "Todos estudos de Escalas",
+                        SubTitulo = "Modo Frigio",
+                        Descricao = "Patterns em modo Frigio, fazer todos em cima de uma Harmonia em Strings",
                         Label = "Tools",
                     },
                     new Grupo
                     {
                         Titulo = "Tapping",
-                        Descricao = "Todos estudos de Tapping",
+                        SubTitulo = "Tapping Linear",
+                        Descricao = "Estudos de Tapping linear, devem ser feitos sobre harmonia em Strings e bateria.",
                         Label = "Tools",
                     },
                     new Grupo
                     {
                         Titulo = "RIffs",
-                        Descricao = "Todos estudos de Riffs",
+                        SubTitulo = "Rhythm Exploration",
+                        Descricao = "Extração de fragmentos de música e combinação de figuras musicais",
                         Label = "Tools",
                     },
                     new Grupo
                     {
-                        Titulo = "Repertório Banda 1",
-                        Descricao = "Músicas da banda 1",
+                        Titulo = "Repertório Banda X",
+                        SubTitulo = "Banda X Músicas",
+                        Descricao = "Músicas da banda X",
                         Label = "Melting",
                     },
                     new Grupo
                     {
-                        Titulo = "Repertório Banda 2",
-                        Descricao = "Músicas da banda 2",
+                        Titulo = "Repertório Banda Y",
+                        SubTitulo = "Banda Y Músicas",
+                        Descricao = "Músicas da banda Y",
                         Label = "Melting",
                     }
                 };

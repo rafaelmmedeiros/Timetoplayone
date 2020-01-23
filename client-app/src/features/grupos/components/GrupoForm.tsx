@@ -28,6 +28,7 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
   const [grupo, setGrupo] = useState<IGrupo>({
     id: '',
     titulo: '',
+    subTitulo: '',
     descricao: '',
     label: ''
   });
@@ -72,6 +73,12 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
         />
         <Form.Input
           onChange={handleInputChange}
+          name='subTitulo'
+          placeholder='Sub-Titulo'
+          value={grupo.subTitulo}
+        />
+        <Form.Input
+          onChange={handleInputChange}
           name='label'
           placeholder='Label'
           value={grupo.label}
@@ -86,7 +93,7 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
         <Button.Group widths={2}>
           <Button
             loading={submitting}
-            basic color='olive'
+            color='olive'
             type='submit'
             content='Salvar'
           />

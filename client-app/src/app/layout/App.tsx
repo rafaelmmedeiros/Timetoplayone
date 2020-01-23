@@ -6,7 +6,7 @@ import GrupoDashboard from '../../features/grupos/GrupoDashboard';
 import { Route, withRouter, RouteComponentProps } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
 import GrupoForm from '../../features/grupos/components/GrupoForm';
-import GrupoDetails from '../../features/grupos/components/GrupoDetails';
+import GrupoDetails from '../../features/grupos/components/details/GrupoDetails';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
 
