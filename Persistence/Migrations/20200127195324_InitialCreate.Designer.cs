@@ -9,47 +9,62 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200122195235_InitialCreate")]
+    [Migration("20200127195324_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+                .HasAnnotation("ProductVersion", "3.1.1");
 
             modelBuilder.Entity("Domain.Estudo", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("BpmInicial");
+                    b.Property<int>("BpmInicial")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DataCriacao");
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Dificuldade");
+                    b.Property<int>("Dificuldade")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("Fluencia");
+                    b.Property<int>("Fluencia")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("Minutos");
+                    b.Property<int>("Minutos")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Origem");
+                    b.Property<string>("Origem")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("PrimeiroTreino");
+                    b.Property<DateTime>("PrimeiroTreino")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Proposito");
+                    b.Property<int>("Proposito")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Tecnica");
+                    b.Property<string>("Tecnica")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("TempoPraticado");
+                    b.Property<int>("TempoPraticado")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Titulo");
+                    b.Property<string>("Titulo")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("UltimoTreino");
+                    b.Property<DateTime>("UltimoTreino")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("VezesPraticado");
+                    b.Property<int>("VezesPraticado")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -59,15 +74,20 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Grupo", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Label");
+                    b.Property<string>("Label")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("SubTitulo");
+                    b.Property<string>("SubTitulo")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Titulo");
+                    b.Property<string>("Titulo")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -77,13 +97,17 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Value", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("Idade");
+                    b.Property<int>("Idade")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Sobrenome");
+                    b.Property<string>("Sobrenome")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
