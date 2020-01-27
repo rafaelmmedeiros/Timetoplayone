@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -16,6 +17,14 @@ namespace Application.Grupos
             public string SubTitulo { get; set; }
             public string Descricao { get; set; }
             public string Label { get; set; }
+        }
+
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Titulo).NotEmpty();
+            }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -43,9 +52,9 @@ namespace Application.Grupos
                 if (success) return Unit.Value;
 
                 throw new Exception("Erro ao salvar");
-                
+
             }
         }
-        
+
     }
 }

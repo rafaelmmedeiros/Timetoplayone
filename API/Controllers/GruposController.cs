@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] // VERY POWERFUL THIS APICONTROLLER :)
     public class GruposController : ControllerBase
     {
         private readonly IMediator _mediator;
