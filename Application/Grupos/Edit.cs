@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -17,6 +18,17 @@ namespace Application.Grupos
             public string Label { get; set; }
         }
 
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Titulo).NotEmpty();
+                RuleFor(x => x.SubTitulo).NotEmpty();
+                RuleFor(x => x.Descricao).NotEmpty();
+                RuleFor(x => x.Label).NotEmpty();
+            }
+        }
+        
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;

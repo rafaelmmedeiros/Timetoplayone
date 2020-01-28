@@ -24,6 +24,9 @@ namespace Application.Grupos
             public CommandValidator()
             {
                 RuleFor(x => x.Titulo).NotEmpty();
+                RuleFor(x => x.SubTitulo).NotEmpty();
+                RuleFor(x => x.Descricao).NotEmpty();
+                RuleFor(x => x.Label).NotEmpty();
             }
         }
 
