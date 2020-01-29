@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using MediatR;
 using Persistence;
 
@@ -25,9 +27,9 @@ namespace Application.Grupos
             {
                 var grupo = await _context.Grupos.FindAsync(request.Id);
 
-                if( grupo == null)
-                    throw new Exception("Grupo não encontrado");
-                
+                if (grupo == null)
+                    throw new RESTException(HttpStatusCode.NotFound, new { grupo = "Not Found" });
+
                 _context.Remove(grupo);
 
                 var success = await _context.SaveChangesAsync() > 0;
@@ -37,6 +39,6 @@ namespace Application.Grupos
                 throw new Exception("Erro ao salvar");
             }
         }
-        
+
     }
 }

@@ -5,7 +5,7 @@ namespace Application.Errors
 {
     public class RESTException : Exception
     {
-        protected RESTException(HttpStatusCode code, object errors = null)
+        public RESTException(HttpStatusCode code, object errors = null)
         {
             Code = code;
             Errors = errors;

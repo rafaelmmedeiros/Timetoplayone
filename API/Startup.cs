@@ -1,4 +1,5 @@
-﻿using Application.Estudos;
+﻿using API.Middleware;
+using Application.Estudos;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -52,9 +53,11 @@ namespace API
             // MANUAL OFFICIAL
             // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                // app.UseDeveloperExceptionPage();
             }
             else
             {

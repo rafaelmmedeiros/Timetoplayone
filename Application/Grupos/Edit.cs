@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using FluentValidation;
 using MediatR;
 using Persistence;
@@ -43,7 +45,7 @@ namespace Application.Grupos
                 var grupo = await _context.Grupos.FindAsync(request.Id);
 
                 if (grupo == null)
-                    throw new Exception("Grupo não Encontrado");
+                    throw new RESTException(HttpStatusCode.NotFound, new { grupo = "Not Found" });
 
                 grupo.Titulo = request.Titulo ?? grupo.Titulo;
                 grupo.SubTitulo = request.SubTitulo ?? grupo.SubTitulo;

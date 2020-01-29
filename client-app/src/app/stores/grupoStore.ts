@@ -68,10 +68,10 @@ class GrupoStore {
           this.loadingStart = false;
         })
       } catch (error) {
-        runInAction('Get Grupo Erro', () => {
+        runInAction('Get Grupo Error', () => {
           this.loadingStart = false;
         })
-        console.log(error);
+        throw error;
       }
     }
   }

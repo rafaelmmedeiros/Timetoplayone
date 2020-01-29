@@ -3,6 +3,12 @@ import { IGrupo } from '../models/grupo';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+axios.interceptors.response.use(undefined, error => {
+  if(error.response.status === 404) {
+    throw error.response;
+  }
+})
+
 let time = 500;
 
 const responseBody = (response: AxiosResponse) => response.data;
@@ -15,11 +21,11 @@ const requests = {
     .get(url)
     .then(sleep(time))
     .then(responseBody),
-  post: (url: string, body:{}) => axios
+  post: (url: string, body: {}) => axios
     .post(url, body)
     .then(sleep(time))
     .then(responseBody),
-  put: (url: string, body:{}) => axios
+  put: (url: string, body: {}) => axios
     .put(url, body)
     .then(sleep(time))
     .then(responseBody),

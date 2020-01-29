@@ -13,7 +13,8 @@ interface DetailParams {
 }
 
 const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({
-  match
+  match,
+  history
 }) => {
 
   const grupoStore = useContext(GrupoStore);
@@ -25,13 +26,20 @@ const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({
 
   useEffect(() => {
     loadGrupo(match.params.id)
+      .catch(() => {
+        history.push('/NotFound')
+      })
   }, [
     loadGrupo,
-    match.params.id
+    match.params.id,
+    history
   ])
 
   if (loadingStart || !grupo)
     return <LoadingComponent content='Carregando Grupo...' />
+
+  if (!grupo)
+    return <h2>Grupo NOT FOOOOUND!!</h2>
 
   return (
     <Grid>
