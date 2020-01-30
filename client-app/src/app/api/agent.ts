@@ -1,12 +1,30 @@
 import axios, { AxiosResponse } from 'axios';
 import { IGrupo } from '../models/grupo';
+import { history } from '../..';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+// ERROR INTERCEPTOR 
 axios.interceptors.response.use(undefined, error => {
-  if(error.response.status === 404) {
-    throw error.response;
+  if (error.message === 'Network Error' && !error.response) {
+    toast.error('NETWORK ERROR - VEJA SE A API ESTÀ RODANDO');
   }
+
+  const { status, data, config } = error.response;
+
+  if (status === 404) {
+    history.push('/notfound')
+  }
+  if (error.response.status === 400 && config.method === 'get' && data.errors.hasOwnProperty('id')) {
+    history.push('/notfound');
+  }
+
+  // TOASTS
+  if (status === 500) {
+    toast.error('SERVER ERROR!');
+  }
+
 })
 
 let time = 500;

@@ -25,17 +25,14 @@ const GrupoDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   } = grupoStore;
 
   useEffect(() => {
-    loadGrupo(match.params.id)
-      .catch(() => {
-        history.push('/NotFound')
-      })
+    loadGrupo(match.params.id);
   }, [
     loadGrupo,
     match.params.id,
     history
   ])
 
-  if (loadingStart || !grupo)
+  if (loadingStart)
     return <LoadingComponent content='Carregando Grupo...' />
 
   if (!grupo)

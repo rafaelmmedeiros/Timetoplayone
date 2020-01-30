@@ -8,11 +8,13 @@ import HomePage from '../../features/home/HomePage';
 import GrupoForm from '../../features/grupos/components/GrupoForm';
 import GrupoDetails from '../../features/grupos/components/details/GrupoDetails';
 import NotFound from './errors/NotFound';
+import { ToastContainer } from 'react-toastify';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <Fragment>
+      <ToastContainer position="bottom-right"/>
       <Route
         exact
         path='/'
