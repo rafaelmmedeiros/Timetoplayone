@@ -2,6 +2,7 @@ import React from 'react'
 import { Segment, Item, Header, Button, Image } from 'semantic-ui-react';
 import { IGrupo } from '../../../../app/models/grupo';
 import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
 
 const grupoImageStyle = {
   filter: 'brightness(50%)'
@@ -56,6 +57,7 @@ const GrupoDetailsHeader: React.FC<{ grupo: IGrupo }> = ({
         clearing
         attached='bottom'>
         <Button
+          as={Link} to={`/edit/${grupo.id}`}
           color='grey'
           floated='left'>
           Editar Grupo
