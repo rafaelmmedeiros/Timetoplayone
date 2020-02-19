@@ -35,7 +35,8 @@ const GrupoListItem: React.FC<{ grupo: IGrupo }> = ({
           style={{ marginRight: '10px', marginLeft: '10px' }}
         />60
         <Button
-          as={Link} to={`/grupos/${grupo.id}`}
+          as={Link} 
+          to={`/grupos/${grupo.id}`}
           floated='right'
           content='>>'
           color='teal'

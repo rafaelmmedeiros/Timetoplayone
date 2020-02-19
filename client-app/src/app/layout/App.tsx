@@ -39,7 +39,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 />
                 <Route
                   key={location.key}
-                  path={['/criarGrupo', '/editar/:id']}
+                  path={['/criargrupo', '/editgrupo/:id']}
                   component={GrupoForm}
                 />
                 <Route

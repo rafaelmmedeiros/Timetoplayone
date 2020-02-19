@@ -57,7 +57,8 @@ const GrupoDetailsHeader: React.FC<{ grupo: IGrupo }> = ({
         clearing
         attached='bottom'>
         <Button
-          as={Link} to={`/edit/${grupo.id}`}
+          as={Link} 
+          to={`/editgrupo/${grupo.id}`}
           color='grey'
           floated='left'>
           Editar Grupo

@@ -58,6 +58,7 @@ class GrupoStore {
     let grupo = this.getGrupo(id);
     if (grupo) {
       this.grupo = grupo;
+      return grupo;
     } else {
       this.loadingStart = true;
 
@@ -67,6 +68,7 @@ class GrupoStore {
           this.grupo = grupo;
           this.loadingStart = false;
         })
+        return grupo;
       } catch (error) {
         runInAction('Get Grupo Error', () => {
           this.loadingStart = false;
