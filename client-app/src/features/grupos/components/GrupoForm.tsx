@@ -1,6 +1,6 @@
-import React, { useState, FormEvent, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
-import { IGrupo, GrupoFormValues } from "../../../app/models/grupo";
+import { GrupoFormValues } from "../../../app/models/grupo";
 import { v4 as uuid } from "uuid";
 import GrupoStore from "../../../app/stores/grupoStore";
 import { observer } from "mobx-react-lite";
@@ -8,6 +8,27 @@ import { RouteComponentProps } from "react-router-dom";
 import { Form as FinalForm, Field } from "react-final-form";
 import TextInput from "../../../app/common/form/TextInput";
 import TextAreaInput from "../../../app/common/form/TextAreaInput";
+import { combineValidators, isRequired, composeValidators, hasLengthBetween } from 'revalidate'; 
+
+// VALIDATION
+const validate = combineValidators({
+  titulo: composeValidators(
+    isRequired({message: 'Deve conter um Título'}),
+    hasLengthBetween(4,15)({message: 'Titulo deve ter entre 4 e 15 caracteres.'})
+  )(),
+  subTitulo: composeValidators(
+    isRequired({message: 'Deve conter um Sub-Título'}),
+    hasLengthBetween(4,35)({message: 'Sub-Titulo deve ter entre 4 e 35 caracteres.'})
+  )(),
+  label: composeValidators(
+    isRequired({message: 'Deve conter um Label'}),
+    hasLengthBetween(4,15)({message: 'Label deve ter entre 4 e 15 caracteres.'})
+  )(),
+  descricao: composeValidators(
+    isRequired({message: 'Deve conter uma Descrição'}),
+    hasLengthBetween(4,128)({message: 'Descrição deve ter entre 4 e 128 caracteres.'})
+  )(),
+})
 
 interface DetailsParams {
   id: string;
@@ -22,9 +43,7 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
     createGrupo,
     editGrupo,
     submitting,
-    grupo: initialFormState,
-    loadGrupo,
-    clearGrupo
+    loadGrupo
   } = grupoStore;
 
   const [grupo, setGrupo] = useState(new GrupoFormValues());
@@ -39,30 +58,27 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
     }
   }, [loadGrupo, match.params.id]);
 
-  // const handleSubmit = () => {
-  //   if (grupo.id.length === 0) {
-  //     let newGrupo = {
-  //       ...grupo,
-  //       id: uuid()
-  //     }
-  //     createGrupo(newGrupo)
-  //       .then(() => history.push(`/grupos/${newGrupo.id}`));
-  //   } else {
-  //     editGrupo(grupo)
-  //       .then(() => history.push(`/grupos/${grupo.id}`));
-  //   }
-  // }
-
   const handleFinalFormSubmit = (values: any) => {
-    console.log(values);
+    const { ...grupo } = values;
+
+    if (!grupo.id) {
+      let newGrupo = {
+        ...grupo,
+        id: uuid()
+      };
+      createGrupo(newGrupo);
+    } else {
+      editGrupo(grupo);
+    }
   };
 
   return (
     <Segment clearing>
       <FinalForm
+        validate={validate}
         initialValues={grupo}
         onSubmit={handleFinalFormSubmit}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, invalid, pristine }) => (
           <Form onSubmit={handleSubmit} loading={loading}>
             <Field
               name="titulo"
@@ -92,12 +108,17 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
             <Button.Group widths={2}>
               <Button
                 loading={submitting}
+                disabled={loading || invalid || pristine}
                 color="olive"
                 type="submit"
                 content="Salvar"
               />
               <Button
-                onClick={() => history.push("/grupos")}
+                onClick={
+                  grupo.id
+                    ? () => history.push(`/grupos/${grupo.id}`)
+                    : () => history.push("/grupos")
+                }
                 basic
                 color="grey"
                 type="button"

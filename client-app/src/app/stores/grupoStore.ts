@@ -2,6 +2,8 @@ import { observable, action, computed, configure, runInAction } from 'mobx';
 import { createContext, SyntheticEvent } from 'react';
 import { IGrupo } from '../models/grupo';
 import agent from '../api/agent';
+import { history } from '../..';
+import { toast } from 'react-toastify';
 
 configure({ enforceActions: 'always' });
 
@@ -66,6 +68,7 @@ class GrupoStore {
         grupo = await agent.Grupos.details(id);
         runInAction('Get Grupo', () => {
           this.grupo = grupo;
+          this.grupoRegistry.set(grupo.id, grupo);
           this.loadingStart = false;
         })
         return grupo;
@@ -91,12 +94,14 @@ class GrupoStore {
       runInAction('Create Grupo', () => {
         this.grupoRegistry.set(grupo.id, grupo);
         this.submitting = false;
-      })
+      });
+      history.push(`/grupos/${grupo.id}`)
     } catch (error) {
       runInAction('Create Grupo Erro', () => {
         this.submitting = false;
       })
-      console.log(error);
+      toast.error("Problema ao enviar Grupo");
+      console.log(error.response);
     }
   };
 
@@ -109,12 +114,14 @@ class GrupoStore {
         this.grupoRegistry.set(grupo.id, grupo);
         this.grupo = grupo;
         this.submitting = false;
-      })
+      });
+      history.push(`/grupos/${grupo.id}`)
     } catch (error) {
       runInAction('Edit Grupo Erro', () => {
         this.submitting = false;
       })
-      console.log(error);
+      toast.error("Problema ao enviar Grupo");
+      console.log(error.response);
     }
   };
 

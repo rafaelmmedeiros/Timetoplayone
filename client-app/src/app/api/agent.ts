@@ -25,8 +25,11 @@ axios.interceptors.response.use(undefined, error => {
     toast.error('SERVER ERROR!');
   }
 
+  throw error;
+
 })
 
+// DELAY - TIRAR EM PRODUÇÃO
 let time = 500;
 
 const responseBody = (response: AxiosResponse) => response.data;
