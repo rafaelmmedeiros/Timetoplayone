@@ -6,6 +6,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using System.Net;
 using Application.Errors;
+using Application.Interface;
 
 namespace Application.User
 {
@@ -31,8 +32,10 @@ namespace Application.User
         {
             private readonly UserManager<AppUser> _userManager;
             private readonly SignInManager<AppUser> _signInManager;
-            public Handler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+            private readonly IJwtGenerator _jwtGenerator;
+            public Handler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtGenerator jwtGenerator)
             {
+                _jwtGenerator = jwtGenerator;
                 _signInManager = signInManager;
                 _userManager = userManager;
             }
@@ -55,16 +58,15 @@ namespace Application.User
                     return new User
                     {
                         DisplayName = user.DisplayName,
-                        Token = "Pega aqui seu token",
+                        Token = _jwtGenerator.CreateToekn(user),//  Não tem conhecimento sobre o que está acontecendo.
                         Username = user.UserName,
                         Image = null
                     };
                 }
-                else 
+                else
                 {
                     throw new RESTException(HttpStatusCode.Unauthorized);
                 }
-
             }
         }
     }
