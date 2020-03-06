@@ -5,13 +5,20 @@ using System.Security.Claims;
 using System.Text;
 using Application.Interface;
 using Domain;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Security
 {
     public class JwtGenerator : IJwtGenerator
     {
-        public string CreateToekn(AppUser user)
+        private readonly SymmetricSecurityKey _key;
+        public JwtGenerator(IConfiguration config)
+        {
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+        }
+
+        public string CreateToken(AppUser user)
         {
             var claims = new List<Claim>
             {
@@ -19,8 +26,7 @@ namespace Infrastructure.Security
             };
 
             //  GERATING SIGNING CREDENCIALS
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("key do caralhoooo"));
-            var credencial = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var credencial = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

@@ -58,7 +58,7 @@ namespace Application.User
                     return new User
                     {
                         DisplayName = user.DisplayName,
-                        Token = _jwtGenerator.CreateToekn(user),//  Não tem conhecimento sobre o que está acontecendo.
+                        Token = _jwtGenerator.CreateToken(user),//  Não tem conhecimento sobre o que está acontecendo.
                         Username = user.UserName,
                         Image = null
                     };
