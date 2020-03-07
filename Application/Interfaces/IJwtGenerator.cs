@@ -1,6 +1,6 @@
 using Domain;
 
-namespace Application.Interface
+namespace Application.Interfaces
 {
     public interface IJwtGenerator
     {

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using API.Middleware;
 using Application.Estudos;
-using Application.Interface;
+using Application.Interfaces;
 using Domain;
 using FluentValidation.AspNetCore;
 using Infrastructure.Security;
@@ -69,7 +69,7 @@ namespace API
             // AUTH
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => 
+                .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -81,6 +81,8 @@ namespace API
                 });
 
             services.AddScoped<IJwtGenerator, JwtGenerator>();
+            services.AddScoped<IUserAccessor, UserAccessor>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,7 +4,8 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
-using Application.Interface;
+using Application.Interfaces;
+using Application.Validators;
 using Domain;
 using FluentValidation;
 using MediatR;
@@ -28,10 +29,15 @@ namespace Application.User
         {
             public CommandValidator()
             {
-                RuleFor(x => x.DisplayName).NotEmpty();
-                RuleFor(x => x.Username).NotEmpty();
-                RuleFor(x => x.Email).NotEmpty();
-                RuleFor(x => x.Password).NotEmpty();
+                RuleFor(x => x.DisplayName)
+                    .NotEmpty();
+                RuleFor(x => x.Username)
+                    .NotEmpty();
+                RuleFor(x => x.Email)
+                    .NotEmpty()
+                    .EmailAddress();
+                RuleFor(x => x.Password)
+                    .Password();
             }
         }
 
@@ -51,12 +57,12 @@ namespace Application.User
             {
                 //  VERIFICANDO SE JÁ EXISTE NO SISTEMA E CRIANDO
                 if (await _context.Users.Where(x => x.Email == request.Email).AnyAsync())
-                    throw new RESTException(HttpStatusCode.BadRequest, 
-                    new {Email = "Email existente"});
+                    throw new RESTException(HttpStatusCode.BadRequest,
+                    new { Email = "Email existente" });
 
                 if (await _context.Users.Where(x => x.UserName == request.Username).AnyAsync())
-                    throw new RESTException(HttpStatusCode.BadRequest, 
-                    new {Username = "Nome de usuário existente"});
+                    throw new RESTException(HttpStatusCode.BadRequest,
+                    new { Username = "Nome de usuário existente" });
 
                 var user = new AppUser
                 {

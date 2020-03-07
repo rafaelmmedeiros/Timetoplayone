@@ -6,7 +6,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using System.Net;
 using Application.Errors;
-using Application.Interface;
+using Application.Interfaces;
 
 namespace Application.User
 {
