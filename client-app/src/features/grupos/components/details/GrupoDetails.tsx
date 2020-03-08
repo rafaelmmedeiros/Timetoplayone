@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react'
 import GrupoStore from '../../../../app/stores/grupoStore';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router-dom';
-import { LoadingComponent } from '../../../../app/layout/LoadingComponent';
+import LoadingComponent from '../../../../app/layout/LoadingComponent';
 import GrupoDetailsHeader from './GrupoDetailsHeader';
 import GrupoDetailsInfo from './GrupoDetailsInfo';
 import GrupoDetailsEstudos from './GrupoDetailsEstudos';
