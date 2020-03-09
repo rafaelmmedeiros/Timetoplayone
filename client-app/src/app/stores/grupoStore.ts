@@ -1,39 +1,48 @@
-import { observable, action, computed, configure, runInAction } from 'mobx';
-import { createContext, SyntheticEvent } from 'react';
-import { IGrupo } from '../models/grupo';
-import agent from '../api/agent';
-import { history } from '../..';
-import { toast } from 'react-toastify';
+import { observable, action, computed, configure, runInAction } from "mobx";
+import { createContext, SyntheticEvent } from "react";
+import { IGrupo } from "../models/grupo";
+import agent from "../api/agent";
+import { history } from "../..";
+import { toast } from "react-toastify";
+import { RootStore } from "./rootStore";
 
-configure({ enforceActions: 'always' });
+configure({ enforceActions: "always" });
 
-class GrupoStore {
+export default class GrupoStore {
+  //  CONSTRUCTOR PARA O rootStore
+  rootStore: RootStore;
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+  }
+
   @observable grupoRegistry = new Map();
   @observable grupo: IGrupo | null = null;
   @observable loadingStart = false;
   @observable submitting = false;
-  @observable target = '';
+  @observable target = "";
 
   // ORDERING
   @computed get gruposByLabel() {
     return this.groupGruposByLabel(Array.from(this.grupoRegistry.values()));
   }
 
-  groupGruposByLabel (grupos: IGrupo[]) {
+  groupGruposByLabel(grupos: IGrupo[]) {
     const sortedGrupos = grupos.sort(
-      (a: any, b: any) => (a.label) - (b.label) // NAO FUNCIONA ARRUMAR
-    )
-    return Object.entries(sortedGrupos.reduce((grupos, grupo) => {
-      const label = grupo.label;
-      grupos[label] = grupos[label] ? [...grupos[label], grupo] : [grupo];
-      return grupos;
-    }, {} as {[key: string]: IGrupo[]}));
-  } 
+      (a: any, b: any) => a.label - b.label // NAO FUNCIONA ARRUMAR
+    );
+    return Object.entries(
+      sortedGrupos.reduce((grupos, grupo) => {
+        const label = grupo.label;
+        grupos[label] = grupos[label] ? [...grupos[label], grupo] : [grupo];
+        return grupos;
+      }, {} as { [key: string]: IGrupo[] })
+    );
+  }
 
   // CLEAN PARA USO EM FORM
   @action clearGrupo = () => {
     this.grupo = null;
-  }
+  };
 
   // READs
   @action loadGrupos = async () => {
@@ -41,17 +50,17 @@ class GrupoStore {
 
     try {
       const grupos = await agent.Grupos.list();
-      runInAction('Loading Grupos', () => {
-        grupos.forEach((grupo) => {
+      runInAction("Loading Grupos", () => {
+        grupos.forEach(grupo => {
           this.grupoRegistry.set(grupo.id, grupo);
         });
         this.loadingStart = false;
       });
       // console.log(this.groupGruposByLabel(grupos));
     } catch (error) {
-      runInAction('Loading Grupos Erro', () => {
+      runInAction("Loading Grupos Erro", () => {
         this.loadingStart = false;
-      })
+      });
       console.log(error);
     }
   };
@@ -66,24 +75,24 @@ class GrupoStore {
 
       try {
         grupo = await agent.Grupos.details(id);
-        runInAction('Get Grupo', () => {
+        runInAction("Get Grupo", () => {
           this.grupo = grupo;
           this.grupoRegistry.set(grupo.id, grupo);
           this.loadingStart = false;
-        })
+        });
         return grupo;
       } catch (error) {
-        runInAction('Get Grupo Error', () => {
+        runInAction("Get Grupo Error", () => {
           this.loadingStart = false;
-        })
+        });
         console.log(error);
       }
     }
-  }
+  };
 
   getGrupo = (id: string) => {
     return this.grupoRegistry.get(id);
-  }
+  };
 
   // CUD
   @action createGrupo = async (grupo: IGrupo) => {
@@ -91,15 +100,15 @@ class GrupoStore {
 
     try {
       await agent.Grupos.create(grupo);
-      runInAction('Create Grupo', () => {
+      runInAction("Create Grupo", () => {
         this.grupoRegistry.set(grupo.id, grupo);
         this.submitting = false;
       });
-      history.push(`/grupos/${grupo.id}`)
+      history.push(`/grupos/${grupo.id}`);
     } catch (error) {
-      runInAction('Create Grupo Erro', () => {
+      runInAction("Create Grupo Erro", () => {
         this.submitting = false;
-      })
+      });
       toast.error("Problema ao enviar Grupo");
       console.log(error.response);
     }
@@ -110,40 +119,41 @@ class GrupoStore {
 
     try {
       await agent.Grupos.update(grupo);
-      runInAction('Edit Grupo', () => {
+      runInAction("Edit Grupo", () => {
         this.grupoRegistry.set(grupo.id, grupo);
         this.grupo = grupo;
         this.submitting = false;
       });
-      history.push(`/grupos/${grupo.id}`)
+      history.push(`/grupos/${grupo.id}`);
     } catch (error) {
-      runInAction('Edit Grupo Erro', () => {
+      runInAction("Edit Grupo Erro", () => {
         this.submitting = false;
-      })
+      });
       toast.error("Problema ao enviar Grupo");
       console.log(error.response);
     }
   };
 
-  @action deleteGrupo = async (event: SyntheticEvent<HTMLButtonElement>, id: string) => {
+  @action deleteGrupo = async (
+    event: SyntheticEvent<HTMLButtonElement>,
+    id: string
+  ) => {
     this.submitting = true;
     this.target = event.currentTarget.name;
 
     try {
       await agent.Grupos.delete(id);
-      runInAction('Delete Grupo', () => {
+      runInAction("Delete Grupo", () => {
         this.grupoRegistry.delete(id);
         this.submitting = false;
-        this.target = '';
-      })
+        this.target = "";
+      });
     } catch (error) {
-      runInAction('Delete Grupo Erro', () => {
+      runInAction("Delete Grupo Erro", () => {
         this.submitting = false;
-        this.target = '';
-      })
+        this.target = "";
+      });
       console.log(error);
     }
   };
-};
-
-export default createContext(new GrupoStore())
+}

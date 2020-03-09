@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { GrupoFormValues } from "../../../app/models/grupo";
 import { v4 as uuid } from "uuid";
-import GrupoStore from "../../../app/stores/grupoStore";
 import { observer } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router-dom";
 import { Form as FinalForm, Field } from "react-final-form";
 import TextInput from "../../../app/common/form/TextInput";
 import TextAreaInput from "../../../app/common/form/TextAreaInput";
 import { combineValidators, isRequired, composeValidators, hasLengthBetween } from 'revalidate'; 
+import { RootStoreContext } from "../../../app/stores/rootStore";
 
 // VALIDATION
 const validate = combineValidators({
@@ -38,13 +38,13 @@ const GrupoForm: React.FC<RouteComponentProps<DetailsParams>> = ({
   match,
   history
 }) => {
-  const grupoStore = useContext(GrupoStore);
+  const rootStore = useContext(RootStoreContext);
   const {
     createGrupo,
     editGrupo,
     submitting,
     loadGrupo
-  } = grupoStore;
+  } = rootStore.grupoStore;
 
   const [grupo, setGrupo] = useState(new GrupoFormValues());
   const [loading, setLoading] = useState(false);
