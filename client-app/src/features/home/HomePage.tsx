@@ -22,9 +22,9 @@ const HomePage = () => {
           content='Bem-Vindo'
         />
         <Button
-          as={Link} to='/grupos'
+          as={Link} to='/login'
           size='huge' inverted>
-          Começar a tocar!
+          Login
         </Button>
       </Container>
     </Segment>

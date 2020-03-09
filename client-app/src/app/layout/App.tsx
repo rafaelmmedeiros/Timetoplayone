@@ -9,6 +9,7 @@ import GrupoForm from '../../features/grupos/components/GrupoForm';
 import GrupoDetails from '../../features/grupos/components/details/GrupoDetails';
 import NotFound from './errors/NotFound';
 import { ToastContainer } from 'react-toastify';
+import LoginForm from '../../features/user/LoginForm';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
 
@@ -28,6 +29,10 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Container
               style={{ marginTop: '7em' }}>
               <Switch>
+              <Route
+                  path='/login'
+                  component={LoginForm}
+                />
                 <Route
                   exact
                   path='/grupos'
