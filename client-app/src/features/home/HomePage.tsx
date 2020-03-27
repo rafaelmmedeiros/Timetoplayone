@@ -2,11 +2,13 @@ import React, { useContext, Fragment } from "react";
 import { Container, Segment, Header, Button, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { RootStoreContext } from "../../app/stores/rootStore";
+import LoginForm from "../user/LoginForm";
 
 const HomePage = () => {
   //  PROPS
   const rootStore = useContext(RootStoreContext);
   const { isLoggedIn, user } = rootStore.userStore;
+  const { openModal } = rootStore.modalStore;
 
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
@@ -30,7 +32,7 @@ const HomePage = () => {
         ) : (
           <Fragment>
             <Header as="h2" inverted content="Seja bem-vindo!" />
-            <Button as={Link} to="/login" size="huge">
+            <Button onClick={() => openModal(<LoginForm />)} size="huge">
               Login
             </Button>
             <Button as={Link} to="/register" size="huge" inverted>
