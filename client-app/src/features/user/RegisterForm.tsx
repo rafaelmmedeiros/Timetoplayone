@@ -9,18 +9,20 @@ import { combineValidators, isRequired } from "revalidate";
 import ErrorMessage from "../../app/common/form/ErrorMessage";
 
 const validate = combineValidators({
-  email: isRequired("Email"),
+  username: isRequired("Usuario"),
+  displayName: isRequired("Nome de Exibição"),
+  email: isRequired("E-mail"),
   password: isRequired("Password")
 });
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { login } = rootStore.userStore;
+  const { register } = rootStore.userStore;
 
   return (
     <FinalForm
       onSubmit={(values: IUserFormValues) =>
-        login(values).catch(error => ({
+        register(values).catch(error => ({
           [FORM_ERROR]: error
         }))
       }
@@ -36,9 +38,15 @@ const LoginForm = () => {
         <Form onSubmit={handleSubmit} error>
           <Header
             as="h2"
-            content="Login Hora de Tocar"
+            content="Registre e organize seus estudos!"
             color="olive"
             textAlign="center"
+          />
+          <Field name="username" component={TextInput} placeholder="Usuario" />
+          <Field
+            name="displayName"
+            component={TextInput}
+            placeholder="Nome de Exibição"
           />
           <Field name="email" component={TextInput} placeholder="Email" />
           <Field
@@ -48,13 +56,13 @@ const LoginForm = () => {
             type="password"
           />
           {submitError && !dirtySinceLastSubmit && (
-            <ErrorMessage error={submitError} text="Email ou senha invalidos" />
+            <ErrorMessage error={submitError} />
           )}
           <Button
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
             loading={submitting}
             color="olive"
-            content="Login"
+            content="Registrar"
             fluid
           />
           {/* <pre>{JSON.stringify(form.getState(), null, 2)}</pre> */}
@@ -64,4 +72,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

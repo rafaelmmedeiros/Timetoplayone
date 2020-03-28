@@ -3,6 +3,7 @@ import { Container, Segment, Header, Button, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import LoginForm from "../user/LoginForm";
+import RegisterForm from "../user/RegisterForm";
 
 const HomePage = () => {
   //  PROPS
@@ -32,10 +33,17 @@ const HomePage = () => {
         ) : (
           <Fragment>
             <Header as="h2" inverted content="Seja bem-vindo!" />
-            <Button onClick={() => openModal(<LoginForm />)} size="huge">
+            <Button 
+              onClick={() => openModal(<LoginForm />)} 
+              size="huge"
+            >
               Login
             </Button>
-            <Button as={Link} to="/register" size="huge" inverted>
+            <Button
+              onClick={() => openModal(<RegisterForm />)}
+              size="huge"
+              inverted
+            >
               Registrar
             </Button>
           </Fragment>
