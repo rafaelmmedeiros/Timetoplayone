@@ -2,6 +2,7 @@
 using API.Middleware;
 using Application.Estudos;
 using Application.Interfaces;
+using AutoMapper;
 using Domain;
 using FluentValidation.AspNetCore;
 using Infrastructure.Security;
@@ -47,7 +48,10 @@ namespace API
                         .WithOrigins("http://localhost:3000");
                 });
             });
+
+            //  jbogard Solutions
             services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddAutoMapper(typeof(List.Handler));
 
             // ACESS POLICY
             services.AddControllers(option =>

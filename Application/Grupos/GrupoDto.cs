@@ -1,16 +1,15 @@
 using System;
+using Domain;
 
-namespace Domain
+namespace Application.Grupos
 {
-    public class Grupo
+    public class GrupoDto
     {
         public Guid Id { get; set; }
         public string Titulo { get; set; }
         public string SubTitulo { get; set; }
         public string Descricao { get; set; }
         public string Label { get; set; }
-
-        // RELATIONS
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }

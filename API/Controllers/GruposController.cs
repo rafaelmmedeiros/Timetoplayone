@@ -12,14 +12,14 @@ namespace API.Controllers
     public class GruposController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<List<Grupo>>> List()
+        public async Task<ActionResult<List<GrupoDto>>> List()
         {
             return await Mediator.Send(new List.Query());
         }
 
         [HttpGet("{id}")]
         [Authorize]
-        public async Task<ActionResult<Grupo>> Details(Guid id)
+        public async Task<ActionResult<GrupoDto>> Details(Guid id)
         {
             return await Mediator.Send(new Details.Query { Id = id });
         }
