@@ -32,13 +32,14 @@ namespace Infrastructure.Security
 
             var grupo = _context.Grupos.FindAsync(grupoId).Result;
 
+            var owner = currentUserName;
             //var owner = grupo.AppUser.UserName.FirstOrDefault(x => x.);
 
             //TODO : Fazer isso funcionar!! 
             //Primeira condição do IF... é para bypass
             //Entender a navegação do Entity
 
-            if (currentUserName == currentUserName)
+            if (owner == currentUserName)
             {
                 context.Succeed(requirement);
             }
