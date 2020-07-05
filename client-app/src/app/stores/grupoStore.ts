@@ -49,7 +49,7 @@ export default class GrupoStore {
     try {
       const grupos = await agent.Grupos.list();
       runInAction("Loading Grupos", () => {
-        grupos.forEach(grupo => {
+        grupos.forEach((grupo) => {
           this.grupoRegistry.set(grupo.id, grupo);
         });
         this.loadingStart = false;

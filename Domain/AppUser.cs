@@ -9,5 +9,6 @@ namespace Domain
         
         // RELATIONS
         public ICollection<Grupo> UserGrupos { get; set; }
+        public ICollection<Photo> UserPhotos { get; set; }
     }
 }

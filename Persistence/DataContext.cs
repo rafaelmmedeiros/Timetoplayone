@@ -15,6 +15,7 @@ namespace Persistence
         public DbSet<Value> Values { get; set; }
         public DbSet<Estudo> Estudos { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
 
         // Seed para Values
