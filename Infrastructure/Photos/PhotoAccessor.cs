@@ -13,7 +13,8 @@ namespace Infrastructure.Photos
         private readonly Cloudinary _cloudinary;
         public PhotoAccessor(IOptions<CloudinarySettings> config)
         {
-            var acc = new Account(
+            var acc = new Account
+            (
                 config.Value.CloudName,
                 config.Value.ApiKey,
                 config.Value.ApiSecret
@@ -27,17 +28,19 @@ namespace Infrastructure.Photos
 
             if (file.Length > 0)
             {
-                using(var stream = file.OpenReadStream())
+                using (var stream = file.OpenReadStream())
                 {
                     var uploadParams = new ImageUploadParams
                     {
-                        File = new FileDescription(file.FileName, stream)
+                        File = new FileDescription(file.FileName, stream),
+                        Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
                     };
                     uploadResult = _cloudinary.Upload(uploadParams);
                 }
             }
 
-            // Caso tenha erro no momento de gravar na varia dentro do ADD
+            // Caso tenha erro no momento de gravar
+
             if (uploadResult.Error != null)
                 throw new Exception(uploadResult.Error.Message);
 

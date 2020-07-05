@@ -13,10 +13,9 @@ namespace Application.Photos
 {
     public class Add
     {
-        public class Command : IRequest<Photo>
+        public class Command : IRequest<Domain.Photo>
         {
             public IFormFile File { get; set; }
-
         }
 
         public class Handler : IRequestHandler<Command, Photo>
@@ -36,24 +35,23 @@ namespace Application.Photos
                 var photoUploadResult = _photoAccessor.AddPhoto(request.File);
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
-                
-                // TODO NO GRUPO!!
+
                 var photo = new Photo
                 {
                     Url = photoUploadResult.Url,
-                    Id = photoUploadResult.PublicId,
+                    Id = photoUploadResult.PublicId
                 };
 
                 if (!user.UserPhotos.Any(x => x.IsMain))
                     photo.IsMain = true;
 
-                user.UserPhotos.Add(photo);
+                user.UserPhotos.Add(photo);           
 
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return photo;
 
-                throw new Exception("Erro ao salvar foto");
+                throw new Exception("Problem saving changes");
             }
         }
     }

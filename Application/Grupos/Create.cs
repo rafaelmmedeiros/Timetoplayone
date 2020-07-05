@@ -54,7 +54,7 @@ namespace Application.Grupos
                     SubTitulo = request.SubTitulo,
                     Descricao = request.Descricao,
                     Label = request.Label,
-                    AppUser = user,
+                   // AppUser = user,
                 };
                 _context.Grupos.Add(grupo);
 
