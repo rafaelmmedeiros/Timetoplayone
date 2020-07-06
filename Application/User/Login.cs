@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Net;
 using Application.Errors;
 using Application.Interfaces;
+using System.Linq;
 
 namespace Application.User
 {
@@ -60,7 +61,7 @@ namespace Application.User
                         DisplayName = user.DisplayName,
                         Token = _jwtGenerator.CreateToken(user),//  Não tem conhecimento sobre o que está acontecendo.
                         Username = user.UserName,
-                        Image = null
+                        Image = user.UserPhotos.FirstOrDefault(x => x.IsMain)?.Url
                     };
                 }
                 else
