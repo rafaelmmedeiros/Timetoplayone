@@ -2,3 +2,4 @@ ProfilePage
     ProfileHeader
     ProfileCommunity
     ProfileContent
+        ProfilePhotos
