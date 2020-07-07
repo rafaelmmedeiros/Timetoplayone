@@ -3,12 +3,7 @@ import { Container } from "semantic-ui-react";
 import NavBar from "../../features/nav/NavBar";
 import { observer } from "mobx-react-lite";
 import GrupoDashboard from "../../features/grupos/GrupoDashboard";
-import {
-  Route,
-  withRouter,
-  RouteComponentProps,
-  Switch
-} from "react-router-dom";
+import { Route, withRouter, RouteComponentProps, Switch } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import GrupoForm from "../../features/grupos/components/GrupoForm";
 import GrupoDetails from "../../features/grupos/components/details/GrupoDetails";
@@ -18,6 +13,7 @@ import LoginForm from "../../features/user/LoginForm";
 import { RootStoreContext } from "../stores/rootStore";
 import LoadingComponent from "./LoadingComponent";
 import ModalContainer from "../modals/ModalContainer";
+import ProfilePage from "../../features/profiles/ProfilePage";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -46,14 +42,10 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <NavBar />
             <Container style={{ marginTop: "7em" }}>
               <Switch>
-                <Route path="/login" component={LoginForm} />
+                <Route path="/profile/:username" component={ProfilePage} />
                 <Route exact path="/grupos" component={GrupoDashboard} />
                 <Route path="/grupos/:id" component={GrupoDetails} />
-                <Route
-                  key={location.key}
-                  path={["/criargrupo", "/editgrupo/:id"]}
-                  component={GrupoForm}
-                />
+                <Route key={location.key} path={["/criargrupo", "/editgrupo/:id"]} component={GrupoForm} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

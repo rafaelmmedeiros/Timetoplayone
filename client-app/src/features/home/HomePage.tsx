@@ -1,5 +1,5 @@
 import React, { useContext, Fragment } from "react";
-import { Container, Segment, Header, Button, Icon } from "semantic-ui-react";
+import { Container, Segment, Header, Button, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import LoginForm from "../user/LoginForm";
@@ -21,11 +21,8 @@ const HomePage = () => {
 
         {isLoggedIn && user ? (
           <Fragment>
-            <Header
-              inverted
-              as="h2"
-              content={`${user.displayName} , inspirado hoje?`}
-            />
+            <Image size="small" circular centered src={user.image || "/assets/user.png"} />
+            <Header inverted as="h2" content={`${user.displayName} , inspirado hoje?`} />
             <Button as={Link} to="/grupos" size="huge">
               Chega de moleza!
             </Button>
@@ -33,17 +30,10 @@ const HomePage = () => {
         ) : (
           <Fragment>
             <Header as="h2" inverted content="Seja bem-vindo!" />
-            <Button 
-              onClick={() => openModal(<LoginForm />)} 
-              size="huge"
-            >
+            <Button onClick={() => openModal(<LoginForm />)} size="huge">
               Login
             </Button>
-            <Button
-              onClick={() => openModal(<RegisterForm />)}
-              size="huge"
-              inverted
-            >
+            <Button onClick={() => openModal(<RegisterForm />)} size="huge" inverted>
               Registrar
             </Button>
           </Fragment>
