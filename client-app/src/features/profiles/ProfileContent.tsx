@@ -3,8 +3,8 @@ import { Tab } from "semantic-ui-react";
 import ProfilePhotos from "./ProfilePhotos";
 
 const panes = [
+{ menuItem: "Album", render: () => <ProfilePhotos /> },
   { menuItem: "About", render: () => <Tab.Pane>About Content</Tab.Pane> },
-  { menuItem: "Album", render: () => <ProfilePhotos /> },
 ];
 
 const ProfileContent = () => {

@@ -26,7 +26,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
 
   return (
     <Grid>
-      <Grid.Column width={16}>
+      <Grid.Column>
         <ProfileHeader profile={profile!} />
         <ProfileCommunity />
         <ProfileContent />
