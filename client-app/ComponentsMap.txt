@@ -4,3 +4,4 @@ ProfilePage
     ProfileContent
         ProfilePhotos
             PhotoUploadWidget
+                PhotoWidgetDropzone
