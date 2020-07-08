@@ -5,3 +5,4 @@ ProfilePage
         ProfilePhotos
             PhotoUploadWidget
                 PhotoWidgetDropzone
+				PhotoWidgetCropper
