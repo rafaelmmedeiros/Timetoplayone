@@ -1,8 +1,0 @@
-ProfilePage
-    ProfileHeader
-    ProfileCommunity
-    ProfileContent
-        ProfilePhotos
-            PhotoUploadWidget
-                PhotoWidgetDropzone
-				PhotoWidgetCropper

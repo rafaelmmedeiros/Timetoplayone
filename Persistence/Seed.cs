@@ -12,30 +12,49 @@ namespace Persistence
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
             //  SEED USERS
-            if(!userManager.Users.Any())
+            if (!userManager.Users.Any())
             {
                 var users = new List<AppUser>
                 {
                     new AppUser
                     {
                         Id = "a",
-                        DisplayName = "Jao",
-                        UserName = "Joao",
-                        Email = "jao@email.com"
+                        DisplayName = "Shiryu",
+                        Bio = "Caveleiro de Bronze, armadura de Dragão.",
+                        UserName = "shiryu",
+                        Email = "shiryu@email.com"
                     },
                     new AppUser
                     {
                         Id = "b",
-                        DisplayName = "Ana",
-                        UserName = "Ana",
-                        Email = "ana@email.com"
-                    },       
+                        DisplayName = "Athena",
+                        Bio = "Deusa Atehna, precisa de mais alguma coisa?",
+                        UserName = "athena",
+                        Email = "athena@email.com"
+                    },
                      new AppUser
                     {
                         Id = "c",
-                        DisplayName = "Luc",
-                        UserName = "Lucifer",
-                        Email = "lucifer@email.com"
+                        DisplayName = "Ikki",
+                        Bio = "Caveleiro de Bronze. armadura de Fênix.",
+                        UserName = "ikki",
+                        Email = "ikki@email.com"
+                    },
+                    new AppUser
+                    {
+                        Id = "d",
+                        DisplayName = "Pandora",
+                        Bio = "Abriu a caixa por curiosidade e agora ficou perturbada da cabeça.",
+                        UserName = "pandora",
+                        Email = "pandora@email.com"
+                    },
+                    new AppUser
+                    {
+                        Id = "e",
+                        DisplayName = "Hades",
+                        Bio = "Hades...",
+                        UserName = "hades",
+                        Email = "hades@email.com"
                     }
                 };
                 foreach (var user in users)
