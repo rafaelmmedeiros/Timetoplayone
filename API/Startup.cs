@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using API.Middleware;
-using Application.Estudos;
+using Application.Grupos;
 using Application.Interfaces;
 using AutoMapper;
 using Domain;
