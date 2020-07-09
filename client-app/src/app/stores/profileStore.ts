@@ -98,4 +98,19 @@ export default class ProfileStore {
       });
     }
   };
+
+  @action updateAbout = async (profile: Partial<IProfile>) => {
+    try {
+      await agent.Profiles.updateAbout(profile);
+      runInAction(() => {
+        if (profile.displayName !== this.rootStore.userStore.user!.displayName) {
+          this.rootStore.userStore.user!.displayName = profile.displayName!;
+        }
+        this.profile = { ...this.profile!, ...profile };
+        toast.success("Profile Updated");
+      });
+    } catch (error) {
+      toast.error("ERRO ao salvar profile");
+    }
+  };
 }

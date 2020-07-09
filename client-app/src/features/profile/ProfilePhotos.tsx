@@ -21,7 +21,12 @@ const ProfilePhotos = () => {
         <Grid.Column width={16} style={{ paddingBottom: 0 }}>
           <Header floated="left" icon="image" content="Photos" />
           {isCurrentUser && (
-            <Button floated="right" color="teal" content={addPhotoMode ? "Cancel" : "Add Photo"} onClick={() => setAddPhotoMode(!addPhotoMode)} />
+            <Button
+              floated="right"
+              color={addPhotoMode ? "red" : "teal"}
+              content={addPhotoMode ? "Cancel" : "Add Photo"}
+              onClick={() => setAddPhotoMode(!addPhotoMode)}
+            />
           )}
         </Grid.Column>
         <Grid.Column width={16}>

@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import { RootStoreContext } from "../stores/rootStore";
 import LoadingComponent from "./LoadingComponent";
 import ModalContainer from "../modals/ModalContainer";
-import ProfilePage from "../../features/profiles/ProfilePage";
+import ProfilePage from "../../features/profile/ProfilePage";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -32,7 +32,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <Fragment>
       <ModalContainer />
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="bottom-center" />
       <Route exact path="/" component={HomePage} />
       <Route
         path={"/(.+)"}
