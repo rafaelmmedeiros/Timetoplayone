@@ -27,7 +27,7 @@ export default class UserStore {
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
       //  TODO: MUDA PARA O DASHBOARD INICIAL
-      history.push("/grupos");
+      history.push("/maindashboard");
     } catch (error) {
       throw error;
     }
@@ -39,7 +39,7 @@ export default class UserStore {
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
       //  TODO: MUDA PARA O DASHBOARD INICIAL
-      history.push("/grupos");
+      history.push("/maindashboard");
     } catch (error) {
       throw error;
     }

@@ -23,7 +23,7 @@ const HomePage = () => {
           <Fragment>
             <Image size="small" circular centered src={user.image || "/assets/user.png"} />
             <Header inverted as="h2" content={`${user.displayName} , inspirado hoje?`} />
-            <Button as={Link} to="/grupos" size="huge">
+            <Button as={Link} to="/maindashboard" size="huge">
               Chega de moleza!
             </Button>
           </Fragment>
