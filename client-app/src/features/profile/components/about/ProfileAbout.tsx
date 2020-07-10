@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Tab, Grid, Header, Button } from "semantic-ui-react";
-import { RootStoreContext } from "../../app/stores/rootStore";
+import { RootStoreContext } from "../../../../app/stores/rootStore";
 import { observer } from "mobx-react-lite";
 import ProfileAboutEditForm from "./ProfileAboutEditForm";
 

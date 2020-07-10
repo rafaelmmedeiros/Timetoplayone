@@ -1,7 +1,7 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
-import ProfilePhotos from "./ProfilePhotos";
-import ProfileAbout from "./ProfileAbout";
+import ProfilePhotos from "./album/ProfilePhotos";
+import ProfileAbout from "./about/ProfileAbout";
 
 const panes = [
   { menuItem: "Album", render: () => <ProfilePhotos /> },

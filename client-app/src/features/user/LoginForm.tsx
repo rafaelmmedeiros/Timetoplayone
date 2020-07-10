@@ -10,7 +10,7 @@ import ErrorMessage from "../../app/common/form/ErrorMessage";
 
 const validate = combineValidators({
   email: isRequired("Email"),
-  password: isRequired("Password")
+  password: isRequired("Password"),
 });
 
 const LoginForm = () => {
@@ -20,43 +20,18 @@ const LoginForm = () => {
   return (
     <FinalForm
       onSubmit={(values: IUserFormValues) =>
-        login(values).catch(error => ({
-          [FORM_ERROR]: error
+        login(values).catch((error) => ({
+          [FORM_ERROR]: error,
         }))
       }
       validate={validate}
-      render={({
-        handleSubmit,
-        submitting,
-        submitError,
-        invalid,
-        pristine,
-        dirtySinceLastSubmit
-      }) => (
+      render={({ handleSubmit, submitting, submitError, invalid, pristine, dirtySinceLastSubmit }) => (
         <Form onSubmit={handleSubmit} error>
-          <Header
-            as="h2"
-            content="Login Hora de Tocar"
-            color="olive"
-            textAlign="center"
-          />
+          <Header as="h2" content="Login Hora de Tocar" color="olive" textAlign="center" />
           <Field name="email" component={TextInput} placeholder="Email" />
-          <Field
-            name="password"
-            component={TextInput}
-            placeholder="Password"
-            type="password"
-          />
-          {submitError && !dirtySinceLastSubmit && (
-            <ErrorMessage error={submitError} text="Email ou senha invalidos" />
-          )}
-          <Button
-            disabled={(invalid && !dirtySinceLastSubmit) || pristine}
-            loading={submitting}
-            color="olive"
-            content="Login"
-            fluid
-          />
+          <Field name="password" component={TextInput} placeholder="Password" type="password" />
+          {submitError && !dirtySinceLastSubmit && <ErrorMessage error={submitError} text="Email ou senha invalidos" />}
+          <Button disabled={(invalid && !dirtySinceLastSubmit) || pristine} loading={submitting} color="olive" content="Login" fluid />
           {/* <pre>{JSON.stringify(form.getState(), null, 2)}</pre> */}
         </Form>
       )}

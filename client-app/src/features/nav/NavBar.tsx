@@ -5,7 +5,6 @@ import { NavLink, Link } from "react-router-dom";
 import { RootStoreContext } from "../../app/stores/rootStore";
 
 const NavBar: React.FC = () => {
-  //  PROPS
   const rootStore = useContext(RootStoreContext);
   const { user, logout } = rootStore.userStore;
 
@@ -16,10 +15,18 @@ const NavBar: React.FC = () => {
           <Icon name="calendar check outline" size="big" style={{ marginRight: "10px" }} />
           Hora de Tocar
         </Menu.Item>
-        <Menu.Item name="Treino" />
-        <Menu.Item name="Estudos" />
+        <Dropdown text="Tools" pointing className="link item">
+          <Dropdown.Menu>
+            <Dropdown.Header>Study</Dropdown.Header>
+            <Dropdown.Item as={NavLink} exact to="/grupos">
+              Trainer
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Header>Band</Dropdown.Header>
+            <Dropdown.Item>Finances</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Menu.Item name="Grupos" as={NavLink} exact to="/grupos" />
-        <Menu.Item name="Dedicação" />
         <Menu.Item>
           <Button as={NavLink} exact to="/criarGrupo" positive content="Criar Grupo" />
         </Menu.Item>

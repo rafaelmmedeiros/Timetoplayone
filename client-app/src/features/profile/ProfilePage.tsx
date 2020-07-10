@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Grid } from "semantic-ui-react";
-import ProfileHeader from "./ProfileHeader";
-import ProfileContent from "./ProfileContent";
-import ProfileCommunity from "./ProfileCommunity";
+import ProfileHeader from "./components/header/ProfileHeader";
+import ProfileContent from "./components/ProfileContent";
+import ProfileCommunity from "./components/ProfileCommunity";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import { RouteComponentProps } from "react-router-dom";
 import LoadingComponent from "../../app/layout/LoadingComponent";
