@@ -15,7 +15,7 @@ export default class ProfileStore {
   @observable uploadingPhoto = false;
   @observable loading = false;
 
-  // PARA COMPARAR SEW USER É IGUAL PROFILE
+  // PARA COMPARAR SE USER É IGUAL PROFILE
   @computed get isCurrentUser() {
     if (this.rootStore.userStore.user && this.profile) {
       return this.rootStore.userStore.user.username === this.profile.username;
@@ -36,7 +36,8 @@ export default class ProfileStore {
       runInAction(() => {
         this.loadingProfile = false;
       });
-      console.log(error);
+      //console.log(error);
+      toast.error("👎 Error loading profile.");
     }
   };
 
@@ -54,12 +55,13 @@ export default class ProfileStore {
         }
         this.uploadingPhoto = false;
       });
+      toast.success("👍 Photo uploaded with success.");
     } catch (error) {
-      console.log(error);
-      toast.error("ERROR Uploading photo");
       runInAction(() => {
         this.uploadingPhoto = false;
       });
+      toast.error("👎 Error uploading photo.");
+      //console.log(error);
     }
   };
 
@@ -74,11 +76,12 @@ export default class ProfileStore {
         this.profile!.image = photo.url;
         this.loading = false;
       });
+      toast.success("👍 Main photo updated with success.");
     } catch (error) {
-      toast.error("ERROR to set as main photo");
       runInAction(() => {
         this.loading = false;
       });
+      toast.error("👎 Error setting main photo.");
     }
   };
 
@@ -91,11 +94,12 @@ export default class ProfileStore {
         this.profile!.photos = this.profile!.photos.filter((a) => a.id !== photo.id);
         this.loading = false;
       });
+      toast.success("👍 Photo deleted with success.");
     } catch (error) {
-      toast.error("ERROR to delete photo");
       runInAction(() => {
         this.loading = false;
       });
+      toast.error("👎 Error deleting photo.");
     }
   };
 
@@ -107,10 +111,10 @@ export default class ProfileStore {
           this.rootStore.userStore.user!.displayName = profile.displayName!;
         }
         this.profile = { ...this.profile!, ...profile };
-        toast.success("Profile Updated");
       });
+      toast.success("👍 Profile updated with success.");
     } catch (error) {
-      toast.error("ERRO ao salvar profile");
+      toast.error("👎 Error updating profile.");
     }
   };
 }

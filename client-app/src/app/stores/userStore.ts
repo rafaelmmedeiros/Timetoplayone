@@ -3,6 +3,7 @@ import { IUser, IUserFormValues } from "../models/user";
 import agent from "../api/agent";
 import { RootStore } from "./rootStore";
 import { history } from "../..";
+import { toast } from "react-toastify";
 
 export default class UserStore {
   //  CONSTRUCTOR PARA O rootStore
@@ -26,8 +27,8 @@ export default class UserStore {
       });
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
-      //  TODO: MUDA PARA O DASHBOARD INICIAL
       history.push("/maindashboard");
+      toast.info("Welcome " + user.displayName + "! 🤘🤘");
     } catch (error) {
       throw error;
     }
@@ -38,7 +39,6 @@ export default class UserStore {
       const user = await agent.User.register(values);
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
-      //  TODO: MUDA PARA O DASHBOARD INICIAL
       history.push("/maindashboard");
     } catch (error) {
       throw error;
