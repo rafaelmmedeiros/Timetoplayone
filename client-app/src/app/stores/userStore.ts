@@ -28,7 +28,7 @@ export default class UserStore {
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
       history.push("/maindashboard");
-      toast.info("Welcome " + user.displayName + "! 🤘🤘");
+      toast.info("🤘🤘 Welcome " + user.displayName + " !");
     } catch (error) {
       throw error;
     }
