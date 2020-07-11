@@ -29,6 +29,7 @@ namespace Application.AppTrainer.Repertoires
                 // MANUAL MAPPING
                 return new UserRepertoire
                 {
+                    Username = user.UserName,
                     Repertoires = user.UserRepertoires
                 };
             }
