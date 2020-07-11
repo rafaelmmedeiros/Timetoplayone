@@ -42,10 +42,10 @@ namespace Application.Photos
                     Id = photoUploadResult.PublicId
                 };
 
-                if (!user.UserPhotos.Any(x => x.IsMain))
+                if (!user.Photos.Any(x => x.IsMain))
                     photo.IsMain = true;
 
-                user.UserPhotos.Add(photo);           
+                user.Photos.Add(photo);           
 
                 var success = await _context.SaveChangesAsync() > 0;
 

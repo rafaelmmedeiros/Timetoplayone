@@ -33,12 +33,12 @@ namespace Application.Photos
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                var photo = user.UserPhotos.FirstOrDefault(x => x.Id == request.Id);
+                var photo = user.Photos.FirstOrDefault(x => x.Id == request.Id);
 
                 if (photo == null)
                     throw new RESTException(HttpStatusCode.NotFound, new {Photo = "Not found"});
 
-                var currentMain = user.UserPhotos.FirstOrDefault(x => x.IsMain);
+                var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
 
                 currentMain.IsMain = false;
                 photo.IsMain = true;

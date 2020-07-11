@@ -34,7 +34,7 @@ namespace Application.Photos
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                var photo = user.UserPhotos.FirstOrDefault(x => x.Id == request.Id);
+                var photo = user.Photos.FirstOrDefault(x => x.Id == request.Id);
 
                 if (photo == null)
                     throw new RESTException(HttpStatusCode.NotFound, new { Photo = "Not found" });
@@ -47,7 +47,7 @@ namespace Application.Photos
                 if (result == null)
                     throw new Exception("Problema ao deletar foto");
 
-                user.UserPhotos.Remove(photo);
+                user.Photos.Remove(photo);
 
                 var success = await _context.SaveChangesAsync() > 0;
 

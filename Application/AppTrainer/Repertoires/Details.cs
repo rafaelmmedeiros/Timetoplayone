@@ -30,7 +30,8 @@ namespace Application.AppTrainer.Repertoires
                 return new UserRepertoire
                 {
                     Username = user.UserName,
-                    Repertoires = user.UserRepertoires
+                    Total = user.Photos.Count(),
+                    Repertoires = user.Repertoires
                 };
             }
         }
