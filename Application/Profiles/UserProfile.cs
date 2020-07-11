@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Domain;
+using Domain.App;
 
 namespace Application.Profiles
 {
-    public class Profile
+    public class UserProfile
     {
         public string DisplayName { get; set; }
         public string Username { get; set; }

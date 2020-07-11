@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Domain.App;
+using Domain.AppTrainer;
 using Microsoft.AspNetCore.Identity;
 
 namespace Domain
@@ -11,5 +13,6 @@ namespace Domain
         // RELATIONS
         public virtual ICollection<Grupo> UserGrupos { get; set; }
         public virtual ICollection<Photo> UserPhotos { get; set; }
+        public virtual ICollection<Repertoire> UserRepertoires { get; set; }
     }
 }

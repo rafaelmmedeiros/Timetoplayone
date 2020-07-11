@@ -1,4 +1,6 @@
 ﻿using Domain;
+using Domain.App;
+using Domain.AppTrainer;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,5 +15,6 @@ namespace Persistence
         // Entidades a serem geradas pelo Entity Framework
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Repertoire> Repertoires { get; set; }
     }
 }

@@ -9,7 +9,7 @@ const NavBar: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
   const { user, logout } = rootStore.userStore;
 
-  const isMobile = useMediaQuery({ query: "(max-width: 750px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   return (
     <Menu fixed="top" inverted>

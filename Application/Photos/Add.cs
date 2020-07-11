@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
-using Domain;
+using Domain.App;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +13,7 @@ namespace Application.Photos
 {
     public class Add
     {
-        public class Command : IRequest<Domain.Photo>
+        public class Command : IRequest<Domain.App.Photo>
         {
             public IFormFile File { get; set; }
         }
