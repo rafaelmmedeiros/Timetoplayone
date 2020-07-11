@@ -288,14 +288,14 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.App.Photo", b =>
                 {
                     b.HasOne("Domain.AppUser", null)
-                        .WithMany("UserPhotos")
+                        .WithMany("Photos")
                         .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("Domain.AppTrainer.Repertoire", b =>
                 {
                     b.HasOne("Domain.AppUser", null)
-                        .WithMany("UserRepertoires")
+                        .WithMany("Repertoires")
                         .HasForeignKey("AppUserId");
                 });
 

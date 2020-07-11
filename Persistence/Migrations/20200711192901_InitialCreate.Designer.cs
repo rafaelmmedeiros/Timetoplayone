@@ -9,7 +9,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200328193632_InitialCreate")]
+    [Migration("20200711192901_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,6 +18,49 @@ namespace Persistence.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1");
 
+            modelBuilder.Entity("Domain.App.Photo", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("Domain.AppTrainer.Repertoire", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Repertoires");
+                });
+
             modelBuilder.Entity("Domain.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -25,6 +68,9 @@ namespace Persistence.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -85,59 +131,6 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Domain.Estudo", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("BpmInicial")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Dificuldade")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Fluencia")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Minutos")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Origem")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("PrimeiroTreino")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Proposito")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Tecnica")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TempoPraticado")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Titulo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UltimoTreino")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("VezesPraticado")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Estudos");
-                });
-
             modelBuilder.Entity("Domain.Grupo", b =>
                 {
                     b.Property<Guid>("Id")
@@ -164,77 +157,6 @@ namespace Persistence.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Grupos");
-                });
-
-            modelBuilder.Entity("Domain.Value", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Idade")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Sobrenome")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Values");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Idade = 52,
-                            Nome = "João",
-                            Sobrenome = "Silva"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Idade = 22,
-                            Nome = "Maria",
-                            Sobrenome = "Hoffman"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Idade = 23,
-                            Nome = "Pedro",
-                            Sobrenome = "Souza"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Idade = 32,
-                            Nome = "José",
-                            Sobrenome = "Correa"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Idade = 14,
-                            Nome = "Akira",
-                            Sobrenome = "Duarte"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Idade = 21,
-                            Nome = "Brunna",
-                            Sobrenome = "Pereira"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Idade = 26,
-                            Nome = "Natália",
-                            Sobrenome = "Pirassununga"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -365,9 +287,23 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Domain.App.Photo", b =>
+                {
+                    b.HasOne("Domain.AppUser", null)
+                        .WithMany("Photos")
+                        .HasForeignKey("AppUserId");
+                });
+
+            modelBuilder.Entity("Domain.AppTrainer.Repertoire", b =>
+                {
+                    b.HasOne("Domain.AppUser", null)
+                        .WithMany("Repertoires")
+                        .HasForeignKey("AppUserId");
+                });
+
             modelBuilder.Entity("Domain.Grupo", b =>
                 {
-                    b.HasOne("Domain.AppUser", "AppUser")
+                    b.HasOne("Domain.AppUser", null)
                         .WithMany("UserGrupos")
                         .HasForeignKey("AppUserId");
                 });

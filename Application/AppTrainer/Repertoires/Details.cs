@@ -31,6 +31,7 @@ namespace Application.AppTrainer.Repertoires
                 {
                     Username = user.UserName,
                     Total = user.Photos.Count(),
+                    Time = user.Repertoires.Count(),
                     Repertoires = user.Repertoires
                 };
             }
