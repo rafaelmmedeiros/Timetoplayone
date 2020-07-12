@@ -22,8 +22,9 @@ const ProfilePhotos = () => {
           <Header floated="left" icon="image" content="Photos" />
           {isCurrentUser && (
             <Button
+              basic
               floated="right"
-              color={addPhotoMode ? "red" : "teal"}
+              color={addPhotoMode ? "red" : "blue"}
               content={addPhotoMode ? "Cancel" : "Add Photo"}
               onClick={() => setAddPhotoMode(!addPhotoMode)}
             />
@@ -42,7 +43,8 @@ const ProfilePhotos = () => {
                       <Button.Group fluid widths={3}>
                         <Button
                           name={photo.id}
-                          color="teal"
+                          basic
+                          color="yellow"
                           icon="star"
                           onClick={(e) => {
                             setMainPhoto(photo);

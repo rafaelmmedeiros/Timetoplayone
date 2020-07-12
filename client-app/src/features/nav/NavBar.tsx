@@ -15,7 +15,7 @@ const NavBar: React.FC = () => {
     <Menu fixed="top" inverted>
       <Container>
         {/* ----DASHBOARD---- */}
-        <Menu.Item header as={NavLink} exact to="/maindashboard">
+        <Menu.Item header as={NavLink} exact to="/dashboard">
           <Icon name="calendar check outline" size="big" />
           {isMobile ? "Go!" : "Dashboard"}
         </Menu.Item>

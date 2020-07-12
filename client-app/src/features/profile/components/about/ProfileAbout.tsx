@@ -15,7 +15,7 @@ const ProfileAbout = () => {
         <Grid.Column width={16}>
           <Header floated="left" icon="user" content={`About ${profile!.displayName}`} />
           {isCurrentUser && (
-            <Button floated="right" color={editMode ? "red" : "teal"} content={editMode ? "Cancel" : "Edit Profile"} onClick={() => setEditMode(!editMode)} />
+          <Button basic floated="right" color={editMode ? "red" : "blue"} content={editMode ? "Cancel" : "Edit Profile"} onClick={() => setEditMode(!editMode)} />
           )}
         </Grid.Column>
         <Grid.Column width={16}>

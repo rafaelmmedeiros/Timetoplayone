@@ -24,7 +24,7 @@ axios.interceptors.request.use(
 // ERROR INTERCEPTOR
 axios.interceptors.response.use(undefined, (error) => {
   if (error.message === "Network Error" && !error.response) {
-    toast.error("NETWORK ERROR - VEJA SE A API ESTÀ RODANDO");
+    toast.error("🔥🔥 The server is on fire!!!");
   }
 
   const { status, data, config } = error.response;

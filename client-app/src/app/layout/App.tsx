@@ -13,8 +13,9 @@ import { RootStoreContext } from "../stores/rootStore";
 import LoadingComponent from "./LoadingComponent";
 import ModalContainer from "../modals/ModalContainer";
 import ProfilePage from "../../features/profile/ProfilePage";
-import MainDashboard from "../../features/dashboard/MainDashboard";
 import TakingTheRoad from "../../features/takingTheRoad/TakingTheRoad";
+import Dashboard from "../../features/dashboard/Dashboard";
+import AppTrainer from "../../features/appTrainer/AppTrainer";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -44,9 +45,13 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Container style={{ marginTop: "7em" }}>
               <Switch>
                 {/* --NAVBAR-- */}
-                <Route exact path="/maindashboard" component={MainDashboard} />
-                <Route path="/profile/:username" component={ProfilePage} />
-                <Route path="/takingtheroad" component={TakingTheRoad} />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/profile/:username" component={ProfilePage} />
+                <Route exact path="/takingtheroad" component={TakingTheRoad} />
+                {/* --DASHBOARD-- */}
+                <Route path="/dashboard/trainer" component={AppTrainer} />
+                {/* --PROFILE-- */}
+
                 {/* --PROFILE-- */}
                 <Route exact path="/grupos" component={GrupoDashboard} />
                 <Route path="/grupos/:id" component={GrupoDetails} />

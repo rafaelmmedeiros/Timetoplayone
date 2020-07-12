@@ -27,7 +27,7 @@ export default class UserStore {
       });
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
-      history.push("/maindashboard");
+      history.push("/dashboard");
       toast.info("🤘🤘 Welcome " + user.displayName + " !");
     } catch (error) {
       throw error;
@@ -39,7 +39,7 @@ export default class UserStore {
       const user = await agent.User.register(values);
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
-      history.push("/maindashboard");
+      history.push("/dashboard");
     } catch (error) {
       throw error;
     }
