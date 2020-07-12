@@ -72,11 +72,12 @@ namespace API
             identityBuilder.AddEntityFrameworkStores<DataContext>();
             identityBuilder.AddSignInManager<SignInManager<AppUser>>();
 
+            //  AUTHORIZATION REQUIREMENTS
             services.AddAuthorization(option =>
             {
-                option.AddPolicy("IsGrupoOwner", policy =>
+                option.AddPolicy("IsRepertoireOwner", policy =>
                 {
-                    policy.Requirements.Add(new IsGrupoOwnerRequirement());
+                    policy.Requirements.Add(new IsRepertoireOwnerRequirement());
                 });
             });
             services.AddTransient<IAuthorizationHandler, IsGrupoOwnerRequirementHandler>();

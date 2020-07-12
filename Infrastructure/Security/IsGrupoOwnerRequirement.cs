@@ -37,7 +37,6 @@ namespace Infrastructure.Security
 
             //TODO : Fazer isso funcionar!! 
             //Primeira condição do IF... é para bypass
-            //Entender a navegação do Entity
 
             if (owner == currentUserName)
             {

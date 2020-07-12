@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Application.AppTrainer.Repertoires;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -24,6 +25,7 @@ namespace API.Controllers
 
         //  FUNC: Deleta através do uuid (Guid for Microsoft) recebido.
         [HttpDelete("{id}")]
+        //[Authorize(Policy = "IsRepertoireOwner")]
         public async Task<ActionResult<Unit>> Delete(Guid id)
         {
             return await Mediator.Send(new Delete.Command { Id = id });
