@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Domain.AppTrainer;
 
-namespace Application.AppTrainer.Repertoires
+namespace Application.AppTrainer.Lores
 {
-    public class UserRepertoire
+    public class UserLore
     {
         public string Username { get; set; }
         public int Total { get; set; }

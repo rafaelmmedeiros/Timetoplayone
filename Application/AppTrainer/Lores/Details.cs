@@ -6,16 +6,16 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Repertoires
+namespace Application.AppTrainer.Lores
 {
     public class Details
     {
-        public class Query : IRequest<UserRepertoire>
+        public class Query : IRequest<UserLore>
         {
             public string Username { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, UserRepertoire>
+        public class Handler : IRequestHandler<Query, UserLore>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -23,12 +23,12 @@ namespace Application.AppTrainer.Repertoires
                 _context = context;
             }
 
-            public async Task<UserRepertoire> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<UserLore> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == request.Username);
 
                 // MANUAL MAPPING
-                return new UserRepertoire
+                return new UserLore
                 {
                     Username = user.UserName,
                     Total = user.Photos.Count(),

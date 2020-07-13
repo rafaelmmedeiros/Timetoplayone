@@ -4,6 +4,7 @@ import { history } from "../..";
 import { toast } from "react-toastify";
 import { IUser, IUserFormValues } from "../models/user";
 import { IProfile, IPhoto } from "../models/profile";
+import { IUserLore } from "../models/appTrainer/userLore";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -38,7 +39,7 @@ axios.interceptors.response.use(undefined, (error) => {
 
   // TOASTS
   if (status === 500) {
-    toast.error("SERVER ERROR!");
+    toast.error("🔥🔥 The server is on fire!!!");
   }
 
   throw error.response;
@@ -89,8 +90,13 @@ const Profiles = {
   updateAbout: (profile: Partial<IProfile>) => requests.put(`/profiles`, profile), // o PARTIAL deixa que objetos incompletos sejam manipulador.
 };
 
+const UserRepertories = {
+  get: (username: string): Promise<IUserLore> => requests.get(`/lores/${username}`),
+};
+
 export default {
   Grupos,
   User,
   Profiles,
+  UserRepertories,
 };

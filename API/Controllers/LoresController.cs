@@ -1,17 +1,17 @@
 using System;
 using System.Threading.Tasks;
-using Application.AppTrainer.Repertoires;
+using Application.AppTrainer.Lores;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-    public class RepertoiresController : BaseController
+    public class LoresController : BaseController
     {
         //  FUNC: Retorna repertorios de um usuario.
         [HttpGet("{username}")]
-        public async Task<ActionResult<UserRepertoire>> Get(string username)
+        public async Task<ActionResult<UserLore>> Get(string username)
         {
             return await Mediator.Send(new Details.Query { Username = username });
         }

@@ -2,12 +2,12 @@ import React from "react";
 import { Tab, Grid, Header, Card, Button, Image, Label, Icon } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 
-const TrainerRepertoire = () => {
+const TrainerLore = () => {
   return (
     <Tab.Pane>
       <Grid>
         <Grid.Column width={16}>
-          <Header floated="left" icon="list layout" content={"Repertories"} />
+          <Header floated="left" icon="list layout" content={"Lore"} />
         </Grid.Column>
         <Grid.Column width={16}>
           <Card.Group stackable itemsPerRow={3}>
@@ -108,4 +108,4 @@ const TrainerRepertoire = () => {
   );
 };
 
-export default TrainerRepertoire;
+export default TrainerLore;

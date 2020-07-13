@@ -6,7 +6,7 @@ using Application.Errors;
 using MediatR;
 using Persistence;
 
-namespace Application.AppTrainer.Repertoires
+namespace Application.AppTrainer.Lores
 {
     public class Delete
     {
