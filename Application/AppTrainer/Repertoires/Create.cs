@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
@@ -16,7 +17,6 @@ namespace Application.AppTrainer.Repertoires
         {
             public Guid Id { get; set; }
             public string Title { get; set; }
-            public string Color { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -24,9 +24,7 @@ namespace Application.AppTrainer.Repertoires
             public CommandValidator()
             {
                 RuleFor(x => x.Title).NotEmpty()
-                    .Length(3, 15);
-                RuleFor(x => x.Color).NotEmpty();
-                // TODO: Create a validation for color.
+                    .Length(3, 20);
             }
         }
 
@@ -47,8 +45,8 @@ namespace Application.AppTrainer.Repertoires
                 var repertoire = new Repertoire
                 {
                     Id = request.Id,
+                    Position = user.Repertoires.Count(),
                     Title = request.Title,
-                    Color = request.Color,
                     AppUserId = user.Id
                 };
 

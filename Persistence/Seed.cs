@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Domain.AppTrainer;
 using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
@@ -60,6 +61,82 @@ namespace Persistence
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
+            }
+
+            //  SEED REPERTOIRES
+            if (!context.Repertoires.Any())
+            {
+                var repertoires = new List<Repertoire>
+                {
+                    new Repertoire
+                    {
+                        Position = 0,
+                        Title = "Warm-Up",
+                        AppUserId = "e"
+                    },
+                    new Repertoire
+                    {
+                        Position = 1,
+                        Title = "Coordination",
+                        AppUserId = "e"
+                    },
+                    new Repertoire
+                    {
+                        Position = 2,
+                        Title = "Arpeggios",
+                        AppUserId = "e"
+                    },
+                     new Repertoire
+                    {
+                        Position = 3,
+                        Title = "Tapping",
+                        AppUserId = "e"
+                    },
+                    new Repertoire
+                    {
+                        Position = 4,
+                        Title = "Riffs",
+                        AppUserId = "e"
+                    },
+                    new Repertoire
+                    {
+                        Position = 5,
+                        Title = "Clean Arpeggios",
+                        AppUserId = "e"
+                    },
+                    new Repertoire
+                    {
+                        Position = 6,
+                        Title = "Repertório X",
+                        AppUserId = "e"
+                    },
+                     new Repertoire
+                    {
+                        Position = 0,
+                        Title = "Aquecimento",
+                        AppUserId = "b"
+                    },
+                    new Repertoire
+                    {
+                        Position = 1,
+                        Title = "Sincronismo",
+                        AppUserId = "b"
+                    },
+                    new Repertoire
+                    {
+                        Position = 2,
+                        Title = "Escalas",
+                        AppUserId = "b"
+                    },
+                     new Repertoire
+                    {
+                        Position = 3,
+                        Title = "Banda X",
+                        AppUserId = "b"
+                    }
+                };
+                context.Repertoires.AddRange(repertoires);
+                context.SaveChanges();
             }
 
             //  SEED GRUPOS

@@ -201,8 +201,8 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Position = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
-                    Color = table.Column<string>(nullable: true),
                     AppUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
