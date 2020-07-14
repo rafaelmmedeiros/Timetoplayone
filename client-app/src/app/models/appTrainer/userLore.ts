@@ -1,9 +1,9 @@
 export interface IUserLore {
   username: string;
-  repetories: IRepertoire[];
+  repetories: ITome[];
 }
 
-export interface IRepertoire {
+export interface ITome {
     id: string;
     position: number;
     tittle: string;

@@ -1,13 +1,12 @@
 import React from "react";
-import { Tab, Grid, Header, Card, Button, Image, Label, Icon } from "semantic-ui-react";
-import { NavLink, Link } from "react-router-dom";
+import { Tab, Grid, Header, Card, Button, Icon } from "semantic-ui-react";
 
 const TrainerLore = () => {
   return (
     <Tab.Pane>
       <Grid>
         <Grid.Column width={16}>
-          <Header floated="left" icon="list layout" content={"Lore"} />
+          <Header floated="left" icon="list layout" content={"Tomes"} />
         </Grid.Column>
         <Grid.Column width={16}>
           <Card.Group stackable itemsPerRow={3}>

@@ -11,8 +11,8 @@ export default class UserLoreStore {
   }
 
   //  MOBx Functions
-  @observable userRepertoire: IUserLore | null = null;
-  @observable loadingUserRepertoire = true;
+  @observable userLore: IUserLore | null = null;
+  @observable loadingUserLore = true;
 
 
 
