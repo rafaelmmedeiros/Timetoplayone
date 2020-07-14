@@ -2,7 +2,7 @@ using System;
 
 namespace Domain.AppTrainer
 {
-    public class Repertoire
+    public class Tome
     {
         public Guid Id { get; set; }
         public int Position { get; set; }

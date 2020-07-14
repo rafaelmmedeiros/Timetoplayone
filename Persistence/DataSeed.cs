@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
-    public class Seed
+    public class DataSeed
     {
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
@@ -63,79 +63,79 @@ namespace Persistence
                 }
             }
 
-            //  SEED REPERTOIRES
-            if (!context.Repertoires.Any())
+            //  SEED TOMESS
+            if (!context.Tomes.Any())
             {
-                var repertoires = new List<Repertoire>
+                var tomes = new List<Tome>
                 {
-                    new Repertoire
+                    new Tome
                     {
                         Position = 0,
                         Title = "Warm-Up",
                         AppUserId = "e"
                     },
-                    new Repertoire
+                    new Tome
                     {
                         Position = 1,
                         Title = "Coordination",
                         AppUserId = "e"
                     },
-                    new Repertoire
+                    new Tome
                     {
                         Position = 2,
                         Title = "Arpeggios",
                         AppUserId = "e"
                     },
-                     new Repertoire
+                     new Tome
                     {
                         Position = 3,
                         Title = "Tapping",
                         AppUserId = "e"
                     },
-                    new Repertoire
+                    new Tome
                     {
                         Position = 4,
                         Title = "Riffs",
                         AppUserId = "e"
                     },
-                    new Repertoire
+                    new Tome
                     {
                         Position = 5,
                         Title = "Clean Arpeggios",
                         AppUserId = "e"
                     },
-                    new Repertoire
+                    new Tome
                     {
                         Position = 6,
                         Title = "Repertório X",
                         AppUserId = "e"
                     },
-                     new Repertoire
+                     new Tome
                     {
                         Position = 0,
                         Title = "Aquecimento",
                         AppUserId = "b"
                     },
-                    new Repertoire
+                    new Tome
                     {
                         Position = 1,
                         Title = "Sincronismo",
                         AppUserId = "b"
                     },
-                    new Repertoire
+                    new Tome
                     {
                         Position = 2,
                         Title = "Escalas",
                         AppUserId = "b"
                     },
-                     new Repertoire
+                     new Tome
                     {
                         Position = 3,
                         Title = "Banda X",
                         AppUserId = "b"
                     }
                 };
-                context.Repertoires.AddRange(repertoires);
+                context.Tomes.AddRange(tomes);
                 context.SaveChanges();
             }
 

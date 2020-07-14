@@ -32,8 +32,8 @@ namespace Application.AppTrainer.Lores
                 {
                     Username = user.UserName,
                     Total = user.Photos.Count(),
-                    Time = user.Repertoires.Count(),
-                    Repertoires = user.Repertoires
+                    Time = user.Tomes.Count(),
+                    Tomes = user.Tomes
                 };
             }
         }

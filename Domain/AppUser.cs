@@ -13,6 +13,6 @@ namespace Domain
         // RELATIONS
         public virtual ICollection<Grupo> UserGrupos { get; set; }
         public virtual ICollection<Photo> Photos { get; set; }
-        public virtual ICollection<Repertoire> Repertoires { get; set; }
+        public virtual ICollection<Tome> Tomes { get; set; }
     }
 }

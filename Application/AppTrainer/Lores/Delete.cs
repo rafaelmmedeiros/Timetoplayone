@@ -25,18 +25,18 @@ namespace Application.AppTrainer.Lores
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var repertoire = await _context.Repertoires.FindAsync(request.Id);
+                var tome = await _context.Tomes.FindAsync(request.Id);
 
-                if (repertoire == null)
-                    throw new RESTException(HttpStatusCode.NotFound, new { repertoire = "Not Found" });
+                if (tome == null)
+                    throw new RESTException(HttpStatusCode.NotFound, new { tome = "Not Found" });
 
-                _context.Repertoires.Remove(repertoire);
+                _context.Tomes.Remove(tome);
 
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
 
-                throw new Exception("Error deleting repertorie");
+                throw new Exception("Error deleting tome");
             }
         }
     }

@@ -16,7 +16,7 @@ namespace API.Controllers
             return await Mediator.Send(new Details.Query { Username = username });
         }
 
-        //  FUNC: Criar novo Repertoire.
+        //  FUNC:
         [HttpPost]
         public async Task<ActionResult<Unit>> Create(Create.Command command)
         {
@@ -25,7 +25,7 @@ namespace API.Controllers
 
         //  FUNC: Deleta através do uuid (Guid for Microsoft) recebido.
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "IsRepertoireOwner")]
+        //[Authorize(Policy = "IsTomeOwner")]
         public async Task<ActionResult<Unit>> Delete(Guid id)
         {
             return await Mediator.Send(new Delete.Command { Id = id });

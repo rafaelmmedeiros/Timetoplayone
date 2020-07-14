@@ -75,12 +75,12 @@ namespace API
             //  AUTHORIZATION REQUIREMENTS
             services.AddAuthorization(option =>
             {
-                option.AddPolicy("IsRepertoireOwner", policy =>
+                option.AddPolicy("IsTomeOwner", policy =>
                 {
-                    policy.Requirements.Add(new IsRepertoireOwnerRequirement());
+                    policy.Requirements.Add(new IsTomeOwnerRequirement());
                 });
             });
-            services.AddTransient<IAuthorizationHandler, IsGrupoOwnerRequirementHandler>();
+            services.AddTransient<IAuthorizationHandler, IsTomeOwnerRequirementHandler>();
 
             // AUTH
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));

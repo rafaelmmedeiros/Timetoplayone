@@ -37,7 +37,7 @@ namespace Persistence.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Domain.AppTrainer.Repertoire", b =>
+            modelBuilder.Entity("Domain.AppTrainer.Tome", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Repertoires");
+                    b.ToTable("Tomes");
                 });
 
             modelBuilder.Entity("Domain.AppUser", b =>
@@ -292,10 +292,10 @@ namespace Persistence.Migrations
                         .HasForeignKey("AppUserId");
                 });
 
-            modelBuilder.Entity("Domain.AppTrainer.Repertoire", b =>
+            modelBuilder.Entity("Domain.AppTrainer.Tome", b =>
                 {
                     b.HasOne("Domain.AppUser", null)
-                        .WithMany("Repertoires")
+                        .WithMany("Tomes")
                         .HasForeignKey("AppUserId");
                 });
 

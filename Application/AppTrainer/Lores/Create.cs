@@ -42,21 +42,21 @@ namespace Application.AppTrainer.Lores
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                var repertoire = new Repertoire
+                var tome = new Tome
                 {
                     Id = request.Id,
-                    Position = user.Repertoires.Count(),
+                    Position = user.Tomes.Count(),
                     Title = request.Title,
                     AppUserId = user.Id
                 };
 
-                _context.Repertoires.Add(repertoire);
+                _context.Tomes.Add(tome);
 
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
 
-                throw new Exception("Error saving repertoire");
+                throw new Exception("Error saving tome");
             }
         }
     }

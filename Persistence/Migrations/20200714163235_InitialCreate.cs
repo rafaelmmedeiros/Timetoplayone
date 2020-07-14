@@ -197,7 +197,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Repertoires",
+                name: "Tomes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -207,9 +207,9 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Repertoires", x => x.Id);
+                    table.PrimaryKey("PK_Tomes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Repertoires_AspNetUsers_AppUserId",
+                        name: "FK_Tomes_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -264,8 +264,8 @@ namespace Persistence.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Repertoires_AppUserId",
-                table: "Repertoires",
+                name: "IX_Tomes_AppUserId",
+                table: "Tomes",
                 column: "AppUserId");
         }
 
@@ -293,7 +293,7 @@ namespace Persistence.Migrations
                 name: "Photos");
 
             migrationBuilder.DropTable(
-                name: "Repertoires");
+                name: "Tomes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
