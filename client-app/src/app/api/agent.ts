@@ -68,6 +68,7 @@ const requests = {
   },
 };
 
+//  TODO: DELETAR
 const Grupos = {
   list: (): Promise<IGrupo[]> => requests.get("/grupos"),
   details: (id: string) => requests.get(`/grupos/${id}`),
@@ -76,12 +77,14 @@ const Grupos = {
   delete: (id: string) => requests.delete(`/grupos/${id}`),
 };
 
+//  PUBLIC
 const User = {
   current: (): Promise<IUser> => requests.get("/user"),
   login: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/login`, user),
   register: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/register`, user),
 };
 
+//  PUBLIC
 const Profiles = {
   get: (username: string): Promise<IProfile> => requests.get(`/profiles/${username}`),
   uploadPhoto: (photo: Blob): Promise<IPhoto> => requests.postForm(`/photos`, photo),
@@ -90,8 +93,9 @@ const Profiles = {
   updateAbout: (profile: Partial<IProfile>) => requests.put(`/profiles`, profile), // o PARTIAL deixa que objetos incompletos sejam manipulador.
 };
 
+//  PRIVATE
 const UserLore = {
-  get: (username: string): Promise<IUserLore> => requests.get(`/lores/${username}`),
+  get: (): Promise<IUserLore> => requests.get("/lores"),
 };
 
 export default {

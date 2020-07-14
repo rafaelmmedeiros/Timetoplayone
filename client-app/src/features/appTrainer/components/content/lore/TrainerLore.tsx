@@ -1,33 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Tab, Grid, Header, Card, Button, Icon } from "semantic-ui-react";
+import { RootStoreContext } from "../../../../../app/stores/rootStore";
+import { observer } from "mobx-react-lite";
+import LoadingComponent from "../../../../../app/layout/LoadingComponent";
+import TrainerTomeItem from "./TrainerTomeItem";
 
-const TrainerLore = () => {
+const TrainerLore: React.FC = () => {
+  const rootStore = useContext(RootStoreContext);
+  const { userLore, loadUserLore, loadingUserLore } = rootStore.userLoreStore;
+
+  useEffect(() => {
+    loadUserLore();
+  }, [loadUserLore]);
+
   return (
     <Tab.Pane>
       <Grid>
+        {/* LOADING COMPONENT */}
+        {loadingUserLore && <LoadingComponent content="Loading" />}
         <Grid.Column width={16}>
           <Header floated="left" icon="list layout" content={"Tomes"} />
         </Grid.Column>
         <Grid.Column width={16}>
           <Card.Group stackable itemsPerRow={3}>
-            <Card color="red">
-              <Card.Content>
-                <Card.Header>Warm-up</Card.Header>
-              </Card.Content>
-              <Card.Content extra>
-                <Button.Group>
-                  <Button basic color="blue">
-                    <Icon fitted name="arrow left" />
-                  </Button>
-                  <Button basic color="blue">
-                    <Icon fitted name="arrow right" />
-                  </Button>
-                </Button.Group>
-                <Button basic color="red" floated="right">
-                  <Icon fitted name="trash" />
-                </Button>
-              </Card.Content>
-            </Card>
+            {/* TOME COMPONENTE */}
+            {userLore?.tomes.map((tome) => (
+              <TrainerTomeItem key={tome.id} tome={tome} />
+            ))}
           </Card.Group>
         </Grid.Column>
       </Grid>
@@ -35,4 +34,4 @@ const TrainerLore = () => {
   );
 };
 
-export default TrainerLore;
+export default observer(TrainerLore);

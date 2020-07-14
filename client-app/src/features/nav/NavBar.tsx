@@ -23,6 +23,8 @@ const NavBar: React.FC = () => {
         {user && <Menu.Item content={isMobile ? "" : "Profile"} icon="user" as={NavLink} to={`/profile/${user.username}`} />}
         {/* ----TAKING THE ROAD---- */}
         {user && <Menu.Item content={isMobile ? "" : "Taking The Road"} icon="road" as={NavLink} exact to="/grupos" />}
+        {/* ----TAKING THE ROAD---- */}
+        {user && <Menu.Item content={isMobile ? "" : "Help"} icon="help" as={NavLink} exact to="/grupos" />}
         {/* ----LOGOUT---- */}
         {user && <Menu.Item content={isMobile ? "" : "Logout"} position="right" icon="sign-out" onClick={logout} />}
       </Container>

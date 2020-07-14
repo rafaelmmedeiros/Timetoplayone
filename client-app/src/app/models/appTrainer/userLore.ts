@@ -6,5 +6,5 @@ export interface IUserLore {
 export interface ITome {
     id: string;
     position: number;
-    tittle: string;
+    title: string;
 }
