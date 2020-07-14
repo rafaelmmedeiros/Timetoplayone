@@ -1,6 +1,6 @@
 export interface IUserLore {
   username: string;
-  repetories: ITome[];
+  tomes: ITome[];
 }
 
 export interface ITome {

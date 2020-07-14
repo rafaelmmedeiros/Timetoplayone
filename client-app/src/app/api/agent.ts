@@ -90,7 +90,7 @@ const Profiles = {
   updateAbout: (profile: Partial<IProfile>) => requests.put(`/profiles`, profile), // o PARTIAL deixa que objetos incompletos sejam manipulador.
 };
 
-const UserRepertories = {
+const UserLore = {
   get: (username: string): Promise<IUserLore> => requests.get(`/lores/${username}`),
 };
 
@@ -98,5 +98,5 @@ export default {
   Grupos,
   User,
   Profiles,
-  UserRepertories,
+  UserLore,
 };

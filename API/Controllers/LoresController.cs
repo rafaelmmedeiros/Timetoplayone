@@ -9,11 +9,11 @@ namespace API.Controllers
 {
     public class LoresController : BaseController
     {
-        //  FUNC: Retorna repertorios de um usuario.
-        [HttpGet("{username}")]
+        //  FUNC: RETORNA LORE DE USUARIO LOGADO. MAX SECURITY
+        [HttpGet]
         public async Task<ActionResult<UserLore>> Get(string username)
         {
-            return await Mediator.Send(new Details.Query { Username = username });
+            return await Mediator.Send(new Details.Query { });
         }
 
         //  FUNC:
