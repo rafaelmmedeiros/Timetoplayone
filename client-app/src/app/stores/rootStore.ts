@@ -6,6 +6,7 @@ import CommonStore from "./commonStore";
 import ModalStore from "./modalStore";
 import ProfileStore from "./profileStore";
 import UserLoreStore from "./appTrainer/userLoreStore";
+import LayoutSotre from "./layoutStore";
 
 configure({ enforceActions: "always" });
 
@@ -16,6 +17,7 @@ export class RootStore {
   modalStore: ModalStore;
   profileStore: ProfileStore;
   userLoreStore: UserLoreStore;
+  layoutStore: LayoutSotre;
 
   constructor() {
     this.grupoStore = new GrupoStore(this);
@@ -24,6 +26,7 @@ export class RootStore {
     this.modalStore = new ModalStore(this);
     this.profileStore = new ProfileStore(this);
     this.userLoreStore = new UserLoreStore(this);
+    this.layoutStore = new LayoutSotre(this);
   }
 }
 

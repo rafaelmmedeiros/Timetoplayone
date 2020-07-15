@@ -16,6 +16,15 @@ export default class UserLoreStore {
   @observable userLore: IUserLore | null = null;
   @observable loadingUserLore = true;
   @observable submitting = false;
+  @observable createMode = false;
+
+  @action setCreateMode = async () => {
+    if (this.createMode) {
+      this.createMode = false;
+    } else {
+      this.createMode = true;
+    }
+  };
 
   //  MOBx Actions
   @action loadUserLore = async () => {
@@ -41,6 +50,9 @@ export default class UserLoreStore {
       runInAction(() => {
         this.submitting = false;
       });
+      toast.success("👍 Tome created with success.");
+      this.setCreateMode();
+      this.loadUserLore();
     } catch (error) {
       runInAction(() => {
         this.submitting = false;

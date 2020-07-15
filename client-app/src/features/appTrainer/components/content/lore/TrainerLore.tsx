@@ -8,8 +8,7 @@ import TrainerCreateTomeForm from "./TrainerCreateTomeForm";
 
 const TrainerLore: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { userLore, loadUserLore, loadingUserLore } = rootStore.userLoreStore;
-  const [createMode, setcreateMode] = useState(false);
+  const { userLore, loadUserLore, loadingUserLore, submitting, createMode, setCreateMode } = rootStore.userLoreStore;
 
   useEffect(() => {
     loadUserLore();
@@ -28,7 +27,7 @@ const TrainerLore: React.FC = () => {
             floated="right"
             color={createMode ? "red" : "blue"}
             content={createMode ? "Cancel" : "New Tome"}
-            onClick={() => setcreateMode(!createMode)}
+            onClick={() => setCreateMode()}
           />
         </Grid.Column>
         {/* BODY */}

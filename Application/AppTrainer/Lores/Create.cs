@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using Application.Interfaces;
 using Domain.AppTrainer;
 using FluentValidation;
@@ -41,6 +43,11 @@ namespace Application.AppTrainer.Lores
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
+
+                //  RULES
+                //  User não deve ter mais de 10 Tomes.
+                if (user.Tomes.Count() >= 10)
+                    throw new RESTException(HttpStatusCode.Forbidden, new { Tomes = "Forbidden, limit of 10 tomes" });
 
                 var tome = new Tome
                 {

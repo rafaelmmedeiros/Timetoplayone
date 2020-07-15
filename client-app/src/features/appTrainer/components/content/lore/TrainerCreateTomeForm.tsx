@@ -18,8 +18,9 @@ const validate = combineValidators({
 
 const TrainerCreateTomeForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { createTome, submitting } = rootStore.userLoreStore;
-
+  const { createTome, submitting, setCreateMode } = rootStore.userLoreStore;
+  
+  const [loading, setLoading] = useState(false);
   const [tome, setTome] = useState(new TomeFormValues());
 
   const handleFinalFormSubmit = (values: any) => {
@@ -36,18 +37,21 @@ const TrainerCreateTomeForm = () => {
       validate={validate}
       initialValues={tome}
       onSubmit={handleFinalFormSubmit}
-      render={({ handleSubmit }) => (
-        <Form onSubmit={handleSubmit}>
+      render={({ handleSubmit, invalid, pristine }) => (
+        <Form onSubmit={handleSubmit} loading={loading}>
           <Field 
             name="title" 
             placeholder="Title" 
             value={tome.title} 
             component={TextInput} />
           <Button
+            loading={submitting}
+            disabled={loading || invalid || pristine}
             floated="right"
             color="olive" 
             type="submit" 
-            content="Create" />
+            content="Create" 
+            />
         </Form>
       )}
     />

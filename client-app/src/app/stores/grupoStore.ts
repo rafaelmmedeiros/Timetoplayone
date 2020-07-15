@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import { RootStore } from "./rootStore";
 
 export default class GrupoStore {
-  //  CONSTRUCTOR PARA O rootStore
   rootStore: RootStore;
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
