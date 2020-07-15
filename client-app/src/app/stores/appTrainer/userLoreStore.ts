@@ -1,6 +1,6 @@
 import { RootStore } from "../rootStore";
 import { observable, runInAction, action } from "mobx";
-import { IUserLore } from "../../models/appTrainer/userLore";
+import { IUserLore, ITome } from "../../models/appTrainer/userLore";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
 
@@ -15,6 +15,7 @@ export default class UserLoreStore {
   //  MOBx Functions
   @observable userLore: IUserLore | null = null;
   @observable loadingUserLore = true;
+  @observable submitting = false;
 
   //  MOBx Actions
   @action loadUserLore = async () => {
@@ -30,6 +31,22 @@ export default class UserLoreStore {
         this.loadingUserLore = false;
       });
       toast.error("👎 Error loading lore.");
+    }
+  };
+
+  @action createTome = async (tome: ITome) => {
+    this.submitting = true;
+    try {
+      await agent.UserLore.create(tome);
+      runInAction(() => {
+        this.submitting = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.submitting = false;
+      });
+      toast.error("👎 Error creating Tome.");
+      console.log(error.response);
     }
   };
 }

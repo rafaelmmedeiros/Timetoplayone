@@ -4,7 +4,7 @@ import { history } from "../..";
 import { toast } from "react-toastify";
 import { IUser, IUserFormValues } from "../models/user";
 import { IProfile, IPhoto } from "../models/profile";
-import { IUserLore } from "../models/appTrainer/userLore";
+import { IUserLore, ITome } from "../models/appTrainer/userLore";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -90,12 +90,13 @@ const Profiles = {
   uploadPhoto: (photo: Blob): Promise<IPhoto> => requests.postForm(`/photos`, photo),
   setMainPhoto: (id: string) => requests.post(`/photos/${id}/setmain`, {}),
   deletePhoto: (id: string) => requests.delete(`/photos/${id}`),
-  updateAbout: (profile: Partial<IProfile>) => requests.put(`/profiles`, profile), // o PARTIAL deixa que objetos incompletos sejam manipulador.
+  updateAbout: (profile: Partial<IProfile>) => requests.put(`/profiles`, profile), // o PARTIAL deixa que objetos incompletos sejam atualizados
 };
 
 //  PRIVATE
 const UserLore = {
   get: (): Promise<IUserLore> => requests.get("/lores"),
+  create: (tome: ITome) => requests.post("/lores", tome),
 };
 
 export default {
