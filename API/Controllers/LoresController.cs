@@ -11,7 +11,7 @@ namespace API.Controllers
     {
         //  FUNC: RETORNA LORE DE USUARIO LOGADO. MAX SECURITY
         [HttpGet]
-        public async Task<ActionResult<UserLore>> Get(string username)
+        public async Task<ActionResult<UserLore>> Get()
         {
             return await Mediator.Send(new Details.Query { });
         }

@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
@@ -6,15 +5,15 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Lores
+namespace Application.AppTrainer.Collections
 {
     public class Details
     {
-        public class Query : IRequest<UserLore>
+        public class Query : IRequest<UserCollection>
         {
         }
 
-        public class Handler : IRequestHandler<Query, UserLore>
+        public class Handler : IRequestHandler<Query, UserCollection>
         {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
@@ -24,20 +23,17 @@ namespace Application.AppTrainer.Lores
                 _context = context;
             }
 
-            public async Task<UserLore> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<UserCollection> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 // MANUAL MAPPING
-                return new UserLore
+                return new UserCollection
                 {
                     Username = user.UserName,
-                    Total = user.Photos.Count(),
-                    Time = user.Tomes.Count(),
-                    Tomes = user.Tomes
+                    Etudes = user.Etudes
                 };
             }
         }
-
     }
 }

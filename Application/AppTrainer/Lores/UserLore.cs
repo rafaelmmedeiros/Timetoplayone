@@ -5,9 +5,9 @@ namespace Application.AppTrainer.Lores
 {
     public class UserLore
     {
-        public string Username { get; set; }
-        public int Total { get; set; }
-        public int Time { get; set; }
+        public string Username { get; set; } // TESTE PURPOSE
+        public int Total { get; set; } // TESTE PURPOSE
+        public int Time { get; set; } // TESTE PURPOSE
         public ICollection<Tome> Tomes { get; set; }
 
     }
