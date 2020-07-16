@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace Persistence
                     {
                         Id = "e",
                         DisplayName = "Hades",
-                        Bio = "Hades...",
+                        Bio = "Hades...the great!! The master of darkness.",
                         UserName = "hades",
                         Email = "hades@email.com"
                     }
@@ -63,7 +64,7 @@ namespace Persistence
                 }
             }
 
-            //  SEED TOMESS
+            //  SEED TOMES
             if (!context.Tomes.Any())
             {
                 var tomes = new List<Tome>
@@ -136,6 +137,107 @@ namespace Persistence
                     }
                 };
                 context.Tomes.AddRange(tomes);
+                context.SaveChanges();
+            }
+
+            //  SEED ETUDES
+            if (!context.Etudes.Any())
+            {
+                var etudes = new List<Etude>
+                {
+                    new Etude
+                    {
+                        Title = "X-Hands",
+                        Active = true,
+                        Tome = "Warm-Up",
+                        Time = 10,
+                        Description = "Classic X-hands from John Petrucci",
+                        Executions = 10,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Picking 2",
+                        Active = true,
+                        Tome = "Warm-Up",
+                        Time = 10,
+                        Description = "Left Handed Muting picking exercise 2 pikcing string",
+                        Executions = 8,
+                        Played = 80,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Picking 3",
+                        Active = false,
+                        Tome = "Warm-Up",
+                        Time = 10,
+                        Description = "Left Handed Muting picking exercise with hybrid pikcing",
+                        Executions = 2,
+                        Played = 20,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Super Chromatic",
+                        Active = true,
+                        Tome = "Coordination",
+                        Time = 15,
+                        Description = "John Petrucci super Chromatic",
+                        Executions = 7,
+                        Played = 105,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Speed Picking",
+                        Active = true,
+                        Tome = "Coordination",
+                        Time = 20,
+                        Description = "Seguir partitura do arquivo",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Super Chromatic",
+                        Active = true,
+                        Tome = "Escalas",
+                        Time = 15,
+                        Description = "John Petrucci super Chromatic",
+                        Executions = 7,
+                        Played = 105,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "b"
+                    },
+                    new Etude
+                    {
+                        Title = "Speed Picking",
+                        Active = true,
+                        Tome = "Escalas",
+                        Time = 20,
+                        Description = "Seguir partitura do arquivo",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "b"
+                    }
+                };
+                context.Etudes.AddRange(etudes);
                 context.SaveChanges();
             }
 
