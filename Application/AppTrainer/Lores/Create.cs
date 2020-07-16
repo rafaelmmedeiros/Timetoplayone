@@ -25,7 +25,8 @@ namespace Application.AppTrainer.Lores
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Title).NotEmpty()
+                RuleFor(x => x.Title)
+                    .NotEmpty()
                     .Length(3, 15);
             }
         }
