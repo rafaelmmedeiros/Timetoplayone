@@ -9,8 +9,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200715231725_Second")]
-    partial class Second
+    [Migration("20200715235642_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,7 +79,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Etude");
+                    b.ToTable("Etudes");
                 });
 
             modelBuilder.Entity("Domain.AppTrainer.Tome", b =>

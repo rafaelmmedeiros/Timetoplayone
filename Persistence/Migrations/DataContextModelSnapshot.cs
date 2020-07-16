@@ -77,7 +77,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Etude");
+                    b.ToTable("Etudes");
                 });
 
             modelBuilder.Entity("Domain.AppTrainer.Tome", b =>

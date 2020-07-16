@@ -4,20 +4,24 @@ namespace Domain.AppTrainer
 {
     public class Etude
     {
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public bool Active { get; set; }
-        public string Tome { get; set; }
-        public int Time { get; set; }
-        public string Description { get; set; }
+        public Guid Id { get; set; } // CREATE
+        public string Title { get; set; } // CREATE
+        public bool Active { get; set; } // CREATE MAP // Change Active
+        public string Tome { get; set; } // CREATE
+        public int Time { get; set; } // CREATE
+        public string Description { get; set; } // CREATE
 
         //  COMPUTEDS
-        public int Executions { get; set; }
-        public int Played { get; set; }
+        public int Executions { get; set; } // Tasks Tab...
+        public int Played { get; set; } // Tasks Tab...
 
-        //Dates
-        public DateTime Created { get; set; }
-        public DateTime LastPlayed { get; set; }
+        //  Dates
+        public DateTime Created { get; set; } // CREATE MAP
+        public DateTime LastPlayed { get; set; } // Tasks Tab...
+
+        //  RELATIONS
+        public string AppUserId { get; set; }
+
 
     }
 }

@@ -16,7 +16,7 @@ namespace API.Controllers
             return await Mediator.Send(new Details.Query { });
         }
 
-        //  FUNC:
+        //  FUNC: CREAT A NEW ROW OF TOME FOR THE LOGGED USER
         [HttpPost]
         public async Task<ActionResult<Unit>> Create(Create.Command command)
         {

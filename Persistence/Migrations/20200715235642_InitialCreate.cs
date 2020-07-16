@@ -155,6 +155,33 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Etudes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Active = table.Column<bool>(nullable: false),
+                    Tome = table.Column<string>(nullable: true),
+                    Time = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    Executions = table.Column<int>(nullable: false),
+                    Played = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastPlayed = table.Column<DateTime>(nullable: false),
+                    AppUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Etudes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Etudes_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Grupos",
                 columns: table => new
                 {
@@ -254,6 +281,11 @@ namespace Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Etudes_AppUserId",
+                table: "Etudes",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Grupos_AppUserId",
                 table: "Grupos",
                 column: "AppUserId");
@@ -285,6 +317,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Etudes");
 
             migrationBuilder.DropTable(
                 name: "Grupos");

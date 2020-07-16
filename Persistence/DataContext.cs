@@ -16,5 +16,6 @@ namespace Persistence
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Tome> Tomes { get; set; }
+        public DbSet<Etude> Etudes { get; set; }
     }
 }
