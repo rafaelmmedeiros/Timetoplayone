@@ -53,7 +53,7 @@ export default class GrupoStore {
         });
         this.loadingStart = false;
       });
-      // console.log(this.groupGruposByLabel(grupos));
+      console.log(this.groupGruposByLabel(grupos));
     } catch (error) {
       runInAction("Loading Grupos Erro", () => {
         this.loadingStart = false;
