@@ -1,11 +1,11 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
-import TrainerStudies from "./studies/TrainerStudies";
 import TrainerLore from "./lore/TrainerLore";
+import TrainerCollection from "./collection/TrainerCollection";
 
 const panes = [
   { menuItem: "Lore", render: () => <TrainerLore /> },
-  { menuItem: "Studies", render: () => <TrainerStudies /> },
+  { menuItem: "Collection", render: () => <TrainerCollection /> },
 ];
 
 const TrainerContent = () => {

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { IUser, IUserFormValues } from "../models/user";
 import { IProfile, IPhoto } from "../models/profile";
 import { IUserLore, ITome } from "../models/appTrainer/userLore";
+import { IUserCollection, IEtude } from "../models/appTrainer/userCollection";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -99,9 +100,16 @@ const UserLore = {
   create: (tome: ITome) => requests.post("/lores", tome),
 };
 
+//  PRIVATE
+const UserCollection = {
+  get: (): Promise<IUserCollection> => requests.get("/collections"),
+  create: (etude: IEtude) => requests.post("/collections", etude),
+};
+
 export default {
   Grupos,
   User,
   Profiles,
   UserLore,
+  UserCollection,
 };

@@ -8,7 +8,7 @@ import TrainerCreateTomeForm from "./TrainerCreateTomeForm";
 
 const TrainerLore: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { userLore, loadUserLore, loadingUserLore, submitting, createMode, setCreateMode } = rootStore.userLoreStore;
+  const { userLore, loadUserLore, loadingUserLore, createMode, setCreateMode } = rootStore.userLoreStore;
 
   useEffect(() => {
     loadUserLore();
@@ -21,7 +21,7 @@ const TrainerLore: React.FC = () => {
         {loadingUserLore && <LoadingComponent content="Loading" />}
         {/* HEADER */}
         <Grid.Column width={16}>
-          <Header floated="left" icon="list layout" content={"Tomes"} />
+          <Header floated="left" icon="book" content={"Tomes"} />
           <Button
             basic
             floated="right"

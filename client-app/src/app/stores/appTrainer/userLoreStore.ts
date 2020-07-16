@@ -18,6 +18,7 @@ export default class UserLoreStore {
   @observable submitting = false;
   @observable createMode = false;
 
+  //  AUXILIAR ACTIONS
   @action setCreateMode = async () => {
     if (this.createMode) {
       this.createMode = false;
@@ -39,7 +40,7 @@ export default class UserLoreStore {
       runInAction(() => {
         this.loadingUserLore = false;
       });
-      toast.error("👎 Error loading lore.");
+      toast.error("👎 Error loading Lore.");
     }
   };
 

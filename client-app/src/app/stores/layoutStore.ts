@@ -8,6 +8,7 @@ export default class LayoutSotre {
   }
 
   //  TODO: MAKE THIS SHIT WORK
+  // TESTAR COM RUN IN ACTION
   @observable isMobile = false;
 
 }

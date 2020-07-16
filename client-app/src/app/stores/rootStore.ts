@@ -7,6 +7,7 @@ import ModalStore from "./modalStore";
 import ProfileStore from "./profileStore";
 import UserLoreStore from "./appTrainer/userLoreStore";
 import LayoutSotre from "./layoutStore";
+import UserCollectionStore from "./appTrainer/userCollectionStore";
 
 configure({ enforceActions: "always" });
 
@@ -18,6 +19,7 @@ export class RootStore {
   profileStore: ProfileStore;
   userLoreStore: UserLoreStore;
   layoutStore: LayoutSotre;
+  userCollectionStore: UserCollectionStore;
 
   constructor() {
     this.grupoStore = new GrupoStore(this);
@@ -27,6 +29,7 @@ export class RootStore {
     this.profileStore = new ProfileStore(this);
     this.userLoreStore = new UserLoreStore(this);
     this.layoutStore = new LayoutSotre(this);
+    this.userCollectionStore = new UserCollectionStore(this);
   }
 }
 
