@@ -49,13 +49,14 @@ export default class UserCollectionStore {
     try {
       const userCollection = await agent.UserCollection.get();
       runInAction(() => {
+        this.etudeRegistry.clear(); // TODO: Funciona... mas, será?
         userCollection.etudes.forEach((etude) => {
           this.etudeRegistry.set(etude.id, etude);
         });
         this.userCollection = userCollection;
         this.loadingUserCollection = false;
       });
-      console.log(this.groupEtudesByTome(userCollection.etudes));
+      //console.log(this.groupEtudesByTome(userCollection.etudes));
     } catch (error) {
       runInAction(() => {
         this.loadingUserCollection = false;
