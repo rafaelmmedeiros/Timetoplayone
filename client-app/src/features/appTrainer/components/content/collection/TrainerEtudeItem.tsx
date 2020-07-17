@@ -14,10 +14,15 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   return (
     <Card key={etude.id} color="red">
       <Card.Content>
-        <Button.Group floated="right" toggle>
+        <Button.Group floated="right">
           <Button basic color={etude.active ? "red" : "green"} floated="right">
             <Icon fitted name="power" />
           </Button>
+          {!etude.active && (
+            <Button basic color="red" floated="right">
+              <Icon fitted name="trash" />
+            </Button>
+          )}
         </Button.Group>
         <Card.Header>{etude.title}</Card.Header>
         <Card.Meta>Last Played {format(diffPlayed, "d") + " days ago."}</Card.Meta>
