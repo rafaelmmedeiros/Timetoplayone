@@ -25,23 +25,23 @@ namespace Application.AppTrainer.Collections
 
         }
 
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator()
-            {
-                RuleFor(x => x.Title)
-                    .NotEmpty()
-                    .Length(3, 15);
-                RuleFor(x => x.Tome)
-                    .NotEmpty();
-                RuleFor(x => x.Time)
-                    .NotEmpty()
-                    .LessThanOrEqualTo(60)
-                    .GreaterThan(0);
-                RuleFor(x => x.Description)
-                    .MaximumLength(250);
-            }
-        }
+        // public class CommandValidator : AbstractValidator<Command>
+        // {
+        //     public CommandValidator()
+        //     {
+        //         RuleFor(x => x.Title)
+        //             .NotEmpty()
+        //             .Length(3, 15);
+        //         RuleFor(x => x.Tome)
+        //             .NotEmpty();
+        //         RuleFor(x => x.Time)
+        //             .NotEmpty()
+        //             .LessThanOrEqualTo(60)
+        //             .GreaterThan(0);
+        //         RuleFor(x => x.Description)
+        //             .MaximumLength(250);
+        //     }
+        // }
 
         public class Handler : IRequestHandler<Command>
         {

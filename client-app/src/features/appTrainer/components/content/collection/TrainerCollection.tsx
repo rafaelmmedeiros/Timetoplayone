@@ -4,6 +4,7 @@ import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import LoadingComponent from "../../../../../app/layout/LoadingComponent";
 import { observer } from "mobx-react-lite";
 import TrainerEtudeItem from "./TrainerEtudeItem";
+import TrainerCreateEtudeForm from "./TrainerCreateEtudeForm";
 
 const TrainerCollection: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
@@ -31,16 +32,21 @@ const TrainerCollection: React.FC = () => {
         </Grid.Column>
         {/* BODY */}
         <Grid.Column width={16}>
-          {etudesByTome.map(([group, etudes]) => (
-            <Grid.Column key={group}>
-              <Label color="red">{group}</Label>
-              <Card.Group stackable itemsPerRow={2} style={{ marginTop: "10px", marginBottom: "10px" }}>
-                {etudes.map((etude) => (
-                  <TrainerEtudeItem key={etude.id} etude={etude} />
-                ))}
-              </Card.Group>
-            </Grid.Column>
-          ))}
+          {/* CONDICIONAL FOR NEW TOME */}
+          {createMode ? (
+            <TrainerCreateEtudeForm />
+          ) : (
+            etudesByTome.map(([group, etudes]) => (
+              <Grid.Column key={group}>
+                <Label color="red">{group}</Label>
+                <Card.Group stackable itemsPerRow={2} style={{ marginTop: "10px", marginBottom: "10px" }}>
+                  {etudes.map((etude) => (
+                    <TrainerEtudeItem key={etude.id} etude={etude} />
+                  ))}
+                </Card.Group>
+              </Grid.Column>
+            ))
+          )}
         </Grid.Column>
       </Grid>
     </Tab.Pane>

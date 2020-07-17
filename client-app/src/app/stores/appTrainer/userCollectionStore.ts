@@ -64,4 +64,24 @@ export default class UserCollectionStore {
       toast.error("👎 Error loading Collection.");
     }
   };
+
+  @action createEtude = async (etude: IEtude) => {
+    this.submitting = true;
+
+    try {
+      await agent.UserCollection.create(etude);
+      runInAction("Create Etude", () => {
+        this.submitting = false;
+      });
+      toast.success("👍 Etude created with success.");
+      this.setCreateMode();
+      // this.etudesByTome(); TODO
+    } catch (error) {
+      runInAction("Create etude Erro", () => {
+        this.submitting = false;
+      });
+      toast.error("👎 Error creating Etude.");
+      console.log(error.response);
+    }
+  };
 }
