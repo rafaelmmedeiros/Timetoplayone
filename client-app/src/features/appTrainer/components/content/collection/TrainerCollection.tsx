@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Tab, Grid, Header, Button, Label, Card, Item, Container } from "semantic-ui-react";
+import { Tab, Grid, Header, Button, Label, Card } from "semantic-ui-react";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import LoadingComponent from "../../../../../app/layout/LoadingComponent";
 import { observer } from "mobx-react-lite";
@@ -7,7 +7,7 @@ import TrainerEtudeItem from "./TrainerEtudeItem";
 
 const TrainerCollection: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { userCollection, etudesByTome, loadUserCollection, loadingUserCollection, createMode, setCreateMode } = rootStore.userCollectionStore;
+  const { etudesByTome, loadUserCollection, loadingUserCollection, createMode, setCreateMode } = rootStore.userCollectionStore;
 
   useEffect(() => {
     loadUserCollection();
