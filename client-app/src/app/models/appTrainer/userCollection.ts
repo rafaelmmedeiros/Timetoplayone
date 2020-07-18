@@ -8,7 +8,7 @@ export interface IEtude {
   title: string;
   active: boolean;
   tome: string;
-  time: number;
+  time: string;
   description: string;
   executions: number;
   played: number;
@@ -24,7 +24,7 @@ export class EtudeFormValues implements IEtudeFormValues {
   id?: string = undefined;
   title: string = "";
   tome: string = "";
-  time?: number = undefined;
+  time: string = "";
   description: string = "";
 
   constructor(init?: IEtudeFormValues) {

@@ -7,6 +7,7 @@ import { Form as FinalForm, Field } from "react-final-form";
 import { Button, Form } from "semantic-ui-react";
 import TextInput from "../../../../../app/common/form/TextInput";
 import TextAreaInput from "../../../../../app/common/form/TextAreaInput";
+import NumberInput from "../../../../../app/common/form/NumbeInput";
 
 
 const TrainerCreateEtudeForm = () => {
@@ -42,11 +43,11 @@ const TrainerCreateEtudeForm = () => {
             placeholder="Tome" 
             value={etude.title} 
             component={TextInput} />
-          {/* <Field 
+          <Field 
             name="time" 
-            placeholder="Time" 
+            placeholder="Time"
             value={etude.time} 
-            component={TextInput} /> */}
+            component={NumberInput} />
           <Field
               name="description"
               placeholder="Description and Details"

@@ -20,28 +20,27 @@ namespace Application.AppTrainer.Collections
             public Guid Id { get; set; }
             public string Title { get; set; }
             public string Tome { get; set; }
-            public int Time { get; set; }
+            public string Time { get; set; }
             public string Description { get; set; }
 
         }
 
-        // public class CommandValidator : AbstractValidator<Command>
-        // {
-        //     public CommandValidator()
-        //     {
-        //         RuleFor(x => x.Title)
-        //             .NotEmpty()
-        //             .Length(3, 15);
-        //         RuleFor(x => x.Tome)
-        //             .NotEmpty();
-        //         RuleFor(x => x.Time)
-        //             .NotEmpty()
-        //             .LessThanOrEqualTo(60)
-        //             .GreaterThan(0);
-        //         RuleFor(x => x.Description)
-        //             .MaximumLength(250);
-        //     }
-        // }
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Title)
+                    .NotEmpty()
+                    .Length(3, 15);
+                RuleFor(x => x.Tome)
+                    .NotEmpty();
+                RuleFor(x => x.Time)
+                    .NotEmpty()
+                    .MaximumLength(2);
+                RuleFor(x => x.Description)
+                    .MaximumLength(250);
+            }
+        }
 
         public class Handler : IRequestHandler<Command>
         {
@@ -68,7 +67,7 @@ namespace Application.AppTrainer.Collections
                     Title = request.Title,
                     Active = true,
                     Tome = request.Tome,
-                    Time = request.Time,
+                    Time = Int32.Parse(request.Time),
                     Description = request.Description,
                     Executions = 0,
                     Played = 0,
