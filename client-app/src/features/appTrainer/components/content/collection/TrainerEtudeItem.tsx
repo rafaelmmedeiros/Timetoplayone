@@ -2,14 +2,18 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { IEtude } from "../../../../../app/models/appTrainer/userCollection";
 import { Card, Button, Icon } from "semantic-ui-react";
-import { format, formatDistance } from "date-fns";
+import { formatDistance } from "date-fns";
 
 const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
+  var neverPlayed;
+  if (etude.created > etude.lastPlayed) neverPlayed = true;
+
   var today = new Date();
 
   return (
     <Card key={etude.id} color="red">
       <Card.Content>
+        {/* ACTIVATE AND DELETE BUTTONS */}
         <Button.Group floated="right">
           <Button basic color={etude.active ? "red" : "green"} floated="right">
             <Icon fitted name="power" />
@@ -20,15 +24,19 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             </Button>
           )}
         </Button.Group>
+        {/* HEADER */}
         <Card.Header>{etude.title}</Card.Header>
-        <Card.Meta>Last Played {formatDistance(today, etude.lastPlayed)}</Card.Meta>
+        {/* DATES */}
+        {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(today, etude.lastPlayed)}</Card.Meta>}
         <Card.Meta>Created {formatDistance(today, etude.created)}</Card.Meta>
       </Card.Content>
       <Card.Content extra>
+        {/* PLACAR */}
         <Icon size="big" name="retweet" style={{ marginRight: "10px" }} />
         {etude.executions}
         <Icon size="big" name="history" style={{ marginRight: "10px", marginLeft: "10px" }} />
         {etude.played}
+        {/* EDIT DATAILS BUTTONS */}
         <Button.Group floated="right">
           <Button basic color="blue" floated="right">
             <Icon fitted name="edit" />
