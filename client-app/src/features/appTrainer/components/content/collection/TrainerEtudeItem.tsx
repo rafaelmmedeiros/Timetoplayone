@@ -2,14 +2,10 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { IEtude } from "../../../../../app/models/appTrainer/userCollection";
 import { Card, Button, Icon } from "semantic-ui-react";
-import { format } from "date-fns";
+import { format, formatDistance } from "date-fns";
 
 const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   var today = new Date();
-  var last = new Date(etude.lastPlayed);
-  var created = new Date(etude.created);
-  var diffPlayed = today.valueOf() - last.valueOf();
-  var diffCreated = today.valueOf() - created.valueOf();
 
   return (
     <Card key={etude.id} color="red">
@@ -25,8 +21,8 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
           )}
         </Button.Group>
         <Card.Header>{etude.title}</Card.Header>
-        <Card.Meta>Last Played {format(diffPlayed, "d") + " days ago."}</Card.Meta>
-        <Card.Meta>Created {format(diffCreated, "d") + " days ago."}</Card.Meta>
+        <Card.Meta>Last Played {formatDistance(today, etude.lastPlayed)}</Card.Meta>
+        <Card.Meta>Created {formatDistance(today, etude.created)}</Card.Meta>
       </Card.Content>
       <Card.Content extra>
         <Icon size="big" name="retweet" style={{ marginRight: "10px" }} />

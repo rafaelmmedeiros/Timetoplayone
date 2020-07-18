@@ -8,6 +8,27 @@ import { Button, Form } from "semantic-ui-react";
 import TextInput from "../../../../../app/common/form/TextInput";
 import TextAreaInput from "../../../../../app/common/form/TextAreaInput";
 import NumberInput from "../../../../../app/common/form/NumbeInput";
+import { combineValidators, isRequired, hasLengthBetween, composeValidators, hasLengthLessThan } from "revalidate";
+
+// VALIDATION
+const validate = combineValidators({
+  title: composeValidators(
+    isRequired({message: 'Is required'}),
+    hasLengthBetween(3,15)({message: 'Must be beetween 3 and 15 characters'})
+  )(),
+  tome: composeValidators(
+    isRequired({message: 'Is required'}),
+    hasLengthBetween(3,15)({message: 'Must be beetween 3 and 15 characters'})
+  )(),
+  time: composeValidators(
+    isRequired({message: 'Is required'}),
+    hasLengthLessThan(3)({message: 'Must be beetween 0 and 99'}),
+  )(),
+  description: composeValidators(
+    isRequired({message: 'Is required'}),
+    hasLengthLessThan(250)({message: 'Maximun of 250 characters'}),
+  )(),
+})
 
 
 const TrainerCreateEtudeForm = () => {
@@ -28,7 +49,7 @@ const TrainerCreateEtudeForm = () => {
 
   return (
     <FinalForm
-      
+      validate={validate}
       initialValues={etude}
       onSubmit={handleFinalFormSubmit}
       render={({ handleSubmit, invalid, pristine }) => (

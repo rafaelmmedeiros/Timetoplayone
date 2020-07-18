@@ -15,10 +15,11 @@ const NavBar: React.FC = () => {
     <Menu fixed="top" inverted>
       <Container>
         {/* ----DASHBOARD---- */}
+        {user &&
         <Menu.Item header as={NavLink} exact to="/dashboard">
           <Icon name="calendar check outline" size="big" />
           {isMobile ? "Go!" : "Dashboard"}
-        </Menu.Item>
+        </Menu.Item>}
         {/* ----PROFILE---- */}
         {user && <Menu.Item content={isMobile ? "" : "Profile"} icon="user" as={NavLink} to={`/profile/${user.username}`} />}
         {/* ----TAKING THE ROAD---- */}
