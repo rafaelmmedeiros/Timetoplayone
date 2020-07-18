@@ -14,6 +14,7 @@ export default class UserCollectionStore {
   //  MOBx Functions
   @observable etudeRegistry = new Map();
   @observable userCollection: IUserCollection | null = null;
+  @observable etude: IEtude | null = null;
   @observable loadingUserCollection = true;
   @observable submitting = false;
   @observable createMode = false;
@@ -43,7 +44,12 @@ export default class UserCollectionStore {
     );
   }
 
-  //  MOBx Actions
+  // CLEAN TO USE IN FORM
+  @action clearetude = () => {
+    this.etude = null;
+  };
+
+  //  LOAD ALL ETUDES FROM A USER COLLECTION
   @action loadUserCollection = async () => {
     this.loadingUserCollection = true;
     try {
@@ -65,6 +71,41 @@ export default class UserCollectionStore {
     }
   };
 
+  //  PROCEDURES TO LOAD A ETUDE FOR EDIT MODE
+
+  loadEtude = async (id: string) => {
+    let etude = this.getEtude(id);
+    if (etude) {
+      this.etude = etude;
+      return etude;
+    } else {
+      this.loadingUserCollection = true;
+      toast.warning("FUDEU");
+      this.loadingUserCollection = false;
+      
+
+      // try {
+      //   //etude = await agent.UserCollection.etudes.get(id);
+      //   runInAction("Get etude", () => {
+      //     this.etude = etude;
+      //     this.etudeRegistry.set(etude.id, etude);
+      //     this.loadingUserCollection = false;
+      //   });
+      //   return etude;
+      // } catch (error) {
+      //   runInAction("Get etude Error", () => {
+      //     this.loadingUserCollection = false;
+      //   });
+      //   console.log(error);
+      // }
+    }
+  };
+
+  getEtude = (id: string) => {
+    return this.etudeRegistry.get(id);
+  };
+
+  //  CREATE ETUDE
   @action createEtude = async (etude: IEtude) => {
     this.submitting = true;
 
