@@ -15,6 +15,13 @@ namespace API.Controllers
             return await Mediator.Send(new Details.Query { });
         }
 
+        //  FUNC: RETURN ONLY ONE ETUDE FOR EDIT
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EtudeEditDto>> Details(Guid id)
+        {
+            return await Mediator.Send(new Detail.Query { Id = id });
+        }
+
         //  FUNC: CREATE A NEW ROW OF ETUDE FOR THE LOGGED USER
         [HttpPost]
         public async Task<ActionResult<Unit>> Create(Create.Command command)

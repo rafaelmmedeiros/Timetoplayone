@@ -5,7 +5,7 @@ namespace Application.AppTrainer.Collections
 {
     public class UserCollection
     {
-        public string Username { get; set; } // TESTE PURPOSE
+        public string Username { get; set; }
         public ICollection<Etude> Etudes { get; set; }
     }
 }

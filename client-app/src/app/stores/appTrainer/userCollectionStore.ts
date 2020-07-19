@@ -19,6 +19,8 @@ export default class UserCollectionStore {
   @observable submitting = false;
   @observable createMode = false;
 
+
+
   //  AUXILIAR ACTIONS
   @action setCreateMode = async () => {
     if (this.createMode) {
@@ -80,12 +82,9 @@ export default class UserCollectionStore {
       return etude;
     } else {
       this.loadingUserCollection = true;
-      toast.warning("FUDEU");
-      this.loadingUserCollection = false;
-      
 
       // try {
-      //   //etude = await agent.UserCollection.etudes.get(id);
+      //   etude = await agent.UserCollection.get();
       //   runInAction("Get etude", () => {
       //     this.etude = etude;
       //     this.etudeRegistry.set(etude.id, etude);
@@ -122,6 +121,25 @@ export default class UserCollectionStore {
         this.submitting = false;
       });
       toast.error("👎 Error creating Etude.");
+      console.log(error.response);
+    }
+  };
+
+  @action editEtude = async (etude: IEtude) => {
+    this.submitting = true;
+
+    try {
+      await agent.UserCollection.edit(etude);
+      runInAction("Edit Etude", () => {
+        this.etudeRegistry.set(etude.id, etude);
+        this.etude = etude;
+        this.submitting = false;
+      });
+    } catch (error) {
+      runInAction("Edit Etude Error", () => {
+        this.submitting = false;
+      });
+      toast.error("👎 Error editing Etude.");
       console.log(error.response);
     }
   };
