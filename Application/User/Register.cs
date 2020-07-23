@@ -17,7 +17,7 @@ namespace Application.User
 {
     public class Register
     {
-        public class Command : IRequest<User> // TODO: Provisorio para teste
+        public class Command : IRequest<User>
         {
             public string DisplayName { get; set; }
             public string Username { get; set; }
@@ -69,7 +69,8 @@ namespace Application.User
                 {
                     DisplayName = request.DisplayName,
                     Email = request.Email,
-                    UserName = request.Username
+                    UserName = request.Username,
+                    Bio = "New user."
                 };
 
                 //  AFTER
@@ -81,12 +82,15 @@ namespace Application.User
                     {
                         DisplayName = user.DisplayName,
                         Token = _jwtGenerator.CreateToken(user),
-                        Username = user.UserName,
-                        Image = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
+                        Username = user.UserName
+                        //Image = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
+                        // Tirei o bug sumiu... 
                     };
                 }
-
-                throw new Exception("Erro ao criar usuario");
+                else
+                {
+                    throw new Exception("Error Creating new User");
+                }
             }
         }
     }
