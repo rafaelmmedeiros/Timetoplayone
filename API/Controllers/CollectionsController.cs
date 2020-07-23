@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Application.AppTrainer.Collections;
+using Application.AppTrainer.Collections.Others;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<UserCollection>> Get()
         {
-            return await Mediator.Send(new Get.Query { });
+            return await Mediator.Send(new Acquire.Query { });
         }
 
         //  FUNC: RETURN ONLY ONE ETUDE FOR EDIT

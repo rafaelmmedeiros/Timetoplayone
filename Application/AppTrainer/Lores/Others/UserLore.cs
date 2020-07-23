@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Domain.AppTrainer;
 
-namespace Application.AppTrainer.Lores
+namespace Application.AppTrainer.Lores.Others
 {
     public class UserLore
     {

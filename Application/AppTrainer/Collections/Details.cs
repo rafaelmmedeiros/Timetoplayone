@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.AppTrainer.Collections.Others;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.AppTrainer;

@@ -4,6 +4,7 @@ using Application.AppTrainer.Lores;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Application.AppTrainer.Lores.Others;
 
 namespace API.Controllers
 {
@@ -13,7 +14,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<UserLore>> Get()
         {
-            return await Mediator.Send(new Details.Query { });
+            return await Mediator.Send(new Acquire.Query { });
         }
 
         //  FUNC: CREAT A NEW ROW OF TOME FOR THE LOGGED USER

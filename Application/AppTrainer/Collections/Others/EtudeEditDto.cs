@@ -1,6 +1,6 @@
 using System;
 
-namespace Application.AppTrainer.Collections
+namespace Application.AppTrainer.Collections.Others
 {
     public class EtudeEditDto
     {

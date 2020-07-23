@@ -1,7 +1,7 @@
 using AutoMapper;
 using Domain.AppTrainer;
 
-namespace Application.AppTrainer.Collections
+namespace Application.AppTrainer.Collections.Others
 {
     public class MappingProfile : Profile
     {

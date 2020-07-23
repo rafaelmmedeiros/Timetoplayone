@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Domain.AppTrainer;
 
-namespace Application.AppTrainer.Collections
+namespace Application.AppTrainer.Collections.Others
 {
     public class UserCollection
     {
