@@ -12,14 +12,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<UserCollection>> Get()
         {
-            return await Mediator.Send(new Details.Query { });
+            return await Mediator.Send(new Get.Query { });
         }
 
         //  FUNC: RETURN ONLY ONE ETUDE FOR EDIT
         [HttpGet("{id}")]
         public async Task<ActionResult<EtudeEditDto>> Details(Guid id)
         {
-            return await Mediator.Send(new Detail.Query { Id = id });
+            return await Mediator.Send(new Details.Query { Id = id });
         }
 
         //  FUNC: CREATE A NEW ROW OF ETUDE FOR THE LOGGED USER

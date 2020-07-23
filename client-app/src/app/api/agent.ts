@@ -105,6 +105,7 @@ const UserCollection = {
   get: (): Promise<IUserCollection> => requests.get("/collections"),
   create: (etude: IEtude) => requests.post("/collections", etude),
   edit: (etude: IEtude) => requests.put(`/collections/${etude.id}`, etude),
+  detail: (id: string) => requests.get(`/collections/${id}`),
 };
 
 export default {

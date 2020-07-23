@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
@@ -30,40 +30,25 @@ const validate = combineValidators({
   )(),
 })
 
-
 const TrainerCreateEtudeForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { createEtude, editEtude, submitting, loadEtude } = rootStore.userCollectionStore;
+  const { createEtude, editEtude, submitting } = rootStore.userCollectionStore;
 
   const [etude, setEtude] = useState(new EtudeFormValues());
   const [loading, setLoading] = useState(false);
 
-
-  var idTeste = "e0ca2907-75d0-4869-bf44-afcc9f3e25e7";
-
-  useEffect(() => {
-    if (idTeste) {
-      setLoading(true);
-      loadEtude(idTeste)
-        .then(etude => setEtude(new EtudeFormValues(etude)))
-        .finally(() => setLoading(false));
-    }
-  }, [loadEtude, idTeste]);
-
-
-
   const handleFinalFormSubmit = (values: any) => {
     const { ...etude } = values;
 
-
-    
-    let newEtude = {
-      ...etude,
-      id: uuid(),
-    };
-    createEtude(newEtude);
-
-
+    if(!etude.id) {
+      let newEtude = {
+        ...etude,
+        id: uuid(),
+      };
+      createEtude(newEtude);
+    } else {
+      editEtude(etude);
+    }
   };
 
   return (

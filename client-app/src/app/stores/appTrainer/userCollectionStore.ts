@@ -19,8 +19,6 @@ export default class UserCollectionStore {
   @observable submitting = false;
   @observable createMode = false;
 
-
-
   //  AUXILIAR ACTIONS
   @action setCreateMode = async () => {
     if (this.createMode) {
@@ -83,20 +81,20 @@ export default class UserCollectionStore {
     } else {
       this.loadingUserCollection = true;
 
-      // try {
-      //   etude = await agent.UserCollection.get();
-      //   runInAction("Get etude", () => {
-      //     this.etude = etude;
-      //     this.etudeRegistry.set(etude.id, etude);
-      //     this.loadingUserCollection = false;
-      //   });
-      //   return etude;
-      // } catch (error) {
-      //   runInAction("Get etude Error", () => {
-      //     this.loadingUserCollection = false;
-      //   });
-      //   console.log(error);
-      // }
+      try {
+        etude = await agent.UserCollection.detail(id);
+        runInAction("Get Etude", () => {
+          this.etude = etude;
+          this.etudeRegistry.set(etude.id, etude);
+          this.loadingUserCollection = false;
+        });
+        return etude;
+      } catch (error) {
+        runInAction("Get etude Error", () => {
+          this.loadingUserCollection = false;
+        });
+        console.log(error);
+      }
     }
   };
 
