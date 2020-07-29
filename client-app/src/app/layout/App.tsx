@@ -16,6 +16,7 @@ import ProfilePage from "../../features/profile/ProfilePage";
 import TakingTheRoad from "../../features/takingTheRoad/TakingTheRoad";
 import Dashboard from "../../features/dashboard/Dashboard";
 import AppTrainer from "../../features/appTrainer/AppTrainer";
+import PrivateRoute from "./PrivateRoute";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -30,7 +31,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     }
   }, [getUser, setAppLoaded, token]);
 
-  if (!appLoaded) return <LoadingComponent content="Carregando..." />;
+  if (!appLoaded) return <LoadingComponent content="Loading" />;
 
   return (
     <Fragment>
@@ -45,11 +46,11 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Container style={{ marginTop: "7em" }}>
               <Switch>
                 {/* --NAVBAR-- */}
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/profile/:username" component={ProfilePage} />
-                <Route exact path="/takingtheroad" component={TakingTheRoad} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/profile/:username" component={ProfilePage} />
+                <PrivateRoute exact path="/takingtheroad" component={TakingTheRoad} />
                 {/* --DASHBOARD-- */}
-                <Route path="/dashboard/trainer" component={AppTrainer} />
+                <PrivateRoute path="/dashboard/trainer" component={AppTrainer} />
                 {/* --PROFILE-- */}
 
                 {/* --PROFILE-- */}

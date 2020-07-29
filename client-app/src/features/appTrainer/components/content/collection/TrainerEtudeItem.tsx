@@ -8,8 +8,6 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   var neverPlayed;
   if (etude.created > etude.lastPlayed) neverPlayed = true;
 
-  var today = new Date();
-
   return (
     <Card key={etude.id} color="red">
       <Card.Content>
@@ -27,8 +25,8 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         {/* HEADER */}
         <Card.Header>{etude.title}</Card.Header>
         {/* DATES */}
-        {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(today, etude.lastPlayed)}</Card.Meta>}
-        <Card.Meta>Created {formatDistance(today, etude.created)}</Card.Meta>
+        {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(new Date(), etude.lastPlayed)}</Card.Meta>}
+        <Card.Meta>Created {formatDistance(new Date(), etude.created)}</Card.Meta>
       </Card.Content>
       <Card.Content extra>
         {/* PLACAR */}
