@@ -29,16 +29,27 @@ axios.interceptors.response.use(undefined, (error) => {
     toast.error("🔥🔥 The server is on fire!!!");
   }
 
-  const { status, data, config } = error.response;
+  const { status, data, config, headers } = error.response;
 
+  //  401
+  if (status == 401 && headers["www-authenticate"].includes("The token expired")) {
+    console.log(error.response);
+    window.localStorage.removeItem("jwt");
+    history.push("/");
+    toast.info("Session Expired, please login again");
+  }
+
+  //  404
   if (status === 404) {
     history.push("/notfound");
   }
+
+  //  400
   if (error.response.status === 400 && config.method === "get" && data.errors.hasOwnProperty("id")) {
     history.push("/notfound");
   }
 
-  // TOASTS
+  //  500
   if (status === 500) {
     toast.error("🔥🔥 The server is on fire!!!");
   }

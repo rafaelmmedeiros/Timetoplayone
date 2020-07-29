@@ -6,7 +6,7 @@ import LoginForm from "../user/LoginForm";
 import RegisterForm from "../user/RegisterForm";
 
 const HomePage = () => {
-  //  PROPS
+  const token = window.localStorage.getItem("jwt");
   const rootStore = useContext(RootStoreContext);
   const { isLoggedIn, user } = rootStore.userStore;
   const { openModal } = rootStore.modalStore;
@@ -19,7 +19,7 @@ const HomePage = () => {
           Hora de Tocar
         </Header>
 
-        {isLoggedIn && user ? (
+        {isLoggedIn && user && token ? (
           <Fragment>
             <Image size="small" circular centered src={user.image || "/assets/user.png"} />
             <Header inverted as="h2" content={`${user.displayName} , inspirado hoje?`} />

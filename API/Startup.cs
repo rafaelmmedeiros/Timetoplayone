@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using API.Middleware;
 using Application.Grupos;
 using Application.Interfaces;
@@ -47,6 +48,7 @@ namespace API
                     policy
                         .AllowAnyHeader()
                         .AllowAnyMethod()
+                        .WithExposedHeaders("WWW-Authenticate")
                         .WithOrigins("http://localhost:3000");
                 });
             });
@@ -92,7 +94,9 @@ namespace API
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = key,
                         ValidateAudience = false,
-                        ValidateIssuer = false
+                        ValidateIssuer = false,
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 
@@ -100,7 +104,7 @@ namespace API
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IPhotoAccessor, PhotoAccessor>();
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
