@@ -7,7 +7,7 @@ import { IProfile, IPhoto } from "../models/profile";
 import { IUserLore, ITome } from "../models/appTrainer/userLore";
 import { IUserCollection, IEtude } from "../models/appTrainer/userCollection";
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 // TODA VEZ que fizer um REQUEST SERÁ VERIFICADO SE TEM O TOKEN E ANEXAR ELE AO HEADER
 // IGUAL NO POSTMAN... FUNCIONOU TA BOM.
@@ -58,7 +58,7 @@ axios.interceptors.response.use(undefined, (error) => {
 });
 
 // TODO: DELAY - TIRAR EM PRODUÇÃO
-let time = 500;
+let time = 0;
 
 const responseBody = (response: AxiosResponse) => response.data;
 
