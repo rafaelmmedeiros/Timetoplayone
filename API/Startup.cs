@@ -34,13 +34,35 @@ namespace API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        // -------------------------------------------------------------
+        // CONFIGURATION DB, FOR DEV AND PRODUCTION
+        public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseLazyLoadingProxies();
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            services.AddDbContext<DataContext>(opt =>
+            {
+                opt.UseLazyLoadingProxies();
+                opt.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
+                //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            ConfigureServices(services);
+        }
+
+        // CONFIGURATION FOR ALL
+        public void ConfigureServices(IServiceCollection services)
+        {
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
@@ -127,6 +149,10 @@ namespace API
             }
 
             // app.UseHttpsRedirection();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
@@ -139,6 +165,7 @@ namespace API
             app.UseEndpoints(endPoints =>
             {
                 endPoints.MapControllers();
+                endPoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
