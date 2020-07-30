@@ -15,5 +15,6 @@ namespace Domain
         public virtual ICollection<Photo> Photos { get; set; }
         public virtual ICollection<Tome> Tomes { get; set; }
         public virtual ICollection<Etude> Etudes { get; set; }
+        public virtual ICollection<Chapter> Chapters { get; set; }
     }
 }

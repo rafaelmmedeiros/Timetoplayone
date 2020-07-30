@@ -17,5 +17,7 @@ namespace Persistence
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Tome> Tomes { get; set; }
         public DbSet<Etude> Etudes { get; set; }
+        public DbSet<Chapter> Chapters { get; set; }
+
     }
 }
