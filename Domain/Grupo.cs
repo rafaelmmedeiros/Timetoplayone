@@ -9,5 +9,6 @@ namespace Domain
         public string SubTitulo { get; set; }
         public string Descricao { get; set; }
         public string Label { get; set; }
+        public string AppUserId { get; set; }
     }
 }
