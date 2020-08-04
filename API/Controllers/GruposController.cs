@@ -12,7 +12,7 @@ namespace API.Controllers
     public class GruposController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<List<GrupoDto>>> List()
+        public async Task<ActionResult<List.GruposEnvelope>> List()
         {
             return await Mediator.Send(new List.Query());
         }
