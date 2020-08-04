@@ -1,4 +1,4 @@
-namespace Application.AppTrainer.Practice
+namespace Application.AppTrainer.Practices
 {
     public class Done
     {
