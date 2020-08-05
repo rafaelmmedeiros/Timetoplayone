@@ -8,6 +8,7 @@ import { IUserLore } from "../models/appTrainer/userLore";
 import { IUserCollection } from "../models/appTrainer/userCollection";
 import { ITome } from "../models/appTrainer/domain/tome";
 import { IEtude } from "../models/appTrainer/domain/etude";
+import { IUserPractice } from "../models/appTrainer/userPractice";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -124,7 +125,7 @@ const UserCollection = {
 
 // PRIVATE
 const UserPractice = {
-  get: (): Promise<IEtude[]> => requests.get("/practices"),
+  get: (): Promise<IUserPractice> => requests.get("/practices"),
 };
 
 export default {

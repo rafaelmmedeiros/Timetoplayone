@@ -1,7 +1,8 @@
 import { RootStore } from "../rootStore";
 import { observable, action, runInAction } from "mobx";
 import agent from "../../api/agent";
-import { IEtude } from "../../models/appTrainer/domain/etude";
+import { IUserPractice } from "../../models/appTrainer/userPractice";
+import { toast } from "react-toastify";
 
 export default class UserPracticeStore {
   rootStore: RootStore;
@@ -12,31 +13,26 @@ export default class UserPracticeStore {
   }
 
   //  MOBx Functions
-  @observable userPractice = new Map();
-  @observable etude: IEtude | null = null;
+  @observable userPractice: IUserPractice | null = null;
   @observable loadingUserPractice = true;
 
   //  Aux Actions
+
   //  MOBx Actions
-
-  @action loadPractice = async () => {
+  @action loadUserPractice = async () => {
     this.loadingUserPractice = true;
-
     try {
-      const etudes = await agent.UserPractice.get();
-      runInAction("loadPractice", () => {
-        etudes.forEach((etude) => {
-          this.userPractice.set(etude.id, etude);
-        });
+      const userPractice = await agent.UserPractice.get();
+      runInAction("loadUserPractice", () => {
+        this.userPractice = userPractice;
         this.loadingUserPractice = false;
       });
       
-      //console.log(this.userPractice);
     } catch (error) {
-      runInAction("loadPractice error", () => {
+      runInAction("loadUserPractice error", () => {
         this.loadingUserPractice = false;
       });
-      console.log(error);
+      toast.error("👎 Error loading Practice.");
     }
   };
 }

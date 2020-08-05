@@ -12,6 +12,7 @@ namespace Application.AppTrainer.Practices.Others
         public string Description { get; set; }
 
         //  Dates
+        public DateTime Created { get; set; }
         public DateTime LastPlayed { get; set; }
 
         //  RELATIONS
