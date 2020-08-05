@@ -1,12 +1,8 @@
+import { ITome } from "./domain/tome";
+
 export interface IUserLore {
   username: string;
   tomes: ITome[];
-}
-
-export interface ITome {
-  id: string;
-  position: number;
-  title: string;
 }
 
 export interface ITomeFormValues extends Partial<ITome> {

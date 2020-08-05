@@ -1,8 +1,8 @@
 import React from "react";
-import { ITome } from "../../../../../app/models/appTrainer/userLore";
 import { Card, Button, Icon } from "semantic-ui-react";
 import { useMediaQuery } from "react-responsive";
 import { observer } from "mobx-react-lite";
+import { ITome } from "../../../../../app/models/appTrainer/domain/tome";
 
 const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });

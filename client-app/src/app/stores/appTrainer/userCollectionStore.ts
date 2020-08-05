@@ -1,8 +1,9 @@
 import { RootStore } from "../rootStore";
 import { observable, action, runInAction, computed } from "mobx";
-import { IUserCollection, IEtude } from "../../models/appTrainer/userCollection";
+import { IUserCollection } from "../../models/appTrainer/userCollection";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
+import { IEtude } from "../../models/appTrainer/domain/etude";
 
 export default class UserCollectionStore {
   rootStore: RootStore;

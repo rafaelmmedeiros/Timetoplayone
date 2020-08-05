@@ -4,8 +4,10 @@ import { history } from "../..";
 import { toast } from "react-toastify";
 import { IUser, IUserFormValues } from "../models/user";
 import { IProfile, IPhoto } from "../models/profile";
-import { IUserLore, ITome } from "../models/appTrainer/userLore";
-import { IUserCollection, IEtude } from "../models/appTrainer/userCollection";
+import { IUserLore } from "../models/appTrainer/userLore";
+import { IUserCollection } from "../models/appTrainer/userCollection";
+import { ITome } from "../models/appTrainer/domain/tome";
+import { IEtude } from "../models/appTrainer/domain/etude";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -96,6 +98,7 @@ const User = {
   register: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/register`, user),
 };
 
+// --------- APPTRAINER
 //  PUBLIC
 const Profiles = {
   get: (username: string): Promise<IProfile> => requests.get(`/profiles/${username}`),
@@ -119,10 +122,16 @@ const UserCollection = {
   detail: (id: string) => requests.get(`/collections/${id}`),
 };
 
+// PRIVATE
+const UserPractice = {
+  get: (): Promise<IEtude[]> => requests.get("/practices"),
+};
+
 export default {
   Grupos,
   User,
   Profiles,
   UserLore,
   UserCollection,
+  UserPractice,
 };

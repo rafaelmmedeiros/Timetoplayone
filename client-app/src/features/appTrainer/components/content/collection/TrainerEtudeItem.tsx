@@ -1,8 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { IEtude } from "../../../../../app/models/appTrainer/userCollection";
 import { Card, Button, Icon } from "semantic-ui-react";
 import { formatDistance } from "date-fns";
+import { IEtude } from "../../../../../app/models/appTrainer/domain/etude";
 
 const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   var neverPlayed;

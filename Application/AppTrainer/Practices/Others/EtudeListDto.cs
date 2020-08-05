@@ -15,6 +15,6 @@ namespace Application.AppTrainer.Practices.Others
         public DateTime LastPlayed { get; set; }
 
         //  RELATIONS
-        public string AppUserId { get; set; }
+        // public string AppUserId { get; set; }
     }
 }

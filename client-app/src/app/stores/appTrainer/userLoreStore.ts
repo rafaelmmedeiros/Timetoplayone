@@ -1,8 +1,9 @@
 import { RootStore } from "../rootStore";
 import { observable, runInAction, action } from "mobx";
-import { IUserLore, ITome } from "../../models/appTrainer/userLore";
+import { IUserLore } from "../../models/appTrainer/userLore";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
+import { ITome } from "../../models/appTrainer/domain/tome";
 
 export default class UserLoreStore {
   rootStore: RootStore;

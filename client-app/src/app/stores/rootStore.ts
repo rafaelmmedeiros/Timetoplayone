@@ -8,6 +8,7 @@ import ProfileStore from "./profileStore";
 import UserLoreStore from "./appTrainer/userLoreStore";
 import LayoutSotre from "./layoutStore";
 import UserCollectionStore from "./appTrainer/userCollectionStore";
+import UserPracticeStore from "./appTrainer/userPracticeStore";
 
 configure({ enforceActions: "always" });
 
@@ -20,6 +21,7 @@ export class RootStore {
   userLoreStore: UserLoreStore;
   layoutStore: LayoutSotre;
   userCollectionStore: UserCollectionStore;
+  userPracticeStore: UserPracticeStore;
 
   constructor() {
     this.grupoStore = new GrupoStore(this);
@@ -30,6 +32,7 @@ export class RootStore {
     this.userLoreStore = new UserLoreStore(this);
     this.layoutStore = new LayoutSotre(this);
     this.userCollectionStore = new UserCollectionStore(this);
+    this.userPracticeStore = new UserPracticeStore(this);
   }
 }
 

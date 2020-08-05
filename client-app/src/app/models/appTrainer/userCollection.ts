@@ -1,19 +1,8 @@
+import { IEtude } from "./domain/etude";
+
 export interface IUserCollection {
   username: string;
   etudes: IEtude[];
-}
-
-export interface IEtude {
-  id: string;
-  title: string;
-  active: boolean;
-  tome: string;
-  time: string;
-  description: string;
-  executions: number;
-  played: number;
-  created: Date;
-  lastPlayed: Date;
 }
 
 export interface IEtudeFormValues extends Partial<IEtude> {

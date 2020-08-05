@@ -6,6 +6,8 @@ Detalhes sobre o projeto
 
 0.0.0.0 = Major Releases - Releases - Milestones - Issues
 
+V1.0
+
 ## https://horadetocar.azurewebsites.net/
 
 
