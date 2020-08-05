@@ -13,20 +13,19 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
       {/* --------------------- */}
       <Card.Content>
         {/* ACTIVATE AND DELETE BUTTONS */}
-        <Button.Group floated="right">
-
-        </Button.Group>
+        <Button.Group floated="right"></Button.Group>
         {/* HEADER */}
-        <Card.Header>{etude.title}</Card.Header>
+        <Card.Header >{etude.title}</Card.Header>
         {/* DATES */}
-        <Label color="red">{etude.tome}</Label>
+        <Label color="red" >{etude.tome} </Label>
       </Card.Content>
       {/* --------------------- */}
       <Card.Content extra>
-        {/* PLACAR */}
-        <Icon size="big" name="clock" style={{ marginRight: "10px" }} />
-        {etude.time}
-        {/* EDIT DATAILS BUTTONS */}
+        {/* TIME */}
+        <Icon size="big" name="clock" style={{ marginRight: "10px", paddingTop: "5px" }}>
+          {etude.time}
+        </Icon>
+        {/* DATAILS DONE BUTTONS */}
         <Button.Group floated="right">
           <Button basic color="violet" floated="right">
             <Icon fitted name="magnify" />
@@ -39,7 +38,9 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
       {/* --------------------- */}
       <Card.Content extra>
         {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(new Date(), etude.lastPlayed)}</Card.Meta>}
-        <Progress percent={88} indicating />
+        <Progress percent={Math.floor(Math.random() * 101)} indicating>
+          Texto aqui...
+        </Progress>
       </Card.Content>
     </Card>
   );

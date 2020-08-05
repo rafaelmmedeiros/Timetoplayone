@@ -44,10 +44,10 @@ namespace Application.AppTrainer.Practices
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var queryable = _context.Etudes
-                    .Where(x => x.AppUserId == user.Id)
-                    .Where(x => x.Active == true)
-                    //.OrderBy(x => x.Time)
-                    //.OrderByDescending(x => x.Title)
+                    .Where(a => a.AppUserId == user.Id)
+                    .Where(b => b.Active == true)
+                    .OrderBy(c => c.Tome)
+                    .ThenBy(d => d.Time)
                     .AsQueryable();
 
                 var etudes = await queryable
