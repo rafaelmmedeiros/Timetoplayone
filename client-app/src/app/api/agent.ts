@@ -126,6 +126,7 @@ const UserCollection = {
 // PRIVATE
 const UserPractice = {
   get: (): Promise<IUserPractice> => requests.get("/practices"),
+  done: (id: string) => requests.post(`/practices/${id}`, {}),
 };
 
 export default {

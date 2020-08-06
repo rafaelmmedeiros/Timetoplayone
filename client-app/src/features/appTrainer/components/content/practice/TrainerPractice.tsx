@@ -7,7 +7,7 @@ import TrainerPracticeItem from "./TrainerPracticeItem";
 
 const TrainerPractice: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { userPractice, loadUserPractice, loadingUserPractice } = rootStore.userPracticeStore;
+  const { userPractice, loadUserPractice, loadingUserPractice, setEtudeDone } = rootStore.userPracticeStore;
 
   useEffect(() => {
     loadUserPractice();

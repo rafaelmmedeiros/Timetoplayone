@@ -3,6 +3,8 @@ import { observable, action, runInAction } from "mobx";
 import agent from "../../api/agent";
 import { IUserPractice } from "../../models/appTrainer/userPractice";
 import { toast } from "react-toastify";
+import { IEtude } from "../../models/appTrainer/domain/etude";
+import PhotoUploadWidget from "../../common/photoUpload/PhotoUploadWidget";
 
 export default class UserPracticeStore {
   rootStore: RootStore;
@@ -15,6 +17,7 @@ export default class UserPracticeStore {
   //  MOBx Functions
   @observable userPractice: IUserPractice | null = null;
   @observable loadingUserPractice = true;
+  @observable loading = false;
 
   //  Aux Actions
 
@@ -27,12 +30,29 @@ export default class UserPracticeStore {
         this.userPractice = userPractice;
         this.loadingUserPractice = false;
       });
-      
     } catch (error) {
       runInAction("loadUserPractice error", () => {
         this.loadingUserPractice = false;
       });
       toast.error("👎 Error loading Practice.");
+    }
+  };
+
+  @action setEtudeDone = async (etude: IEtude) => {
+    this.loading = true;
+    try {
+      await agent.UserPractice.done(etude.id);
+      runInAction(() => {
+        this.loading = false;
+        //this.loadUserPractice();
+      });
+      toast.success("👍" + etude.title + " done with success.");
+      toast.warning("🎼 Continue Playing!! Never give-up!!");
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error setting done etude.");
     }
   };
 }
