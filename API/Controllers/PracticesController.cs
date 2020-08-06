@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Application.AppTrainer.Practices;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using System;
 
 namespace API.Controllers
 {
@@ -10,6 +12,12 @@ namespace API.Controllers
         public async Task<ActionResult<List.PracticeEnvelope>> List()
         {
             return await Mediator.Send(new List.Query());
+        }
+
+        [HttpPost("{id}")]
+        public async Task<ActionResult<Unit>> Done(Guid id)
+        {
+            return await Mediator.Send(new Done.Command { Id = id });
         }
 
     }
