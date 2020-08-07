@@ -4,7 +4,6 @@ import agent from "../../api/agent";
 import { IUserPractice } from "../../models/appTrainer/userPractice";
 import { toast } from "react-toastify";
 import { IEtude } from "../../models/appTrainer/domain/etude";
-import PhotoUploadWidget from "../../common/photoUpload/PhotoUploadWidget";
 
 export default class UserPracticeStore {
   rootStore: RootStore;

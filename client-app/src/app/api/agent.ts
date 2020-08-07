@@ -9,6 +9,7 @@ import { IUserCollection } from "../models/appTrainer/userCollection";
 import { ITome } from "../models/appTrainer/domain/tome";
 import { IEtude } from "../models/appTrainer/domain/etude";
 import { IUserPractice } from "../models/appTrainer/userPractice";
+import { IChapter } from "../models/appTrainer/domain/chapter";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -123,10 +124,15 @@ const UserCollection = {
   detail: (id: string) => requests.get(`/collections/${id}`),
 };
 
-// PRIVATE
+//  PRIVATE
 const UserPractice = {
   get: (): Promise<IUserPractice> => requests.get("/practices"),
   done: (id: string) => requests.post(`/practices/${id}`, {}),
+};
+
+//  PRIVATE
+const UserChapters = {
+  today: (): Promise<IChapter> => requests.get("/chapters/today"),
 };
 
 export default {
@@ -136,4 +142,5 @@ export default {
   UserLore,
   UserCollection,
   UserPractice,
+  UserChapters,
 };

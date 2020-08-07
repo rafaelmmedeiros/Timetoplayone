@@ -53,9 +53,9 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
       {/* --------------------- */}
       <Card.Content extra>
         {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(new Date(), etude.lastPlayed)}</Card.Meta>}
-        <Progress percent={Math.floor(Math.random() * 101)} indicating>
-          Texto aqui...
-        </Progress>
+        <Progress size="tiny" percent={Math.floor(Math.random() * 101)} indicating />
+        {/* <Progress size="tiny" percent={Math.floor(Math.random() * 101)} indicating />
+        <Progress size="tiny" percent={Math.floor(Math.random() * 101)} indicating /> */}
       </Card.Content>
     </Card>
   );

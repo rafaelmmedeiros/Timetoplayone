@@ -8,7 +8,7 @@ const AppTrainer = () => {
   return (
     <Grid>
       <Grid.Column>
-        <TrainerHeatMap />
+        {/* <TrainerHeatMap /> */}
         <TrainerHeader />
         <TrainerContent />
       </Grid.Column>
