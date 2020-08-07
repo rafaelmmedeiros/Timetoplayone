@@ -8,8 +8,8 @@ const AppTrainer = () => {
   return (
     <Grid>
       <Grid.Column>
-        <TrainerHeader />
         <TrainerHeatMap />
+        <TrainerHeader />
         <TrainerContent />
       </Grid.Column>
     </Grid>
