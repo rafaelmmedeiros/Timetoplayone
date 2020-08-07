@@ -1,32 +1,32 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.AppTrainer.Practices.Others;
+using Application.AppTrainer.Chapters.Others;
 using Application.Interfaces;
 using AutoMapper;
-using Domain.AppTrainer;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using System.Linq;
+using Domain.AppTrainer;
 
-namespace Application.AppTrainer.Practices
+namespace Application.AppTrainer.Chapters
 {
     public class List
     {
-        public class PracticeEnvelope
+        public class ChapterEnvelope
         {
-            public List<EtudeListDto> Etudes { get; set; }
+            public List<ChapterListDto> Chapters { get; set; }
         }
-
-        public class Query : IRequest<PracticeEnvelope>
+        
+        public class Query : IRequest<ChapterEnvelope>
         {
             public Query()
             {
             }
         }
 
-        public class Handler : IRequestHandler<Query, PracticeEnvelope>
+        public class Handler : IRequestHandler<Query, ChapterEnvelope>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -38,26 +38,23 @@ namespace Application.AppTrainer.Practices
                 _context = context;
             }
 
-            public async Task<PracticeEnvelope> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<ChapterEnvelope> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                var queryable = _context.Etudes
+                var queryable = _context.Chapters
                     .Where(a => a.AppUserId == user.Id)
-                    .Where(b => b.Active == true)
-                    .OrderBy(c => c.Tome)
-                    .ThenBy(d => d.Time)
+                    .OrderByDescending(b => b.Day)
                     .AsQueryable();
 
-                var etudes = await queryable
+                var chapters = await queryable
                     .ToListAsync();
 
-                return new PracticeEnvelope
+                return new ChapterEnvelope
                 {
-                    Etudes = _mapper.Map<List<Etude>, List<EtudeListDto>>(etudes)
+                    Chapters = _mapper.Map<List<Chapter>, List<ChapterListDto>>(chapters)
                 };
             }
         }
-
     }
 }
