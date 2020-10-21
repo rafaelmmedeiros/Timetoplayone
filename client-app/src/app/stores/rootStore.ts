@@ -9,7 +9,7 @@ import UserLoreStore from "./appTrainer/userLoreStore";
 import LayoutSotre from "./layoutStore";
 import UserCollectionStore from "./appTrainer/userCollectionStore";
 import UserPracticeStore from "./appTrainer/userPracticeStore";
-import UserChaptersStore from "./appTrainer/userChapters";
+import UserChaptersStore from "./appTrainer/userChaptersStore";
 
 configure({ enforceActions: "always" });
 
