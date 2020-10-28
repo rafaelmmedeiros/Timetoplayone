@@ -45,6 +45,7 @@ const TrainerHeader: React.FC = () => {
         </Grid.Column>
 
       </Grid>
+      
       <Grid columns={1} stackable divided>
         <Grid.Column>
           <Progress percent={Math.floor(Math.random() * 101)} indicating progress>
