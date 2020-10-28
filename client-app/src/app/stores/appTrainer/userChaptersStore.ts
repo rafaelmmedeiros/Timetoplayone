@@ -3,6 +3,7 @@ import { observable, action, runInAction } from "mobx";
 import { IChapter } from "../../models/appTrainer/domain/chapter";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
+import { IUserChapters } from "../../models/appTrainer/userChapters";
 
 export default class UserChaptersStore {
   rootStore: RootStore;
@@ -16,6 +17,11 @@ export default class UserChaptersStore {
   //  CHAPTER OF THE DAY
   @observable todayChapter: IChapter | null = null;
   @observable loadingTodayChapter = true;
+
+  //  USERCHAPTERS
+  @observable userChapters: IUserChapters | null = null;
+  @observable loadingUserChapters = true;
+  @observable loading = false;
 
   //  Aux Actions
 
@@ -33,6 +39,22 @@ export default class UserChaptersStore {
         this.loadingTodayChapter = false;
       });
       toast.error("👎 Error loading Today Chapter.");
+    }
+  };
+
+  @action loadUserChapters = async () => {
+    this.loadingUserChapters = true;
+    try {
+      const userChapters = await agent.UserChapters.get();
+      runInAction("loadUserChapters", () => {
+        this.userChapters = userChapters;
+        this.loadingUserChapters = false;
+      });
+    } catch (error) {
+      runInAction("loadUserChapters error", () => {
+        this.loadingUserChapters = false;
+      });
+      toast.error("👎 Error loading Chapters.");
     }
   };
 }

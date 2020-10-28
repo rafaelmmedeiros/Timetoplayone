@@ -10,6 +10,7 @@ import { ITome } from "../models/appTrainer/domain/tome";
 import { IEtude } from "../models/appTrainer/domain/etude";
 import { IUserPractice } from "../models/appTrainer/userPractice";
 import { IChapter } from "../models/appTrainer/domain/chapter";
+import { IUserChapters } from "../models/appTrainer/userChapters";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -132,6 +133,7 @@ const UserPractice = {
 
 //  PRIVATE
 const UserChapters = {
+  get: (): Promise<IUserChapters> => requests.get("/chapters"),
   today: (): Promise<IChapter> => requests.get("/chapters/today"),
 };
 
