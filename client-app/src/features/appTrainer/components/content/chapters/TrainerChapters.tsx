@@ -27,9 +27,11 @@ const TrainerChapters: React.FC = () => {
           {/* CHAPTER LIST */}
 
           <Card.Group stackable itemsPerRow={1}>
+
             {userChapters?.chapters.map((chapter) => (
               <TrainerChaptersItem key={chapter.id} chapter={chapter} />
             ))}
+            
           </Card.Group>
 
         </Grid.Column>
