@@ -44,6 +44,7 @@ namespace Application.AppTrainer.Practices
                         Day = DateTime.Today,
                         TotalTime = etude.Time,
                         TotalEtudes = 1,
+                        Objective = 120,
                         AppUserId = user.Id
                     };
 

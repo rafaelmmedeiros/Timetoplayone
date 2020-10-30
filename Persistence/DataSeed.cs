@@ -241,6 +241,112 @@ namespace Persistence
                 context.SaveChanges();
             }
 
+            //  SEED CHAPTERS
+            if (!context.Chapters.Any())
+            {
+                var chapters = new List<Chapter>
+                {
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-30),
+                        TotalTime = 60,
+                        TotalEtudes = 10,
+                        Objective = 120,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-29),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-25),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-20),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-19),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-15),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-14),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-13),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-10),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                     new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-9),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-6),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Now.AddDays(-2),
+                        TotalTime = 65,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    }
+                };
+                context.Chapters.AddRange(chapters);
+                context.SaveChanges();
+            }
+
             //  SEED GRUPOS
             if (!context.Grupos.Any())
             {
