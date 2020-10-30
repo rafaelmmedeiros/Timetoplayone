@@ -3,4 +3,5 @@ export interface IChapter {
   day: Date;
   totalTime: number;
   totalEtudes: number;
+  objective: number;
 }

@@ -31,7 +31,7 @@ const TrainerChaptersItem: React.FC<{ chapter: IChapter; before: IChapter | null
 
       {/* --------------------- */}
       <Card.Content extra>
-        <Grid columns={4} stackable divided textAlign="center">
+        <Grid columns={5} stackable divided textAlign="center">
           <Grid.Column>
             <Statistic size="small">
               <Statistic.Value>
@@ -59,6 +59,16 @@ const TrainerChaptersItem: React.FC<{ chapter: IChapter; before: IChapter | null
                 {minutesEtude.toFixed(1)}
               </Statistic.Value>
               <Statistic.Label>Minutes/Etudes</Statistic.Label>
+            </Statistic>
+          </Grid.Column>
+
+          <Grid.Column>
+            <Statistic size="small">
+              <Statistic.Value>
+                <Icon name="list alternate" style={{ marginRight: "10px" }} />
+                {chapter.objective}
+              </Statistic.Value>
+              <Statistic.Label>Objective/Minutes</Statistic.Label>
             </Statistic>
           </Grid.Column>
 
