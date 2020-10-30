@@ -5,11 +5,17 @@ import { IChapter } from "../../../../../app/models/appTrainer/domain/chapter";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import { format, formatDistance } from "date-fns";
 
-const TrainerChaptersItem: React.FC<{ chapter: IChapter }> = ({ chapter }) => {
+const TrainerChaptersItem: React.FC<{ chapter: IChapter; before: IChapter | null }> = ({ chapter, before }) => {
   const rootStore = useContext(RootStoreContext);
   const { loading } = rootStore.userChaptersStore;
 
   const minutesEtude = chapter.totalTime / chapter.totalEtudes;
+
+  let diference = null;
+
+  if (before) {
+    diference = formatDistance(chapter.day, before.day);
+  }
 
   return (
     <Card key={chapter.id} color="red">
@@ -60,7 +66,7 @@ const TrainerChaptersItem: React.FC<{ chapter: IChapter }> = ({ chapter }) => {
             <Statistic size="small">
               <Statistic.Value>
                 <Icon name="list alternate" style={{ marginRight: "10px" }} />
-                {chapter.totalEtudes}
+                {diference}
               </Statistic.Value>
               <Statistic.Label>Interval</Statistic.Label>
             </Statistic>
