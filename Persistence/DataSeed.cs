@@ -71,67 +71,67 @@ namespace Persistence
                 {
                     new Tome
                     {
-                        Position = 0,
+                        Position = 1,
                         Title = "Warm-Up",
                         AppUserId = "e"
                     },
                     new Tome
                     {
-                        Position = 1,
+                        Position = 2,
                         Title = "Coordination",
                         AppUserId = "e"
                     },
                     new Tome
                     {
-                        Position = 2,
+                        Position = 3,
                         Title = "Arpeggios",
                         AppUserId = "e"
                     },
                      new Tome
                     {
-                        Position = 3,
+                        Position = 4,
                         Title = "Tapping",
                         AppUserId = "e"
                     },
                     new Tome
                     {
-                        Position = 4,
+                        Position = 5,
                         Title = "Riffs",
                         AppUserId = "e"
                     },
                     new Tome
                     {
-                        Position = 5,
+                        Position = 6,
                         Title = "Clean Arpeggios",
                         AppUserId = "e"
                     },
                     new Tome
                     {
-                        Position = 6,
+                        Position = 7,
                         Title = "Repertório X",
                         AppUserId = "e"
                     },
                      new Tome
                     {
-                        Position = 0,
+                        Position = 1,
                         Title = "Aquecimento",
                         AppUserId = "b"
                     },
                     new Tome
                     {
-                        Position = 1,
+                        Position = 2,
                         Title = "Sincronismo",
                         AppUserId = "b"
                     },
                     new Tome
                     {
-                        Position = 2,
+                        Position = 3,
                         Title = "Escalas",
                         AppUserId = "b"
                     },
                      new Tome
                     {
-                        Position = 3,
+                        Position = 4,
                         Title = "Banda X",
                         AppUserId = "b"
                     }
