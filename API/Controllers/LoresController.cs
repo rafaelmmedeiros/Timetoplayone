@@ -29,5 +29,17 @@ namespace API.Controllers
         {
             return await Mediator.Send(new Delete.Command { Id = id });
         }
+
+        [HttpPost("{id}/setup")]
+        public async Task<ActionResult<Unit>> SetUp(Guid id)
+        {
+            return await Mediator.Send(new SetUp.Command { Id = id });
+        }
+
+        [HttpPost("{id}/setdown")]
+        public async Task<ActionResult<Unit>> SetDown(Guid id)
+        {
+            return await Mediator.Send(new SetDown.Command { Id = id });
+        }
     }
 }

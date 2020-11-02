@@ -9,13 +9,13 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Photos
+namespace Application.AppTrainer.Lores
 {
-    public class SetMain
+    public class SetDown
     {
         public class Command : IRequest
         {
-            public string Id { get; set; }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -33,15 +33,23 @@ namespace Application.Photos
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                var photo = user.Photos.FirstOrDefault(x => x.Id == request.Id);
+                var tome = user.Tomes.FirstOrDefault(x => x.Id == request.Id);
 
-                if (photo == null)
-                    throw new RESTException(HttpStatusCode.NotFound, new {Photo = "Not found"});
+                var tomeBefore = user.Tomes.FirstOrDefault(x => x.Position == tome.Position - 1);
 
-                var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+                // SECURITY
+                if (tome == null)
+                    throw new RESTException(HttpStatusCode.NotFound, new { Tome = "Not found" });
 
-                currentMain.IsMain = false;
-                photo.IsMain = true;
+                if (tomeBefore == null)
+                    throw new RESTException(HttpStatusCode.NotFound, new { Tome = "There is no Before" });
+
+                // SWAP POSITIONS
+                if (tome != null)
+                {
+                    tome.Position--;
+                    tomeBefore.Position++;
+                }
 
                 var success = await _context.SaveChangesAsync() > 0;
 
