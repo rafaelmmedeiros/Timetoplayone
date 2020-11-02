@@ -23,6 +23,7 @@ namespace Application.AppTrainer.Chapters
         {
             public Query()
             {
+                // FOR FILTERING
             }
         }
 
