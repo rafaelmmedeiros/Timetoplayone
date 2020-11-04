@@ -1,7 +1,6 @@
 import { ITome } from "./domain/tome";
 
 export interface IUserLore {
-  username: string;
   tomes: ITome[];
 }
 

@@ -42,10 +42,10 @@ export default class UserPracticeStore {
     try {
       await agent.UserPractice.done(etude.id);
       runInAction(() => {
-        this.loading = false;
         this.rootStore.userChaptersStore.todayChapter!.totalTime += Number(etude.time);
         this.rootStore.userChaptersStore.todayChapter!.totalEtudes++;
         //this.loadUserPractice();
+        this.loading = false;
       });
       toast.success("👍" + etude.title + " done with success.");
       //toast.warning("🎼 Continue Playing!! Never give-up!!");

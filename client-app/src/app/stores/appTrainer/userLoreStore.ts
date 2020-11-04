@@ -8,18 +8,19 @@ import { ITome } from "../../models/appTrainer/domain/tome";
 export default class UserLoreStore {
   rootStore: RootStore;
 
-  //  Todas stores devem ter referencia a ROOT
+  //  ROOTSTORE
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
 
-  //  MOBx Functions
+  //  MOBx OBSERVABLES
   @observable userLore: IUserLore | null = null;
   @observable loadingUserLore = true;
   @observable submitting = false;
   @observable createMode = false;
+  @observable loading = false;
 
-  //  AUXILIAR ACTIONS
+  //  MOBx AUX. ACTIONS
   @action setCreateMode = async () => {
     if (this.createMode) {
       this.createMode = false;
@@ -28,7 +29,7 @@ export default class UserLoreStore {
     }
   };
 
-  //  MOBx Actions
+  //  MOBx ACTIONS
   @action loadUserLore = async () => {
     this.loadingUserLore = true;
     try {
@@ -61,6 +62,38 @@ export default class UserLoreStore {
       });
       toast.error("👎 Error creating Tome.");
       console.log(error.response);
+    }
+  };
+
+  @action setTomeUp = async (tome: ITome) => {
+    this.loading = true;
+    try {
+      await agent.UserLore.setUp(tome.id);
+      runInAction(() => {
+        this.loadUserLore();
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error setting Tome Up.");
+    }
+  };
+
+  @action setTomeDown = async (tome: ITome) => {
+    this.loading = true;
+    try {
+      await agent.UserLore.setDown(tome.id);
+      runInAction(() => {
+        this.loadUserLore();
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error setting Tome Down.");
     }
   };
 }

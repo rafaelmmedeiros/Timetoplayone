@@ -115,6 +115,10 @@ const Profiles = {
 const UserLore = {
   get: (): Promise<IUserLore> => requests.get("/lores"),
   create: (tome: ITome) => requests.post("/lores", tome),
+  //Edit
+  //Delete
+  setUp: (id: string) => requests.post(`/lores/${id}/setup`, {}),
+  setDown: (id: string) => requests.post(`/lores/${id}/setdown`, {}),
 };
 
 //  PRIVATE
