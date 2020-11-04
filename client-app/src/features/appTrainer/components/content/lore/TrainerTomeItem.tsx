@@ -7,10 +7,7 @@ import { RootStoreContext } from "../../../../../app/stores/rootStore";
 
 const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
   const rootStore = useContext(RootStoreContext);
-  const { setTomeUp, setTomeDown, loading, userLore } = rootStore.userLoreStore;
-  
-  const [targetUp, setTargetUp] = useState<string | undefined>(undefined);
-  const [targetDown, setTargetDown] = useState<string | undefined>(undefined);
+  const { setTomeUp, setTomeDown, loading, userLore, targetUp, targetDown, setTargetUp, setTargetDown } = rootStore.userLoreStore;
 
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
@@ -26,6 +23,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
           {/* UP */}
           {tome.position != 1 && (
             <Button
+              name={tome.id}
               basic
               color="blue"
               onClick={(e) => {

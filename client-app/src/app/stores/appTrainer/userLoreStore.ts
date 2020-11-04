@@ -16,9 +16,14 @@ export default class UserLoreStore {
   //  MOBx OBSERVABLES
   @observable userLore: IUserLore | null = null;
   @observable loadingUserLore = true;
+
   @observable submitting = false;
   @observable createMode = false;
+  
   @observable loading = false;
+
+  @observable targetUp = "";
+  @observable targetDown = "";
 
   //  MOBx AUX. ACTIONS
   @action setCreateMode = async () => {
@@ -27,6 +32,20 @@ export default class UserLoreStore {
     } else {
       this.createMode = true;
     }
+  };
+
+  @action setTargetUp = async (id: string) => {
+    runInAction(() => {
+      this.targetUp = id;
+      this.targetDown = "";
+    });
+  };
+
+  @action setTargetDown = async (id: string) => {
+    runInAction(() => {
+      this.targetDown = id;
+      this.targetUp = "";
+    });
   };
 
   //  MOBx ACTIONS
