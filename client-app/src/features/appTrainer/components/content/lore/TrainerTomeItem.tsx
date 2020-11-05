@@ -17,6 +17,24 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
       <Card.Content>
         <Card.Header>{tome.title}</Card.Header>
       </Card.Content>
+      {/* --------------------- */}
+      {tome.totalEtudes > 1 ? (
+        <Card.Content>
+          <Icon name="list alternate" style={{ marginRight: "5px" }}></Icon>
+          {tome.totalEtudes} Etudes
+        </Card.Content>
+      ) : tome.totalEtudes == 1 ? (
+        <Card.Content>
+          <Icon name="list alternate" style={{ marginRight: "5px" }}></Icon>
+          {tome.totalEtudes} Etude
+        </Card.Content>
+      ) : (
+        <Card.Content>
+          <Icon name="list alternate outline" style={{ marginRight: "5px" }}></Icon>
+          No etudes
+        </Card.Content>
+      )}
+
       <Card.Content extra>
         {/* UP AND DOWN BUTTONS */}
         <Button.Group>
@@ -51,6 +69,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
             </Button>
           )}
         </Button.Group>
+        {/* DELETE */}
         <Button basic color="red" floated="right">
           <Icon fitted name="trash" />
         </Button>

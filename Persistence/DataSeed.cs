@@ -73,66 +73,77 @@ namespace Persistence
                     {
                         Position = 1,
                         Title = "Warm-Up",
+                        TotalEtudes = 3,
                         AppUserId = "e"
                     },
                     new Tome
                     {
                         Position = 2,
                         Title = "Coordination",
+                        TotalEtudes = 2,
                         AppUserId = "e"
                     },
                     new Tome
                     {
                         Position = 3,
                         Title = "Arpeggios",
+                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                      new Tome
                     {
                         Position = 4,
                         Title = "Tapping",
+                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                     new Tome
                     {
                         Position = 5,
                         Title = "Riffs",
+                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                     new Tome
                     {
                         Position = 6,
                         Title = "Clean Arpeggios",
+                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                     new Tome
                     {
                         Position = 7,
                         Title = "Repertório X",
+                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                      new Tome
                     {
                         Position = 1,
                         Title = "Aquecimento",
+                        TotalEtudes = 0,
                         AppUserId = "b"
                     },
                     new Tome
                     {
                         Position = 2,
                         Title = "Sincronismo",
+                        TotalEtudes = 0,
                         AppUserId = "b"
                     },
                     new Tome
                     {
                         Position = 3,
                         Title = "Escalas",
+                        TotalEtudes = 0,
                         AppUserId = "b"
                     },
                      new Tome
                     {
                         Position = 4,
                         Title = "Banda X",
+                        TotalEtudes = 0,
                         AppUserId = "b"
                     }
                 };
