@@ -17,13 +17,14 @@ export default class UserLoreStore {
   @observable userLore: IUserLore | null = null;
   @observable loadingUserLore = true;
 
-  @observable submitting = false;
   @observable createMode = false;
-  
+
   @observable loading = false;
+  @observable submitting = false;
 
   @observable targetUp = "";
   @observable targetDown = "";
+  @observable targetDelete = "";
 
   //  MOBx AUX. ACTIONS
   @action setCreateMode = async () => {
@@ -38,6 +39,7 @@ export default class UserLoreStore {
     runInAction(() => {
       this.targetUp = id;
       this.targetDown = "";
+      this.targetDelete = "";
     });
   };
 
@@ -45,6 +47,15 @@ export default class UserLoreStore {
     runInAction(() => {
       this.targetDown = id;
       this.targetUp = "";
+      this.targetDelete = "";
+    });
+  };
+
+  @action setTargetDelete = async (id: string) => {
+    runInAction(() => {
+      this.targetDelete = id;
+      this.targetUp = "";
+      this.targetDown = "";
     });
   };
 
@@ -113,6 +124,23 @@ export default class UserLoreStore {
         this.loading = false;
       });
       toast.error("👎 Error setting Tome Down.");
+    }
+  };
+
+  @action deleteTome = async (tome: ITome) => {
+    this.loading = true;
+    try {
+      await agent.UserLore.delete(tome.id);
+      runInAction(() => {
+        this.loadUserLore();
+        this.loading = false;
+      });
+      toast.success("👍 Tome deleted with success.");
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error deleting Tome.");
     }
   };
 }

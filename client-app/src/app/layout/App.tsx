@@ -53,7 +53,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <PrivateRoute path="/dashboard/trainer" component={AppTrainer} />
                 {/* --PROFILE-- */}
 
-                {/* --PROFILE-- */}
+                {/* --DELETAR PROVAVEL-- */}
                 <Route exact path="/grupos" component={GrupoDashboard} />
                 <Route path="/grupos/:id" component={GrupoDetails} />
                 <Route key={location.key} path={["/criargrupo", "/editgrupo/:id"]} component={GrupoForm} />

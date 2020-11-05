@@ -116,7 +116,7 @@ const UserLore = {
   get: (): Promise<IUserLore> => requests.get("/lores"),
   create: (tome: ITome) => requests.post("/lores", tome),
   //Edit
-  //Delete
+  delete: (id: string) => requests.delete(`/lores/${id}`),
   setUp: (id: string) => requests.post(`/lores/${id}/setup`, {}),
   setDown: (id: string) => requests.post(`/lores/${id}/setdown`, {}),
 };

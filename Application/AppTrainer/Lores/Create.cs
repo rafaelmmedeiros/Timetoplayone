@@ -53,7 +53,7 @@ namespace Application.AppTrainer.Lores
                 var tome = new Tome
                 {
                     Id = request.Id,
-                    Position = user.Tomes.Count(),
+                    Position = user.Tomes.Count()+1,
                     Title = request.Title,
                     AppUserId = user.Id
                 };

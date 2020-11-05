@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Card, Button, Icon } from "semantic-ui-react";
 import { useMediaQuery } from "react-responsive";
 import { observer } from "mobx-react-lite";
@@ -7,7 +7,19 @@ import { RootStoreContext } from "../../../../../app/stores/rootStore";
 
 const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
   const rootStore = useContext(RootStoreContext);
-  const { setTomeUp, setTomeDown, loading, userLore, targetUp, targetDown, setTargetUp, setTargetDown } = rootStore.userLoreStore;
+  const {
+    setTomeUp,
+    setTomeDown,
+    loading,
+    userLore,
+    targetUp,
+    targetDown,
+    targetDelete,
+    setTargetUp,
+    setTargetDown,
+    deleteTome,
+    setTargetDelete,
+  } = rootStore.userLoreStore;
 
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
@@ -70,9 +82,21 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
           )}
         </Button.Group>
         {/* DELETE */}
-        <Button basic color="red" floated="right">
-          <Icon fitted name="trash" />
-        </Button>
+        {tome.totalEtudes == 0 && (
+          <Button
+            name={tome.id}
+            basic
+            color="red"
+            floated="right"
+            onClick={(e) => {
+              deleteTome(tome);
+              setTargetDelete(e.currentTarget.name);
+            }}
+            loading={loading && targetDelete === tome.id}
+          >
+            <Icon fitted name="trash" />
+          </Button>
+        )}
       </Card.Content>
     </Card>
   );
