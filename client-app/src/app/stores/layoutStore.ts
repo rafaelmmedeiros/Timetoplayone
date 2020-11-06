@@ -1,5 +1,5 @@
 import { RootStore } from "./rootStore";
-import { observable } from "mobx";
+import { action, observable, runInAction } from "mobx";
 
 export default class LayoutSotre {
   rootStore: RootStore;
@@ -7,8 +7,11 @@ export default class LayoutSotre {
     this.rootStore = rootStore;
   }
 
-  //  TODO: MAKE THIS SHIT WORK
-  // TESTAR COM RUN IN ACTION
-  @observable isMobile = false;
+  @observable colorSelected = "";
 
+  @action setColor = async (position: number) => {
+    runInAction(() => {
+      if (position === 1) this.colorSelected = "red";
+    });
+  };
 }

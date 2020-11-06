@@ -24,7 +24,32 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   return (
-    <Card key={tome.id} color="red">
+    <Card
+      key={tome.id}
+      color={
+        tome.position === 1
+          ? "red"
+          : tome.position === 2
+          ? "orange"
+          : tome.position === 3
+          ? "yellow"
+          : tome.position === 4
+          ? "olive"
+          : tome.position === 5
+          ? "green"
+          : tome.position === 6
+          ? "teal"
+          : tome.position === 7
+          ? "blue"
+          : tome.position === 8
+          ? "violet"
+          : tome.position === 9
+          ? "purple"
+          : tome.position === 10
+          ? "pink"
+          : "black"
+      }
+    >
       {/* --------------------- */}
       <Card.Content>
         <Card.Header>{tome.title}</Card.Header>
