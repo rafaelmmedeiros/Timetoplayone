@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Tab, Grid, Header, Card, Button, Icon } from "semantic-ui-react";
+import React, { useContext, useEffect } from "react";
+import { Tab, Grid, Header, Card, Button } from "semantic-ui-react";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import { observer } from "mobx-react-lite";
 import LoadingComponent from "../../../../../app/layout/LoadingComponent";
@@ -22,13 +22,15 @@ const TrainerLore: React.FC = () => {
         {/* HEADER */}
         <Grid.Column width={16}>
           <Header floated="left" icon="book" content={"Tomes"} />
-          <Button
-            basic
-            floated="right"
-            color={createMode ? "red" : "blue"}
-            content={createMode ? "Cancel" : "New Tome"}
-            onClick={() => setCreateMode()}
-          />
+          {userLore?.tomes.length != 10 && (
+            <Button
+              basic
+              floated="right"
+              color={createMode ? "red" : "blue"}
+              content={createMode ? "Cancel" : "New Tome"}
+              onClick={() => setCreateMode()}
+            />
+          )}
         </Grid.Column>
         {/* BODY */}
         <Grid.Column width={16}>
