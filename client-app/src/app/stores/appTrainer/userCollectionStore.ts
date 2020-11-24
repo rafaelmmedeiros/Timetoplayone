@@ -18,14 +18,14 @@ export default class UserCollectionStore {
   @observable etude: IEtude | null = null;
   @observable loadingUserCollection = true;
   @observable submitting = false;
-  @observable createMode = false;
+  @observable createModeCollection = false;
 
   //  AUXILIAR ACTIONS
-  @action setCreateMode = async () => {
-    if (this.createMode) {
-      this.createMode = false;
+  @action setcreateModeCollection = async () => {
+    if (this.createModeCollection) {
+      this.createModeCollection = false;
     } else {
-      this.createMode = true;
+      this.createModeCollection = true;
     }
   };
 
@@ -113,7 +113,7 @@ export default class UserCollectionStore {
         this.submitting = false;
       });
       toast.success("👍 Etude created with success.");
-      this.setCreateMode();
+      this.setcreateModeCollection();
       // this.etudesByTome(); TODO
     } catch (error) {
       runInAction("Create etude Erro", () => {

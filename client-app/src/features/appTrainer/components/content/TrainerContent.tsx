@@ -7,6 +7,7 @@ import TrainerChapters from "./chapters/TrainerChapters";
 
 //  TODO: Fazer algo melhor aqui
 //  Lore / Collection / Practice / Chapters / Dedication
+//  ICONES, melhorar.
 
 const panes = [
   { menuItem: "Lor", render: () => <TrainerLore /> },

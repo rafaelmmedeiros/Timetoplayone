@@ -8,10 +8,14 @@ import TrainerCreateTomeForm from "./TrainerCreateTomeForm";
 
 const TrainerLore: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { userLore, loadUserLore, loadingUserLore, createMode, setCreateMode } = rootStore.userLoreStore;
+  const { userLore, loadUserLore, loadingUserLore, createModeLore, setcreateModeLore } = rootStore.userLoreStore;
+  const { createModeCollection, setcreateModeCollection } = rootStore.userCollectionStore;
 
   useEffect(() => {
     loadUserLore();
+    if (createModeCollection) {
+      setcreateModeCollection();
+    }
   }, [loadUserLore]);
 
   return (
@@ -26,16 +30,16 @@ const TrainerLore: React.FC = () => {
             <Button
               basic
               floated="right"
-              color={createMode ? "red" : "blue"}
-              content={createMode ? "Cancel" : "New Tome"}
-              onClick={() => setCreateMode()}
+              color={createModeLore ? "red" : "blue"}
+              content={createModeLore ? "Cancel" : "New Tome"}
+              onClick={() => setcreateModeLore()}
             />
           )}
         </Grid.Column>
         {/* BODY */}
         <Grid.Column width={16}>
           {/* CONDICIONAL FOR NEW TOME */}
-          {createMode ? (
+          {createModeLore ? (
             <TrainerCreateTomeForm />
           ) : (
             <Card.Group stackable itemsPerRow={3}>

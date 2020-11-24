@@ -8,10 +8,14 @@ import TrainerCreateEtudeForm from "./TrainerCreateEtudeForm";
 
 const TrainerCollection: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { etudesByTome, loadUserCollection, loadingUserCollection, createMode, setCreateMode } = rootStore.userCollectionStore;
+  const { etudesByTome, loadUserCollection, loadingUserCollection, createModeCollection, setcreateModeCollection } = rootStore.userCollectionStore;
+  const { createModeLore, setcreateModeLore } = rootStore.userLoreStore;
 
   useEffect(() => {
     loadUserCollection();
+    if (createModeLore) {
+      setcreateModeLore();
+    }
   }, [loadUserCollection]);
 
   return (
@@ -25,15 +29,15 @@ const TrainerCollection: React.FC = () => {
           <Button
             basic
             floated="right"
-            color={createMode ? "red" : "blue"}
-            content={createMode ? "Cancel" : "New Etude"}
-            onClick={() => setCreateMode()}
+            color={createModeCollection ? "red" : "blue"}
+            content={createModeCollection ? "Cancel" : "New Etude"}
+            onClick={() => setcreateModeCollection()}
           />
         </Grid.Column>
         {/* BODY */}
         <Grid.Column width={16}>
           {/* CONDICIONAL FOR NEW TOME */}
-          {createMode ? (
+          {createModeCollection ? (
             <TrainerCreateEtudeForm />
           ) : (
             etudesByTome.map(([group, etudes]) => (

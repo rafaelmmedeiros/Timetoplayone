@@ -17,7 +17,7 @@ export default class UserLoreStore {
   @observable userLore: IUserLore | null = null;
   @observable loadingUserLore = true;
 
-  @observable createMode = false;
+  @observable createModeLore = false;
 
   @observable loading = false;
   @observable submitting = false;
@@ -27,11 +27,11 @@ export default class UserLoreStore {
   @observable targetDelete = "";
 
   //  MOBx AUX. ACTIONS
-  @action setCreateMode = async () => {
-    if (this.createMode) {
-      this.createMode = false;
+  @action setcreateModeLore = async () => {
+    if (this.createModeLore) {
+      this.createModeLore = false;
     } else {
-      this.createMode = true;
+      this.createModeLore = true;
     }
   };
 
@@ -84,7 +84,7 @@ export default class UserLoreStore {
         this.submitting = false;
       });
       toast.success("👍 Tome created with success.");
-      this.setCreateMode();
+      this.setcreateModeLore();
       this.loadUserLore();
     } catch (error) {
       runInAction(() => {

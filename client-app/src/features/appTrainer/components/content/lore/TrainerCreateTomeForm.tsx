@@ -18,7 +18,7 @@ const validate = combineValidators({
 
 const TrainerCreateTomeForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { createTome, submitting, setCreateMode } = rootStore.userLoreStore;
+  const { createTome, submitting, setcreateModeLore } = rootStore.userLoreStore;
   
   const [loading, setLoading] = useState(false);
   const [tome, setTome] = useState(new TomeFormValues());
