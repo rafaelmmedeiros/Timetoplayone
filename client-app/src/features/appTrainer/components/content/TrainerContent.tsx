@@ -14,7 +14,6 @@ const panes = [
   { menuItem: "Col", render: () => <TrainerCollection /> },
   { menuItem: "Pra", render: () => <TrainerPractice /> },
   { menuItem: "Chp", render: () => <TrainerChapters /> },
-  { menuItem: "Ded", render: () => <TrainerPractice /> },
 ];
 
 const TrainerContent = () => {

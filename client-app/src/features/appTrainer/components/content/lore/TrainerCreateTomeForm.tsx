@@ -8,7 +8,6 @@ import TextInput from "../../../../../app/common/form/TextInput";
 import { Button, Form } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 
-// VALIDATION
 const validate = combineValidators({
   title: composeValidators(
     isRequired({message: 'Is required'}),
@@ -18,10 +17,10 @@ const validate = combineValidators({
 
 const TrainerCreateTomeForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { createTome, submitting, setcreateModeLore } = rootStore.userLoreStore;
+  const { createTome, submitting } = rootStore.userLoreStore;
   
-  const [loading, setLoading] = useState(false);
-  const [tome, setTome] = useState(new TomeFormValues());
+  const [loading] = useState(false);
+  const [tome] = useState(new TomeFormValues());
 
   const handleFinalFormSubmit = (values: any) => {
     const { ...tome } = values;
