@@ -35,7 +35,7 @@ namespace Application.AppTrainer.Chapters
 
                 // SECURITY
                 if (chapter != null)
-                    throw new Errors.RESTException(HttpStatusCode.Unauthorized, new { chapter = "Already Created" });
+                    throw new Errors.RESTException(HttpStatusCode.BadRequest, new { chapter = "Already Created" });
 
                 if (chapter == null)
                 {
