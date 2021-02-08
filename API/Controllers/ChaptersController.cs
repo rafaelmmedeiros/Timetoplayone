@@ -20,10 +20,10 @@ namespace API.Controllers
             return await Mediator.Send(new TodayChapter.Query { });
         }
 
-        [HttpPost("{objective}/setobjective")]
-        public async Task<ActionResult<Unit>> Done(int objective)
+        [HttpPost("begin")]
+        public async Task<ActionResult<Unit>> Begin()
         {
-            return await Mediator.Send(new SetObjective.Command { Objective = objective });
+            return await Mediator.Send(new Begin.Command { });
         }
 
     }

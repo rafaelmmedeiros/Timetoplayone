@@ -10,11 +10,11 @@ using Persistence;
 
 namespace Application.AppTrainer.Chapters
 {
-    public class SetObjective
+    public class Begin
     {
         public class Command : IRequest
         {
-            public int Objective { get; set; }
+
         }
 
         public class Handler : IRequestHandler<Command>
@@ -33,6 +33,10 @@ namespace Application.AppTrainer.Chapters
 
                 var chapter = await _context.Chapters.FirstOrDefaultAsync(x => x.Day == DateTime.Today && x.AppUserId == user.Id);
 
+                // SECURITY
+                if (chapter != null)
+                    throw new Errors.RESTException(HttpStatusCode.Unauthorized, new { chapter = "Already Created" });
+
                 if (chapter == null)
                 {
                     var chapterToCreate = new Chapter
@@ -40,22 +44,11 @@ namespace Application.AppTrainer.Chapters
                         Day = DateTime.Today,
                         TotalTime = 0,
                         TotalEtudes = 0,
-                        Objective = request.Objective,
+                        Objective = 0,
                         AppUserId = user.Id
                     };
 
                     _context.Chapters.Add(chapterToCreate);
-                }
-                else
-                {
-                    if (chapter.Objective == request.Objective)
-                    {
-                        throw new Errors.RESTException(HttpStatusCode.Unauthorized, new { chapter = "No modification" });
-                    }
-                    else
-                    {
-                        chapter.Objective = request.Objective;
-                    }
                 }
 
                 // handler logic
@@ -63,9 +56,8 @@ namespace Application.AppTrainer.Chapters
 
                 if (success) return Unit.Value;
 
-                throw new Exception("Error saving objective");
+                throw new Exception("Error Beginning Chapter");
             }
         }
-
     }
 }
