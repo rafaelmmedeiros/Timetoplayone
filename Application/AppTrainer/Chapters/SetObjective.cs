@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
@@ -7,13 +8,13 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Practices
+namespace Application.AppTrainer.Chapters
 {
-    public class Done
+    public class SetObjective
     {
         public class Command : IRequest
         {
-            public Guid Id { get; set; }
+            public int Objective { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -30,21 +31,16 @@ namespace Application.AppTrainer.Practices
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                var etude = await _context.Etudes.FindAsync(request.Id);
-
                 var chapter = await _context.Chapters.FirstOrDefaultAsync(x => x.Day == DateTime.Today && x.AppUserId == user.Id);
 
-                //  SECURITY
-
-                //  EDIT CHAPTER
                 if (chapter == null)
                 {
                     var chapterToCreate = new Chapter
                     {
                         Day = DateTime.Today,
-                        TotalTime = etude.Time,
-                        TotalEtudes = 1,
-                        Objective = etude.Time,
+                        TotalTime = 0,
+                        TotalEtudes = 0,
+                        Objective = request.Objective,
                         AppUserId = user.Id
                     };
 
@@ -52,20 +48,22 @@ namespace Application.AppTrainer.Practices
                 }
                 else
                 {
-                    chapter.TotalTime += etude.Time;
-                    chapter.TotalEtudes++;
+                    if (chapter.Objective == request.Objective)
+                    {
+                        throw new Errors.RESTException(HttpStatusCode.Unauthorized, new { chapter = "No modification" });
+                    }
+                    else
+                    {
+                        chapter.Objective = request.Objective;
+                    }
                 }
 
-                //  EDIT ETUDE
-                etude.Played += etude.Time;
-                etude.Executions++;
-                etude.LastPlayed = DateTime.Now;
-
+                // handler logic
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
 
-                throw new Exception("Erro ao salvar");
+                throw new Exception("Error saving objective");
             }
         }
 
