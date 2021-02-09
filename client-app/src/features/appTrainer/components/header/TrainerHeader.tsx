@@ -19,7 +19,7 @@ const TrainerHeader: React.FC = () => {
           <Statistic>
             <Statistic.Value>
               <Icon name="clock" style={{ marginRight: "10px"}}/>
-              {todayChapter?.totalTime}
+              {todayChapter?.totalTime || 0}
             </Statistic.Value>
             <Statistic.Label>Minutes Today</Statistic.Label>
           </Statistic>
@@ -29,7 +29,7 @@ const TrainerHeader: React.FC = () => {
           <Statistic>
             <Statistic.Value>
               <Icon name="list alternate" style={{ marginRight: "10px"}}/>
-              {todayChapter?.totalEtudes}
+              {todayChapter?.totalEtudes || 0}
             </Statistic.Value>
             <Statistic.Label>Etudes Done</Statistic.Label>
           </Statistic>

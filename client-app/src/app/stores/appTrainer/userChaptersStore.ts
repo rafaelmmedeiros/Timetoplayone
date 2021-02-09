@@ -8,12 +8,10 @@ import { IUserChapters } from "../../models/appTrainer/userChapters";
 export default class UserChaptersStore {
   rootStore: RootStore;
 
-  //  Todas stores devem ter referencia a ROOT
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
 
-  //  MOBx Functions
   //  CHAPTER OF THE DAY
   @observable todayChapter: IChapter | null = null;
   @observable loadingTodayChapter = true;
@@ -24,6 +22,11 @@ export default class UserChaptersStore {
   @observable loading = false;
 
   //  Aux Actions
+  @action beginNewChapter = async () => {
+    try {
+      await agent.UserChapters.begin();
+    } catch (error) {}
+  };
 
   //  MOBx Actions
   @action loadTodayChapter = async () => {

@@ -8,19 +8,14 @@ import { IEtude } from "../../models/appTrainer/domain/etude";
 export default class UserPracticeStore {
   rootStore: RootStore;
 
-  //  Todas stores devem ter referencia a ROOT
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
 
-  //  MOBx Functions
   @observable userPractice: IUserPractice | null = null;
   @observable loadingUserPractice = true;
   @observable loading = false;
 
-  //  Aux Actions
-
-  //  MOBx Actions
   @action loadUserPractice = async () => {
     this.loadingUserPractice = true;
     try {
@@ -42,8 +37,14 @@ export default class UserPracticeStore {
     try {
       await agent.UserPractice.done(etude.id);
       runInAction(() => {
-        this.rootStore.userChaptersStore.todayChapter!.totalTime += Number(etude.time);
-        this.rootStore.userChaptersStore.todayChapter!.totalEtudes++;
+        if (this.rootStore.userChaptersStore.todayChapter) {
+          this.rootStore.userChaptersStore.todayChapter!.totalTime += Number(etude.time);
+          this.rootStore.userChaptersStore.todayChapter!.totalEtudes++;
+        } else {
+          this.rootStore.userChaptersStore.loadTodayChapter();
+          toast.info("👍 Starting a new chapter!");
+        }
+
         //this.loadUserPractice();
         this.loading = false;
       });

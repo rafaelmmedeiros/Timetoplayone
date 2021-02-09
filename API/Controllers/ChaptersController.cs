@@ -20,7 +20,7 @@ namespace API.Controllers
             return await Mediator.Send(new TodayChapter.Query { });
         }
 
-        [HttpPost("begin")]
+        [HttpGet("begin")]
         public async Task<ActionResult<Unit>> Begin()
         {
             return await Mediator.Send(new Begin.Command { });
