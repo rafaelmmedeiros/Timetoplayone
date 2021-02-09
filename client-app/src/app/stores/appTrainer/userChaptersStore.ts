@@ -22,11 +22,6 @@ export default class UserChaptersStore {
   @observable loading = false;
 
   //  Aux Actions
-  @action beginNewChapter = async () => {
-    try {
-      await agent.UserChapters.begin();
-    } catch (error) {}
-  };
 
   //  MOBx Actions
   @action loadTodayChapter = async () => {
