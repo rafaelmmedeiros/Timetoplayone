@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Application.AppTrainer.Chapters;
 using Application.AppTrainer.Chapters.Others;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -18,5 +19,18 @@ namespace API.Controllers
         {
             return await Mediator.Send(new TodayChapter.Query { });
         }
+
+        [HttpPost("decrease")]
+        public async Task<ActionResult<Unit>> Decrease()
+        {
+            return await Mediator.Send(new DecreaseObjective.Command { });
+        }
+
+        [HttpPost("increase")]
+        public async Task<ActionResult<Unit>> Increase()
+        {
+            return await Mediator.Send(new IncreaseObjective.Command { });
+        }
+
     }
 }
