@@ -139,6 +139,8 @@ const UserPractice = {
 const UserChapters = {
   get: (): Promise<IUserChapters> => requests.get("/chapters"),
   today: (): Promise<IChapter> => requests.get("/chapters/today"),
+  decrease: ({}) => requests.post("/chapters/decrease", {}),
+  increase: ({}) => requests.post("/chapters/increase", {}),
 };
 
 export default {

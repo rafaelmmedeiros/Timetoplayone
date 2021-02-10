@@ -16,10 +16,13 @@ export default class UserChaptersStore {
   @observable todayChapter: IChapter | null = null;
   @observable loadingTodayChapter = true;
 
+  @observable loading = false;
+  @observable loadingIncrease = false;
+  @observable loadingDecrease = false;
+
   //  USERCHAPTERS
   @observable userChapters: IUserChapters | null = null;
   @observable loadingUserChapters = true;
-  @observable loading = false;
 
   //  Aux Actions
 
@@ -53,6 +56,42 @@ export default class UserChaptersStore {
         this.loadingUserChapters = false;
       });
       toast.error("👎 Error loading Chapters.");
+    }
+  };
+
+  @action increaseObjetive = async () => {
+    this.loadingIncrease = true;
+    try {
+      await agent.UserChapters.increase({});
+      runInAction("increaseObjetive", () => {
+        if (this.todayChapter) {
+          this.todayChapter.objective += 10;
+        }
+        this.loadingIncrease = false;
+      });
+    } catch (error) {
+      runInAction("", () => {
+        this.loadingIncrease = false;
+      });
+    }
+  };
+
+  @action decreaseObjetive = async () => {
+    this.loadingDecrease = true;
+    try {
+      await agent.UserChapters.decrease({});
+      runInAction("descreaseObjetive", () => {
+        if (this.todayChapter) {
+          if (this.todayChapter.objective >= 10) {
+            this.todayChapter.objective -= 10;
+          }
+        }
+        this.loadingDecrease = false;
+      });
+    } catch (error) {
+      runInAction("", () => {
+        this.loadingDecrease = false;
+      });
     }
   };
 }

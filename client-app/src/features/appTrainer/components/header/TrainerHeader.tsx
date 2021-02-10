@@ -1,11 +1,14 @@
 import React, { useContext, useEffect } from "react";
-import { Statistic, Icon, Segment, Progress, Grid } from "semantic-ui-react";
+import { Statistic, Icon, Segment, Progress, Grid, Button } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../../../../app/stores/rootStore";
+import { useMediaQuery } from "react-responsive";
 
 const TrainerHeader: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { loadTodayChapter, todayChapter } = rootStore.userChaptersStore;
+  const { loadTodayChapter, todayChapter, decreaseObjetive, increaseObjetive, loadingDecrease, loadingIncrease } = rootStore.userChaptersStore;
+
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   useEffect(() => {
     loadTodayChapter();
@@ -14,11 +17,10 @@ const TrainerHeader: React.FC = () => {
   return (
     <Segment piled textAlign="center" padded>
       <Grid columns={3} stackable divided>
-
         <Grid.Column>
           <Statistic>
             <Statistic.Value>
-              <Icon name="clock" style={{ marginRight: "10px"}}/>
+              <Icon name="clock" style={{ marginRight: "10px" }} />
               {todayChapter?.totalTime || 0}
             </Statistic.Value>
             <Statistic.Label>Minutes Today</Statistic.Label>
@@ -28,7 +30,7 @@ const TrainerHeader: React.FC = () => {
         <Grid.Column>
           <Statistic>
             <Statistic.Value>
-              <Icon name="list alternate" style={{ marginRight: "10px"}}/>
+              <Icon name="list alternate" style={{ marginRight: "10px" }} />
               {todayChapter?.totalEtudes || 0}
             </Statistic.Value>
             <Statistic.Label>Etudes Done</Statistic.Label>
@@ -38,21 +40,52 @@ const TrainerHeader: React.FC = () => {
         <Grid.Column>
           <Statistic>
             <Statistic.Value>
-              <Icon name="checkmark" style={{ marginRight: "10px"}}/>4
+              <Icon name="checkmark" style={{ marginRight: "10px" }} />
+              {todayChapter?.objective || 0}
             </Statistic.Value>
-            <Statistic.Label>Hours Goal!</Statistic.Label>
+            <Statistic.Label>Minutes Goal!</Statistic.Label>
           </Statistic>
-        </Grid.Column>
 
-      </Grid>
-      
-      <Grid columns={1} stackable divided>
-        <Grid.Column>
-          <Progress percent={Math.floor(Math.random() * 101)} indicating progress>
-            50 Minutes required.
-          </Progress>
+          {todayChapter && (
+            <Button.Group>
+              {/* UP */}
+
+              <Button
+                basic
+                color="blue"
+                onClick={(e) => {
+                  increaseObjetive();
+                }}
+                loading={loadingIncrease}
+              >
+                <Icon fitted name={!isMobile ? "arrow up" : "arrow left"} />
+              </Button>
+
+              {/* DOWN */}
+              <Button
+                basic
+                color="blue"
+                onClick={(e) => {
+                  decreaseObjetive();
+                }}
+                loading={loadingDecrease}
+              >
+                <Icon fitted name={!isMobile ? "arrow down" : "arrow right"} />
+              </Button>
+            </Button.Group>
+          )}
         </Grid.Column>
       </Grid>
+
+      {todayChapter && (
+        <Grid columns={1} stackable divided>
+          <Grid.Column>
+            <Progress percent={Math.floor(Math.random() * 101)} indicating progress>
+              50 Minutes required.
+            </Progress>
+          </Grid.Column>
+        </Grid>
+      )}
     </Segment>
   );
 };
