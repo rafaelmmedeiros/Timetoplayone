@@ -13,6 +13,7 @@ const TrainerHeader: React.FC = () => {
     loadingDecrease,
     loadingIncrease,
     calculateNormalized,
+    calculateHours,
   } = rootStore.userChaptersStore;
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const TrainerHeader: React.FC = () => {
                     <Icon name="checkmark" style={{ marginRight: "10px" }} />
                     {todayChapter?.objective || 0}
                   </Statistic.Value>
-                  <Statistic.Label>Minutes Goal!</Statistic.Label>
+                  <Statistic.Label>Minutes Goal! ({calculateHours} /h)</Statistic.Label>
                 </Statistic>
               </Grid.Column>
               <Grid.Column width="4">
@@ -100,9 +101,7 @@ const TrainerHeader: React.FC = () => {
       {todayChapter && (
         <Grid columns={1} stackable divided>
           <Grid.Column>
-            <Progress percent={(calculateNormalized)} indicating progress>
-              50 Minutes required.
-            </Progress>
+            <Progress percent={calculateNormalized} indicating progress></Progress>
           </Grid.Column>
         </Grid>
       )}

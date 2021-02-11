@@ -31,6 +31,13 @@ export default class UserChaptersStore {
     }
   }
 
+  @computed get calculateHours() {
+    if (this.todayChapter) {
+      let hours = this.todayChapter.objective / 60;
+      return hours.toFixed(1);
+    }
+  }
+
   //  MOBx Actions
   @action loadTodayChapter = async () => {
     this.loadingTodayChapter = true;
