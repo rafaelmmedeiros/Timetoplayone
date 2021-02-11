@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import { observer } from "mobx-react-lite";
-import { Tab, Grid, Header, Card, Button } from "semantic-ui-react";
+import { Tab, Grid, Header, Card } from "semantic-ui-react";
 import LoadingComponent from "../../../../../app/layout/LoadingComponent";
 import TrainerPracticeItem from "./TrainerPracticeItem";
 
 const TrainerPractice: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { userPractice, loadUserPractice, loadingUserPractice, setEtudeDone } = rootStore.userPracticeStore;
+  const { userPractice, loadUserPractice, loadingUserPractice } = rootStore.userPracticeStore;
 
   useEffect(() => {
     loadUserPractice();

@@ -28,6 +28,22 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(new Date(), etude.lastPlayed)}</Card.Meta>}
         <Card.Meta>Created {formatDistance(new Date(), etude.created)}</Card.Meta>
       </Card.Content>
+
+      <Card.Content extra>
+        {/* ETUDE FLUENCE LEVEL */}
+
+
+        <Button.Group fluid>
+          <Button color={etude.fluence === 1 ? "yellow" : "grey"}>Leaning</Button>
+          <Button.Or text=">>" />
+          <Button color={etude.fluence === 2 ? "olive" : "grey"}>Evolution</Button>
+          <Button.Or text=">>" />
+          <Button color={etude.fluence === 3 ? "green" : "grey"}>Fluente</Button>
+        </Button.Group>
+      </Card.Content>
+      
+
+
       <Card.Content extra>
         {/* PLACAR */}
         <Icon size="big" name="retweet" style={{ marginRight: "10px" }} />

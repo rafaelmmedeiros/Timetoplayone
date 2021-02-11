@@ -16,7 +16,7 @@ const TrainerLore: React.FC = () => {
     if (createModeCollection) {
       setcreateModeCollection();
     }
-  }, [loadUserLore]);
+  }, [loadUserLore, setcreateModeCollection, createModeCollection]);
 
   return (
     <Tab.Pane>
@@ -26,7 +26,7 @@ const TrainerLore: React.FC = () => {
         {/* HEADER */}
         <Grid.Column width={16}>
           <Header floated="left" icon="book" content={"Tomes"} />
-          {userLore?.tomes.length != 10 && (
+          {userLore?.tomes.length !== 10 && (
             <Button
               basic
               floated="right"

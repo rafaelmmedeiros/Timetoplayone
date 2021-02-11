@@ -2,6 +2,7 @@ export interface IEtude {
     id: string;
     title: string;
     active: boolean;
+    fluence: number;
     tome: string;
     time: string;
     description: string;

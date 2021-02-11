@@ -37,7 +37,7 @@ axios.interceptors.response.use(undefined, (error) => {
   const { status, data, config, headers } = error.response;
 
   //  401
-  if (status == 401 && headers["www-authenticate"].includes("The token expired")) {
+  if (status === 401 && headers["www-authenticate"].includes("The token expired")) {
     console.log(error.response);
     window.localStorage.removeItem("jwt");
     history.push("/");

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Grid, Segment, Label, Rating, GridRow, GridColumn, Progress } from 'semantic-ui-react'
+import { Item, Grid, Segment, Label, GridColumn, Progress } from 'semantic-ui-react'
 
 export const EstudoList = () => {
     return (

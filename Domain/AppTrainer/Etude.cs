@@ -7,6 +7,7 @@ namespace Domain.AppTrainer
         public Guid Id { get; set; } // CREATE
         public string Title { get; set; } // CREATE
         public bool Active { get; set; } // CREATE MAP // Change Active
+        public int Fluence { get; set; }
         public string Tome { get; set; } // CREATE
         public int Time { get; set; } // CREATE
         public string Description { get; set; } // CREATE

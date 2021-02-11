@@ -66,6 +66,7 @@ namespace Application.AppTrainer.Collections
                     Id = request.Id,
                     Title = request.Title,
                     Active = true,
+                    Fluence = 1,
                     Tome = request.Tome,
                     Time = Int32.Parse(request.Time),
                     Description = request.Description,

@@ -160,6 +160,7 @@ namespace Persistence
                     {
                         Title = "X-Hands",
                         Active = true,
+                        Fluence = 1,
                         Tome = "Warm-Up",
                         Time = 10,
                         Description = "Classic X-hands from John Petrucci",
@@ -173,6 +174,7 @@ namespace Persistence
                     {
                         Title = "Picking 2",
                         Active = true,
+                        Fluence = 2,
                         Tome = "Warm-Up",
                         Time = 10,
                         Description = "Left Handed Muting picking exercise 2 pikcing string",
@@ -186,6 +188,7 @@ namespace Persistence
                     {
                         Title = "Picking 3",
                         Active = false,
+                        Fluence = 3,
                         Tome = "Warm-Up",
                         Time = 10,
                         Description = "Left Handed Muting picking exercise with hybrid pikcing",
@@ -199,6 +202,7 @@ namespace Persistence
                     {
                         Title = "Super Chromatic",
                         Active = true,
+                        Fluence = 2,
                         Tome = "Coordination",
                         Time = 15,
                         Description = "John Petrucci super Chromatic",
@@ -212,6 +216,7 @@ namespace Persistence
                     {
                         Title = "Speed Picking",
                         Active = true,
+                        Fluence = 1,
                         Tome = "Coordination",
                         Time = 20,
                         Description = "Seguir partitura do arquivo",
@@ -225,6 +230,7 @@ namespace Persistence
                     {
                         Title = "Super Chromatic",
                         Active = true,
+                        Fluence = 2,
                         Tome = "Escalas",
                         Time = 15,
                         Description = "John Petrucci super Chromatic",
@@ -238,6 +244,7 @@ namespace Persistence
                     {
                         Title = "Speed Picking",
                         Active = true,
+                        Fluence = 2,
                         Tome = "Escalas",
                         Time = 20,
                         Description = "Seguir partitura do arquivo",

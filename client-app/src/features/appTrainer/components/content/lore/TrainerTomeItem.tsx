@@ -60,7 +60,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
           <Icon name="list alternate" style={{ marginRight: "5px" }}></Icon>
           {tome.totalEtudes} Etudes
         </Card.Content>
-      ) : tome.totalEtudes == 1 ? (
+      ) : tome.totalEtudes === 1 ? (
         <Card.Content>
           <Icon name="list alternate" style={{ marginRight: "5px" }}></Icon>
           {tome.totalEtudes} Etude
@@ -76,7 +76,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
         {/* UP AND DOWN BUTTONS */}
         <Button.Group>
           {/* UP */}
-          {tome.position != 1 && (
+          {tome.position !== 1 && (
             <Button
               name={tome.id}
               basic
@@ -91,7 +91,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
             </Button>
           )}
           {/* DOWN */}
-          {userLore?.tomes.length != tome.position && (
+          {userLore?.tomes.length !== tome.position && (
             <Button
               name={tome.id}
               basic
@@ -107,7 +107,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
           )}
         </Button.Group>
         {/* DELETE */}
-        {tome.totalEtudes == 0 && (
+        {tome.totalEtudes === 0 && (
           <Button
             name={tome.id}
             basic

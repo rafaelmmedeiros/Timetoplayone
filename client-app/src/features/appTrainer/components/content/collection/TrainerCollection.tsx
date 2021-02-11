@@ -16,7 +16,7 @@ const TrainerCollection: React.FC = () => {
     if (createModeLore) {
       setcreateModeLore();
     }
-  }, [loadUserCollection]);
+  }, [loadUserCollection, setcreateModeLore, createModeLore]);
 
   return (
     <Tab.Pane>

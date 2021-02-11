@@ -29,6 +29,7 @@ export default class UserChaptersStore {
     if (this.todayChapter) {
       return Math.round((this.todayChapter?.totalTime / this.todayChapter?.objective) * 100);
     }
+    return 0;
   }
 
   @computed get calculateHours() {
@@ -36,6 +37,7 @@ export default class UserChaptersStore {
       let hours = this.todayChapter.objective / 60;
       return hours.toFixed(1);
     }
+    return 0;
   }
 
   //  MOBx Actions
