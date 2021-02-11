@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
-import { Card, Grid, Icon, Segment, Statistic } from "semantic-ui-react";
+import { Card, Grid, Icon, Statistic } from "semantic-ui-react";
 import { IChapter } from "../../../../../app/models/appTrainer/domain/chapter";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import { format, formatDistance } from "date-fns";

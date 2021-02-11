@@ -2,13 +2,18 @@ import React, { useContext, useEffect } from "react";
 import { Statistic, Icon, Segment, Progress, Grid, Button } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../../../../app/stores/rootStore";
-import { useMediaQuery } from "react-responsive";
 
 const TrainerHeader: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { loadTodayChapter, todayChapter, decreaseObjetive, increaseObjetive, loadingDecrease, loadingIncrease } = rootStore.userChaptersStore;
-
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const {
+    loadTodayChapter,
+    todayChapter,
+    decreaseObjetive,
+    increaseObjetive,
+    loadingDecrease,
+    loadingIncrease,
+    calculateNormalized,
+  } = rootStore.userChaptersStore;
 
   useEffect(() => {
     loadTodayChapter();
@@ -37,50 +42,65 @@ const TrainerHeader: React.FC = () => {
           </Statistic>
         </Grid.Column>
 
-        <Grid.Column>
-          <Statistic>
-            <Statistic.Value>
-              <Icon name="checkmark" style={{ marginRight: "10px" }} />
-              {todayChapter?.objective || 0}
-            </Statistic.Value>
-            <Statistic.Label>Minutes Goal!</Statistic.Label>
-          </Statistic>
+        {todayChapter ? (
+          <Grid.Column>
+            <Grid columns={2}>
+              <Grid.Column width="10">
+                <Statistic floated="right">
+                  <Statistic.Value>
+                    <Icon name="checkmark" style={{ marginRight: "10px" }} />
+                    {todayChapter?.objective || 0}
+                  </Statistic.Value>
+                  <Statistic.Label>Minutes Goal!</Statistic.Label>
+                </Statistic>
+              </Grid.Column>
+              <Grid.Column width="4">
+                <Button.Group vertical>
+                  {/* UP */}
+                  <Button
+                    basic
+                    color="blue"
+                    onClick={(e) => {
+                      increaseObjetive();
+                    }}
+                    loading={loadingIncrease}
+                  >
+                    <Icon fitted name={"arrow up"} />
+                  </Button>
 
-          {todayChapter && (
-            <Button.Group>
-              {/* UP */}
-
-              <Button
-                basic
-                color="blue"
-                onClick={(e) => {
-                  increaseObjetive();
-                }}
-                loading={loadingIncrease}
-              >
-                <Icon fitted name={!isMobile ? "arrow up" : "arrow left"} />
-              </Button>
-
-              {/* DOWN */}
-              <Button
-                basic
-                color="blue"
-                onClick={(e) => {
-                  decreaseObjetive();
-                }}
-                loading={loadingDecrease}
-              >
-                <Icon fitted name={!isMobile ? "arrow down" : "arrow right"} />
-              </Button>
-            </Button.Group>
-          )}
-        </Grid.Column>
+                  {/* DOWN */}
+                  {todayChapter.objective >= 10 && (
+                    <Button
+                      basic
+                      color="blue"
+                      onClick={(e) => {
+                        decreaseObjetive();
+                      }}
+                      loading={loadingDecrease}
+                    >
+                      <Icon fitted name={"arrow down"} />
+                    </Button>
+                  )}
+                </Button.Group>
+              </Grid.Column>
+            </Grid>
+          </Grid.Column>
+        ) : (
+          <Grid.Column>
+            <Statistic>
+              <Statistic.Value>
+                <Icon name="bed" style={{ marginRight: "10px" }} />
+              </Statistic.Value>
+              <Statistic.Label>Not played today...</Statistic.Label>
+            </Statistic>
+          </Grid.Column>
+        )}
       </Grid>
 
       {todayChapter && (
         <Grid columns={1} stackable divided>
           <Grid.Column>
-            <Progress percent={Math.floor(Math.random() * 101)} indicating progress>
+            <Progress percent={(calculateNormalized)} indicating progress>
               50 Minutes required.
             </Progress>
           </Grid.Column>

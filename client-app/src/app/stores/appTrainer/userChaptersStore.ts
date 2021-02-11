@@ -1,5 +1,5 @@
 import { RootStore } from "../rootStore";
-import { observable, action, runInAction } from "mobx";
+import { observable, action, runInAction, computed } from "mobx";
 import { IChapter } from "../../models/appTrainer/domain/chapter";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
@@ -25,6 +25,11 @@ export default class UserChaptersStore {
   @observable loadingUserChapters = true;
 
   //  Aux Actions
+  @computed get calculateNormalized() {
+    if (this.todayChapter) {
+      return Math.round((this.todayChapter?.totalTime / this.todayChapter?.objective) * 100);
+    }
+  }
 
   //  MOBx Actions
   @action loadTodayChapter = async () => {
