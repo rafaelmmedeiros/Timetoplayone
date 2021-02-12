@@ -191,4 +191,21 @@ export default class UserCollectionStore {
       toast.error("👎 Error setting Etude to Flowing.");
     }
   };
+
+  @action deleteEtude = async (etude: IEtude) => {
+    this.loading = true;
+    try {
+      await agent.UserCollection.delete(etude.id);
+      runInAction(() => {
+        this.loadUserCollection();
+        this.loading = false;
+      });
+      toast.success("👍 Etude deleted with success.");
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error deleting Etude.");
+    }
+  };
 }

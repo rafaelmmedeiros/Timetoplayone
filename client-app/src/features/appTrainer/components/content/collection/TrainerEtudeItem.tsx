@@ -7,7 +7,7 @@ import { RootStoreContext } from "../../../../../app/stores/rootStore";
 
 const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   const rootStore = useContext(RootStoreContext);
-  const { fluenceLearning, fluenceEvolution, fluenceFlowing } = rootStore.userCollectionStore;
+  const { fluenceLearning, fluenceEvolution, fluenceFlowing, deleteEtude } = rootStore.userCollectionStore;
 
   var neverPlayed;
   if (etude.created > etude.lastPlayed) neverPlayed = true;
@@ -21,7 +21,15 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             <Icon fitted name="power" />
           </Button>
           {!etude.active && (
-            <Button basic color="red" floated="right">
+            <Button
+              name={etude.id}
+              basic
+              color="red"
+              floated="right"
+              onClick={(e) => {
+                deleteEtude(etude);
+              }}
+            >
               <Icon fitted name="trash" />
             </Button>
           )}

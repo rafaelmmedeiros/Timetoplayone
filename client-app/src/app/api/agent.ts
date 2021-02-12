@@ -130,6 +130,7 @@ const UserCollection = {
   fluenceLearning: (id: string) => requests.post(`/collections/${id}/fluencelearning`, {}),
   fluenceEvolution: (id: string) => requests.post(`/collections/${id}/fluenceevolution`, {}),
   fluenceFlowing: (id: string) => requests.post(`/collections/${id}/fluenceflowing`, {}),
+  delete: (id: string) => requests.delete(`/collections/${id}`),
 };
 
 //  PRIVATE
