@@ -3,7 +3,6 @@ using Application.AppTrainer.Practices;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using System;
-
 namespace API.Controllers
 {
     public class PracticesController : BaseController
@@ -19,6 +18,5 @@ namespace API.Controllers
         {
             return await Mediator.Send(new Done.Command { Id = id });
         }
-
     }
 }

@@ -38,8 +38,10 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
           <Button.Or text=">>" />
           <Button color={etude.fluence === 2 ? "olive" : "grey"}>Evolution</Button>
           <Button.Or text=">>" />
-          <Button color={etude.fluence === 3 ? "green" : "grey"}>Fluente</Button>
+          <Button color={etude.fluence === 3 ? "green" : "grey"}>Flowing</Button>
         </Button.Group>
+
+        
       </Card.Content>
       
 

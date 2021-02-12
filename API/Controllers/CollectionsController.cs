@@ -33,5 +33,23 @@ namespace API.Controllers
             command.Id = id;
             return await Mediator.Send(command);
         }
+
+        [HttpPost("{id}/fluencelearning")]
+        public async Task<ActionResult<Unit>> FluenceLearning(Guid id)
+        {
+            return await Mediator.Send(new FluenceLearning.Command { Id = id });
+        }
+
+        [HttpPost("{id}/fluenceevolution")]
+        public async Task<ActionResult<Unit>> FluenceEvolution(Guid id)
+        {
+            return await Mediator.Send(new FluenceEvolution.Command { Id = id });
+        }
+
+        [HttpPost("{id}/fluenceflowing")]
+        public async Task<ActionResult<Unit>> FluenceFlowing(Guid id)
+        {
+            return await Mediator.Send(new FluenceFlowing.Command { Id = id });
+        }
     }
 }
