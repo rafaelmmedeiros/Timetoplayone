@@ -8,16 +8,18 @@ import { IEtude } from "../../models/appTrainer/domain/etude";
 export default class UserCollectionStore {
   rootStore: RootStore;
 
-  //  Todas stores devem ter referencia a ROOT
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
-  //  MOBx Functions
+
   @observable etudeRegistry = new Map();
   @observable userCollection: IUserCollection | null = null;
   @observable etude: IEtude | null = null;
   @observable loadingUserCollection = true;
+
+  @observable loading = false;
   @observable submitting = false;
+
   @observable createModeCollection = false;
 
   //  AUXILIAR ACTIONS
@@ -73,7 +75,6 @@ export default class UserCollectionStore {
   };
 
   //  PROCEDURES TO LOAD A ETUDE FOR EDIT MODE
-
   loadEtude = async (id: string) => {
     let etude = this.getEtude(id);
     if (etude) {
@@ -140,6 +141,54 @@ export default class UserCollectionStore {
       });
       toast.error("👎 Error editing Etude.");
       console.log(error.response);
+    }
+  };
+
+  @action fluenceLearning = async (etude: IEtude) => {
+    this.loading = true;
+    try {
+      await agent.UserCollection.fluenceLearning(etude.id);
+      runInAction(() => {
+        this.loadUserCollection();
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error setting Etude to Learning.");
+    }
+  };
+
+  @action fluenceEvolution = async (etude: IEtude) => {
+    this.loading = true;
+    try {
+      await agent.UserCollection.fluenceEvolution(etude.id);
+      runInAction(() => {
+        this.loadUserCollection();
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error setting Etude to Evolution.");
+    }
+  };
+
+  @action fluenceFlowing = async (etude: IEtude) => {
+    this.loading = true;
+    try {
+      await agent.UserCollection.fluenceFlowing(etude.id);
+      runInAction(() => {
+        this.loadUserCollection();
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error setting Etude to Flowing.");
     }
   };
 }

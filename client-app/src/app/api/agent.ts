@@ -127,6 +127,9 @@ const UserCollection = {
   create: (etude: IEtude) => requests.post("/collections", etude),
   edit: (etude: IEtude) => requests.put(`/collections/${etude.id}`, etude),
   detail: (id: string) => requests.get(`/collections/${id}`),
+  fluenceLearning: (id: string) => requests.post(`/collections/${id}/fluencelearning`, {}),
+  fluenceEvolution: (id: string) => requests.post(`/collections/${id}/fluenceevolution`, {}),
+  fluenceFlowing: (id: string) => requests.post(`/collections/${id}/fluenceflowing`, {}),
 };
 
 //  PRIVATE

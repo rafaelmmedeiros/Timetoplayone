@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { Card, Button, Icon } from "semantic-ui-react";
 import { formatDistance } from "date-fns";
 import { IEtude } from "../../../../../app/models/appTrainer/domain/etude";
+import { RootStoreContext } from "../../../../../app/stores/rootStore";
 
 const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
+  const rootStore = useContext(RootStoreContext);
+  const { fluenceLearning, fluenceEvolution, fluenceFlowing } = rootStore.userCollectionStore;
+
   var neverPlayed;
   if (etude.created > etude.lastPlayed) neverPlayed = true;
 
@@ -32,19 +36,38 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
       <Card.Content extra>
         {/* ETUDE FLUENCE LEVEL */}
 
-
         <Button.Group fluid>
-          <Button color={etude.fluence === 1 ? "yellow" : "grey"}>Leaning</Button>
+          <Button
+            name={etude.id}
+            color={etude.fluence === 1 ? "yellow" : "grey"}
+            onClick={(e) => {
+              fluenceLearning(etude);
+            }}
+          >
+            Leaning
+          </Button>
           <Button.Or text=">>" />
-          <Button color={etude.fluence === 2 ? "olive" : "grey"}>Evolution</Button>
+          <Button
+            name={etude.id}
+            color={etude.fluence === 2 ? "olive" : "grey"}
+            onClick={(e) => {
+              fluenceEvolution(etude);
+            }}
+          >
+            Evolution
+          </Button>
           <Button.Or text=">>" />
-          <Button color={etude.fluence === 3 ? "green" : "grey"}>Flowing</Button>
+          <Button
+            name={etude.id}
+            color={etude.fluence === 3 ? "green" : "grey"}
+            onClick={(e) => {
+              fluenceFlowing(etude);
+            }}
+          >
+            Flowing
+          </Button>
         </Button.Group>
-
-        
       </Card.Content>
-      
-
 
       <Card.Content extra>
         {/* PLACAR */}
