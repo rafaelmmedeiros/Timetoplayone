@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.AppTrainer.Collections.Others;
+using Application.AppTrainer.Util;
 using Application.Interfaces;
 using AutoMapper;
-using Domain.AppTrainer;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -32,8 +32,11 @@ namespace Application.AppTrainer.Collections
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
             private readonly IMapper _mapper;
-            public Handler(DataContext context, IUserAccessor userAccessor, IMapper mapper)
+            private readonly ITomePosition _tomePosition;
+
+            public Handler(DataContext context, IUserAccessor userAccessor, IMapper mapper, ITomePosition tomePosition)
             {
+                _tomePosition = tomePosition;
                 _mapper = mapper;
                 _userAccessor = userAccessor;
                 _context = context;
@@ -60,7 +63,7 @@ namespace Application.AppTrainer.Collections
                         Active = etude.Active,
                         Fluence = etude.Fluence,
                         Tome = etude.Tome,
-                        TomePosition = 2,
+                        TomePosition = await _tomePosition.GetTomePosition(etude.Tome),
                         Time = etude.Time,
                         Description = etude.Description,
                         Executions = etude.Executions,

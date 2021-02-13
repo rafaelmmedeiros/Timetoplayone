@@ -46,7 +46,7 @@ namespace Application.AppTrainer.Lores
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 //  RULES
-                var tomeToFind = await _context.Tomes.SingleOrDefaultAsync(x => x.Title == request.Title);
+                var tomeToFind = await _context.Tomes.SingleOrDefaultAsync(x => x.Title == request.Title && x.AppUserId == user.Id);
 
                 if (tomeToFind != null)
                     throw new RESTException(HttpStatusCode.Forbidden, new { Tomes = "Forbidden, This tile is already used" });

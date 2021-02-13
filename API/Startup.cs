@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using API.Middleware;
+using Application.AppTrainer.Util;
 using Application.Grupos;
 using Application.Interfaces;
 using AutoMapper;
@@ -125,6 +126,7 @@ namespace API
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.AddScoped<ITomePosition, TomePosition>();
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
 
         }
