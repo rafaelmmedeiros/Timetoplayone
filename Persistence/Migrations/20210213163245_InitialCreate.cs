@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
@@ -54,7 +53,6 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                         .Annotation("Sqlite:Autoincrement", true),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
@@ -76,7 +74,6 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
@@ -158,12 +155,35 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Chapters",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Day = table.Column<DateTime>(nullable: false),
+                    TotalTime = table.Column<int>(nullable: false),
+                    TotalEtudes = table.Column<int>(nullable: false),
+                    Objective = table.Column<int>(nullable: false),
+                    AppUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Chapters", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Chapters_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Etudes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Active = table.Column<bool>(nullable: false),
+                    Fluence = table.Column<int>(nullable: false),
                     Tome = table.Column<string>(nullable: true),
                     Time = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
@@ -233,6 +253,7 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Position = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
+                    TotalEtudes = table.Column<int>(nullable: false),
                     AppUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -284,6 +305,11 @@ namespace Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Chapters_AppUserId",
+                table: "Chapters",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Etudes_AppUserId",
                 table: "Etudes",
                 column: "AppUserId");
@@ -320,6 +346,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Chapters");
 
             migrationBuilder.DropTable(
                 name: "Etudes");

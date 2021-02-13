@@ -7,7 +7,7 @@ namespace Application.AppTrainer.Collections.Others
     {
         public MappingProfile()
         {
-            CreateMap<Etude, EtudeEditDto>();
+            CreateMap<Etude, EtudeDto>();
         }
     }
 }

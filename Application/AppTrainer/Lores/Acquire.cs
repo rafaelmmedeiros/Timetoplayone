@@ -23,7 +23,7 @@ namespace Application.AppTrainer.Lores
         {
             public Query()
             {
-                // FOR FILTERING
+                // FILTERS GO HERE
             }
         }
 

@@ -10,7 +10,7 @@ namespace API.Controllers
     public class CollectionsController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<UserCollection>> Get()
+        public async Task<ActionResult<Acquire.EtudeEnvelope>> Get()
         {
             return await Mediator.Send(new Acquire.Query { });
         }

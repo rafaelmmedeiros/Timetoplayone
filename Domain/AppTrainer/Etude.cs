@@ -22,7 +22,5 @@ namespace Domain.AppTrainer
 
         //  RELATIONS
         public string AppUserId { get; set; }
-
-
     }
 }

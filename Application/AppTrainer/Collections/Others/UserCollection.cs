@@ -5,7 +5,6 @@ namespace Application.AppTrainer.Collections.Others
 {
     public class UserCollection
     {
-        public string Username { get; set; }
-        public ICollection<Etude> Etudes { get; set; }
+        public ICollection<EtudeDto> Etudes { get; set; }
     }
 }
