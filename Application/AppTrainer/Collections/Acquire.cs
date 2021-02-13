@@ -48,7 +48,6 @@ namespace Application.AppTrainer.Collections
 
                 var queryable = _context.Etudes
                     .Where(a => a.AppUserId == user.Id)
-                    .OrderBy(b => b.Tome)
                     .AsQueryable();
 
                 var etudes = queryable.ToList();
@@ -74,9 +73,11 @@ namespace Application.AppTrainer.Collections
                     etudesToReturn.Add(userEtude);
                 }
 
+                List<EtudeDto> sortedetudesToReturn = etudesToReturn.OrderBy(x => x.TomePosition).ToList();
+
                 return new EtudeEnvelope
                 {
-                    Etudes = etudesToReturn
+                    Etudes = sortedetudesToReturn
                 };
             }
         }
