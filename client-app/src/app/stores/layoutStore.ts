@@ -7,11 +7,13 @@ export default class LayoutSotre {
     this.rootStore = rootStore;
   }
 
-  @observable colorSelected = "";
+  @observable colorSelected = "red";
 
   @action setColor = async (position: number) => {
     runInAction(() => {
-      if (position === 1) this.colorSelected = "red";
+      if (position === 1) {
+        this.colorSelected = "red";
+      }
     });
   };
 }

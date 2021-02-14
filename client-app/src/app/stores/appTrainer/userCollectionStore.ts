@@ -115,6 +115,7 @@ export default class UserCollectionStore {
       });
       toast.success("👍 Etude created with success.");
       this.setcreateModeCollection();
+      this.loadUserCollection();
       // this.etudesByTome(); TODO
     } catch (error) {
       runInAction("Create etude Erro", () => {

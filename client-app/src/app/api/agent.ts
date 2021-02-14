@@ -63,7 +63,7 @@ axios.interceptors.response.use(undefined, (error) => {
 });
 
 // TODO: DELAY - TIRAR EM PRODUÇÃO
-let time = 250;
+let time = 500;
 
 const responseBody = (response: AxiosResponse) => response.data;
 
