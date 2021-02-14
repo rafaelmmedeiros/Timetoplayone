@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Application.AppTrainer.Collections.Others;
 using Application.AppTrainer.Util;
 using Application.Interfaces;
-using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -31,13 +30,11 @@ namespace Application.AppTrainer.Collections
         {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            private readonly IMapper _mapper;
             private readonly ITomePosition _tomePosition;
 
-            public Handler(DataContext context, IUserAccessor userAccessor, IMapper mapper, ITomePosition tomePosition)
+            public Handler(DataContext context, IUserAccessor userAccessor, ITomePosition tomePosition)
             {
                 _tomePosition = tomePosition;
-                _mapper = mapper;
                 _userAccessor = userAccessor;
                 _context = context;
             }

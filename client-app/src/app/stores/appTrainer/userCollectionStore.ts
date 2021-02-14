@@ -208,4 +208,20 @@ export default class UserCollectionStore {
       toast.error("👎 Error deleting Etude.");
     }
   };
+
+  @action changeActive = async (etude: IEtude) => {
+    this.loading = true;
+    try {
+      await agent.UserCollection.changeActive(etude.id);
+      runInAction(() => {
+        this.loadUserCollection();
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error changines etude status.");
+    }
+  };
 }
