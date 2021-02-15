@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.AppTrainer.Util;
 using Application.Errors;
 using Application.Interfaces;
 using MediatR;
@@ -21,8 +22,10 @@ namespace Application.AppTrainer.Lores
         {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
+            private readonly ITomeTotalEtudes _tomeTotalEtudes;
+            public Handler(DataContext context, IUserAccessor userAccessor, ITomeTotalEtudes tomeTotalEtudes)
             {
+                _tomeTotalEtudes = tomeTotalEtudes;
                 _userAccessor = userAccessor;
                 _context = context;
             }
@@ -33,13 +36,15 @@ namespace Application.AppTrainer.Lores
 
                 var tome = await _context.Tomes.FindAsync(request.Id);
 
+                var tomeTotalEtudes = await _tomeTotalEtudes.GetTomeQuantity(tome.Title);
+
                 if (tome == null)
                     throw new RESTException(HttpStatusCode.NotFound, new { tome = "Not Found" });
 
                 if (tome.AppUserId != user.Id)
                     throw new RESTException(HttpStatusCode.Forbidden, new { tome = "Forbidden" });
 
-                if (tome.TotalEtudes > 0)
+                if (tomeTotalEtudes > 0)
                     throw new RESTException(HttpStatusCode.Forbidden, new { tome = "Is Not Empty" });
 
                 //  POSITION CORRECTION

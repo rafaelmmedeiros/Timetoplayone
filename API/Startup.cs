@@ -127,6 +127,8 @@ namespace API
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IPhotoAccessor, PhotoAccessor>();
             services.AddScoped<ITomePosition, TomePosition>();
+            services.AddScoped<ITomeTotalEtudes, TomeTotalEtudes>();
+            services.AddScoped<ITomeTotalTIme, TomeTotalTIme>();
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
 
         }

@@ -2,8 +2,8 @@ using System.Threading.Tasks;
 
 namespace Application.AppTrainer.Util
 {
-    public interface ITomePosition
+    public interface ITomeTotalTIme
     {
-        Task<int> GetTomePosition(string tome);
+        Task<int> GetTomeTime(string tome);
     }
 }

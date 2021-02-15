@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.AppTrainer.Lores.Others;
+using Application.AppTrainer.Util;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.AppTrainer;
@@ -30,12 +31,14 @@ namespace Application.AppTrainer.Lores
         public class Handler : IRequestHandler<Query, TomeEnvelope>
         {
             private readonly DataContext _context;
-            private readonly IMapper _mapper;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
+            private readonly ITomeTotalEtudes _tomeTotalEtudes;
+            private readonly ITomeTotalTIme _tomeTotalTIme;
+            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor, ITomeTotalEtudes tomeTotalEtudes, ITomeTotalTIme tomeTotalTIme)
             {
+                _tomeTotalTIme = tomeTotalTIme;
+                _tomeTotalEtudes = tomeTotalEtudes;
                 _userAccessor = userAccessor;
-                _mapper = mapper;
                 _context = context;
             }
 
@@ -45,15 +48,30 @@ namespace Application.AppTrainer.Lores
 
                 var queryable = _context.Tomes
                     .Where(a => a.AppUserId == user.Id)
-                    .OrderBy(b => b.Position)
                     .AsQueryable();
 
-                var tomes = await queryable
-                    .ToListAsync();
+                var tomes = queryable.ToList();
+                var tomesToProcessing = new List<TomeLoresDto>();
+
+                foreach (var tome in tomes)
+                {
+                    var userTome = new TomeLoresDto
+                    {
+                        Id = tome.Id,
+                        Title = tome.Title,
+                        Active = tome.Active,
+                        Position = tome.Position,
+                        TotalEtudes = await _tomeTotalEtudes.GetTomeQuantity(tome.Title),
+                        TotalTime = await _tomeTotalTIme.GetTomeTime(tome.Title),
+                    };
+                    tomesToProcessing.Add(userTome);
+                }
+
+                List<TomeLoresDto> sortedTomesToReturn = tomesToProcessing.OrderBy(x => x.Position).ToList();
 
                 return new TomeEnvelope
                 {
-                    Tomes = _mapper.Map<List<Tome>, List<TomeLoresDto>>(tomes)
+                    Tomes = sortedTomesToReturn
                 };
             }
         }

@@ -48,7 +48,7 @@ namespace Application.AppTrainer.Collections
                     .AsQueryable();
 
                 var etudes = queryable.ToList();
-                var etudesToReturn = new List<EtudeCollectionDto>();
+                var etudesToProcessing = new List<EtudeCollectionDto>();
 
                 foreach (var etude in etudes)
                 {
@@ -67,10 +67,10 @@ namespace Application.AppTrainer.Collections
                         Created = etude.Created,
                         LastPlayed = etude.LastPlayed
                     };
-                    etudesToReturn.Add(userEtude);
+                    etudesToProcessing.Add(userEtude);
                 }
 
-                List<EtudeCollectionDto> sortedetudesToReturn = etudesToReturn.OrderBy(x => x.TomePosition).ToList();
+                List<EtudeCollectionDto> sortedetudesToReturn = etudesToProcessing.OrderBy(x => x.TomePosition).ToList();
 
                 return new EtudeEnvelope
                 {

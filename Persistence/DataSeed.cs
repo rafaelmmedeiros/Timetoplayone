@@ -74,7 +74,6 @@ namespace Persistence
                         Title = "Warm-Up",
                         Active = true,
                         Position = 1,
-                        TotalEtudes = 3,
                         AppUserId = "e"
                     },
                     new Tome
@@ -82,7 +81,6 @@ namespace Persistence
                         Title = "Coordination",
                         Active = true,
                         Position = 2,
-                        TotalEtudes = 2,
                         AppUserId = "e"
                     },
                     new Tome
@@ -90,7 +88,6 @@ namespace Persistence
                         Title = "Arpeggios",
                         Active = false,
                         Position = 3,
-                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                      new Tome
@@ -98,7 +95,6 @@ namespace Persistence
                         Title = "Tapping",
                         Active = true,
                         Position = 4,
-                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                     new Tome
@@ -106,7 +102,6 @@ namespace Persistence
                         Title = "Riffs",
                         Active = false,
                         Position = 5,
-                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                     new Tome
@@ -114,7 +109,6 @@ namespace Persistence
                         Title = "Clean Arpeggios",
                         Active = true,
                         Position = 6,
-                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                     new Tome
@@ -122,7 +116,6 @@ namespace Persistence
                         Title = "Repertório X",
                         Active = false,
                         Position = 7,
-                        TotalEtudes = 0,
                         AppUserId = "e"
                     },
                      new Tome
@@ -130,7 +123,6 @@ namespace Persistence
                         Title = "Aquecimento",
                         Active = true,
                         Position = 1,
-                        TotalEtudes = 0,
                         AppUserId = "b"
                     },
                     new Tome
@@ -138,7 +130,6 @@ namespace Persistence
                         Title = "Sincronismo",
                         Active = false,
                         Position = 2,
-                        TotalEtudes = 0,
                         AppUserId = "b"
                     },
                     new Tome
@@ -146,7 +137,6 @@ namespace Persistence
                         Title = "Escalas",
                         Active = true,
                         Position = 3,
-                        TotalEtudes = 0,
                         AppUserId = "b"
                     },
                      new Tome
@@ -154,7 +144,6 @@ namespace Persistence
                         Title = "Banda X",
                         Active = false,
                         Position = 4,
-                        TotalEtudes = 0,
                         AppUserId = "b"
                     }
                 };
