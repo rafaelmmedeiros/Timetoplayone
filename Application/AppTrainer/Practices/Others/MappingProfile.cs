@@ -7,7 +7,7 @@ namespace Application.AppTrainer.Practices.Others
     {
         public MappingProfile()
         {
-            CreateMap<Etude, EtudeListDto>();
+            CreateMap<Etude, EtudePracticeDto>();
         }
     }
 }

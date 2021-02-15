@@ -16,7 +16,7 @@ namespace Application.AppTrainer.Practices
     {
         public class PracticeEnvelope
         {
-            public List<EtudeListDto> Etudes { get; set; }
+            public List<EtudePracticeDto> Etudes { get; set; }
         }
 
         public class Query : IRequest<PracticeEnvelope>
@@ -54,7 +54,7 @@ namespace Application.AppTrainer.Practices
 
                 return new PracticeEnvelope
                 {
-                    Etudes = _mapper.Map<List<Etude>, List<EtudeListDto>>(etudes)
+                    Etudes = _mapper.Map<List<Etude>, List<EtudePracticeDto>>(etudes)
                 };
             }
         }

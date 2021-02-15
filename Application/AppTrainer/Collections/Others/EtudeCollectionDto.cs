@@ -2,7 +2,7 @@ using System;
 
 namespace Application.AppTrainer.Collections.Others
 {
-    public class EtudeDto
+    public class EtudeCollectionDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

@@ -71,78 +71,89 @@ namespace Persistence
                 {
                     new Tome
                     {
-                        Position = 1,
                         Title = "Warm-Up",
+                        Active = true,
+                        Position = 1,
                         TotalEtudes = 3,
                         AppUserId = "e"
                     },
                     new Tome
                     {
-                        Position = 2,
                         Title = "Coordination",
+                        Active = true,
+                        Position = 2,
                         TotalEtudes = 2,
                         AppUserId = "e"
                     },
                     new Tome
                     {
-                        Position = 3,
                         Title = "Arpeggios",
-                        TotalEtudes = 0,
-                        AppUserId = "e"
-                    },
-                     new Tome
-                    {
-                        Position = 4,
-                        Title = "Tapping",
-                        TotalEtudes = 0,
-                        AppUserId = "e"
-                    },
-                    new Tome
-                    {
-                        Position = 5,
-                        Title = "Riffs",
-                        TotalEtudes = 0,
-                        AppUserId = "e"
-                    },
-                    new Tome
-                    {
-                        Position = 6,
-                        Title = "Clean Arpeggios",
-                        TotalEtudes = 0,
-                        AppUserId = "e"
-                    },
-                    new Tome
-                    {
-                        Position = 7,
-                        Title = "Repertório X",
-                        TotalEtudes = 0,
-                        AppUserId = "e"
-                    },
-                     new Tome
-                    {
-                        Position = 1,
-                        Title = "Aquecimento",
-                        TotalEtudes = 0,
-                        AppUserId = "b"
-                    },
-                    new Tome
-                    {
-                        Position = 2,
-                        Title = "Sincronismo",
-                        TotalEtudes = 0,
-                        AppUserId = "b"
-                    },
-                    new Tome
-                    {
+                        Active = false,
                         Position = 3,
+                        TotalEtudes = 0,
+                        AppUserId = "e"
+                    },
+                     new Tome
+                    {
+                        Title = "Tapping",
+                        Active = true,
+                        Position = 4,
+                        TotalEtudes = 0,
+                        AppUserId = "e"
+                    },
+                    new Tome
+                    {
+                        Title = "Riffs",
+                        Active = false,
+                        Position = 5,
+                        TotalEtudes = 0,
+                        AppUserId = "e"
+                    },
+                    new Tome
+                    {
+                        Title = "Clean Arpeggios",
+                        Active = true,
+                        Position = 6,
+                        TotalEtudes = 0,
+                        AppUserId = "e"
+                    },
+                    new Tome
+                    {
+                        Title = "Repertório X",
+                        Active = false,
+                        Position = 7,
+                        TotalEtudes = 0,
+                        AppUserId = "e"
+                    },
+                     new Tome
+                    {
+                        Title = "Aquecimento",
+                        Active = true,
+                        Position = 1,
+                        TotalEtudes = 0,
+                        AppUserId = "b"
+                    },
+                    new Tome
+                    {
+                        Title = "Sincronismo",
+                        Active = false,
+                        Position = 2,
+                        TotalEtudes = 0,
+                        AppUserId = "b"
+                    },
+                    new Tome
+                    {
                         Title = "Escalas",
+                        Active = true,
+                        Position = 3,
                         TotalEtudes = 0,
                         AppUserId = "b"
                     },
                      new Tome
                     {
-                        Position = 4,
                         Title = "Banda X",
+                        Active = false,
+                        Position = 4,
                         TotalEtudes = 0,
                         AppUserId = "b"
                     }

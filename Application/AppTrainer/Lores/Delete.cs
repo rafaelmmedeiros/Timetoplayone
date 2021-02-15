@@ -33,7 +33,6 @@ namespace Application.AppTrainer.Lores
 
                 var tome = await _context.Tomes.FindAsync(request.Id);
 
-                //  SECURITY
                 if (tome == null)
                     throw new RESTException(HttpStatusCode.NotFound, new { tome = "Not Found" });
 

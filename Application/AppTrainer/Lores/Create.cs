@@ -45,13 +45,12 @@ namespace Application.AppTrainer.Lores
             {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                //  RULES
                 var tomeToFind = await _context.Tomes.SingleOrDefaultAsync(x => x.Title == request.Title && x.AppUserId == user.Id);
 
                 if (tomeToFind != null)
                     throw new RESTException(HttpStatusCode.Forbidden, new { Tomes = "Forbidden, This tile is already used" });
 
-                //  User não deve ter mais de 10 Tomes.
+                // USER CANT HAVE MORE THAN 10 TOMES
                 if (user.Tomes.Count() >= 10)
                     throw new RESTException(HttpStatusCode.Forbidden, new { Tomes = "Forbidden, limit of 10 tomes" });
 

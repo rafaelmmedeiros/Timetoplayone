@@ -15,7 +15,7 @@ namespace Application.AppTrainer.Collections
     {
         public class EtudeEnvelope
         {
-            public List<EtudeDto> Etudes { get; set; }
+            public List<EtudeCollectionDto> Etudes { get; set; }
         }
 
         public class Query : IRequest<EtudeEnvelope>
@@ -48,11 +48,11 @@ namespace Application.AppTrainer.Collections
                     .AsQueryable();
 
                 var etudes = queryable.ToList();
-                var etudesToReturn = new List<EtudeDto>();
+                var etudesToReturn = new List<EtudeCollectionDto>();
 
                 foreach (var etude in etudes)
                 {
-                    var userEtude = new EtudeDto
+                    var userEtude = new EtudeCollectionDto
                     {
                         Id = etude.Id,
                         Title = etude.Title,
@@ -70,7 +70,7 @@ namespace Application.AppTrainer.Collections
                     etudesToReturn.Add(userEtude);
                 }
 
-                List<EtudeDto> sortedetudesToReturn = etudesToReturn.OrderBy(x => x.TomePosition).ToList();
+                List<EtudeCollectionDto> sortedetudesToReturn = etudesToReturn.OrderBy(x => x.TomePosition).ToList();
 
                 return new EtudeEnvelope
                 {

@@ -7,7 +7,7 @@ namespace Application.AppTrainer.Lores.Others
     {
         public MappingProfile()
         {
-            CreateMap<Tome, TomeListDto>();
+            CreateMap<Tome, TomeLoresDto>();
         }
     }
 }

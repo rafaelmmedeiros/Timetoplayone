@@ -37,19 +37,17 @@ namespace Application.AppTrainer.Lores
 
                 var tomeNext = user.Tomes.FirstOrDefault(x => x.Position == tome.Position + 1);
 
-                // SECURITY
                 if (tome == null)
                     throw new RESTException(HttpStatusCode.NotFound, new { Tome = "Not found" });
+
+                if (tome.AppUserId != user.Id)
+                    throw new RESTException(HttpStatusCode.Forbidden, new { etude = "Forbidden" });
 
                 if (tomeNext == null)
                     throw new RESTException(HttpStatusCode.NotFound, new { Tome = "There is no Next" });
 
-                // SWAP POSITIONS
-                if (tome != null)
-                {
-                    tome.Position++;
-                    tomeNext.Position--;
-                }
+                tome.Position++;
+                tomeNext.Position--;
 
                 var success = await _context.SaveChangesAsync() > 0;
 

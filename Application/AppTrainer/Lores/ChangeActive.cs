@@ -3,7 +3,6 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Errors;
 using Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,7 @@ using Persistence;
 
 namespace Application.AppTrainer.Lores
 {
-    public class SetDown
+    public class ChangeActive
     {
         public class Command : IRequest
         {
@@ -30,30 +29,23 @@ namespace Application.AppTrainer.Lores
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var tome = user.Tomes.FirstOrDefault(x => x.Id == request.Id);
 
-                var tomeBefore = user.Tomes.FirstOrDefault(x => x.Position == tome.Position - 1);
+                if (tome.AppUserId != user.Id)
+                    throw new Errors.RESTException(HttpStatusCode.Forbidden, new { etude = "Not belongs to you... " });
 
                 if (tome == null)
-                    throw new RESTException(HttpStatusCode.NotFound, new { Tome = "Not found" });
+                    throw new Errors.RESTException(HttpStatusCode.NotFound, new { etude = "Not Found" });
 
-                if (tome.AppUserId != user.Id)
-                    throw new RESTException(HttpStatusCode.Forbidden, new { etude = "Forbidden" });
-
-                if (tomeBefore == null)
-                    throw new RESTException(HttpStatusCode.NotFound, new { Tome = "There is no Before" });
-
-                tome.Position--;
-                tomeBefore.Position++;
+                tome.Active = !tome.Active;
 
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
 
-                throw new Exception("Error saving");
+                throw new Exception("Error Saving tome");
             }
         }
     }

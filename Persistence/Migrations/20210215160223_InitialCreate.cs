@@ -251,8 +251,9 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Position = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
+                    Active = table.Column<bool>(nullable: false),
+                    Position = table.Column<int>(nullable: false),
                     TotalEtudes = table.Column<int>(nullable: false),
                     AppUserId = table.Column<string>(nullable: true)
                 },

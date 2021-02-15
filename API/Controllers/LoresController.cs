@@ -41,5 +41,11 @@ namespace API.Controllers
         {
             return await Mediator.Send(new SetDown.Command { Id = id });
         }
+
+        [HttpPost("{id}/changeactive")]
+        public async Task<ActionResult<Unit>> ChangeActive(Guid id)
+        {
+            return await Mediator.Send(new ChangeActive.Command { Id = id });
+        }
     }
 }

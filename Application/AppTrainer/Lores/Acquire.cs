@@ -16,7 +16,7 @@ namespace Application.AppTrainer.Lores
     {
         public class TomeEnvelope
         {
-            public List<TomeListDto> Tomes { get; set; }
+            public List<TomeLoresDto> Tomes { get; set; }
         }
 
         public class Query : IRequest<TomeEnvelope>
@@ -53,7 +53,7 @@ namespace Application.AppTrainer.Lores
 
                 return new TomeEnvelope
                 {
-                    Tomes = _mapper.Map<List<Tome>, List<TomeListDto>>(tomes)
+                    Tomes = _mapper.Map<List<Tome>, List<TomeLoresDto>>(tomes)
                 };
             }
         }
