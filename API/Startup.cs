@@ -129,6 +129,7 @@ namespace API
             services.AddScoped<ITomePosition, TomePosition>();
             services.AddScoped<ITomeTotalEtudes, TomeTotalEtudes>();
             services.AddScoped<ITomeTotalTIme, TomeTotalTIme>();
+            services.AddScoped<ITomeActive, TomeActive>();
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
 
         }

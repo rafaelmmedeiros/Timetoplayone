@@ -5,24 +5,23 @@ using Persistence;
 
 namespace Application.AppTrainer.Util
 {
-    public class TomeTotalEtudes : ITomeTotalEtudes
+    public class TomeActive : ITomeActive
     {
         private readonly DataContext _context;
         private readonly IUserAccessor _userAccessor;
-        public TomeTotalEtudes(DataContext context, IUserAccessor userAccessor)
+        public TomeActive(DataContext context, IUserAccessor userAccessor)
         {
             _userAccessor = userAccessor;
             _context = context;
         }
 
-        public async Task<int> GetTomeQuantity(string tome)
+        public async Task<bool> GetTomeStatus(string tome)
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-            var tomesQuantity = await _context.Etudes
-                .CountAsync(x => x.Tome == tome && x.AppUserId == user.Id && x.Active == true);
+            var tomeToFind = await _context.Tomes.SingleOrDefaultAsync(x => x.Title == tome && x.AppUserId == user.Id);
 
-            return tomesQuantity;
+            return tomeToFind.Active;
         }
     }
 }

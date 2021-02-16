@@ -8,9 +8,9 @@ namespace API.Controllers
     public class PracticesController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<List.PracticeEnvelope>> List()
+        public async Task<ActionResult<Acquire.PracticeEnvelope>> List()
         {
-            return await Mediator.Send(new List.Query());
+            return await Mediator.Send(new Acquire.Query());
         }
 
         [HttpPost("{id}")]
