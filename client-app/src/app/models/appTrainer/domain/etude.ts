@@ -4,6 +4,7 @@ export interface IEtude {
     active: boolean;
     fluence: number;
     tome: string;
+    tomePosition: number;
     time: string;
     description: string;
     executions: number;

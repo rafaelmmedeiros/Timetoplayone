@@ -19,6 +19,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
     setTargetDown,
     deleteTome,
     setTargetDelete,
+    changeActive,
   } = rootStore.userLoreStore;
 
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
@@ -54,13 +55,16 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
       <Card.Content>
         <Card.Header>{tome.title}</Card.Header>
       </Card.Content>
+      
       {/* --------------------- */}
-      {tome.totalEtudes > 1 ? (
+      {tome.totalEtudes >= 1 ? (
         <Card.Content>
           <Icon name="list alternate" style={{ marginRight: "5px" }}></Icon>
           {tome.totalEtudes} Etudes
+          <Icon name="clock" style={{ marginRight: "5px", marginLeft: "10px" }}></Icon>
+          {tome.totalTime} Minutes
         </Card.Content>
-      ) : tome.totalEtudes === 1 ? (
+      ) : tome.totalEtudes === 0 ? (
         <Card.Content>
           <Icon name="list alternate" style={{ marginRight: "5px" }}></Icon>
           {tome.totalEtudes} Etude
@@ -106,22 +110,37 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
             </Button>
           )}
         </Button.Group>
-        {/* DELETE */}
-        {tome.totalEtudes === 0 && (
+
+        {/* DELETE AND ACTIVATE */}
+        <Button.Group floated="right">
           <Button
             name={tome.id}
             basic
-            color="red"
+            color={tome.active ? "red" : "green"}
             floated="right"
             onClick={(e) => {
-              deleteTome(tome);
-              setTargetDelete(e.currentTarget.name);
+              changeActive(tome);
             }}
-            loading={loading && targetDelete === tome.id}
           >
-            <Icon fitted name="trash" />
+            <Icon fitted name="power" />
           </Button>
-        )}
+
+          {!tome.active && tome.totalEtudes === 0 && (
+            <Button
+              name={tome.id}
+              basic
+              color="red"
+              floated="right"
+              onClick={(e) => {
+                deleteTome(tome);
+                setTargetDelete(e.currentTarget.name);
+              }}
+              loading={loading && targetDelete === tome.id}
+            >
+              <Icon fitted name="trash" />
+            </Button>
+          )}
+        </Button.Group>
       </Card.Content>
     </Card>
   );

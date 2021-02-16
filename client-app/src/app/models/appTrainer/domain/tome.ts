@@ -1,6 +1,8 @@
 export interface ITome {
   id: string;
-  position: number;
   title: string;
+  active: boolean;
+  position: number;
   totalEtudes: number;
+  totalTime: number;
 }

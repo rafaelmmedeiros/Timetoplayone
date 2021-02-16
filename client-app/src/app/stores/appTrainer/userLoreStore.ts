@@ -143,4 +143,20 @@ export default class UserLoreStore {
       toast.error("👎 Error deleting Tome.");
     }
   };
+
+  @action changeActive = async (tome: ITome) => {
+    this.loading = true;
+    try {
+      await agent.UserLore.changeActive(tome.id);
+      runInAction(() => {
+        this.loadUserLore();
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.loading = false;
+      });
+      toast.error("👎 Error changines etude status.");
+    }
+  };
 }

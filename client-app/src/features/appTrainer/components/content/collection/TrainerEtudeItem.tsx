@@ -13,35 +13,43 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   if (etude.created > etude.lastPlayed) neverPlayed = true;
 
   return (
-    <Card key={etude.id} color="red">
+    <Card
+      key={etude.id}
+      color={
+        etude.tomePosition === 1
+          ? "red"
+          : etude.tomePosition === 2
+          ? "orange"
+          : etude.tomePosition === 3
+          ? "yellow"
+          : etude.tomePosition === 4
+          ? "olive"
+          : etude.tomePosition === 5
+          ? "green"
+          : etude.tomePosition === 6
+          ? "teal"
+          : etude.tomePosition === 7
+          ? "blue"
+          : etude.tomePosition === 8
+          ? "violet"
+          : etude.tomePosition === 9
+          ? "purple"
+          : etude.tomePosition === 10
+          ? "pink"
+          : "black"
+      }
+    >
       <Card.Content>
-        {/* ACTIVATE AND DELETE BUTTONS */}
-        <Button.Group floated="right">
-          <Button
-            name={etude.id}
-            basic
-            color={etude.active ? "red" : "green"}
-            floated="right"
-            onClick={(e) => {
-              changeActive(etude);
-            }}
-          >
-            <Icon fitted name="power" />
+        {/* EDIT DATAILS BUTTONS */}
+        {/* <Button.Group floated="right">
+          <Button basic color="blue" floated="right">
+            <Icon fitted name="edit" />
           </Button>
-          {!etude.active && (
-            <Button
-              name={etude.id}
-              basic
-              color="red"
-              floated="right"
-              onClick={(e) => {
-                deleteEtude(etude);
-              }}
-            >
-              <Icon fitted name="trash" />
-            </Button>
-          )}
-        </Button.Group>
+          <Button basic color="violet" floated="right">
+            <Icon fitted name="magnify" />
+          </Button>
+        </Button.Group> */}
+
         {/* HEADER */}
         <Card.Header>{etude.title}</Card.Header>
         {/* DATES */}
@@ -91,14 +99,33 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         {etude.executions}
         <Icon size="big" name="history" style={{ marginRight: "10px", marginLeft: "10px" }} />
         {etude.played}
-        {/* EDIT DATAILS BUTTONS */}
+
+        {/* ACTIVATE AND DELETE BUTTONS */}
         <Button.Group floated="right">
-          <Button basic color="blue" floated="right">
-            <Icon fitted name="edit" />
+          <Button
+            name={etude.id}
+            basic
+            color={etude.active ? "red" : "green"}
+            floated="right"
+            onClick={(e) => {
+              changeActive(etude);
+            }}
+          >
+            <Icon fitted name="power" />
           </Button>
-          <Button basic color="violet" floated="right">
-            <Icon fitted name="magnify" />
-          </Button>
+          {!etude.active && (
+            <Button
+              name={etude.id}
+              basic
+              color="red"
+              floated="right"
+              onClick={(e) => {
+                deleteEtude(etude);
+              }}
+            >
+              <Icon fitted name="trash" />
+            </Button>
+          )}
         </Button.Group>
       </Card.Content>
     </Card>
