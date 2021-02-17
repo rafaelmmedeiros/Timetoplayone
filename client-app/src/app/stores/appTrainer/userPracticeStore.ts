@@ -45,7 +45,7 @@ export default class UserPracticeStore {
           toast.info("👍 Starting a new chapter!");
         }
 
-        //this.loadUserPractice();
+        this.loadUserPractice();
         this.loading = false;
       });
       toast.success("👍" + etude.title + " done with success.");
