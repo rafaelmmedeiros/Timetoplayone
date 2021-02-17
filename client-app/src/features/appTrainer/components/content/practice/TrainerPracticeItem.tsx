@@ -14,7 +14,32 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   if (etude.created > etude.lastPlayed) neverPlayed = true;
 
   return (
-    <Card key={etude.id} color="red">
+    <Card
+      key={etude.id}
+      color={
+        etude.tomePosition === 1
+          ? "red"
+          : etude.tomePosition === 2
+          ? "orange"
+          : etude.tomePosition === 3
+          ? "yellow"
+          : etude.tomePosition === 4
+          ? "olive"
+          : etude.tomePosition === 5
+          ? "green"
+          : etude.tomePosition === 6
+          ? "teal"
+          : etude.tomePosition === 7
+          ? "blue"
+          : etude.tomePosition === 8
+          ? "violet"
+          : etude.tomePosition === 9
+          ? "purple"
+          : etude.tomePosition === 10
+          ? "pink"
+          : "black"
+      }
+    >
       {/* --------------------- */}
       <Card.Content>
         {/* ACTIVATE AND DELETE BUTTONS */}
@@ -22,7 +47,36 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         {/* HEADER */}
         <Card.Header>{etude.title}</Card.Header>
         {/* DATES */}
-        <Label color="red">{etude.tome} </Label>
+        <Label
+          color={
+            etude.tomePosition === 1
+              ? "red"
+              : etude.tomePosition === 2
+              ? "orange"
+              : etude.tomePosition === 3
+              ? "yellow"
+              : etude.tomePosition === 4
+              ? "olive"
+              : etude.tomePosition === 5
+              ? "green"
+              : etude.tomePosition === 6
+              ? "teal"
+              : etude.tomePosition === 7
+              ? "blue"
+              : etude.tomePosition === 8
+              ? "violet"
+              : etude.tomePosition === 9
+              ? "purple"
+              : etude.tomePosition === 10
+              ? "pink"
+              : "black"
+          }
+        >
+          {etude.tome}
+        </Label>
+        <Label color={etude.fluence === 1 ? "yellow" : etude.fluence === 2 ? "olive" : etude.fluence === 3 ? "green" : "black"}>
+          {etude.fluence}
+        </Label>
       </Card.Content>
       {/* --------------------- */}
       <Card.Content extra>
@@ -54,8 +108,6 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
       <Card.Content extra>
         {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(new Date(), etude.lastPlayed)}</Card.Meta>}
         <Progress size="tiny" percent={etude.priority} indicating />
-        {/* <Progress size="tiny" percent={Math.floor(Math.random() * 101)} indicating />
-        <Progress size="tiny" percent={Math.floor(Math.random() * 101)} indicating /> */}
       </Card.Content>
     </Card>
   );

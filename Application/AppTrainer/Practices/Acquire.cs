@@ -69,7 +69,7 @@ namespace Application.AppTrainer.Practices
                         Time = etude.Time,
                         Description = etude.Description,
                         LastPlayed = etude.LastPlayed,
-                        Priority = await CalculatePriority(etude.Fluence, etude.LastPlayed)
+                        Priority = CalculatePriority(etude.Fluence, etude.LastPlayed)
                     };
                     if (userEtude.Active == true && userEtude.TomeActive == true)
                     {
@@ -89,7 +89,7 @@ namespace Application.AppTrainer.Practices
                 };
             }
 
-            public async Task<double> CalculatePriority(int fluence, DateTime lastPlayed)
+            public double CalculatePriority(int fluence, DateTime lastPlayed)
             {
                 double daysWithoutPlaying = (DateTime.Now - lastPlayed).TotalDays;
 
