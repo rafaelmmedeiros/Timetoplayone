@@ -71,7 +71,10 @@ namespace Application.AppTrainer.Practices
                         LastPlayed = etude.LastPlayed,
                         Priority = await CalculatePriority(etude.Fluence, etude.LastPlayed)
                     };
-                    etudesToProcessing.Add(userEtude);
+                    if (userEtude.Active == true && userEtude.TomeActive == true)
+                    {
+                        etudesToProcessing.Add(userEtude);
+                    }
                 }
 
                 List<EtudePracticeDto> sortedetudesToReturn = etudesToProcessing
