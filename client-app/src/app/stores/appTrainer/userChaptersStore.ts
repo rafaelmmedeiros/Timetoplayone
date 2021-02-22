@@ -4,6 +4,7 @@ import { IChapter } from "../../models/appTrainer/domain/chapter";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
 import { IUserChapters } from "../../models/appTrainer/userChapters";
+import { IUserChaptersWeek } from "../../models/appTrainer/userChaptersWeek";
 
 export default class UserChaptersStore {
   rootStore: RootStore;
@@ -22,7 +23,9 @@ export default class UserChaptersStore {
 
   //  USERCHAPTERS
   @observable userChapters: IUserChapters | null = null;
+  @observable userChaptersWeek: IUserChaptersWeek | null = null;
   @observable loadingUserChapters = true;
+  @observable loadingUserChaptersWeek = true;
 
   //  Aux Actions
   @computed get calculateNormalized() {
@@ -106,6 +109,22 @@ export default class UserChaptersStore {
       runInAction("", () => {
         this.loadingDecrease = false;
       });
+    }
+  };
+
+  @action loadUserChaptersWeek = async () => {
+    this.loadingUserChaptersWeek = true;
+    try {
+      const userChaptersWeek = await agent.UserChapters.week();
+      runInAction("loadUserChapters", () => {
+        this.userChaptersWeek = userChaptersWeek;
+        this.loadingUserChaptersWeek = false;
+      });
+    } catch (error) {
+      runInAction("loadUserChaptersWeek error", () => {
+        this.loadingUserChaptersWeek = false;
+      });
+      toast.error("👎 Error loading Week Chapaters.");
     }
   };
 }

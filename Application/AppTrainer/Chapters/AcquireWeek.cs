@@ -49,7 +49,9 @@ namespace Application.AppTrainer.Chapters
                     {
                         Id = chapter.Id,
                         Day = chapter.Day,
-                        TotalTime = chapter.TotalTime
+                        TotalTime = chapter.TotalTime,
+                        TotalEtudes = chapter.TotalEtudes,
+                        Objective = chapter.Objective
                     };
 
                     if ((DateTime.Today - userChapter.Day).TotalDays <= 7)

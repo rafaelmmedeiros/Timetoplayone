@@ -4,4 +4,5 @@ export interface IChapter {
   totalTime: number;
   totalEtudes: number;
   objective: number;
+  differenceToBestDay: number;
 }

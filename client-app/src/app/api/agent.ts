@@ -11,6 +11,7 @@ import { IEtude } from "../models/appTrainer/domain/etude";
 import { IUserPractice } from "../models/appTrainer/userPractice";
 import { IChapter } from "../models/appTrainer/domain/chapter";
 import { IUserChapters } from "../models/appTrainer/userChapters";
+import { IUserChaptersWeek } from "../models/appTrainer/userChaptersWeek";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -144,6 +145,9 @@ const UserPractice = {
 const UserChapters = {
   get: (): Promise<IUserChapters> => requests.get("/chapters"),
   today: (): Promise<IChapter> => requests.get("/chapters/today"),
+  week: (): Promise<IUserChaptersWeek> => requests.get("/week"),
+
+  // TODO: Need to become get, or be addded to requests.
   decrease: ({}) => requests.post("/chapters/decrease", {}),
   increase: ({}) => requests.post("/chapters/increase", {}),
 };
