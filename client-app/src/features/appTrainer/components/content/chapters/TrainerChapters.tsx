@@ -1,42 +1,20 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext, useEffect } from "react";
-import { Card, Grid, Header, Tab } from "semantic-ui-react";
-import LoadingComponent from "../../../../../app/layout/LoadingComponent";
-import { IChapter } from "../../../../../app/models/appTrainer/domain/chapter";
-import { RootStoreContext } from "../../../../../app/stores/rootStore";
-import TrainerChaptersItem from "./TrainerChaptersItem";
+import React from "react";
+import { Grid, Header, Tab } from "semantic-ui-react";
+import TrainerChapterWeek from "./TrainerChapterWeek";
 
-const TrainerChapters: React.FC = () => {
-  const rootStore = useContext(RootStoreContext);
-  const { userChapters, loadUserChapters, loadingUserChapters } = rootStore.userChaptersStore;
-
-  useEffect(() => {
-    loadUserChapters();
-  }, [loadUserChapters]);
-
+const TrainerChapters = () => {
   return (
     <Tab.Pane>
       <Grid>
-        {/* LOADING COMPONENT */}
-        {loadingUserChapters && <LoadingComponent content="Loading" />}
         {/* HEADER */}
         <Grid.Column width={16}>
-          <Header floated="left" icon="pin" content={"Chapters written."} />
+          <Header floated="left" icon="pin" content={"Chapters written!"} />
         </Grid.Column>
-        {/* BODY */}
+
+        {/* LASTE SEVEN DAYS */}
         <Grid.Column width={16}>
-          {/* CHAPTER LIST */}
-
-          <Card.Group stackable itemsPerRow={1}>
-
-
-            {userChapters?.chapters.map((chapter, index: number, array: IChapter[] ) => (
-              <TrainerChaptersItem key={chapter.id} chapter={chapter} before={array[index+1]} />
-            ))}
-
-
-          </Card.Group>
-
+          <TrainerChapterWeek />
         </Grid.Column>
       </Grid>
     </Tab.Pane>

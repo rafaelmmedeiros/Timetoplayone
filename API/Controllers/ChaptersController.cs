@@ -32,5 +32,11 @@ namespace API.Controllers
             return await Mediator.Send(new IncreaseObjective.Command { });
         }
 
+        [HttpGet("week")]
+        public async Task<ActionResult<AcquireWeek.ChaptersWeekEnvelope>> AcquireWeek()
+        {
+            return await Mediator.Send(new AcquireWeek.Query());
+        }
+
     }
 }
