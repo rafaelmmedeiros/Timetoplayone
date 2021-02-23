@@ -72,7 +72,7 @@ namespace Application.AppTrainer.Chapters
                     {
                         if ((DateTime.Today - chapter.Day).TotalDays == interval)
                         {
-                            chapter.DifferenceToBestDay = Math.Round(((double)chapter.TotalTime / bestWeekDay)*100, 2);
+                            chapter.DifferenceToBestDay = Math.Round(((double)chapter.TotalTime / bestWeekDay) * 100, 2);
 
                             element = chapter;
                             break;
