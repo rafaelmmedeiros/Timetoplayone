@@ -145,7 +145,7 @@ const UserPractice = {
 const UserChapters = {
   get: (): Promise<IUserChapters> => requests.get("/chapters"),
   today: (): Promise<IChapter> => requests.get("/chapters/today"),
-  week: (): Promise<IUserChaptersWeek> => requests.get("/week"),
+  week: (): Promise<IUserChaptersWeek> => requests.get("/chapters/week"),
 
   // TODO: Need to become get, or be addded to requests.
   decrease: ({}) => requests.post("/chapters/decrease", {}),

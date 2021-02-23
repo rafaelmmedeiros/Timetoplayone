@@ -76,6 +76,22 @@ export default class UserChaptersStore {
     }
   };
 
+  @action loadUserChaptersWeek = async () => {
+    this.loadingUserChaptersWeek = true;
+    try {
+      const userChaptersWeek = await agent.UserChapters.week();
+      runInAction("loadUserChaptersWeek", () => {
+        this.userChaptersWeek = userChaptersWeek;
+        this.loadingUserChaptersWeek = false;
+      });
+    } catch (error) {
+      runInAction("loadUserChaptersWeek error", () => {
+        this.loadingUserChaptersWeek = false;
+      });
+      toast.error("👎 Error loading Week Chapaters.");
+    }
+  };
+
   @action increaseObjetive = async () => {
     this.loadingIncrease = true;
     try {
@@ -109,22 +125,6 @@ export default class UserChaptersStore {
       runInAction("", () => {
         this.loadingDecrease = false;
       });
-    }
-  };
-
-  @action loadUserChaptersWeek = async () => {
-    this.loadingUserChaptersWeek = true;
-    try {
-      const userChaptersWeek = await agent.UserChapters.week();
-      runInAction("loadUserChapters", () => {
-        this.userChaptersWeek = userChaptersWeek;
-        this.loadingUserChaptersWeek = false;
-      });
-    } catch (error) {
-      runInAction("loadUserChaptersWeek error", () => {
-        this.loadingUserChaptersWeek = false;
-      });
-      toast.error("👎 Error loading Week Chapaters.");
     }
   };
 }
