@@ -2,7 +2,7 @@ using System;
 
 namespace Application.AppTrainer.Chapters.Others
 {
-    public class ChapterWeekDto
+    public class ChapterMonthDto
     {
         public Guid Id { get; set; }
         public DateTime Day { get; set; }
