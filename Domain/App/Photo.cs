@@ -1,7 +1,5 @@
-namespace Domain.App
-{
-    public class Photo
-    {
+namespace Domain.App {
+    public class Photo {
         public string Id { get; set; }
         public string Url { get; set; }
         public bool IsMain { get; set; }

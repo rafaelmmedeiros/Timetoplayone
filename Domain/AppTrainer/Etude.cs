@@ -1,9 +1,7 @@
 using System;
 
-namespace Domain.AppTrainer
-{
-    public class Etude
-    {
+namespace Domain.AppTrainer {
+    public class Etude {
         public Guid Id { get; set; }
         public string Title { get; set; }
         public bool Active { get; set; }

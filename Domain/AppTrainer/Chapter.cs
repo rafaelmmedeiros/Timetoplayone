@@ -1,9 +1,7 @@
 using System;
 
-namespace Domain.AppTrainer
-{
-    public class Chapter
-    {
+namespace Domain.AppTrainer {
+    public class Chapter {
         public Guid Id { get; set; }
         public DateTime Day { get; set; }
         public int TotalTime { get; set; }
