@@ -9,8 +9,8 @@ const TrainerChapterWeekDaysItem: React.FC<{ chapter: IChapter }> = ({ chapter }
 
   return (
     <Grid.Row>
-      <Header>{format(chapter.day, "eee do MMM")}</Header>
-      <Progress size="large" percent={chapter.differenceToBestDay} progress indicating>
+      <Header size="tiny"> {format(chapter.day, "eee do MMM")}</Header>
+      <Progress size="medium" percent={chapter.differenceToBestDay} progress indicating>
         {hours} /H
       </Progress>
     </Grid.Row>

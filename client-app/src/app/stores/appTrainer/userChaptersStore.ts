@@ -5,6 +5,7 @@ import agent from "../../api/agent";
 import { toast } from "react-toastify";
 import { IUserChapters } from "../../models/appTrainer/userChapters";
 import { IUserChaptersWeek } from "../../models/appTrainer/userChaptersWeek";
+import { IUserChaptersMonth } from "../../models/appTrainer/userChaptersMonth";
 
 export default class UserChaptersStore {
   rootStore: RootStore;
@@ -13,19 +14,21 @@ export default class UserChaptersStore {
     this.rootStore = rootStore;
   }
 
+  @observable loading = false;
+
   //  CHAPTER OF THE DAY
   @observable todayChapter: IChapter | null = null;
   @observable loadingTodayChapter = true;
-
-  @observable loading = false;
   @observable loadingIncrease = false;
   @observable loadingDecrease = false;
 
   //  USERCHAPTERS
   @observable userChapters: IUserChapters | null = null;
   @observable userChaptersWeek: IUserChaptersWeek | null = null;
+  @observable userChaptersMonth: IUserChaptersMonth | null = null;
   @observable loadingUserChapters = true;
   @observable loadingUserChaptersWeek = true;
+  @observable loadingUserChaptersMonth = true;
 
   //  Aux Actions
   @computed get calculateNormalized() {
@@ -89,6 +92,22 @@ export default class UserChaptersStore {
         this.loadingUserChaptersWeek = false;
       });
       toast.error("👎 Error loading Week Chapaters.");
+    }
+  };
+
+  @action loadUserChaptersMonth = async () => {
+    this.loadingUserChaptersMonth = true;
+    try {
+      const userChaptersMonth = await agent.UserChapters.month();
+      runInAction("loadUserChaptersMonth", () => {
+        this.userChaptersMonth = userChaptersMonth;
+        this.loadingUserChaptersMonth = false;
+      });
+    } catch (error) {
+      runInAction("loadUserChaptersMonth error", () => {
+        this.loadingUserChaptersMonth = false;
+      });
+      toast.error("👎 Error loading Montth Week Chapaters.");
     }
   };
 

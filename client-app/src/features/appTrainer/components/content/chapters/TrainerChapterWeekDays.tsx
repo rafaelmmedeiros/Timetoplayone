@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect } from "react";
-import { Card, Grid, Header } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 import LoadingComponent from "../../../../../app/layout/LoadingComponent";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import TrainerChapterWeekDaysItem from "./TrainerChapterWeekDaysItem";
@@ -24,13 +24,9 @@ const TrainerChapterWeekDays: React.FC = () => {
       {/* BODY */}
       <Grid.Column width={16}>
         {/* CHAPTER WEEK LIST */}
-
-        
-          {userChaptersWeek?.weekChapters.map((chapter) => (
-            <TrainerChapterWeekDaysItem key={chapter.id} chapter={chapter} />
-          ))}
-        
-
+        {userChaptersWeek?.weekChapters.map((chapter) => (
+          <TrainerChapterWeekDaysItem key={chapter.id} chapter={chapter} />
+        ))}
       </Grid.Column>
     </Grid>
   );
