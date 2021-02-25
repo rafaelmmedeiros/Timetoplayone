@@ -10,37 +10,29 @@ using Persistence;
 using System.Linq;
 using Domain.AppTrainer;
 
-namespace Application.AppTrainer.Chapters
-{
-    public class List
-    {
-        public class ChapterEnvelope
-        {
+namespace Application.AppTrainer.Chapters {
+    public class List {
+        public class ChapterEnvelope {
             public List<ChapterListDto> Chapters { get; set; }
         }
-        
-        public class Query : IRequest<ChapterEnvelope>
-        {
-            public Query()
-            {
+
+        public class Query : IRequest<ChapterEnvelope> {
+            public Query() {
                 // FOR FILTERING
             }
         }
 
-        public class Handler : IRequestHandler<Query, ChapterEnvelope>
-        {
+        public class Handler : IRequestHandler<Query, ChapterEnvelope> {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
-            {
+            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _mapper = mapper;
                 _context = context;
             }
 
-            public async Task<ChapterEnvelope> Handle(Query request, CancellationToken cancellationToken)
-            {
+            public async Task<ChapterEnvelope> Handle(Query request, CancellationToken cancellationToken) {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var queryable = _context.Chapters
@@ -51,8 +43,7 @@ namespace Application.AppTrainer.Chapters
                 var chapters = await queryable
                     .ToListAsync();
 
-                return new ChapterEnvelope
-                {
+                return new ChapterEnvelope {
                     Chapters = _mapper.Map<List<Chapter>, List<ChapterListDto>>(chapters)
                 };
             }

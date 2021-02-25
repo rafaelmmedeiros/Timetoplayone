@@ -8,27 +8,21 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Chapters
-{
-    public class IncreaseObjective
-    {
-        public class Command : IRequest
-        {
+namespace Application.AppTrainer.Chapters {
+    public class IncreaseObjective {
+        public class Command : IRequest {
 
         }
 
-        public class Handler : IRequestHandler<Command>
-        {
+        public class Handler : IRequestHandler<Command> {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
-            {
+            public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var chapter = await _context.Chapters.FirstOrDefaultAsync(x => x.Day == DateTime.Today && x.AppUserId == user.Id);
@@ -37,8 +31,7 @@ namespace Application.AppTrainer.Chapters
                 if (chapter == null)
                     throw new RESTException(HttpStatusCode.NotFound, new { chapter = "Not found" });
 
-                if (chapter != null)
-                {
+                if (chapter != null) {
                     chapter.Objective += 10;
                 }
 

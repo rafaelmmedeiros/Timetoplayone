@@ -1,9 +1,7 @@
 using System;
 
-namespace Application.AppTrainer.Chapters.Others
-{
-    public class ChapterListDto
-    {
+namespace Application.AppTrainer.Chapters.Others {
+    public class ChapterListDto {
         public Guid Id { get; set; }
         public DateTime Day { get; set; }
         public int TotalTime { get; set; }
