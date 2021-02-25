@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers {
     public class ChaptersController : BaseController {
-        
+
         [HttpGet]
         public async Task<ActionResult<List.ChapterEnvelope>> List() {
             return await Mediator.Send(new List.Query());
@@ -35,6 +35,11 @@ namespace API.Controllers {
         [HttpGet("month")]
         public async Task<ActionResult<AcquireMonth.ChapterMonthEnvelope>> AcquireMonth() {
             return await Mediator.Send(new AcquireMonth.Query());
+        }
+
+        [HttpGet("brief")]
+        public async Task<ActionResult<ChapterWeekBriefDto>> AcquireBrief() {
+            return await Mediator.Send(new AcquireBrief.Query());
         }
 
     }

@@ -10,9 +10,9 @@ import { ITome } from "../models/appTrainer/domain/tome";
 import { IEtude } from "../models/appTrainer/domain/etude";
 import { IUserPractice } from "../models/appTrainer/userPractice";
 import { IChapter } from "../models/appTrainer/domain/chapter";
-import { IUserChapters } from "../models/appTrainer/userChapters";
 import { IUserChaptersWeek } from "../models/appTrainer/userChaptersWeek";
 import { IUserChaptersMonth } from "../models/appTrainer/userChaptersMonth";
+import { IBrief } from "../models/appTrainer/domain/brief";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -65,7 +65,7 @@ axios.interceptors.response.use(undefined, (error) => {
 });
 
 // TODO: DELAY - TIRAR EM PRODUÇÃO
-let time = 500;
+let time = 250;
 
 const responseBody = (response: AxiosResponse) => response.data;
 
@@ -144,10 +144,10 @@ const UserPractice = {
 
 //  PRIVATE
 const UserChapters = {
-  get: (): Promise<IUserChapters> => requests.get("/chapters"),
   today: (): Promise<IChapter> => requests.get("/chapters/today"),
   week: (): Promise<IUserChaptersWeek> => requests.get("/chapters/week"),
   month: (): Promise<IUserChaptersMonth> => requests.get("/chapters/month"),
+  brief: (): Promise<IBrief> => requests.get("/chapters/brief"),
 
   // TODO: Need to become get, or be addded to requests.
   decrease: ({}) => requests.post("/chapters/decrease", {}),

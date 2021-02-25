@@ -12,7 +12,6 @@ import UserPracticeStore from "./appTrainer/userPracticeStore";
 import UserChaptersStore from "./appTrainer/userChaptersStore";
 
 configure({ enforceActions: "always" });
-
 export class RootStore {
   grupoStore: GrupoStore;
   userStore: UserStore;

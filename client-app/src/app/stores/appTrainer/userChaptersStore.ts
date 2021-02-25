@@ -3,9 +3,9 @@ import { observable, action, runInAction, computed } from "mobx";
 import { IChapter } from "../../models/appTrainer/domain/chapter";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
-import { IUserChapters } from "../../models/appTrainer/userChapters";
 import { IUserChaptersWeek } from "../../models/appTrainer/userChaptersWeek";
 import { IUserChaptersMonth } from "../../models/appTrainer/userChaptersMonth";
+import { IBrief } from "../../models/appTrainer/domain/brief";
 
 export default class UserChaptersStore {
   rootStore: RootStore;
@@ -22,11 +22,13 @@ export default class UserChaptersStore {
   @observable loadingIncrease = false;
   @observable loadingDecrease = false;
 
+  //  WEEK BRIEF
+  @observable weekBrief: IBrief | null = null;
+  @observable loadingWeekBrief = true;
+
   //  USERCHAPTERS
-  @observable userChapters: IUserChapters | null = null;
   @observable userChaptersWeek: IUserChaptersWeek | null = null;
   @observable userChaptersMonth: IUserChaptersMonth | null = null;
-  @observable loadingUserChapters = true;
   @observable loadingUserChaptersWeek = true;
   @observable loadingUserChaptersMonth = true;
 
@@ -63,19 +65,19 @@ export default class UserChaptersStore {
     }
   };
 
-  @action loadUserChapters = async () => {
-    this.loadingUserChapters = true;
+  @action loadWeekBrief = async () => {
+    this.loadingWeekBrief = true;
     try {
-      const userChapters = await agent.UserChapters.get();
-      runInAction("loadUserChapters", () => {
-        this.userChapters = userChapters;
-        this.loadingUserChapters = false;
+      const weekBrief = await agent.UserChapters.brief();
+      runInAction("loadWeekBrief", () => {
+        this.weekBrief = weekBrief;
+        this.loadingWeekBrief = false;
       });
     } catch (error) {
-      runInAction("loadUserChapters error", () => {
-        this.loadingUserChapters = false;
+      runInAction("loadWeekBrief Error", () => {
+        this.loadingWeekBrief = false;
       });
-      toast.error("👎 Error loading Chapters.");
+      toast.error("👎 Error loading Week Brief.");
     }
   };
 
@@ -125,6 +127,7 @@ export default class UserChaptersStore {
       runInAction("", () => {
         this.loadingIncrease = false;
       });
+      toast.error("👎 Error increasing objective.");
     }
   };
 
@@ -144,6 +147,7 @@ export default class UserChaptersStore {
       runInAction("", () => {
         this.loadingDecrease = false;
       });
+      toast.error("👎 Error decreasing objective.");
     }
   };
 }
