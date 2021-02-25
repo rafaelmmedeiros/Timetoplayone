@@ -6,37 +6,28 @@ using Application.Errors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace API.Middleware
-{
-    public class ErrorHandlingMiddleware
-    {
+namespace API.Middleware {
+    public class ErrorHandlingMiddleware {
         private readonly RequestDelegate _next;
         private readonly ILogger<ErrorHandlingMiddleware> _logger;
-        public ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandlingMiddleware> logger)
-        {
+        public ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandlingMiddleware> logger) {
             _logger = logger;
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
-        {
-            try
-            {
+        public async Task Invoke(HttpContext context) {
+            try {
                 await _next(context);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 await HandleExceptionAsync(context, ex, _logger);
             }
 
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception ex, ILogger<ErrorHandlingMiddleware> logger)
-        {
+        private async Task HandleExceptionAsync(HttpContext context, Exception ex, ILogger<ErrorHandlingMiddleware> logger) {
             object errors = null;
 
-            switch (ex)
-            {
+            switch (ex) {
                 case RESTException rest:
                     logger.LogError(ex, "REST Error");
                     errors = rest.Errors;
@@ -50,8 +41,7 @@ namespace API.Middleware
             }
 
             context.Response.ContentType = "application/json";
-            if (errors != null)
-            {
+            if (errors != null) {
                 var result = JsonSerializer.Serialize(new { errors });
 
                 await context.Response.WriteAsync(result);
