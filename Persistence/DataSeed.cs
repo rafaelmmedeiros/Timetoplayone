@@ -6,15 +6,12 @@ using Domain;
 using Domain.AppTrainer;
 using Microsoft.AspNetCore.Identity;
 
-namespace Persistence
-{
-    public class DataSeed
-    {
-        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
-        {
+namespace Persistence {
+    public class DataSeed {
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager) {
+
             //  SEED USERS
-            if (!userManager.Users.Any())
-            {
+            if (!userManager.Users.Any()) {
                 var users = new List<AppUser>
                 {
                     new AppUser
@@ -58,15 +55,13 @@ namespace Persistence
                         Email = "hades@email.com"
                     }
                 };
-                foreach (var user in users)
-                {
+                foreach (var user in users) {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
             }
 
             //  SEED TOMES
-            if (!context.Tomes.Any())
-            {
+            if (!context.Tomes.Any()) {
                 var tomes = new List<Tome>
                 {
                     new Tome
@@ -113,7 +108,7 @@ namespace Persistence
                     },
                     new Tome
                     {
-                        Title = "Repertório X",
+                        Title = "Personal Set",
                         Active = false,
                         Position = 7,
                         AppUserId = "e"
@@ -152,8 +147,7 @@ namespace Persistence
             }
 
             //  SEED ETUDES
-            if (!context.Etudes.Any())
-            {
+            if (!context.Etudes.Any()) {
                 var etudes = new List<Etude>
                 {
                     new Etude
@@ -164,6 +158,20 @@ namespace Persistence
                         Tome = "Warm-Up",
                         Time = 10,
                         Description = "Classic X-hands from John Petrucci",
+                        Executions = 10,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Stretching",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Warm-Up",
+                        Time = 10,
+                        Description = "Strecth all 10 fingers on the 3 positions.",
                         Executions = 10,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-10),
@@ -200,6 +208,20 @@ namespace Persistence
                     },
                     new Etude
                     {
+                        Title = "Picking 4",
+                        Active = false,
+                        Fluence = 3,
+                        Tome = "Warm-Up",
+                        Time = 10,
+                        Description = "Left Handed Muting picking exercise with hybrid pikcing and 4 picking string",
+                        Executions = 2,
+                        Played = 20,
+                        Created = DateTime.Now.AddDays(-12),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
                         Title = "Super Chromatic",
                         Active = true,
                         Fluence = 2,
@@ -214,12 +236,236 @@ namespace Persistence
                     },
                     new Etude
                     {
+                        Title = "Super Chromatic 2",
+                        Active = true,
+                        Fluence = 2,
+                        Tome = "Coordination",
+                        Time = 10,
+                        Description = "John Petrucci super Chromatic variation 2",
+                        Executions = 7,
+                        Played = 105,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Super Chromatic 3",
+                        Active = true,
+                        Fluence = 2,
+                        Tome = "Coordination",
+                        Time = 10,
+                        Description = "John Petrucci super Chromatic variation 3",
+                        Executions = 7,
+                        Played = 105,
+                        Created = DateTime.Now.AddDays(-10),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Arpeggios Triplets",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Arpeggios",
+                        Time = 5,
+                        Description = "Arpeggios in triplets division. Em7 and Am7",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Arpeggios Double Triplets",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Arpeggios",
+                        Time = 15,
+                        Description = "Arpeggios in triplets division. Em7 and Am7",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Arpeggios with Tapping",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Arpeggios",
+                        Time = 15,
+                        Description = "Pattern used by Olaf Thorsen on Moonlight",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Arpeggios Malmsteen",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Arpeggios",
+                        Time = 15,
+                        Description = "Trecho do 32 to 64 compass from Arpeggios from Helll",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Tapping on Triplets TPH",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Tapping",
+                        Time = 10,
+                        Description = "Tapping on Van Halen Patternt",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Tapping on Sextines TPH",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Tapping",
+                        Time = 10,
+                        Description = "Tapping on Van Halen Patternt",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Double Triplets Riffs",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Riffs",
+                        Time = 15,
+                        Description = "Do this on all levels",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
                         Title = "Speed Picking",
                         Active = true,
                         Fluence = 1,
-                        Tome = "Coordination",
-                        Time = 20,
-                        Description = "Seguir partitura do arquivo",
+                        Tome = "Riffs",
+                        Time = 10,
+                        Description = "Speed picking on Melodic Death Metal Style",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Serrana Arpeggios",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Clean Arpeggios",
+                        Time = 10,
+                        Description = "Do serrana arpeggios on clean guitar.",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Serrana Arpeggios",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Clean Arpeggios",
+                        Time = 10,
+                        Description = "Do serrana arpeggios on clean guitar.",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Judas Priest - Painkiller",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Personal Set",
+                        Time = 10,
+                        Description = "Guitar Tuned on Bb - 3 Steps Down",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Grave Digger - Rebellion",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Personal Set",
+                        Time = 10,
+                        Description = "Guitar Tuned on Bb - 3 Steps Down",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Amon Amarth - Guardians of Argasd",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Personal Set",
+                        Time = 10,
+                        Description = "Guitar Tuned on Bb - 3 Steps Down",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "Amon Amarth - Versus The World",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Personal Set",
+                        Time = 10,
+                        Description = "Guitar Tuned on Bb - 3 Steps Down",
+                        Executions = 5,
+                        Played = 100,
+                        Created = DateTime.Now.AddDays(-5),
+                        LastPlayed = DateTime.Now,
+                        AppUserId = "e"
+                    },
+                    new Etude
+                    {
+                        Title = "GraveWoorm - Nocturnal Hynms",
+                        Active = true,
+                        Fluence = 1,
+                        Tome = "Personal Set",
+                        Time = 10,
+                        Description = "Guitar Tuned on Bb - 3 Steps Down",
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
@@ -260,13 +506,12 @@ namespace Persistence
             }
 
             //  SEED CHAPTERS
-            if (!context.Chapters.Any())
-            {
+            if (!context.Chapters.Any()) {
                 var chapters = new List<Chapter>
                 {
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-30),
+                        Day = DateTime.Today.AddDays(-30),
                         TotalTime = 60,
                         TotalEtudes = 10,
                         Objective = 120,
@@ -274,7 +519,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-29),
+                        Day = DateTime.Today.AddDays(-29),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -282,7 +527,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-25),
+                        Day = DateTime.Today.AddDays(-25),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -290,7 +535,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-20),
+                        Day = DateTime.Today.AddDays(-20),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -298,7 +543,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-19),
+                        Day = DateTime.Today.AddDays(-19),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -306,7 +551,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-15),
+                        Day = DateTime.Today.AddDays(-15),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -314,7 +559,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-14),
+                        Day = DateTime.Today.AddDays(-14),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -322,7 +567,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-13),
+                        Day = DateTime.Today.AddDays(-13),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -330,7 +575,7 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-10),
+                        Day = DateTime.Today.AddDays(-10),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -338,7 +583,7 @@ namespace Persistence
                     },
                      new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-9),
+                        Day = DateTime.Today.AddDays(-9),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -346,7 +591,15 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-6),
+                        Day = DateTime.Today.AddDays(-7),
+                        TotalTime = 50,
+                        TotalEtudes = 10,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Today.AddDays(-6),
                         TotalTime = 65,
                         TotalEtudes = 8,
                         Objective = 60,
@@ -354,88 +607,38 @@ namespace Persistence
                     },
                     new Chapter
                     {
-                        Day = DateTime.Now.AddDays(-2),
+                        Day = DateTime.Today.AddDays(-5),
+                        TotalTime = 15,
+                        TotalEtudes = 1,
+                        Objective = 40,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Today.AddDays(-3),
+                        TotalTime = 40,
+                        TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Today.AddDays(-2),
                         TotalTime = 65,
                         TotalEtudes = 8,
+                        Objective = 60,
+                        AppUserId = "e"
+                    },
+                    new Chapter
+                    {
+                        Day = DateTime.Today.AddDays(-1),
+                        TotalTime = 50,
+                        TotalEtudes = 4,
                         Objective = 60,
                         AppUserId = "e"
                     }
                 };
                 context.Chapters.AddRange(chapters);
-                context.SaveChanges();
-            }
-
-            //  SEED GRUPOS
-            if (!context.Grupos.Any())
-            {
-                var grupos = new List<Grupo>
-                {
-                    new Grupo
-                    {
-                        Titulo = "Warm-Up",
-                        SubTitulo = "Estudos de Aquecimento",
-                        Descricao = "Fazer os exercicios necessários do dia, sem metromo, sempre devegar com FOCO.",
-                        Label = "Basic",
-                        //AppUserId = "a",
-                    },
-                    new Grupo
-                    {
-                        Titulo = "Coordinatuon",
-                        SubTitulo = "Estudos de Coordination",
-                        Descricao = "Todos os exerciicos de cordenação devem ser feitos com metromo e com treinador de velocidade.",
-                        Label = "Basic",
-                        //AppUserId = "a",
-                    },
-                    new Grupo
-                    {
-                        Titulo = "Arpeggios",
-                        SubTitulo = "Campo Harmonico Menor",
-                        Descricao = "Patterns de Arpeggios em no Campo Harmonico de Am e Em.",
-                        Label = "Tools",
-                        //AppUserId = "a",
-                    },
-                    new Grupo
-                    {
-                        Titulo = "Scales",
-                        SubTitulo = "Modo Frigio",
-                        Descricao = "Patterns em modo Frigio, fazer todos em cima de uma Harmonia em Strings",
-                        Label = "Tools",
-                        //AppUserId = "a",
-                    },
-                    new Grupo
-                    {
-                        Titulo = "Tapping",
-                        SubTitulo = "Tapping Linear",
-                        Descricao = "Estudos de Tapping linear, devem ser feitos sobre harmonia em Strings e bateria.",
-                        Label = "Tools",
-                        //AppUserId = "a",
-                    },
-                    new Grupo
-                    {
-                        Titulo = "RIffs",
-                        SubTitulo = "Rhythm Exploration",
-                        Descricao = "Extração de fragmentos de música e combinação de figuras musicais",
-                        Label = "Tools",
-                        //AppUserId = "a",
-                    },
-                    new Grupo
-                    {
-                        Titulo = "Repertório Banda X",
-                        SubTitulo = "Banda X Músicas",
-                        Descricao = "Músicas da banda X",
-                        Label = "Melting",
-                        //AppUserId = "b",
-                    },
-                    new Grupo
-                    {
-                        Titulo = "Repertório Banda Y",
-                        SubTitulo = "Banda Y Músicas",
-                        Descricao = "Músicas da banda Y",
-                        Label = "Melting",
-                        //AppUserId = "c",
-                    }
-                };
-                context.Grupos.AddRange(grupos);
                 context.SaveChanges();
             }
         }

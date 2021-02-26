@@ -68,7 +68,7 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
               fluenceLearning(etude);
             }}
           >
-            Leaning
+            Learning
           </Button>
           <Button.Or text=">>" />
           <Button
