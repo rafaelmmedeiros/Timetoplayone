@@ -7,7 +7,24 @@ import { RootStoreContext } from "../../../../../app/stores/rootStore";
 
 const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   const rootStore = useContext(RootStoreContext);
-  const { fluenceLearning, fluenceEvolution, fluenceFlowing, deleteEtude, changeActive } = rootStore.userCollectionStore;
+  const {
+    fluenceLearning,
+    fluenceEvolution,
+    fluenceFlowing,
+    deleteEtude,
+    changeActive,
+    loading,
+    targetLearning,
+    setTargetLearning,
+    targetEvolution,
+    setTargetEvolution,
+    targetFlowing,
+    setTargetFlowing,
+    targetDelete,
+    setTargetDelete,
+    targetActivate,
+    setTargetActivate,
+  } = rootStore.userCollectionStore;
 
   var neverPlayed;
   if (etude.created > etude.lastPlayed) neverPlayed = true;
@@ -66,7 +83,9 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             color={etude.fluence === 1 ? "yellow" : "grey"}
             onClick={(e) => {
               fluenceLearning(etude);
+              setTargetLearning(e.currentTarget.name);
             }}
+            loading={loading && targetLearning === etude.id}
           >
             Learning
           </Button>
@@ -76,7 +95,9 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             color={etude.fluence === 2 ? "olive" : "grey"}
             onClick={(e) => {
               fluenceEvolution(etude);
+              setTargetEvolution(e.currentTarget.name);
             }}
+            loading={loading && targetEvolution === etude.id}
           >
             Evolution
           </Button>
@@ -86,7 +107,9 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             color={etude.fluence === 3 ? "green" : "grey"}
             onClick={(e) => {
               fluenceFlowing(etude);
+              setTargetFlowing(e.currentTarget.name);
             }}
+            loading={loading && targetFlowing === etude.id}
           >
             Flowing
           </Button>
@@ -109,10 +132,13 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             floated="right"
             onClick={(e) => {
               changeActive(etude);
+              setTargetActivate(e.currentTarget.name);
             }}
+            loading={loading && targetActivate === etude.id}
           >
             <Icon fitted name="power" />
           </Button>
+
           {!etude.active && (
             <Button
               name={etude.id}
@@ -121,11 +147,14 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
               floated="right"
               onClick={(e) => {
                 deleteEtude(etude);
+                setTargetDelete(e.currentTarget.name);
               }}
+              loading={loading && targetDelete === etude.id}
             >
               <Icon fitted name="trash" />
             </Button>
           )}
+          
         </Button.Group>
       </Card.Content>
     </Card>

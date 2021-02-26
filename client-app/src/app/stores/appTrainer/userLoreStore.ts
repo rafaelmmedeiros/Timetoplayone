@@ -8,16 +8,12 @@ import { ITome } from "../../models/appTrainer/domain/tome";
 export default class UserLoreStore {
   rootStore: RootStore;
 
-  //  ROOTSTORE
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
 
-  //  MOBx OBSERVABLES
   @observable userLore: IUserLore | null = null;
   @observable loadingUserLore = true;
-
-  @observable createModeLore = false;
 
   @observable loading = false;
   @observable submitting = false;
@@ -25,14 +21,12 @@ export default class UserLoreStore {
   @observable targetUp = "";
   @observable targetDown = "";
   @observable targetDelete = "";
+  @observable targetActivate = "";
 
-  //  MOBx AUX. ACTIONS
+  @observable createModeLore = false;
+
   @action setcreateModeLore = async () => {
-    if (this.createModeLore) {
-      this.createModeLore = false;
-    } else {
-      this.createModeLore = true;
-    }
+    this.createModeLore = !this.createModeLore;
   };
 
   @action setTargetUp = async (id: string) => {
@@ -40,6 +34,7 @@ export default class UserLoreStore {
       this.targetUp = id;
       this.targetDown = "";
       this.targetDelete = "";
+      this.targetActivate = "";
     });
   };
 
@@ -48,6 +43,7 @@ export default class UserLoreStore {
       this.targetDown = id;
       this.targetUp = "";
       this.targetDelete = "";
+      this.targetActivate = "";
     });
   };
 
@@ -56,10 +52,19 @@ export default class UserLoreStore {
       this.targetDelete = id;
       this.targetUp = "";
       this.targetDown = "";
+      this.targetActivate = "";
     });
   };
 
-  //  MOBx ACTIONS
+  @action setTargetActivate = async (id: string) => {
+    runInAction(() => {
+      this.targetActivate = id;
+      this.targetUp = "";
+      this.targetDown = "";
+      this.targetDelete = "";
+    });
+  };
+
   @action loadUserLore = async () => {
     this.loadingUserLore = true;
     try {

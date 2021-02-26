@@ -14,21 +14,73 @@ export default class UserCollectionStore {
 
   @observable etudeRegistry = new Map();
   @observable userCollection: IUserCollection | null = null;
+
   @observable etude: IEtude | null = null;
   @observable loadingUserCollection = true;
 
   @observable loading = false;
   @observable submitting = false;
 
+  @observable targetLearning = "";
+  @observable targetEvolution = "";
+  @observable targetFlowing = "";
+  @observable targetDelete = "";
+  @observable targetActivate = "";
+
   @observable createModeCollection = false;
 
-  //  AUXILIAR ACTIONS
   @action setcreateModeCollection = async () => {
-    if (this.createModeCollection) {
-      this.createModeCollection = false;
-    } else {
-      this.createModeCollection = true;
-    }
+    this.createModeCollection = !this.createModeCollection;
+  };
+
+  @action setTargetLearning = async (id: string) => {
+    runInAction(() => {
+    this.targetLearning = id;
+      this.targetEvolution = "";
+      this.targetFlowing = "";
+      this.targetDelete = "";
+      this.targetActivate = "";
+    });
+  };
+
+  @action setTargetEvolution = async (id: string) => {
+    runInAction(() => {
+      this.targetEvolution = id;
+      this.targetLearning = "";
+      this.targetFlowing = "";
+      this.targetDelete = "";
+      this.targetActivate = "";
+    });
+  };
+
+  @action setTargetFlowing = async (id: string) => {
+    runInAction(() => {
+      this.targetFlowing = id;
+      this.targetLearning = "";
+      this.targetEvolution = "";
+      this.targetDelete = "";
+      this.targetActivate = "";
+    });
+  };
+
+  @action setTargetDelete = async (id: string) => {
+    runInAction(() => {
+      this.targetDelete = id;
+      this.targetLearning = "";
+      this.targetEvolution = "";
+      this.targetFlowing = "";
+      this.targetActivate = "";
+    });
+  };
+
+  @action setTargetActivate = async (id: string) => {
+    runInAction(() => {
+      this.targetActivate = id;
+      this.targetLearning = "";
+      this.targetEvolution = "";
+      this.targetFlowing = "";
+      this.targetDelete = "";
+    });
   };
 
   //  SEGRAGATE FOR TWO REACT COMPONENTS

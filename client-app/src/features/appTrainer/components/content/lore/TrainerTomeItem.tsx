@@ -13,12 +13,14 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
     loading,
     userLore,
     targetUp,
-    targetDown,
-    targetDelete,
     setTargetUp,
+    targetDown,
     setTargetDown,
-    deleteTome,
+    targetDelete,
     setTargetDelete,
+    targetActivate,
+    setTargetActivate,
+    deleteTome,
     changeActive,
   } = rootStore.userLoreStore;
 
@@ -55,7 +57,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
       <Card.Content>
         <Card.Header>{tome.title}</Card.Header>
       </Card.Content>
-      
+
       {/* --------------------- */}
       {tome.totalEtudes >= 1 ? (
         <Card.Content>
@@ -120,7 +122,9 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
             floated="right"
             onClick={(e) => {
               changeActive(tome);
+              setTargetActivate(e.currentTarget.name);
             }}
+            loading={loading && targetActivate === tome.id}
           >
             <Icon fitted name="power" />
           </Button>

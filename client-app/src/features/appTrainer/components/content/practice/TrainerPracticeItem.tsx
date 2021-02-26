@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { IEtude } from "../../../../../app/models/appTrainer/domain/etude";
 import { observer } from "mobx-react-lite";
 import { Card, Button, Icon, Progress, Label } from "semantic-ui-react";
@@ -7,8 +7,7 @@ import { RootStoreContext } from "../../../../../app/stores/rootStore";
 
 const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   const rootStore = useContext(RootStoreContext);
-  const { setEtudeDone, loading } = rootStore.userPracticeStore;
-  const [target, setTarget] = useState<string | undefined>(undefined);
+  const { setEtudeDone, loading, targetDone, setTargetDone } = rootStore.userPracticeStore;
 
   var neverPlayed;
   if (etude.created > etude.lastPlayed) neverPlayed = true;
@@ -86,9 +85,9 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         </Icon>
         {/* DATAILS DONE BUTTONS */}
         <Button.Group floated="right">
-          <Button name={etude.id} basic color="violet" floated="right">
+          {/* <Button name={etude.id} basic color="violet" floated="right">
             <Icon fitted name="magnify" />
-          </Button>
+          </Button> */}
           <Button
             name={etude.id}
             basic
@@ -96,9 +95,9 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             floated="right"
             onClick={(e) => {
               setEtudeDone(etude);
-              setTarget(e.currentTarget.name);
+              setTargetDone(e.currentTarget.name);
             }}
-            loading={loading && target === etude.id}
+            loading={loading && targetDone === etude.id}
           >
             <Icon fitted name="checkmark" />
           </Button>

@@ -14,7 +14,16 @@ export default class UserPracticeStore {
 
   @observable userPractice: IUserPractice | null = null;
   @observable loadingUserPractice = true;
+
   @observable loading = false;
+
+  @observable targetDone = "";
+
+  @action setTargetDone = async (id: string) => {
+    runInAction(() => {
+      this.targetDone = id;
+    });
+  };
 
   @action loadUserPractice = async () => {
     this.loadingUserPractice = true;
