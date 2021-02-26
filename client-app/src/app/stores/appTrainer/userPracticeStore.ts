@@ -37,11 +37,11 @@ export default class UserPracticeStore {
     try {
       await agent.UserPractice.done(etude.id);
       runInAction(() => {
-        if (this.rootStore.userChaptersStore.todayChapter) {
-          this.rootStore.userChaptersStore.todayChapter!.totalTime += Number(etude.time);
-          this.rootStore.userChaptersStore.todayChapter!.totalEtudes++;
+        if (this.rootStore.userTodayChapterStore.todayChapter) {
+          this.rootStore.userTodayChapterStore.todayChapter!.totalTime += Number(etude.time);
+          this.rootStore.userTodayChapterStore.todayChapter!.totalEtudes++;
         } else {
-          this.rootStore.userChaptersStore.loadTodayChapter();
+          this.rootStore.userTodayChapterStore.loadTodayChapter();
           toast.info("👍 Starting a new chapter!");
         }
 

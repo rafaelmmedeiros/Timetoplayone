@@ -14,7 +14,7 @@ const TrainerHeader: React.FC = () => {
     loadingIncrease,
     calculateNormalized,
     calculateHours,
-  } = rootStore.userChaptersStore;
+  } = rootStore.userTodayChapterStore;
 
   useEffect(() => {
     loadTodayChapter();
