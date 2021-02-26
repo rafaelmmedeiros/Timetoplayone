@@ -8,27 +8,21 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Collections
-{
-    public class ChangeActive
-    {
-        public class Command : IRequest
-        {
+namespace Application.AppTrainer.Collections {
+    public class ChangeActive {
+        public class Command : IRequest {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
-        {
+        public class Handler : IRequestHandler<Command> {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
-            {
+            public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var etude = user.Etudes.FirstOrDefault(x => x.Id == request.Id);

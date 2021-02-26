@@ -23,12 +23,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 
-namespace API
-{
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
+namespace API {
+    public class Startup {
+        public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
 
@@ -37,10 +34,8 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         // -------------------------------------------------------------
         // CONFIGURATION DB, FOR DEV AND PRODUCTION
-        public void ConfigureDevelopmentServices(IServiceCollection services)
-        {
-            services.AddDbContext<DataContext>(opt =>
-            {
+        public void ConfigureDevelopmentServices(IServiceCollection services) {
+            services.AddDbContext<DataContext>(opt => {
                 opt.UseLazyLoadingProxies();
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
@@ -48,10 +43,8 @@ namespace API
             ConfigureServices(services);
         }
 
-        public void ConfigureProductionServices(IServiceCollection services)
-        {
-            services.AddDbContext<DataContext>(opt =>
-            {
+        public void ConfigureProductionServices(IServiceCollection services) {
+            services.AddDbContext<DataContext>(opt => {
                 opt.UseLazyLoadingProxies();
                 //opt.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -61,13 +54,10 @@ namespace API
         }
 
         // CONFIGURATION FOR ALL
-        public void ConfigureServices(IServiceCollection services)
-        {
+        public void ConfigureServices(IServiceCollection services) {
 
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("CorsPolicy", policy =>
-                {
+            services.AddCors(opt => {
+                opt.AddPolicy("CorsPolicy", policy => {
                     policy
                         .AllowAnyHeader()
                         .AllowAnyMethod()
@@ -81,13 +71,11 @@ namespace API
             services.AddAutoMapper(typeof(List.Handler));
 
             // ACESS POLICY
-            services.AddControllers(option =>
-            {
+            services.AddControllers(option => {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 option.Filters.Add(new AuthorizeFilter(policy));
             })
-                .AddFluentValidation(config =>
-                {
+                .AddFluentValidation(config => {
                     config.RegisterValidatorsFromAssemblyContaining<Create>();
                 });
 
@@ -98,10 +86,8 @@ namespace API
             identityBuilder.AddSignInManager<SignInManager<AppUser>>();
 
             //  AUTHORIZATION REQUIREMENTS
-            services.AddAuthorization(option =>
-            {
-                option.AddPolicy("IsTomeOwner", policy =>
-                {
+            services.AddAuthorization(option => {
+                option.AddPolicy("IsTomeOwner", policy => {
                     policy.Requirements.Add(new IsTomeOwnerRequirement());
                 });
             });
@@ -110,10 +96,8 @@ namespace API
             // AUTH
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
+                .AddJwtBearer(options => {
+                    options.TokenValidationParameters = new TokenValidationParameters {
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = key,
                         ValidateAudience = false,
@@ -135,20 +119,16 @@ namespace API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             // ORDERM É IMPORTANTE
             // MANUAL OFFICIAL
             // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
 
-            if (env.IsDevelopment())
-            {
+            if (env.IsDevelopment()) {
                 // app.UseDeveloperExceptionPage();
-            }
-            else
-            {
+            } else {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 // app.UseHsts();
             }
@@ -182,8 +162,7 @@ namespace API
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endPoints =>
-            {
+            app.UseEndpoints(endPoints => {
                 endPoints.MapControllers();
                 endPoints.MapFallbackToController("Index", "Fallback");
             });

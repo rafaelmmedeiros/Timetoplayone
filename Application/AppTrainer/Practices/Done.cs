@@ -7,27 +7,21 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Practices
-{
-    public class Done
-    {
-        public class Command : IRequest
-        {
+namespace Application.AppTrainer.Practices {
+    public class Done {
+        public class Command : IRequest {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
-        {
+        public class Handler : IRequestHandler<Command> {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
-            {
+            public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var etude = await _context.Etudes.FindAsync(request.Id);
@@ -37,10 +31,8 @@ namespace Application.AppTrainer.Practices
                 //  SECURITY
 
                 //  EDIT CHAPTER
-                if (chapter == null)
-                {
-                    var chapterToCreate = new Chapter
-                    {
+                if (chapter == null) {
+                    var chapterToCreate = new Chapter {
                         Day = DateTime.Today,
                         TotalTime = etude.Time,
                         TotalEtudes = 1,
@@ -49,9 +41,7 @@ namespace Application.AppTrainer.Practices
                     };
 
                     _context.Chapters.Add(chapterToCreate);
-                }
-                else
-                {
+                } else {
                     chapter.TotalTime += etude.Time;
                     chapter.TotalEtudes++;
                 }

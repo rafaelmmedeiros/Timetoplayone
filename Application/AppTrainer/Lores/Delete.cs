@@ -9,29 +9,23 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Lores
-{
-    public class Delete
-    {
-        public class Command : IRequest
-        {
+namespace Application.AppTrainer.Lores {
+    public class Delete {
+        public class Command : IRequest {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
-        {
+        public class Handler : IRequestHandler<Command> {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
             private readonly ITomeTotalEtudes _tomeTotalEtudes;
-            public Handler(DataContext context, IUserAccessor userAccessor, ITomeTotalEtudes tomeTotalEtudes)
-            {
+            public Handler(DataContext context, IUserAccessor userAccessor, ITomeTotalEtudes tomeTotalEtudes) {
                 _tomeTotalEtudes = tomeTotalEtudes;
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var tome = await _context.Tomes.FindAsync(request.Id);
@@ -51,8 +45,7 @@ namespace Application.AppTrainer.Lores
                 var startPosition = tome.Position;
                 var tomesQuantity = user.Tomes.Count;
 
-                while (startPosition < tomesQuantity)
-                {
+                while (startPosition < tomesQuantity) {
                     startPosition++;
                     var nextTome = await _context.Tomes.FirstOrDefaultAsync(x => x.Position == startPosition);
                     nextTome.Position--;

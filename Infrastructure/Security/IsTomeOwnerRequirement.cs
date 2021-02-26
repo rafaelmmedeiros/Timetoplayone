@@ -6,24 +6,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Persistence;
 
-namespace Infrastructure.Security
-{
-    public class IsTomeOwnerRequirement : IAuthorizationRequirement
-    {
+namespace Infrastructure.Security {
+    public class IsTomeOwnerRequirement : IAuthorizationRequirement {
     }
 
-    public class IsTomeOwnerRequirementHandler : AuthorizationHandler<IsTomeOwnerRequirement>
-    {
+    public class IsTomeOwnerRequirementHandler : AuthorizationHandler<IsTomeOwnerRequirement> {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly DataContext _context;
-        public IsTomeOwnerRequirementHandler(IHttpContextAccessor httpContextAccessor, DataContext context)
-        {
+        public IsTomeOwnerRequirementHandler(IHttpContextAccessor httpContextAccessor, DataContext context) {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsTomeOwnerRequirement requirement)
-        {
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsTomeOwnerRequirement requirement) {
             var currentUserName = _httpContextAccessor.HttpContext.User?.Claims?
                 .SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 

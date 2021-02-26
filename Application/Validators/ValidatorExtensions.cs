@@ -1,12 +1,9 @@
 using FluentValidation;
 
-namespace Application.Validators
-{
+namespace Application.Validators {
     //  STATIC, POIS SERÀ USADO COMO ExTENSÂO APENAS>
-    public static class ValidatorExtensions
-    {
-        public static IRuleBuilder<T, string> Password<T>(this IRuleBuilder<T, string> ruleBuilder)
-        {
+    public static class ValidatorExtensions {
+        public static IRuleBuilder<T, string> Password<T>(this IRuleBuilder<T, string> ruleBuilder) {
             var options = ruleBuilder
                 .NotEmpty()
                 .MinimumLength(6).WithMessage("Password deve conter no monimo 6 caracteres")

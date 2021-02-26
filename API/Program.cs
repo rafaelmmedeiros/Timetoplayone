@@ -8,27 +8,20 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Persistence;
 
-namespace API
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+namespace API {
+    public class Program {
+        public static void Main(string[] args) {
             var host = CreateHostBuilder(args).Build();
 
             // Cria o Banco de dados baseado na ultima Migration
-            using (var scope = host.Services.CreateScope())
-            {
+            using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
-                try
-                {
+                try {
                     var context = services.GetRequiredService<DataContext>();
                     var userManager = services.GetRequiredService<UserManager<AppUser>>();
                     context.Database.Migrate();
                     DataSeed.SeedData(context, userManager).Wait();
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "Ocorreu um erro Durante 'Migration'");
                 }
@@ -37,8 +30,7 @@ namespace API
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
-            {
+            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder => {
                 webBuilder
                     .ConfigureKestrel(x => x.AddServerHeader = false)
                     .UseStartup<Startup>();

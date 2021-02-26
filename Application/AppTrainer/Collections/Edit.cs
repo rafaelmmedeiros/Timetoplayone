@@ -8,12 +8,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Collections
-{
-    public class Edit
-    {
-        public class Command : IRequest
-        {
+namespace Application.AppTrainer.Collections {
+    public class Edit {
+        public class Command : IRequest {
             public Guid Id { get; set; }
             public string Title { get; set; }
             public string Tome { get; set; }
@@ -22,10 +19,8 @@ namespace Application.AppTrainer.Collections
 
         }
 
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator()
-            {
+        public class CommandValidator : AbstractValidator<Command> {
+            public CommandValidator() {
                 RuleFor(x => x.Title)
                     .NotEmpty()
                     .Length(3, 15);
@@ -39,18 +34,15 @@ namespace Application.AppTrainer.Collections
             }
         }
 
-        public class Handler : IRequestHandler<Command>
-        {
+        public class Handler : IRequestHandler<Command> {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
-            {
+            public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var etude = await _context.Etudes.FindAsync(request.Id);

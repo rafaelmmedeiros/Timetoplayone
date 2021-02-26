@@ -9,34 +9,28 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Photos
-{
-    public class SetMain
-    {
-        public class Command : IRequest
-        {
+namespace Application.Photos {
+    public class SetMain {
+        public class Command : IRequest {
             public string Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
-        {
+        public class Handler : IRequestHandler<Command> {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
-            {
+            public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var photo = user.Photos.FirstOrDefault(x => x.Id == request.Id);
 
                 if (photo == null)
-                    throw new RESTException(HttpStatusCode.NotFound, new {Photo = "Not found"});
+                    throw new RESTException(HttpStatusCode.NotFound, new { Photo = "Not found" });
 
                 var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
 

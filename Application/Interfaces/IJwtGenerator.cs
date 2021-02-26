@@ -1,9 +1,7 @@
 using Domain;
 
-namespace Application.Interfaces
-{
-    public interface IJwtGenerator
-    {
-         string CreateToken(AppUser user);
+namespace Application.Interfaces {
+    public interface IJwtGenerator {
+        string CreateToken(AppUser user);
     }
 }

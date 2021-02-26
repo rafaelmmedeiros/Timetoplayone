@@ -8,27 +8,21 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Collections
-{
-    public class FluenceLearning
-    {
-        public class Command : IRequest
-        {
+namespace Application.AppTrainer.Collections {
+    public class FluenceLearning {
+        public class Command : IRequest {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
-        {
+        public class Handler : IRequestHandler<Command> {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
-            {
+            public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
                 var learningCode = 1;
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
@@ -45,8 +39,7 @@ namespace Application.AppTrainer.Collections
                     throw new Errors.RESTException(HttpStatusCode.Forbidden, new { etude = "It´s already this state" });
 
 
-                if (etude != null && etude.Fluence != learningCode)
-                {
+                if (etude != null && etude.Fluence != learningCode) {
                     etude.Fluence = learningCode;
                 }
 

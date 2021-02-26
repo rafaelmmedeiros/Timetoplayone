@@ -1,9 +1,7 @@
 using System;
 
-namespace Application.AppTrainer.Practices.Others
-{
-    public class EtudePracticeDto
-    {
+namespace Application.AppTrainer.Practices.Others {
+    public class EtudePracticeDto {
         public Guid Id { get; set; }
         public string Title { get; set; }
         public bool Active { get; set; }

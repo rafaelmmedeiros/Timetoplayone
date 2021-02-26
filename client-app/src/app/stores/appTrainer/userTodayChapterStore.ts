@@ -11,7 +11,6 @@ export default class UserTodayChapterStore {
     this.rootStore = rootStore;
   }
 
-  //  CHAPTER OF THE DAY
   @observable todayChapter: IChapter | null = null;
   @observable loadingTodayChapter = true;
   @observable loadingIncrease = false;
@@ -32,7 +31,6 @@ export default class UserTodayChapterStore {
     return 0;
   }
 
-  //  MOBx Actions
   @action loadTodayChapter = async () => {
     this.loadingTodayChapter = true;
     try {

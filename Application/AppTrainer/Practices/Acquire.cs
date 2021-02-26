@@ -11,31 +11,24 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.AppTrainer.Practices
-{
-    public class Acquire
-    {
-        public class PracticeEnvelope
-        {
+namespace Application.AppTrainer.Practices {
+    public class Acquire {
+        public class PracticeEnvelope {
             public List<EtudePracticeDto> Etudes { get; set; }
         }
 
-        public class Query : IRequest<PracticeEnvelope>
-        {
-            public Query()
-            {
+        public class Query : IRequest<PracticeEnvelope> {
+            public Query() {
             }
         }
 
-        public class Handler : IRequestHandler<Query, PracticeEnvelope>
-        {
+        public class Handler : IRequestHandler<Query, PracticeEnvelope> {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
             private readonly IUserAccessor _userAccessor;
             private readonly ITomePosition _tomePosiiton;
             private readonly ITomeActive _tomeActive;
-            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor, ITomePosition tomePosiiton, ITomeActive tomeActive)
-            {
+            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor, ITomePosition tomePosiiton, ITomeActive tomeActive) {
                 _tomeActive = tomeActive;
                 _tomePosiiton = tomePosiiton;
                 _userAccessor = userAccessor;
@@ -43,8 +36,7 @@ namespace Application.AppTrainer.Practices
                 _context = context;
             }
 
-            public async Task<PracticeEnvelope> Handle(Query request, CancellationToken cancellationToken)
-            {
+            public async Task<PracticeEnvelope> Handle(Query request, CancellationToken cancellationToken) {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 // TODO, Place the 2 inactive here... find a way, one is easy... the other...
@@ -55,10 +47,8 @@ namespace Application.AppTrainer.Practices
                 var etudes = queryable.ToList();
                 var etudesToProcessing = new List<EtudePracticeDto>();
 
-                foreach (var etude in etudes)
-                {
-                    var userEtude = new EtudePracticeDto
-                    {
+                foreach (var etude in etudes) {
+                    var userEtude = new EtudePracticeDto {
                         Id = etude.Id,
                         Title = etude.Title,
                         Active = etude.Active,
@@ -71,8 +61,7 @@ namespace Application.AppTrainer.Practices
                         LastPlayed = etude.LastPlayed,
                         Priority = CalculatePriority(etude.Fluence, etude.LastPlayed)
                     };
-                    if (userEtude.Active == true && userEtude.TomeActive == true)
-                    {
+                    if (userEtude.Active == true && userEtude.TomeActive == true) {
                         etudesToProcessing.Add(userEtude);
                     }
                 }
@@ -83,20 +72,17 @@ namespace Application.AppTrainer.Practices
                     .ThenBy(x => x.Fluence)
                     .ToList();
 
-                return new PracticeEnvelope
-                {
+                return new PracticeEnvelope {
                     Etudes = sortedetudesToReturn
                 };
             }
 
-            public double CalculatePriority(int fluence, DateTime lastPlayed)
-            {
+            public double CalculatePriority(int fluence, DateTime lastPlayed) {
                 double daysWithoutPlaying = (DateTime.Now - lastPlayed).TotalDays;
 
                 double priority = 0;
 
-                switch (fluence)
-                {
+                switch (fluence) {
                     case 1:
                         priority = 100 - ((daysWithoutPlaying / 1.5) * 10);
                         break;

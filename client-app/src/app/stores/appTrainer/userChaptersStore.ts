@@ -1,5 +1,5 @@
 import { RootStore } from "../rootStore";
-import { observable, action, runInAction, computed } from "mobx";
+import { observable, action, runInAction } from "mobx";
 import agent from "../../api/agent";
 import { toast } from "react-toastify";
 import { IUserChaptersWeek } from "../../models/appTrainer/userChaptersWeek";
@@ -12,8 +12,6 @@ export default class UserChaptersStore {
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
-
-  @observable loading = false;
 
   @observable weekBrief: IBrief | null = null;
   @observable loadingWeekBrief = true;

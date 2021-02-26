@@ -1,9 +1,7 @@
 using System;
 
-namespace Application.AppTrainer.Collections.Others
-{
-    public class EtudeCollectionDto
-    {
+namespace Application.AppTrainer.Collections.Others {
+    public class EtudeCollectionDto {
         public Guid Id { get; set; }
         public string Title { get; set; }
         public bool Active { get; set; }
