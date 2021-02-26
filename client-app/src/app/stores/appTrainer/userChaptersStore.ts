@@ -116,7 +116,7 @@ export default class UserChaptersStore {
   @action increaseObjetive = async () => {
     this.loadingIncrease = true;
     try {
-      await agent.UserChapters.increase({});
+      await agent.UserChapters.increase();
       runInAction("increaseObjetive", () => {
         if (this.todayChapter) {
           this.todayChapter.objective += 10;
@@ -134,7 +134,7 @@ export default class UserChaptersStore {
   @action decreaseObjetive = async () => {
     this.loadingDecrease = true;
     try {
-      await agent.UserChapters.decrease({});
+      await agent.UserChapters.decrease();
       runInAction("descreaseObjetive", () => {
         if (this.todayChapter) {
           if (this.todayChapter.objective >= 10) {

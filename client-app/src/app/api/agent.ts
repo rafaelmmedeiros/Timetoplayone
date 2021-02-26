@@ -85,6 +85,7 @@ const requests = {
       })
       .then(responseBody);
   },
+  postCommand: (url: string) => axios.post(url).then(sleep(time)).then(responseBody),
 };
 
 //  TODO: DELETAR
@@ -150,8 +151,8 @@ const UserChapters = {
   brief: (): Promise<IBrief> => requests.get("/chapters/brief"),
 
   // TODO: Need to become get, or be addded to requests.
-  decrease: ({}) => requests.post("/chapters/decrease", {}),
-  increase: ({}) => requests.post("/chapters/increase", {}),
+  decrease: () => requests.postCommand("/chapters/decrease"),
+  increase: () => requests.postCommand("/chapters/increase"),
 };
 
 export default {
