@@ -35,7 +35,7 @@ export default class UserCollectionStore {
 
   @action setTargetLearning = async (id: string) => {
     runInAction(() => {
-    this.targetLearning = id;
+      this.targetLearning = id;
       this.targetEvolution = "";
       this.targetFlowing = "";
       this.targetDelete = "";
@@ -89,7 +89,7 @@ export default class UserCollectionStore {
   }
 
   groupEtudesByTome(etudes: IEtude[]) {
-    const sortedEtudes = etudes.sort((a: any, b: any) => a.tome - b.tome); // TODO fazer essa bosta funcionar com string
+    const sortedEtudes = etudes;
     return Object.entries(
       sortedEtudes.reduce((etudes, etude) => {
         const tome = etude.tome;

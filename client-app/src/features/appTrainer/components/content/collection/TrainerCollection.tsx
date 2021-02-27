@@ -40,9 +40,35 @@ const TrainerCollection: React.FC = () => {
           {createModeCollection ? (
             <TrainerCreateEtudeForm />
           ) : (
-            etudesByTome.map(([group, etudes]) => (
+            etudesByTome.map(([group, etudes], index: number) => (
               <Grid.Column key={group}>
-                <Label color="red">{group}</Label>
+                <Label
+                  color={
+                    index + 1 === 1
+                      ? "red"
+                      : index + 1 === 2
+                      ? "orange"
+                      : index + 1 === 3
+                      ? "yellow"
+                      : index + 1 === 4
+                      ? "olive"
+                      : index + 1 === 5
+                      ? "green"
+                      : index + 1 === 6
+                      ? "teal"
+                      : index + 1 === 7
+                      ? "blue"
+                      : index + 1 === 8
+                      ? "violet"
+                      : index + 1 === 9
+                      ? "purple"
+                      : index + 1 === 10
+                      ? "pink"
+                      : "black"
+                  }
+                >
+                  {group}
+                </Label>
                 <Card.Group stackable itemsPerRow={2} style={{ marginTop: "10px", marginBottom: "10px" }}>
                   {etudes.map((etude) => (
                     <TrainerEtudeItem key={etude.id} etude={etude} />
