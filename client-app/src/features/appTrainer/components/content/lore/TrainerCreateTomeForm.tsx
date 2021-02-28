@@ -2,11 +2,11 @@ import React, { useState, useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { Form as FinalForm, Field } from "react-final-form";
 import { combineValidators, isRequired, composeValidators, hasLengthBetween } from "revalidate";
-import { TomeFormValues } from "../../../../../app/models/appTrainer/userLore";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
 import TextInput from "../../../../../app/common/form/TextInput";
 import { Button, Form } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
+import { TomeFormValues } from "../../../../../app/models/appTrainer/domain/tome";
 
 const validate = combineValidators({
   title: composeValidators(

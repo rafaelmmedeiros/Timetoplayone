@@ -17,6 +17,7 @@ import TakingTheRoad from "../../features/takingTheRoad/TakingTheRoad";
 import Dashboard from "../../features/dashboard/Dashboard";
 import AppTrainer from "../../features/appTrainer/AppTrainer";
 import PrivateRoute from "./PrivateRoute";
+import TrainerCreateEtudeForm from "../../features/appTrainer/components/content/collection/TrainerCreateEtudeForm";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -51,8 +52,9 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <PrivateRoute exact path="/takingtheroad" component={TakingTheRoad} />
                 {/* --DASHBOARD-- */}
                 <PrivateRoute path="/dashboard/trainer" component={AppTrainer} />
-                {/* --PROFILE-- */}
-
+                {/* --APPTRAINER-- */}
+                <Route key={location.key} path={["/criaretude", "/editetude/:id"]} component={TrainerCreateEtudeForm} />
+                
                 {/* --DELETAR PROVAVEL-- */}
                 <Route exact path="/grupos" component={GrupoDashboard} />
                 <Route path="/grupos/:id" component={GrupoDetails} />

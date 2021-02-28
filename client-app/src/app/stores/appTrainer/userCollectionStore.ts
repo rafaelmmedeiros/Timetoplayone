@@ -136,7 +136,7 @@ export default class UserCollectionStore {
       this.loadingUserCollection = true;
 
       try {
-        etude = await agent.UserCollection.detail(id);
+        etude = await agent.UserCollection.details(id);
         runInAction("Get Etude", () => {
           this.etude = etude;
           this.etudeRegistry.set(etude.id, etude);
