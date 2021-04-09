@@ -32,7 +32,7 @@ namespace Application.AppTrainer.Collections {
                     throw new RESTException(HttpStatusCode.NotFound, new { etude = "Not Found" });
 
                 if (etude.AppUserId != user.Id)
-                    throw new RESTException(HttpStatusCode.Forbidden, new { etude = "Forbidden" });
+                    throw new RESTException(HttpStatusCode.Forbidden, new { etude = "Forbiden - Is not the owner" });
 
                 if (etude.Active == true)
                     throw new RESTException(HttpStatusCode.Forbidden, new { etude = "Is active" });

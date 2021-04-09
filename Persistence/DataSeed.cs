@@ -17,8 +17,8 @@ namespace Persistence {
                     new AppUser
                     {
                         Id = "a",
-                        DisplayName = "Shiryu",
-                        Bio = "Caveleiro de Bronze, armadura de Dragão.",
+                        DisplayName = "Afrodite",
+                        Bio = "Deusa da fertilidade, dos arqueiros e da caça.",
                         UserName = "shiryu",
                         Email = "shiryu@email.com"
                     },
@@ -26,15 +26,15 @@ namespace Persistence {
                     {
                         Id = "b",
                         DisplayName = "Athena",
-                        Bio = "Deusa Atehna, precisa de mais alguma coisa?",
+                        Bio = "Deusa dos humanos, sociedade e gente boa.",
                         UserName = "athena",
                         Email = "athena@email.com"
                     },
                      new AppUser
                     {
                         Id = "c",
-                        DisplayName = "Ikki",
-                        Bio = "Caveleiro de Bronze. armadura de Fênix.",
+                        DisplayName = "Poseydom",
+                        Bio = "Deus dos mares, mas gosta de terra firme, vive dando em cima da Athena.",
                         UserName = "ikki",
                         Email = "ikki@email.com"
                     },
@@ -42,7 +42,7 @@ namespace Persistence {
                     {
                         Id = "d",
                         DisplayName = "Pandora",
-                        Bio = "Abriu a caixa por curiosidade e agora ficou perturbada da cabeça.",
+                        Bio = "Abriu a caixa por curiosidade e ficou perturbada da cabeça.",
                         UserName = "pandora",
                         Email = "pandora@email.com"
                     },
@@ -50,7 +50,7 @@ namespace Persistence {
                     {
                         Id = "e",
                         DisplayName = "Hades",
-                        Bio = "Hades...the great!! The master of darkness.",
+                        Bio = "Quem manda no reino dos morots.",
                         UserName = "hades",
                         Email = "hades@email.com"
                     }
@@ -175,7 +175,7 @@ namespace Persistence {
                         Executions = 10,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude
@@ -189,7 +189,7 @@ namespace Persistence {
                         Executions = 8,
                         Played = 80,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-2),
                         AppUserId = "e"
                     },
                     new Etude
@@ -203,7 +203,7 @@ namespace Persistence {
                         Executions = 2,
                         Played = 20,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-3),
                         AppUserId = "e"
                     },
                     new Etude
@@ -217,7 +217,7 @@ namespace Persistence {
                         Executions = 2,
                         Played = 20,
                         Created = DateTime.Now.AddDays(-12),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-4),
                         AppUserId = "e"
                     },
                     new Etude
@@ -231,7 +231,7 @@ namespace Persistence {
                         Executions = 7,
                         Played = 105,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-5),
                         AppUserId = "e"
                     },
                     new Etude
@@ -245,7 +245,7 @@ namespace Persistence {
                         Executions = 7,
                         Played = 105,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-6),
                         AppUserId = "e"
                     },
                     new Etude
@@ -259,7 +259,7 @@ namespace Persistence {
                         Executions = 7,
                         Played = 105,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-8),
                         AppUserId = "e"
                     },
                     new Etude
@@ -273,7 +273,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-2),
                         AppUserId = "e"
                     },
                     new Etude
@@ -301,7 +301,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude
@@ -315,7 +315,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-2),
                         AppUserId = "e"
                     },
                     new Etude
@@ -329,7 +329,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude
@@ -357,7 +357,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-3),
                         AppUserId = "e"
                     },
                     new Etude
@@ -371,7 +371,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-2),
                         AppUserId = "e"
                     },
                     new Etude
@@ -385,7 +385,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude
@@ -399,7 +399,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-2),
                         AppUserId = "e"
                     },
                     new Etude
@@ -413,7 +413,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude
@@ -427,7 +427,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude
@@ -441,7 +441,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude
@@ -455,7 +455,7 @@ namespace Persistence {
                         Executions = 5,
                         Played = 100,
                         Created = DateTime.Now.AddDays(-5),
-                        LastPlayed = DateTime.Now,
+                        LastPlayed = DateTime.Now.AddDays(-1),
                         AppUserId = "e"
                     },
                     new Etude

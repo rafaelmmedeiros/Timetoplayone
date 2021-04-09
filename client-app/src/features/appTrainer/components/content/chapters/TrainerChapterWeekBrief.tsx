@@ -18,13 +18,13 @@ const TrainerChapterWeekBrief: React.FC = () => {
       {loadingWeekBrief && <LoadingComponent content="Loading" />}
       {/* HEADER */}
       <Grid.Column width={16}>
-        <Header floated="left" icon="calendar alternate outline" content={"Last Seven Days."} />
+        <Header floated="left" icon="calendar alternate outline" content={"Últimos 7 dias."} />
       </Grid.Column>
 
       <Grid.Column>
         <Header size="huge">{weekBrief?.totalTIme || 0}</Header>
         <Header size="small" style={{ marginTop: -10 }}>
-          Hours
+          Horas
         </Header>
       </Grid.Column>
 
@@ -38,7 +38,7 @@ const TrainerChapterWeekBrief: React.FC = () => {
       <Grid.Column>
         <Header size="huge">{weekBrief?.averageDay || 0} </Header>
         <Header size="small" style={{ marginTop: -10 }}>
-          Day/H Average
+          Horas / Dia
         </Header>
       </Grid.Column>
     </Grid>

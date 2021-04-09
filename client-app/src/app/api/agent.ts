@@ -18,12 +18,15 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 // TODA VEZ que fizer um REQUEST SERÁ VERIFICADO SE TEM O TOKEN E ANEXAR ELE AO HEADER
 // IGUAL NO POSTMAN... FUNCIONOU TA BOM.
+
+
 axios.interceptors.request.use(
   (config) => {
     const token = window.localStorage.getItem("jwt");
 
-    if (token) config.headers.Authorization = `Bearer ${token}`;
-    return config;
+    if (token) 
+      config.headers.Authorization = `Bearer ${token}`;
+      return config;
   },
   (error) => {
     return Promise.reject(error);
@@ -76,6 +79,7 @@ const requests = {
   post: (url: string, body: {}) => axios.post(url, body).then(sleep(time)).then(responseBody),
   put: (url: string, body: {}) => axios.put(url, body).then(sleep(time)).then(responseBody),
   delete: (url: string) => axios.delete(url).then(sleep(time)).then(responseBody),
+  postCommand: (url: string) => axios.post(url).then(sleep(time)).then(responseBody),
   postForm: (url: string, file: Blob) => {
     let formData = new FormData();
     formData.append("File", file);
@@ -85,7 +89,6 @@ const requests = {
       })
       .then(responseBody);
   },
-  postCommand: (url: string) => axios.post(url).then(sleep(time)).then(responseBody),
 };
 
 //  TODO: DELETAR

@@ -4,10 +4,16 @@ import { observer } from "mobx-react-lite";
 import { Card, Button, Icon, Progress, Label } from "semantic-ui-react";
 import { formatDistance } from "date-fns";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
+import { ptBR } from "date-fns/locale";
 
 const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   const rootStore = useContext(RootStoreContext);
-  const { setEtudeDone, loading, targetDone, setTargetDone } = rootStore.userPracticeStore;
+  const {
+    setEtudeDone,
+    loading,
+    targetDone,
+    setTargetDone,
+  } = rootStore.userPracticeStore;
 
   var neverPlayed;
   if (etude.created > etude.lastPlayed) neverPlayed = true;
@@ -73,12 +79,22 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         >
           {etude.tome}
         </Label>
-        <Label color={etude.fluence === 1 ? "yellow" : etude.fluence === 2 ? "olive" : etude.fluence === 3 ? "green" : "black"}>
-          {etude.fluence}
+        <Label
+          color={
+            etude.fluence === 1
+              ? "yellow"
+              : etude.fluence === 2
+              ? "olive"
+              : etude.fluence === 3
+              ? "green"
+              : "black"
+          }
+        >
+          {etude.fluence === 1 ? "Ini" : etude.fluence === 2 ? "Evo" : "Flu"}
         </Label>
       </Card.Content>
       {/* --------------------- */}
-      <Card.Content extra>
+      <Card.Content>
         {/* TIME */}
         <Icon size="big" name="clock" style={{ marginRight: "10px", paddingTop: "5px" }}>
           {etude.time}
@@ -105,8 +121,26 @@ const TrainerPracticeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
       </Card.Content>
       {/* --------------------- */}
       <Card.Content extra>
-        {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(new Date(), etude.lastPlayed)}</Card.Meta>}
-        <Progress size="tiny" percent={etude.priority} indicating />
+        {neverPlayed ? (
+          <Card.Meta>Nunca praticado</Card.Meta>
+        ) : (
+          <Card.Meta>
+            Praticado a {formatDistance(new Date(), etude.lastPlayed, { locale: ptBR })}
+          </Card.Meta>
+        )}
+        <Progress size="tiny" percent={etude.priority} indicating>
+          {etude.priority === 100
+            ? "Perfeito!"
+            : etude.priority >= 80
+            ? "Progredindo bem"
+            : etude.priority >= 60
+            ? "Precisa melhorar"
+            : etude.priority >= 40
+            ? "Começando a esfriar"
+            : etude.priority >= 20
+            ? "Esfriando..."
+            : "Abandonado"}
+        </Progress>
       </Card.Content>
     </Card>
   );

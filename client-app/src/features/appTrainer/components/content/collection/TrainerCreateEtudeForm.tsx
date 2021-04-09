@@ -16,23 +16,25 @@ import {
 } from "revalidate";
 import { EtudeFormValues } from "../../../../../app/models/appTrainer/domain/etude";
 
+let required = "Não pode ser vazio";
+
 // VALIDATION
 const validate = combineValidators({
   title: composeValidators(
-    isRequired({ message: "Is required" }),
-    hasLengthBetween(3, 15)({ message: "Must be beetween 3 and 15 characters" })
+    isRequired({ message: required }),
+    hasLengthBetween(3, 15)({ message: "Deve ter entre 3 e 15 caracteres" })
   )(),
   tome: composeValidators(
-    isRequired({ message: "Is required" }),
-    hasLengthBetween(3, 15)({ message: "Must be beetween 3 and 15 characters" })
+    isRequired({ message: required }),
+    hasLengthBetween(3, 15)({ message: "Deve ter entre 3 e 15 caracteres" })
   )(),
   time: composeValidators(
-    isRequired({ message: "Is required" }),
-    hasLengthLessThan(3)({ message: "Must be beetween 0 and 99" })
+    isRequired({ message: required }),
+    hasLengthLessThan(3)({ message: "Deve ter entre 1 e 99" })
   )(),
   description: composeValidators(
-    isRequired({ message: "Is required" }),
-    hasLengthLessThan(250)({ message: "Maximun of 250 characters" })
+    isRequired({ message: required }),
+    hasLengthLessThan(250)({ message: "Máximo de 250 caracteres" })
   )(),
 });
 
@@ -66,25 +68,25 @@ const TrainerCreateEtudeForm = () => {
         <Form onSubmit={handleSubmit} loading={loading}>
           <Field
             name="title"
-            placeholder="Title"
+            placeholder="Título"
             value={etude.title}
             component={TextInput}
           />
           <Field
             name="tome"
-            placeholder="Tome"
+            placeholder="Grupo"
             value={etude.title}
             component={TextInput}
           />
           <Field
             name="time"
-            placeholder="Time"
+            placeholder="Tempo"
             value={etude.time}
             component={NumberInput}
           />
           <Field
             name="description"
-            placeholder="Description and Details"
+            placeholder="Descrição e detalhes"
             rows={10}
             value={etude.description}
             component={TextAreaInput}
@@ -95,7 +97,7 @@ const TrainerCreateEtudeForm = () => {
             floated="right"
             color="olive"
             type="submit"
-            content="Create"
+            content="Criar"
           />
         </Form>
       )}

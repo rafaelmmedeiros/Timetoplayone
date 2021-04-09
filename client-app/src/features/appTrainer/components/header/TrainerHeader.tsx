@@ -29,7 +29,7 @@ const TrainerHeader: React.FC = () => {
               <Icon name="clock" style={{ marginRight: "10px" }} />
               {todayChapter?.totalTime || 0}
             </Statistic.Value>
-            <Statistic.Label>Minutes Today</Statistic.Label>
+            <Statistic.Label>Minutos Hoje</Statistic.Label>
           </Statistic>
         </Grid.Column>
 
@@ -39,7 +39,7 @@ const TrainerHeader: React.FC = () => {
               <Icon name="list alternate" style={{ marginRight: "10px" }} />
               {todayChapter?.totalEtudes || 0}
             </Statistic.Value>
-            <Statistic.Label>Etudes Done</Statistic.Label>
+            <Statistic.Label>Etudes Feitos</Statistic.Label>
           </Statistic>
         </Grid.Column>
 
@@ -52,7 +52,7 @@ const TrainerHeader: React.FC = () => {
                     <Icon name="checkmark" style={{ marginRight: "10px" }} />
                     {todayChapter?.objective || 0}
                   </Statistic.Value>
-                  <Statistic.Label>Minutes Goal! ({calculateHours} /h)</Statistic.Label>
+                  <Statistic.Label>Objetivo! ({calculateHours} /h)</Statistic.Label>
                 </Statistic>
               </Grid.Column>
               <Grid.Column width="4">
@@ -92,7 +92,7 @@ const TrainerHeader: React.FC = () => {
               <Statistic.Value>
                 <Icon name="bed" style={{ marginRight: "10px" }} />
               </Statistic.Value>
-              <Statistic.Label>Not played today...</Statistic.Label>
+              <Statistic.Label>Não tocou hoje...</Statistic.Label>
             </Statistic>
           </Grid.Column>
         )}

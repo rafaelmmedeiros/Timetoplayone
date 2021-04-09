@@ -18,14 +18,14 @@ const NavBar: React.FC = () => {
         {user &&
         <Menu.Item header as={NavLink} exact to="/dashboard">
           <Icon name="calendar check outline" size="big" />
-          {isMobile ? "Go!" : "Dashboard"}
+          {isMobile ? "Painel" : "Painel"}
         </Menu.Item>}
         {/* ----PROFILE---- */}
-        {user && <Menu.Item content={isMobile ? "" : "Profile"} icon="user" as={NavLink} to={`/profile/${user.username}`} />}
+        {user && <Menu.Item content={isMobile ? "" : "Perfil"} icon="user" as={NavLink} to={`/profile/${user.username}`} />}
         {/* ----TAKING THE ROAD---- */}
-        {user && <Menu.Item content={isMobile ? "" : "Taking The Road"} icon="road" as={NavLink} exact to="/grupos" />}
+        {/* {user && <Menu.Item content={isMobile ? "" : "Taking The Road"} icon="road" as={NavLink} exact to="/grupos" />} */}
         {/* ----TAKING THE ROAD---- */}
-        {user && <Menu.Item content={isMobile ? "" : "Help"} icon="help" as={NavLink} exact to="/grupos" />}
+        {user && <Menu.Item content={isMobile ? "" : "Ajuda"} icon="help" as={NavLink} exact to="/help" />}
         {/* ----LOGOUT---- */}
         {user && <Menu.Item content={isMobile ? "" : "Logout"} position="right" icon="sign-out" onClick={logout} />}
       </Container>

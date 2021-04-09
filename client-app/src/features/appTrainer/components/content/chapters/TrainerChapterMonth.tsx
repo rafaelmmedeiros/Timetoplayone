@@ -19,7 +19,7 @@ const TrainerChapterMonth: React.FC = () => {
       {loadingUserChaptersMonth && <LoadingComponent content="Loading" />}
       {/* HEADER */}
       <Grid.Column width={16}>
-        <Header floated="left" icon="calendar alternate" content={"28 Days Later..."} />
+        <Header floated="left" icon="calendar alternate" content={"28 Dias depois..."} />
       </Grid.Column>
       {/* BODY */}
       <Grid.Column width={16}>

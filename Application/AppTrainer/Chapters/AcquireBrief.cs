@@ -11,10 +11,11 @@ using Persistence;
 namespace Application.AppTrainer.Chapters {
     public class AcquireBrief {
         public class Query : IRequest<ChapterWeekBriefDto> { }
-
         public class Handler : IRequestHandler<Query, ChapterWeekBriefDto> {
+
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
+
             public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
@@ -24,7 +25,7 @@ namespace Application.AppTrainer.Chapters {
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 var queryable = _context.Chapters
-                    .Where(a => a.AppUserId == user.Id)
+                    .Where(a => a.AppUserId == user.Id && a.Day > DateTime.Today.AddDays(-7))
                     .AsQueryable();
 
                 var chapters = queryable.ToList();
@@ -32,10 +33,8 @@ namespace Application.AppTrainer.Chapters {
                 var totalTime = 0;
 
                 foreach (var chapter in chapters) {
-                    if ((DateTime.Today - chapter.Day).TotalDays <= 7) {
-                        totalEtudes += chapter.TotalEtudes;
-                        totalTime += chapter.TotalTime;
-                    }
+                    totalEtudes += chapter.TotalEtudes;
+                    totalTime += chapter.TotalTime;
                 }
 
                 var chapterWeekBrief = new ChapterWeekBriefDto {
@@ -49,3 +48,4 @@ namespace Application.AppTrainer.Chapters {
         }
     }
 }
+

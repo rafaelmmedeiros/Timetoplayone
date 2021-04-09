@@ -10,7 +10,7 @@ const TrainerChapters = () => {
       <Grid>
         {/* HEADER */}
         <Grid.Column width={16}>
-          <Header floated="left" icon="chart line" content={"Chapters written!"} />
+          <Header floated="left" icon="chart bar" content={"Capítulos Escritos!"} />
         </Grid.Column>
 
         {/* LAST SEVEN DAYS */}

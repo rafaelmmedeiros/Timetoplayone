@@ -8,7 +8,13 @@ import TrainerCreateTomeForm from "./TrainerCreateTomeForm";
 
 const TrainerLore: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { userLore, loadUserLore, loadingUserLore, createModeLore, setcreateModeLore } = rootStore.userLoreStore;
+  const {
+    userLore,
+    loadUserLore,
+    loadingUserLore,
+    createModeLore,
+    setcreateModeLore,
+  } = rootStore.userLoreStore;
   const { createModeCollection, setcreateModeCollection } = rootStore.userCollectionStore;
 
   useEffect(() => {
@@ -25,13 +31,13 @@ const TrainerLore: React.FC = () => {
         {loadingUserLore && <LoadingComponent content="Loading" />}
         {/* HEADER */}
         <Grid.Column width={16}>
-          <Header floated="left" icon="book" content={"Tomes"} />
+          <Header floated="left" icon="book" content={"Grupos"} />
           {userLore?.tomes.length !== 10 && (
             <Button
               basic
               floated="right"
               color={createModeLore ? "red" : "blue"}
-              content={createModeLore ? "Cancel" : "New Tome"}
+              content={createModeLore ? "Cancelar" : "Criar Grupo"}
               onClick={() => setcreateModeLore()}
             />
           )}

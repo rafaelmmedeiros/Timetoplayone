@@ -18,7 +18,7 @@ namespace Application.AppTrainer.Collections {
             public string Description { get; set; }
 
         }
-
+        
         public class CommandValidator : AbstractValidator<Command> {
             public CommandValidator() {
                 RuleFor(x => x.Title)

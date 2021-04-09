@@ -27,10 +27,7 @@ namespace Application.AppTrainer.Collections {
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
-                var etude = user.Etudes.FirstOrDefault(x => x.Id == request.Id);
-
-                if (etude.AppUserId != user.Id)
-                    throw new Errors.RESTException(HttpStatusCode.Forbidden, new { etude = "Not belongs to you... " });
+                var etude = user.Etudes.FirstOrDefault(x => x.Id == request.Id && x.AppUserId == user.Id);
 
                 if (etude == null)
                     throw new Errors.RESTException(HttpStatusCode.NotFound, new { etude = "Not Found" });

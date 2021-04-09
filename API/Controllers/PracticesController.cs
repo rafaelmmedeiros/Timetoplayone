@@ -7,7 +7,7 @@ namespace API.Controllers {
     public class PracticesController : BaseController {
         
         [HttpGet]
-        public async Task<ActionResult<Acquire.PracticeEnvelope>> List() {
+        public async Task<ActionResult<Acquire.PracticeEnvelope>> Acquire() {
             return await Mediator.Send(new Acquire.Query());
         }
 

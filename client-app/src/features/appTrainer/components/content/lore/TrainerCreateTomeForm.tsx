@@ -49,7 +49,7 @@ const TrainerCreateTomeForm = () => {
             floated="right"
             color="olive" 
             type="submit" 
-            content="Create" 
+            content="Criar" 
             />
         </Form>
       )}

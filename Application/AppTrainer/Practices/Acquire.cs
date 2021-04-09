@@ -87,10 +87,10 @@ namespace Application.AppTrainer.Practices {
                         priority = 100 - ((daysWithoutPlaying / 1.5) * 10);
                         break;
                     case 2:
-                        priority = 100 - ((daysWithoutPlaying / 1.5) * 10);
+                        priority = 100 - ((daysWithoutPlaying / 3) * 10);
                         break;
                     case 3:
-                        priority = 100 - ((daysWithoutPlaying / 1.5) * 10);
+                        priority = 100 - ((daysWithoutPlaying / 6) * 10);
                         break;
                     default:
                         priority = 100;

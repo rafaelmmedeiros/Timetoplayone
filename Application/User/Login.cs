@@ -25,9 +25,11 @@ namespace Application.User {
         }
 
         public class Handler : IRequestHandler<Query, User> {
+
             private readonly UserManager<AppUser> _userManager;
             private readonly SignInManager<AppUser> _signInManager;
             private readonly IJwtGenerator _jwtGenerator;
+            
             public Handler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtGenerator jwtGenerator) {
                 _jwtGenerator = jwtGenerator;
                 _signInManager = signInManager;

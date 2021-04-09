@@ -4,6 +4,7 @@ import { Card, Button, Icon } from "semantic-ui-react";
 import { formatDistance } from "date-fns";
 import { IEtude } from "../../../../../app/models/appTrainer/domain/etude";
 import { RootStoreContext } from "../../../../../app/stores/rootStore";
+import { ptBR } from "date-fns/locale";
 
 const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
   const rootStore = useContext(RootStoreContext);
@@ -70,8 +71,16 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         {/* HEADER */}
         <Card.Header>{etude.title}</Card.Header>
         {/* DATES */}
-        {neverPlayed ? <Card.Meta>Never Played</Card.Meta> : <Card.Meta>Last Played {formatDistance(new Date(), etude.lastPlayed)}</Card.Meta>}
-        <Card.Meta>Created {formatDistance(new Date(), etude.created)}</Card.Meta>
+        {neverPlayed ? (
+          <Card.Meta>Nunca praticado</Card.Meta>
+        ) : (
+          <Card.Meta>
+            Praticado a {formatDistance(new Date(), etude.lastPlayed, { locale: ptBR })}
+          </Card.Meta>
+        )}
+        <Card.Meta>
+          Criado a {formatDistance(new Date(), etude.created, { locale: ptBR })}
+        </Card.Meta>
       </Card.Content>
 
       <Card.Content extra>
@@ -87,7 +96,7 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             }}
             loading={loading && targetLearning === etude.id}
           >
-            Learning
+            Inicio
           </Button>
           <Button.Or text=">>" />
           <Button
@@ -99,7 +108,7 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             }}
             loading={loading && targetEvolution === etude.id}
           >
-            Evolution
+            Evoluindo
           </Button>
           <Button.Or text=">>" />
           <Button
@@ -111,7 +120,7 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
             }}
             loading={loading && targetFlowing === etude.id}
           >
-            Flowing
+            Fluente
           </Button>
         </Button.Group>
       </Card.Content>
@@ -120,7 +129,11 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
         {/* PLACAR */}
         <Icon size="big" name="retweet" style={{ marginRight: "10px" }} />
         {etude.executions}
-        <Icon size="big" name="history" style={{ marginRight: "10px", marginLeft: "10px" }} />
+        <Icon
+          size="big"
+          name="history"
+          style={{ marginRight: "10px", marginLeft: "10px" }}
+        />
         {etude.played}
 
         {/* ACTIVATE AND DELETE BUTTONS */}
@@ -154,7 +167,6 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
               <Icon fitted name="trash" />
             </Button>
           )}
-          
         </Button.Group>
       </Card.Content>
     </Card>

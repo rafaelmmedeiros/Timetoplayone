@@ -64,7 +64,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
           <Icon name="list alternate" style={{ marginRight: "5px" }}></Icon>
           {tome.totalEtudes} Etudes
           <Icon name="clock" style={{ marginRight: "5px", marginLeft: "10px" }}></Icon>
-          {tome.totalTime} Minutes
+          {tome.totalTime} Minutos
         </Card.Content>
       ) : tome.totalEtudes === 0 ? (
         <Card.Content>
@@ -74,7 +74,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
       ) : (
         <Card.Content>
           <Icon name="list alternate outline" style={{ marginRight: "5px" }}></Icon>
-          No etudes
+          Etudes Vazios
         </Card.Content>
       )}
 

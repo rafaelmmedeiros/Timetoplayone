@@ -12,8 +12,8 @@ namespace Application.AppTrainer.Practices {
         public class Command : IRequest {
             public Guid Id { get; set; }
         }
-
         public class Handler : IRequestHandler<Command> {
+
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
             public Handler(DataContext context, IUserAccessor userAccessor) {
@@ -22,15 +22,11 @@ namespace Application.AppTrainer.Practices {
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken) {
+
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
-
                 var etude = await _context.Etudes.FindAsync(request.Id);
-
                 var chapter = await _context.Chapters.FirstOrDefaultAsync(x => x.Day == DateTime.Today && x.AppUserId == user.Id);
 
-                //  SECURITY
-
-                //  EDIT CHAPTER
                 if (chapter == null) {
                     var chapterToCreate = new Chapter {
                         Day = DateTime.Today,
@@ -39,14 +35,13 @@ namespace Application.AppTrainer.Practices {
                         Objective = 30,
                         AppUserId = user.Id
                     };
-
                     _context.Chapters.Add(chapterToCreate);
+
                 } else {
                     chapter.TotalTime += etude.Time;
                     chapter.TotalEtudes++;
                 }
 
-                //  EDIT ETUDE
                 etude.Played += etude.Time;
                 etude.Executions++;
                 etude.LastPlayed = DateTime.Now;
@@ -55,9 +50,8 @@ namespace Application.AppTrainer.Practices {
 
                 if (success) return Unit.Value;
 
-                throw new Exception("Erro ao salvar");
+                throw new Exception("Error saving Done Etude");
             }
         }
-
     }
 }

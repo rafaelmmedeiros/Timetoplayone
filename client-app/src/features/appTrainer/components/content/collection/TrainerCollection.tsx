@@ -30,7 +30,7 @@ const TrainerCollection: React.FC = () => {
             basic
             floated="right"
             color={createModeCollection ? "red" : "blue"}
-            content={createModeCollection ? "Cancel" : "New Etude"}
+            content={createModeCollection ? "Cancelar" : "Criar Etude"}
             onClick={() => setcreateModeCollection()}
           />
         </Grid.Column>

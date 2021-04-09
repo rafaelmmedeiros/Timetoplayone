@@ -20,7 +20,7 @@ const TrainerPractice: React.FC = () => {
         {loadingUserPractice && <LoadingComponent content="Loading" />}
         {/* HEADER */}
         <Grid.Column width={16}>
-          <Header floated="left" icon="pin" content={"Etudes to Play!"} />
+          <Header floated="left" icon="pin" content={"Hora de Tocar!"} />
         </Grid.Column>
         {/* BODY */}
         <Grid.Column width={16}>

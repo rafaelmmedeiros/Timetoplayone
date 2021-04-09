@@ -11,6 +11,7 @@ using Persistence;
 
 namespace Application.AppTrainer.Chapters {
     public class AcquireWeek {
+        
         public class ChaptersWeekEnvelope {
             public List<ChapterWeekDto> WeekChapters { get; set; }
         }
@@ -18,8 +19,10 @@ namespace Application.AppTrainer.Chapters {
         public class Query : IRequest<ChaptersWeekEnvelope> { }
 
         public class Handler : IRequestHandler<Query, ChaptersWeekEnvelope> {
+
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
+
             public Handler(DataContext context, IUserAccessor userAccessor) {
                 _userAccessor = userAccessor;
                 _context = context;
