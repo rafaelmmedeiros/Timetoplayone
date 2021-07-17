@@ -41,7 +41,7 @@ const PhotoWidgetDropzone: React.FC<IProps> = ({ setFiles }) => {
     <div {...getRootProps()} style={isDragActive ? { ...dropzoneStyles, ...dropzoneActive } : dropzoneStyles}>
       <input {...getInputProps()} />
       <Icon name="upload" size="huge" />
-      <Header content="Drop Image"></Header>
+      <Header content="Arrastar foto"></Header>
     </div>
   );
 };

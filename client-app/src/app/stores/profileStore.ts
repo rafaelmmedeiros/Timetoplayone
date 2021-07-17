@@ -37,7 +37,7 @@ export default class ProfileStore {
         this.loadingProfile = false;
       });
       //console.log(error);
-      toast.error("👎 Error loading profile.");
+      toast.error("👎 Erro carregando perfil.");
     }
   };
 
@@ -76,12 +76,12 @@ export default class ProfileStore {
         this.profile!.image = photo.url;
         this.loading = false;
       });
-      toast.success("👍 Main photo updated with success.");
+      toast.success("👍 Foto principal alterada com sucesso.");
     } catch (error) {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error setting main photo.");
+      toast.error("👎 Erro selecionando foto principal.");
     }
   };
 
@@ -94,12 +94,12 @@ export default class ProfileStore {
         this.profile!.photos = this.profile!.photos.filter((a) => a.id !== photo.id);
         this.loading = false;
       });
-      toast.success("👍 Photo deleted with success.");
+      toast.success("👍 Foto deletada com sucesso.");
     } catch (error) {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error deleting photo.");
+      toast.error("👎 Erro deletando foto.");
     }
   };
 
@@ -112,9 +112,9 @@ export default class ProfileStore {
         }
         this.profile = { ...this.profile!, ...profile };
       });
-      toast.success("👍 Profile updated with success.");
+      toast.success("👍 Perfil atualizado com sucesso.");
     } catch (error) {
-      toast.error("👎 Error updating profile.");
+      toast.error("👎 Erro atualizando perfil.");
     }
   };
 }

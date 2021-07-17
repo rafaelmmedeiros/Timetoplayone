@@ -20,33 +20,37 @@ const PhotoUploadWidget: React.FC<IProps> = ({ loading, uploadPhoto }) => {
   });
 
   return (
+
     <Fragment>
+
       <Grid stackable>
         <Grid.Column width={4}>
-          <Header color="teal" sub content="Step 1 - Add Photo" />
+          <Header color="teal" sub content="Adicionar Foto" />
           <PhotoWidgetDropzone setFiles={setFiles} />
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
-          <Header sub color="teal" content="Step 2 - Resize image" />
+          <Header sub color="teal" content="Redimensionar" />
           {files.length > 0 && <PhotoWidgetCropper setImage={setImage} imagePreview={files[0].preview} />}
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
-          <Header sub color="teal" content="Step 3 - Preview & Upload" />
+          <Header sub color="teal" content="Revisar" />
           {files.length > 0 && (
             <Fragment>
               <div className="img-preview" style={{ minHeight: "200px", overflow: "hidden" }} />
               <Button.Group widths={1}>
-                <Button content="Save" positive icon="check" loading={loading} onClick={() => uploadPhoto(image!)} />
+                <Button content="Salvar" positive icon="check" loading={loading} onClick={() => uploadPhoto(image!)} />
                 <Button.Or />
-                <Button content="Cancel" icon="close" disabled={loading} onClick={() => setFiles([])} />
+                <Button content="Cancelar" icon="close" disabled={loading} onClick={() => setFiles([])} />
               </Button.Group>
             </Fragment>
           )}
         </Grid.Column>
       </Grid>
+
     </Fragment>
+
   );
 };
 

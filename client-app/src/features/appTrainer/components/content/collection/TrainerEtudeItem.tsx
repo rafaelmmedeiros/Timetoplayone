@@ -59,14 +59,14 @@ const TrainerEtudeItem: React.FC<{ etude: IEtude }> = ({ etude }) => {
     >
       <Card.Content>
         {/* EDIT DATAILS BUTTONS */}
-        {/* <Button.Group floated="right">
+        <Button.Group floated="right">
           <Button basic color="blue" floated="right">
             <Icon fitted name="edit" />
           </Button>
           <Button basic color="violet" floated="right">
             <Icon fitted name="magnify" />
           </Button>
-        </Button.Group> */}
+        </Button.Group>
 
         {/* HEADER */}
         <Card.Header>{etude.title}</Card.Header>

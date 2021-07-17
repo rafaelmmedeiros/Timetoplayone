@@ -12,6 +12,7 @@ const ProfileHeader: React.FC<IProps> = ({ profile }) => {
     <Segment>
       <Grid columns={2} stackable>
         <Grid.Column width={10}>
+
           <Item.Group>
             <Item>
               <Item.Image avatar size="small" src={profile.image || "/assets/user.png"} />
@@ -20,13 +21,17 @@ const ProfileHeader: React.FC<IProps> = ({ profile }) => {
               </Item.Content>
             </Item>
           </Item.Group>
+
         </Grid.Column>
         <Grid.Column width={6}>
+
           <Statistic.Group widths={2}>
-            <Statistic label="Followers" value="20" />
-            <Statistic label="Following" value="12" />
+            <Statistic label="Followers" value="85" />
+            <Statistic label="Following" value="86" />
           </Statistic.Group>
+
           <Divider />
+
           <Reveal animated="move">
             <Reveal.Content visible style={{ width: "100%" }}>
               <Button fluid color="teal" content="Following" />
@@ -35,6 +40,7 @@ const ProfileHeader: React.FC<IProps> = ({ profile }) => {
               <Button fluid basic color={true ? "red" : "green"} content={true ? "Unfollow" : "Follow"} />
             </Reveal.Content>
           </Reveal>
+          
         </Grid.Column>
       </Grid>
     </Segment>

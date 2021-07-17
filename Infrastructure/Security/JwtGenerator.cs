@@ -21,7 +21,7 @@ namespace Infrastructure.Security {
                 new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
             };
 
-            //  GERATING SIGNING CREDENCIALS
+            //  GENERATING TOKEN
             var credencial = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor {
@@ -30,9 +30,11 @@ namespace Infrastructure.Security {
                 SigningCredentials = credencial
             };
 
+            
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+            // THIS IS YOUR TOKEN...
             return tokenHandler.WriteToken(token);
         }
     }

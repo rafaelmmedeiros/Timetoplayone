@@ -77,7 +77,7 @@ export default class UserLoreStore {
       runInAction(() => {
         this.loadingUserLore = false;
       });
-      toast.error("👎 Error loading Lore.");
+      toast.error("👎 Erro carregando Grupos.");
     }
   };
 
@@ -88,14 +88,14 @@ export default class UserLoreStore {
       runInAction(() => {
         this.submitting = false;
       });
-      toast.success("👍 Tome created with success.");
+      toast.success("👍 Grupo criado com sucesso.");
       this.setcreateModeLore();
       this.loadUserLore();
     } catch (error) {
       runInAction(() => {
         this.submitting = false;
       });
-      toast.error("👎 Error creating Tome.");
+      toast.error("👎 Erro criando grupo.");
       console.log(error.response);
     }
   };
@@ -112,7 +112,7 @@ export default class UserLoreStore {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error setting Tome Up.");
+      toast.error("👎 Erro deslocando grupo para cima.");
     }
   };
 
@@ -128,7 +128,7 @@ export default class UserLoreStore {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error setting Tome Down.");
+      toast.error("👎 Erro deslocando grupo para baixo.");
     }
   };
 
@@ -140,12 +140,12 @@ export default class UserLoreStore {
         this.loadUserLore();
         this.loading = false;
       });
-      toast.success("👍 Tome deleted with success.");
+      toast.success("👍 Grupo deletado com sucesso.");
     } catch (error) {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error deleting Tome.");
+      toast.error("👎 Erro deletando grupo");
     }
   };
 
@@ -161,7 +161,7 @@ export default class UserLoreStore {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error changines etude status.");
+      toast.error("👎 Erro ao definir status do Grupo.");
     }
   };
 }

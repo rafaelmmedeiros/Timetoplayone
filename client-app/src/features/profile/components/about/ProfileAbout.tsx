@@ -13,20 +13,23 @@ const ProfileAbout = () => {
     <Tab.Pane>
       <Grid>
         <Grid.Column width={16}>
-          <Header floated="left" icon="user" content={`About ${profile!.displayName}`} />
+          <Header floated="left" icon="user" content={`Sobre ${profile!.displayName}`} />
+
           {isCurrentUser && (
             <Button
               basic
               floated="right"
               color={editMode ? "red" : "blue"}
-              content={editMode ? "Cancel" : "Edit Profile"}
+              content={editMode ? "Cancelar" : "Editar Perfil"}
               onClick={() => setEditMode(!editMode)}
             />
           )}
         </Grid.Column>
+
         <Grid.Column width={16}>
           {editMode ? <ProfileAboutEditForm updateProfile={updateAbout} profile={profile!} /> : <span>{profile!.bio}</span>}
         </Grid.Column>
+
       </Grid>
     </Tab.Pane>
   );

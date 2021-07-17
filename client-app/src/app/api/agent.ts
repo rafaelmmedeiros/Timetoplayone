@@ -36,7 +36,7 @@ axios.interceptors.request.use(
 // ERROR INTERCEPTOR
 axios.interceptors.response.use(undefined, (error) => {
   if (error.message === "Network Error" && !error.response) {
-    toast.error("🔥🔥 The server is on fire!!!");
+    toast.error("🔥🔥 Problemas com o servidor!");
   }
 
   const { status, data, config, headers } = error.response;
@@ -46,7 +46,7 @@ axios.interceptors.response.use(undefined, (error) => {
     console.log(error.response);
     window.localStorage.removeItem("jwt");
     history.push("/");
-    toast.info("Session Expired, please login again");
+    toast.info("Sessão terminada, por favor refaça login");
   }
 
   //  404
@@ -61,7 +61,7 @@ axios.interceptors.response.use(undefined, (error) => {
 
   //  500
   if (status === 500) {
-    toast.error("🔥🔥 The server is on fire!!!");
+    toast.error("🔥🔥 Problemas com o servidor!");
   }
 
   throw error.response;

@@ -115,6 +115,13 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
 
         {/* DELETE AND ACTIVATE */}
         <Button.Group floated="right">
+
+          {/* EDIT */}
+          <Button basic color="blue" floated="right">
+            <Icon fitted name="edit" />
+          </Button>
+
+          {/* ACTVATE */}
           <Button
             name={tome.id}
             basic
@@ -129,6 +136,7 @@ const TrainerTomeItem: React.FC<{ tome: ITome }> = ({ tome }) => {
             <Icon fitted name="power" />
           </Button>
 
+          {/* DELETE */}
           {!tome.active && tome.totalEtudes === 0 && (
             <Button
               name={tome.id}

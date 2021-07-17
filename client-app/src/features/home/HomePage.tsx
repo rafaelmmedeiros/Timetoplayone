@@ -24,7 +24,7 @@ const HomePage = () => {
             <Image size="small" circular centered src={user.image || "/assets/user.png"} />
             <Header inverted as="h2" content={`${user.displayName} , inspirado hoje?`} />
             <Button as={Link} to="/dashboard" size="huge">
-              Chega de moleza!
+              Hora de praticar!
             </Button>
           </Fragment>
         ) : (

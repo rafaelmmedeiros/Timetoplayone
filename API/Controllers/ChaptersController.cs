@@ -32,6 +32,11 @@ namespace API.Controllers {
             return await Mediator.Send(new AcquireMonth.Query());
         }
 
+        [HttpGet("season")]
+        public async Task<ActionResult<AcquireSeason.ChapterSeasonEnvelope>> AcquireSeason() {
+            return await Mediator.Send(new AcquireSeason.Query());
+        }
+
         [HttpGet("brief")]
         public async Task<ActionResult<ChapterWeekBriefDto>> AcquireBrief() {
             return await Mediator.Send(new AcquireBrief.Query());

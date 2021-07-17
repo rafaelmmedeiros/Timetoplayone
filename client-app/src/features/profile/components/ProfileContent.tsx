@@ -5,7 +5,7 @@ import ProfileAbout from "./about/ProfileAbout";
 
 const panes = [
   { menuItem: "Album", render: () => <ProfilePhotos /> },
-  { menuItem: "About", render: () => <ProfileAbout /> },
+  { menuItem: "Sobre", render: () => <ProfileAbout /> },
 ];
 
 const ProfileContent = () => {

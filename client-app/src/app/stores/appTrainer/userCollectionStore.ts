@@ -122,7 +122,7 @@ export default class UserCollectionStore {
       runInAction(() => {
         this.loadingUserCollection = false;
       });
-      toast.error("👎 Error loading Collection.");
+      toast.error("👎 Error carregando Etudes.");
     }
   };
 
@@ -165,7 +165,7 @@ export default class UserCollectionStore {
       runInAction("Create Etude", () => {
         this.submitting = false;
       });
-      toast.success("👍 Etude created with success.");
+      toast.success("👍 Etude criado com sucesso.");
       this.setcreateModeCollection();
       this.loadUserCollection();
       // this.etudesByTome(); TODO
@@ -173,7 +173,7 @@ export default class UserCollectionStore {
       runInAction("Create etude Erro", () => {
         this.submitting = false;
       });
-      toast.error("👎 Error creating Etude.");
+      toast.error("👎 Erro criando Etude.");
       console.log(error.response);
     }
   };
@@ -192,7 +192,7 @@ export default class UserCollectionStore {
       runInAction("Edit Etude Error", () => {
         this.submitting = false;
       });
-      toast.error("👎 Error editing Etude.");
+      toast.error("👎 Erro editando Etude.");
       console.log(error.response);
     }
   };
@@ -209,7 +209,7 @@ export default class UserCollectionStore {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error setting Etude to Learning.");
+      toast.error("👎 Erro definindo Etude como inicio.");
     }
   };
 
@@ -225,7 +225,7 @@ export default class UserCollectionStore {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error setting Etude to Evolution.");
+      toast.error("👎 Erro definindo Etude como Evoluindo");
     }
   };
 
@@ -241,7 +241,7 @@ export default class UserCollectionStore {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error setting Etude to Flowing.");
+      toast.error("👎 Erro definindo Etude como Fluente.");
     }
   };
 
@@ -253,12 +253,12 @@ export default class UserCollectionStore {
         this.loadUserCollection();
         this.loading = false;
       });
-      toast.success("👍 Etude deleted with success.");
+      toast.success("👍 Etude deletado com sucesso.");
     } catch (error) {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error deleting Etude.");
+      toast.error("👎 Erro deletando Etude.");
     }
   };
 
@@ -274,7 +274,7 @@ export default class UserCollectionStore {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error changines etude status.");
+      toast.error("👎 Erro ao definir status do Etude.");
     }
   };
 }

@@ -14,9 +14,7 @@ export default class UserPracticeStore {
 
   @observable userPractice: IUserPractice | null = null;
   @observable loadingUserPractice = true;
-
   @observable loading = false;
-
   @observable targetDone = "";
 
   @action setTargetDone = async (id: string) => {
@@ -37,7 +35,7 @@ export default class UserPracticeStore {
       runInAction("loadUserPractice error", () => {
         this.loadingUserPractice = false;
       });
-      toast.error("👎 Error loading Practice.");
+      toast.error("👎 Erro carregando Prática.");
     }
   };
 
@@ -51,19 +49,19 @@ export default class UserPracticeStore {
           this.rootStore.userTodayChapterStore.todayChapter!.totalEtudes++;
         } else {
           this.rootStore.userTodayChapterStore.loadTodayChapter();
-          toast.info("👍 Starting a new chapter!");
+          toast.info("👍 Começando um novo capítulo!");
         }
 
         this.loadUserPractice();
         this.loading = false;
       });
-      toast.success("👍" + etude.title + " done with success.");
+      toast.success("👍" + etude.title + " feito com sucesso.");
       //toast.warning("🎼 Continue Playing!! Never give-up!!");
     } catch (error) {
       runInAction(() => {
         this.loading = false;
       });
-      toast.error("👎 Error setting done etude.");
+      toast.error("👎 Erro ao registrar etude.");
     }
   };
 }

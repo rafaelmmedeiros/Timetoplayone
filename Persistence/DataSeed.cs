@@ -19,8 +19,8 @@ namespace Persistence {
                         Id = "a",
                         DisplayName = "Afrodite",
                         Bio = "Deusa da fertilidade, dos arqueiros e da caça.",
-                        UserName = "shiryu",
-                        Email = "shiryu@email.com"
+                        UserName = "Afrodite",
+                        Email = "Afroditeu@email.com"
                     },
                     new AppUser
                     {
@@ -35,8 +35,8 @@ namespace Persistence {
                         Id = "c",
                         DisplayName = "Poseydom",
                         Bio = "Deus dos mares, mas gosta de terra firme, vive dando em cima da Athena.",
-                        UserName = "ikki",
-                        Email = "ikki@email.com"
+                        UserName = "Poseydom",
+                        Email = "Poseydom@email.com"
                     },
                     new AppUser
                     {
@@ -174,8 +174,8 @@ namespace Persistence {
                         Description = "Strecth all 10 fingers on the 3 positions.",
                         Executions = 10,
                         Played = 100,
-                        Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now.AddDays(-1),
+                        Created = DateTime.Now.AddDays(-15),
+                        LastPlayed = DateTime.Now.AddDays(-10),
                         AppUserId = "e"
                     },
                     new Etude
@@ -189,7 +189,7 @@ namespace Persistence {
                         Executions = 8,
                         Played = 80,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now.AddDays(-2),
+                        LastPlayed = DateTime.Now.AddDays(-7),
                         AppUserId = "e"
                     },
                     new Etude
@@ -203,7 +203,7 @@ namespace Persistence {
                         Executions = 2,
                         Played = 20,
                         Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now.AddDays(-3),
+                        LastPlayed = DateTime.Now.AddDays(-4),
                         AppUserId = "e"
                     },
                     new Etude
@@ -217,7 +217,7 @@ namespace Persistence {
                         Executions = 2,
                         Played = 20,
                         Created = DateTime.Now.AddDays(-12),
-                        LastPlayed = DateTime.Now.AddDays(-4),
+                        LastPlayed = DateTime.Now.AddDays(-8),
                         AppUserId = "e"
                     },
                     new Etude
@@ -258,13 +258,13 @@ namespace Persistence {
                         Description = "John Petrucci super Chromatic variation 3",
                         Executions = 7,
                         Played = 105,
-                        Created = DateTime.Now.AddDays(-10),
-                        LastPlayed = DateTime.Now.AddDays(-8),
+                        Created = DateTime.Now.AddDays(-15),
+                        LastPlayed = DateTime.Now.AddDays(-13),
                         AppUserId = "e"
                     },
                     new Etude
                     {
-                        Title = "Arpeggios Triplets",
+                        Title = "Triplets Am7",
                         Active = true,
                         Fluence = 1,
                         Tome = "Arpeggios",
@@ -278,7 +278,7 @@ namespace Persistence {
                     },
                     new Etude
                     {
-                        Title = "Arpeggios Double Triplets",
+                        Title = "Double Triplets Em7",
                         Active = true,
                         Fluence = 1,
                         Tome = "Arpeggios",
@@ -292,7 +292,7 @@ namespace Persistence {
                     },
                     new Etude
                     {
-                        Title = "Arpeggios with Tapping",
+                        Title = "With Tapping",
                         Active = true,
                         Fluence = 1,
                         Tome = "Arpeggios",
@@ -320,7 +320,7 @@ namespace Persistence {
                     },
                     new Etude
                     {
-                        Title = "Tapping on Triplets TPH",
+                        Title = "Triplets TPH",
                         Active = true,
                         Fluence = 1,
                         Tome = "Tapping",
@@ -334,7 +334,7 @@ namespace Persistence {
                     },
                     new Etude
                     {
-                        Title = "Tapping on Sextines TPH",
+                        Title = "Sextines TPH",
                         Active = true,
                         Fluence = 1,
                         Tome = "Tapping",

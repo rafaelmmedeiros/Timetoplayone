@@ -15,11 +15,11 @@ import TextAreaInput from "../../../../app/common/form/TextAreaInput";
 
 const validate = combineValidators({
   displayName: composeValidators(
-    isRequired({ message: "Is required" }),
-    hasLengthBetween(3, 15)({ message: "Must be beetween 3 and 15 characters" })
+    isRequired({ message: "Deve conter um Nome" }),
+    hasLengthBetween(3, 15)({ message: "Titulo deve ter entre 3 e 15 caracteres." })
   )(),
   bio: composeValidators(
-    hasLengthLessThan(250)({ message: "Maximum of 250 characters" })
+    hasLengthLessThan(250)({ message: "Bio deve ter no máximo 250 caracters." })
   )(),
 });
 
@@ -39,7 +39,7 @@ const ProfileAboutEditForm: React.FC<IProps> = ({ updateProfile, profile }) => {
           <Field
             name="displayName"
             component={TextInput}
-            placeholder="Display Name"
+            placeholder="Nome de Exibição"
             value={profile!.displayName}
           />
           <Field
@@ -54,7 +54,7 @@ const ProfileAboutEditForm: React.FC<IProps> = ({ updateProfile, profile }) => {
             floated="right"
             disabled={invalid || pristine}
             positive
-            content="Update profile"
+            content="Atualizar perfil"
           />
         </Form>
       )}

@@ -43,7 +43,7 @@ export default class UserTodayChapterStore {
       runInAction("loadTodayChapter Error", () => {
         this.loadingTodayChapter = false;
       });
-      toast.error("👎 Error loading Today Chapter.");
+      toast.error("👎 Error carregando capítulo do dia.");
     }
   };
 
@@ -61,7 +61,7 @@ export default class UserTodayChapterStore {
       runInAction("", () => {
         this.loadingIncrease = false;
       });
-      toast.error("👎 Error increasing objective.");
+      toast.error("👎 Erro aumentando objetivo do dia.");
     }
   };
 
@@ -81,7 +81,7 @@ export default class UserTodayChapterStore {
       runInAction("", () => {
         this.loadingDecrease = false;
       });
-      toast.error("👎 Error decreasing objective.");
+      toast.error("👎 Erro diminuindo objetivo do dia.");
     }
   };
 }

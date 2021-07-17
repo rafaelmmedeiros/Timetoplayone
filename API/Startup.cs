@@ -70,7 +70,7 @@ namespace API {
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(List.Handler));
 
-            // ACESS POLICY
+            // ACCESS POLICY
             services.AddControllers(option => {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 option.Filters.Add(new AuthorizeFilter(policy));

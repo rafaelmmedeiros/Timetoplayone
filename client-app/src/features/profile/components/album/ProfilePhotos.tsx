@@ -18,18 +18,20 @@ const ProfilePhotos = () => {
   return (
     <Tab.Pane>
       <Grid>
+
         <Grid.Column width={16} style={{ paddingBottom: 0 }}>
-          <Header floated="left" icon="image" content="Photos" />
+          <Header floated="left" icon="image" content="Fotos" />
           {isCurrentUser && (
             <Button
               basic
               floated="right"
               color={addPhotoMode ? "red" : "blue"}
-              content={addPhotoMode ? "Cancel" : "Add Photo"}
+              content={addPhotoMode ? "Cancelar" : "Adicionar Foto"}
               onClick={() => setAddPhotoMode(!addPhotoMode)}
             />
           )}
         </Grid.Column>
+
         <Grid.Column width={16}>
           {addPhotoMode ? (
             <PhotoUploadWidget uploadPhoto={handleUploadImage} loading={uploadingPhoto} />
@@ -73,6 +75,7 @@ const ProfilePhotos = () => {
             </Card.Group>
           )}
         </Grid.Column>
+        
       </Grid>
     </Tab.Pane>
   );

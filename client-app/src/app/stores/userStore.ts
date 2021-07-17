@@ -28,7 +28,7 @@ export default class UserStore {
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
       history.push("/dashboard");
-      toast.info("🤘🤘 Welcome " + user.displayName + " !");
+      toast.info("🎸Bem-vindo " + user.displayName + " !");
     } catch (error) {
       throw error;
     }
@@ -40,7 +40,7 @@ export default class UserStore {
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
       history.push("/dashboard");
-      toast.info("🤘🤘 Welcome " + user.displayName + " !");
+      toast.info("🎸 Bem-vindo " + user.displayName + " !");
     } catch (error) {
       throw error;
     }

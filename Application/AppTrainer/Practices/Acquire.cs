@@ -19,6 +19,7 @@ namespace Application.AppTrainer.Practices {
 
         public class Query : IRequest<PracticeEnvelope> {
             public Query() {
+                // FILTERS
             }
         }
 
@@ -84,13 +85,13 @@ namespace Application.AppTrainer.Practices {
 
                 switch (fluence) {
                     case 1:
-                        priority = 100 - ((daysWithoutPlaying / 1.5) * 10);
+                        priority = 100 - ((daysWithoutPlaying / 2) * 25);
                         break;
                     case 2:
-                        priority = 100 - ((daysWithoutPlaying / 3) * 10);
+                        priority = 100 - ((daysWithoutPlaying / 4) * 25);
                         break;
                     case 3:
-                        priority = 100 - ((daysWithoutPlaying / 6) * 10);
+                        priority = 100 - ((daysWithoutPlaying / 6) * 25);
                         break;
                     default:
                         priority = 100;

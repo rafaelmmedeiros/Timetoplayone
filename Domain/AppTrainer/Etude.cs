@@ -8,7 +8,7 @@ namespace Domain.AppTrainer {
         public int Fluence { get; set; }
         public string Tome { get; set; }
         public int Time { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } 
 
         //  COMPUTEDS
         public int Executions { get; set; }

@@ -33,7 +33,7 @@ export default class UserChaptersStore {
       runInAction("loadWeekBrief Error", () => {
         this.loadingWeekBrief = false;
       });
-      toast.error("👎 Error loading Week Brief.");
+      toast.error("👎 Erro carregando últimos 7 dias.");
     }
   };
 
@@ -49,7 +49,7 @@ export default class UserChaptersStore {
       runInAction("loadUserChaptersWeek error", () => {
         this.loadingUserChaptersWeek = false;
       });
-      toast.error("👎 Error loading Week Chapaters.");
+      toast.error("👎 Erro carregando última semana.");
     }
   };
 
@@ -65,7 +65,7 @@ export default class UserChaptersStore {
       runInAction("loadUserChaptersMonth error", () => {
         this.loadingUserChaptersMonth = false;
       });
-      toast.error("👎 Error loading Montth Week Chapaters.");
+      toast.error("👎 Erro carregando último mês.");
     }
   };
 }
