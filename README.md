@@ -1,13 +1,13 @@
-# Proj2019m10n1
+# Hora de tocar! (Time to Play)
 
-Detalhes sobre o projeto
-
-## Versões
-
-0.0.0.0 = Major Releases - Releases - Milestones - Issues
+Main Concepts and Technologies.
+- DDD.
+- Clean Arqitecture.
+- Web Mobile.
+- .NET, React Native, MobX, Semantic-Ui and AXIOS.
 
 ## https://horadetocar.azurewebsites.net/
-V1.0
+Final Version
 
 
 
